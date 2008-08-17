@@ -11,7 +11,7 @@
 	<key>CFBundleIconFile</key>
 	<string></string>
 	<key>CFBundleIdentifier</key>
-	<string>com.yourcompany.${PRODUCT_NAME:identifier}</string>
+	<string>eu.thirdcog.MobileOverload</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -19,9 +19,9 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleSignature</key>
-	<string>????</string>
+	<string>tcMO</string>
 	<key>CFBundleVersion</key>
-	<string>1.0</string>
+	<string>0.1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSMainNibFile</key>

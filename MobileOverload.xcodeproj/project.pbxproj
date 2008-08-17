@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		05D77E9A0E58C7D400FB00DB /* ScoreBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D77E990E58C7D400FB00DB /* ScoreBarView.m */; };
 		05D77E9D0E58C7E800FB00DB /* BoardTile.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D77E9C0E58C7E800FB00DB /* BoardTile.m */; };
+		05D77F280E58DB3C00FB00DB /* BoardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D77F270E58DB3C00FB00DB /* BoardView.m */; };
+		05D77F8E0E58E63E00FB00DB /* TypesAndConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D77F8D0E58E63E00FB00DB /* TypesAndConstants.m */; };
+		05D77FDF0E58E93F00FB00DB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05D77FDE0E58E93F00FB00DB /* QuartzCore.framework */; };
 		1D3623260D0F684500981E51 /* MobileOverloadAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* MobileOverloadAppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -28,6 +31,11 @@
 		05D77E990E58C7D400FB00DB /* ScoreBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreBarView.m; sourceTree = "<group>"; };
 		05D77E9B0E58C7E800FB00DB /* BoardTile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardTile.h; sourceTree = "<group>"; };
 		05D77E9C0E58C7E800FB00DB /* BoardTile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoardTile.m; sourceTree = "<group>"; };
+		05D77F260E58DB3C00FB00DB /* BoardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardView.h; sourceTree = "<group>"; };
+		05D77F270E58DB3C00FB00DB /* BoardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoardView.m; sourceTree = "<group>"; };
+		05D77F8C0E58E62300FB00DB /* TypesAndConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TypesAndConstants.h; sourceTree = "<group>"; };
+		05D77F8D0E58E63E00FB00DB /* TypesAndConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TypesAndConstants.m; sourceTree = "<group>"; };
+		05D77FDE0E58E93F00FB00DB /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = /System/Library/Frameworks/QuartzCore.framework; sourceTree = "<absolute>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* MobileOverloadAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobileOverloadAppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* MobileOverloadAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobileOverloadAppDelegate.m; sourceTree = "<group>"; };
@@ -58,6 +66,7 @@
 			files = (
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
+				05D77FDF0E58E93F00FB00DB /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -71,6 +80,10 @@
 				05D77E990E58C7D400FB00DB /* ScoreBarView.m */,
 				05D77E9B0E58C7E800FB00DB /* BoardTile.h */,
 				05D77E9C0E58C7E800FB00DB /* BoardTile.m */,
+				05D77F260E58DB3C00FB00DB /* BoardView.h */,
+				05D77F270E58DB3C00FB00DB /* BoardView.m */,
+				05D77F8C0E58E62300FB00DB /* TypesAndConstants.h */,
+				05D77F8D0E58E63E00FB00DB /* TypesAndConstants.m */,
 			);
 			name = "Game Views";
 			path = "Classes/Game Views";
@@ -156,6 +169,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				05D77FDE0E58E93F00FB00DB /* QuartzCore.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 			);
@@ -233,6 +247,8 @@
 				289233B00DB2D0DB0083E9F9 /* FlipsideViewController.m in Sources */,
 				05D77E9A0E58C7D400FB00DB /* ScoreBarView.m in Sources */,
 				05D77E9D0E58C7E800FB00DB /* BoardTile.m in Sources */,
+				05D77F280E58DB3C00FB00DB /* BoardView.m in Sources */,
+				05D77F8E0E58E63E00FB00DB /* TypesAndConstants.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

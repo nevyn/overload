@@ -8,35 +8,19 @@
 
 #import "MainViewController.h"
 #import "MainView.h"
-#import "BoardTile.h"
-
-static const NSUInteger BoardWidth = 320;
-static const NSUInteger BoardHeight = 372;
-static const NSUInteger TileWidth = 32;
-static const NSUInteger TileHeight = 31;
-static const NSUInteger WidthInTiles = 10; //BoardWidth/TileWidth
-static const NSUInteger HeightInTiles = 12; //BoardHeight/TileHeight
+#import "BoardView.h"
 
 @implementation MainViewController
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
 	if( ! [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) return nil;
-
+    
 	return self;
 }
-
-
-
 - (void)viewDidLoad {
-    for(unsigned y = 0; y < HeightInTiles; y++) {
-        for (unsigned x = 0; x < WidthInTiles; x++) {
-            BoardTile *tile = [[BoardTile alloc] initWithFrame:CGRectMake(x*TileWidth, y*TileHeight, TileWidth, TileHeight)];
-            [self.view addSubview:tile];
-        }
-    }
+    [self.view addSubview:[[BoardView alloc] initWithFrame:CGRectMake(0, 45, BoardWidth, BoardHeight)]];
 }
- 
 
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {

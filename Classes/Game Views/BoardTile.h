@@ -7,21 +7,21 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TypesAndConstants.h"
 
-typedef enum {
-    OwnerNone,
-    OwnerP1,
-    OwnerP2
-} TileOwner;
-
-const static NSTimeInterval kOLExplosionDelay = 0.05;
-const static NSTimeInterval kOLExplosionSpreadEnergy = 0.25;
-
-
+@class BoardView;
 @interface BoardTile : UIView {
-    TileOwner owner;
+    Player owner;
     CGFloat value;
+    BoardPoint boardPosition;
+    BoardView *board;
 }
-@property TileOwner owner;
+@property Player owner;
 @property CGFloat value;
+@property BoardPoint boardPosition;
+@property (assign) BoardView *board;
+
+-(void)charge:(CGFloat)amount;
+-(void)charge:(CGFloat)amount forPlayer:(Player)newOwner;
+-(void)explode;
 @end
