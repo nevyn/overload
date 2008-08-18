@@ -311,7 +311,7 @@
 				GCC_PREFIX_HEADER = MobileOverload_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
 				PRODUCT_NAME = MobileOverload;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B1569BE1-39D2-407F-A6BB-0CEC5F4989E2";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "CB2AA25A-25D8-46E8-A460-715C1CE09CFB";
 			};
 			name = "Beta Testing";
 		};

@@ -1,0 +1,5 @@
+fix settings not taking when starting new game
+serialize & unserialize on boot
+nice tile in-transition
+make the scoreboards some kind of bezel (gloss?)
+
