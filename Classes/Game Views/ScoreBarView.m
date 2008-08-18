@@ -12,17 +12,32 @@
 @implementation ScoreBarView
 
 
-- (id)initWithFrame:(CGRect)frame {
-	if (self = [super initWithFrame:frame]) {
-		// Initialization code
-	}
+- (id)initWithFrame:(CGRect)frame color:(UIColor*)bg;
+{
+	if (![super initWithFrame:frame]) return nil;
+    self.backgroundColor = bg;
+    
+    CGRect frame1 = frame;
+    frame1.size.height /= 2.2;
+    frame1.size.width -= 12;
+    frame1.origin.y = 0;
+    frame1.origin.x += 6;
+    frame1 = CGRectIntegral(frame1);
+    statusText = [[UILabel alloc] initWithFrame:frame1];
+    frame1.origin.y += frame1.size.height;
+    frame1 = CGRectIntegral(frame1);
+    scoreText = [[UILabel alloc] initWithFrame:frame1];
+    statusText.text = @"Welcome to Overload.";
+    scoreText.text = @"0 (you) 0 (opponent) of 120";
+    
+    statusText.backgroundColor = self.backgroundColor;
+    scoreText.backgroundColor = self.backgroundColor;
+    [self addSubview:statusText];
+    [self addSubview:scoreText];
+    
 	return self;
 }
 
-
-- (void)drawRect:(CGRect)rect {
-	// Drawing code
-}
 
 
 - (void)dealloc {

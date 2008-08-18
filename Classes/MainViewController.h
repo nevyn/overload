@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface MainViewController : UIViewController {
+    UIView *score1, *score2;
 }
 
 @end

@@ -10,7 +10,11 @@
 
 
 @interface ScoreBarView : UIView {
-
+    IBOutlet UILabel *statusText;
+    IBOutlet UILabel *scoreText;
 }
+- (id)initWithFrame:(CGRect)frame color:(UIColor*)bg;
 
+@property (copy) NSString *status;
+@property (copy) NSString *score;
 @end

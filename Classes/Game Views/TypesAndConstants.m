@@ -7,7 +7,6 @@
  *
  */
 
-
 const NSUInteger BoardWidth = 320;
 const NSUInteger BoardHeight = 372;
 const NSUInteger TileWidth = 32;
