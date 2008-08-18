@@ -36,10 +36,16 @@ static float frand(float max) {
 
 -(void)updateColor;
 {
+    [UIView beginAnimations:@"Tile color" context:nil];
     static CGFloat hues[] = {.6, .0, .35 };
     CGFloat brightness = 0.25+(1.0-self.value)*0.75;
     CGFloat saturation = (self.value >= 0.74)?1.0:0.6;
+    if(self.owner == PlayerNone) {
+        saturation = 0.3;
+    }
+
     self.backgroundColor = [UIColor colorWithHue:hues[self.owner] saturation:saturation brightness:brightness alpha:1.0];
+    [UIView commitAnimations];
 }
 
 
@@ -71,7 +77,24 @@ static float frand(float max) {
 }
 -(void)explode;
 {
+    [UIView beginAnimations:@"Explosion" context:nil];
+    //[UIView setAnimationDuration:1.0];
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
+    
+    // Actions for self
     self.value = 0.0;
+    
+    // Actions for explosion
+    BoardTile *animationTile = [[[BoardTile alloc] initWithFrame:self.frame] autorelease];
+    animationTile.owner = self.owner;
+    animationTile.value = self.value;
+    [self.superview addSubview:animationTile];
+    animationTile.transform = CGAffineTransformMakeScale(4, 4);
+    animationTile.layer.opacity = 0.0;
+    [UIView setAnimationDelegate:animationTile];
+    [UIView setAnimationDidStopSelector:@selector(_resetExplosionAnimation::)];
+    [UIView commitAnimations];
+    
     BoardTile *targets[] = {[self.board tile:BoardPointMake(self.boardPosition.x, self.boardPosition.y-1)],
                             [self.board tile:BoardPointMake(self.boardPosition.x+1, self.boardPosition.y)],
                             [self.board tile:BoardPointMake(self.boardPosition.x, self.boardPosition.y+1)],
@@ -81,6 +104,11 @@ static float frand(float max) {
     [NSTimer scheduledTimerWithTimeInterval:ExplosionDelay*1 target:targets[1] selector:@selector(_explosionCharge:) userInfo:self repeats:NO];
     [NSTimer scheduledTimerWithTimeInterval:ExplosionDelay*2 target:targets[2] selector:@selector(_explosionCharge:) userInfo:self repeats:NO];
     [NSTimer scheduledTimerWithTimeInterval:ExplosionDelay*3 target:targets[3] selector:@selector(_explosionCharge:) userInfo:self repeats:NO];
+}
+
+-(void)_resetExplosionAnimation:(id)_:(id)__
+{
+    [self removeFromSuperview];
 }
 -(void)_explosionCharge:(NSTimer*)caller;
 {
