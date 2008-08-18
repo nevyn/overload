@@ -18,6 +18,7 @@ extern NSTimeInterval BoardAnimationOccurredAt;
     Player currentPlayer;
     MainViewController *controller;
 }
+- (id)initWithFrame:(CGRect)frame controller:(MainViewController*)controller_;
 
 -(BoardTile*)tile:(BoardPoint)point;
 
@@ -27,5 +28,4 @@ extern NSTimeInterval BoardAnimationOccurredAt;
 
 -(void)updateScores;
 
-@property (assign) MainViewController *controller;
 @end

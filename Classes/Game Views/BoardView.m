@@ -14,8 +14,11 @@ NSTimeInterval BoardAnimationOccurredAt = 0;
 @implementation BoardView
 
 
-- (id)initWithFrame:(CGRect)frame {
+- (id)initWithFrame:(CGRect)frame controller:(MainViewController*)controller_;
+{
 	if (![super initWithFrame:frame]) return nil;
+    
+    controller = controller_;
 
     for(NSUInteger y = 0; y < HeightInTiles; y++) {
         for (NSUInteger x = 0; x < WidthInTiles; x++) {
@@ -62,8 +65,12 @@ NSTimeInterval BoardAnimationOccurredAt = 0;
 }
 
 @synthesize currentPlayer;
+-(void)setCurrentPlayer:(Player)newPlayer;
+{
+    currentPlayer = newPlayer;
+    [controller setCurrentPlayer:newPlayer];
+}
 
-@synthesize controller;
 -(void)updateScores;
 {
     CGFloat scores[3];

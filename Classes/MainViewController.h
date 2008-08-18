@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "ScoreBarView.h"
+#import "TypesAndConstants.h"
 
 @interface MainViewController : UIViewController {
     ScoreBarView *score1, *score2;
 }
 -(void)setScores:(CGFloat[])scores;
+-(void)setCurrentPlayer:(Player)player;
 @end

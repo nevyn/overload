@@ -19,12 +19,12 @@
 	return self;
 }
 - (void)viewDidLoad {
-    BoardView *boardView = [[BoardView alloc] initWithFrame:CGRectMake(0, 45, BoardWidth, BoardHeight)];
-    boardView.controller = self;
+    score1 = [[ScoreBarView alloc] initWithFrame:CGRectMake(0, 46+BoardHeight, 320, 43) color:[UIColor colorWithHue:.0 saturation:0.6 brightness:0.75 alpha:1.0]];
+    score2 = [[ScoreBarView alloc] initWithFrame:CGRectMake(0, 0, 320, 44) color:[UIColor colorWithHue:.35 saturation:0.6 brightness:0.55 alpha:1.0]];
+    score2.transform = CGAffineTransformMakeRotation(M_PI);    
+    BoardView *boardView = [[BoardView alloc] initWithFrame:CGRectMake(0, 45, BoardWidth, BoardHeight) controller:self];
+    
     [self.view addSubview:boardView];
-    score1 = [[ScoreBarView alloc] initWithFrame:CGRectMake(0, 0, 320, 44) color:[UIColor colorWithHue:.0 saturation:0.6 brightness:0.75 alpha:1.0]];
-    score2 = [[ScoreBarView alloc] initWithFrame:CGRectMake(0, 46+BoardHeight, 320, 43) color:[UIColor colorWithHue:.35 saturation:0.6 brightness:0.55 alpha:1.0]];
-    score1.transform = CGAffineTransformMakeRotation(M_PI);
     [self.view addSubview:score1];
     [self.view addSubview:score2];
 }
@@ -52,6 +52,14 @@
     score1.score = score;
     score = [NSString stringWithFormat:@"%.2f (you) %.2f (opponent) of 120", scores[2], scores[1]];
     score2.score = score;
+}
+-(void)setCurrentPlayer:(Player)player;
+{
+    NSString *my = @"Your turn.", *theirs = @"Their turn.";
+    if(player == PlayerP1)
+        score1.status = my, score2.status = theirs;
+    else
+        score1.status = theirs, score2.status = my;
 }
 
 
