@@ -17,6 +17,8 @@ extern NSTimeInterval BoardAnimationOccurredAt;
     BoardTile *boardTiles[10][12]; // [x][y]
     Player currentPlayer;
     MainViewController *controller;
+    NSTimer *winningConditionTimer;
+    BOOL gameEnded;
 }
 - (id)initWithFrame:(CGRect)frame controller:(MainViewController*)controller_;
 
@@ -27,5 +29,6 @@ extern NSTimeInterval BoardAnimationOccurredAt;
 @property Player currentPlayer;
 
 -(void)updateScores;
+-(void)scheduleWinningConditionCheck;
 
 @end

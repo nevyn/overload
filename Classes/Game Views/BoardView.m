@@ -32,10 +32,12 @@ NSTimeInterval BoardAnimationOccurredAt = 0;
     }
     
     self.currentPlayer = PlayerP1;
+    [self scheduleWinningConditionCheck];
     
 	return self;
 }
 - (void)dealloc {
+    [winningConditionTimer invalidate];
 	[super dealloc];
 }
 
@@ -49,6 +51,11 @@ NSTimeInterval BoardAnimationOccurredAt = 0;
 
 -(void)currentPlayerPerformCharge:(CGFloat)amount at:(BoardPoint)point;
 {
+    if(gameEnded) {
+        [controller restart];
+        return;
+    }
+    
     if(BoardAnimationOccurredAt+(2.*ExplosionDelay) > [NSDate timeIntervalSinceReferenceDate])
         return; // Still animating; moving now would be invalid
     
@@ -81,6 +88,26 @@ NSTimeInterval BoardAnimationOccurredAt = 0;
         }
     }
     [controller setScores:scores];
+}
+-(void)scheduleWinningConditionCheck;
+{
+    winningConditionTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(_winningConditionCheck:) userInfo:nil repeats:YES];
+}
+-(void)_winningConditionCheck:(NSTimer*)timer;
+{
+    Player winner = [self tile:BoardPointMake(0, 0)].owner;
+    if(winner == PlayerNone) return;
+    
+    for(NSUInteger y = 0; y < 3; y++) {
+        for (NSUInteger x = 0; x < 3; x++) {
+            BoardTile *tile = [self tile:BoardPointMake(x, y)];
+            if(tile.owner != winner)
+                return;
+        }
+    }
+    gameEnded = YES;
+    [timer invalidate]; timer = nil;
+    [controller setWinner:winner];
 }
 
 @end

@@ -22,7 +22,7 @@
     score1 = [[ScoreBarView alloc] initWithFrame:CGRectMake(0, 46+BoardHeight, 320, 43) color:[UIColor colorWithHue:.0 saturation:0.6 brightness:0.75 alpha:1.0]];
     score2 = [[ScoreBarView alloc] initWithFrame:CGRectMake(0, 0, 320, 44) color:[UIColor colorWithHue:.35 saturation:0.6 brightness:0.55 alpha:1.0]];
     score2.transform = CGAffineTransformMakeRotation(M_PI);    
-    BoardView *boardView = [[BoardView alloc] initWithFrame:CGRectMake(0, 45, BoardWidth, BoardHeight) controller:self];
+    boardView = [[BoardView alloc] initWithFrame:CGRectMake(0, 45, BoardWidth, BoardHeight) controller:self];
     
     [self.view addSubview:boardView];
     [self.view addSubview:score1];
@@ -61,6 +61,23 @@
     else
         score1.status = theirs, score2.status = my;
 }
+-(void)setWinner:(Player)winner;
+{
+    NSString *win = @"Congratulations, you win!", *lose = @"Bummer, you lose.";
+    if(winner == PlayerP1)
+        score1.status = win, score2.status = lose;
+    else
+        score1.status = lose, score2.status = win;
+    score1.score = score2.score = @"Tap board to play again.";
+}
 
+-(void)restart;
+{
+    [boardView removeFromSuperview];
+    boardView = [[BoardView alloc] initWithFrame:CGRectMake(0, 45, BoardWidth, BoardHeight) controller:self];
+    CGFloat scores[3] = {0,0,0};
+    [self setScores:scores];
+    [self.view addSubview:boardView];
+}
 
 @end

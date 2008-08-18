@@ -42,7 +42,8 @@
 	[aNavigationBar release];
 	
 	UIBarButtonItem *buttonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(toggleView)];
-	UINavigationItem *navigationItem = [[UINavigationItem alloc] initWithTitle:@"MobileOverload"];
+    NSString *version = [[[NSBundle mainBundle]infoDictionary]objectForKey:@"CFBundleVersion"];
+	UINavigationItem *navigationItem = [[UINavigationItem alloc] initWithTitle:[NSString stringWithFormat:@"Overload v%@", version]];
 	navigationItem.rightBarButtonItem = buttonItem;
 	[flipsideNavigationBar pushNavigationItem:navigationItem animated:NO];
 	[navigationItem release];
