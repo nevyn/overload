@@ -11,6 +11,8 @@
 
 #import "TypesAndConstants.h"
 
+extern NSTimeInterval BoardAnimationOccurredAt;
+
 @interface BoardView : UIView {
     BoardTile *boardTiles[10][12]; // [x][y]
     Player currentPlayer;
@@ -19,5 +21,7 @@
 -(BoardTile*)tile:(BoardPoint)point;
 
 -(void)currentPlayerPerformCharge:(CGFloat)amount at:(BoardPoint)point;
+
+@property Player currentPlayer;
 
 @end

@@ -8,6 +8,7 @@
 
 #import "BoardView.h"
 
+NSTimeInterval BoardAnimationOccurredAt = 0;
 
 
 @implementation BoardView
@@ -27,6 +28,8 @@
         }
     }
     
+    self.currentPlayer = PlayerP1;
+    
 	return self;
 }
 - (void)dealloc {
@@ -43,9 +46,21 @@
 
 -(void)currentPlayerPerformCharge:(CGFloat)amount at:(BoardPoint)point;
 {
+    if(BoardAnimationOccurredAt+(2.*ExplosionDelay) > [NSDate timeIntervalSinceReferenceDate])
+        return; // Still animating; moving now would be invalid
+    
     BoardTile *tile = [self tile:point];
-    if(tile.owner == currentPlayer || tile.owner == PlayerNone)
-        [tile charge:ChargeEnergy];
+    if( ! (tile.owner == currentPlayer || tile.owner == PlayerNone) )
+        return; // Invalid move
+
+    [tile charge:ChargeEnergy forPlayer:self.currentPlayer];
+    
+    if(self.currentPlayer == PlayerP1)
+        self.currentPlayer = PlayerP2;
+    else
+        self.currentPlayer = PlayerP1;
 }
+
+@synthesize currentPlayer;
 
 @end

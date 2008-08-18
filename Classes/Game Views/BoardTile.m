@@ -83,5 +83,6 @@ static float frand(float max) {
 -(void)_explosionCharge:(NSTimer*)caller;
 {
     [self charge:ExplosionSpreadEnergy forPlayer:[(BoardTile*)[caller userInfo] owner]];
+    BoardAnimationOccurredAt = [NSDate timeIntervalSinceReferenceDate];
 }
 @end
