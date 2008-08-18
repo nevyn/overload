@@ -98,8 +98,8 @@ NSTimeInterval BoardAnimationOccurredAt = 0;
     Player winner = [self tile:BoardPointMake(0, 0)].owner;
     if(winner == PlayerNone) return;
     
-    for(NSUInteger y = 0; y < 3; y++) {
-        for (NSUInteger x = 0; x < 3; x++) {
+    for(NSUInteger y = 0; y < HeightInTiles; y++) {
+        for (NSUInteger x = 0; x < WidthInTiles; x++) {
             BoardTile *tile = [self tile:BoardPointMake(x, y)];
             if(tile.owner != winner)
                 return;
