@@ -38,7 +38,8 @@ static float frand(float max) {
 {
     static CGFloat hues[] = {.6, .0, .35 };
     CGFloat brightness = 0.25+(1.0-self.value)*0.75;
-    self.backgroundColor = [UIColor colorWithHue:hues[self.owner] saturation:0.6 brightness:brightness alpha:1.0];
+    CGFloat saturation = (self.value >= 0.74)?1.0:0.6;
+    self.backgroundColor = [UIColor colorWithHue:hues[self.owner] saturation:saturation brightness:brightness alpha:1.0];
 }
 
 
@@ -59,8 +60,9 @@ static float frand(float max) {
 -(void)charge:(CGFloat)amount;
 {
     self.value += amount;
-    if(self.value >= 1.0)
+    if(self.value >= 0.9999)
         [self explode];
+    [self.board updateScores];
 }
 -(void)charge:(CGFloat)amount forPlayer:(Player)newOwner;
 {

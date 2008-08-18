@@ -44,5 +44,21 @@
 	[super dealloc];
 }
 
+-(NSString*)status;
+{
+    return statusText.text;
+}
+-(void)setStatus:(NSString*)newStatus;
+{
+    statusText.text = newStatus;
+}
+-(NSString*)score;
+{
+    return scoreText.text;
+}
+-(void)setScore:(NSString*)newScore;
+{
+    scoreText.text = newScore;
+}
 
 @end

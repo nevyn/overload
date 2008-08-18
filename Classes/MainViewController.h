@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ScoreBarView.h"
 
 @interface MainViewController : UIViewController {
-    UIView *score1, *score2;
+    ScoreBarView *score1, *score2;
 }
-
+-(void)setScores:(CGFloat[])scores;
 @end

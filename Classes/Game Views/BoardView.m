@@ -7,7 +7,7 @@
 //
 
 #import "BoardView.h"
-
+#import "MainViewController.h"
 NSTimeInterval BoardAnimationOccurredAt = 0;
 
 
@@ -62,5 +62,18 @@ NSTimeInterval BoardAnimationOccurredAt = 0;
 }
 
 @synthesize currentPlayer;
+
+@synthesize controller;
+-(void)updateScores;
+{
+    CGFloat scores[3];
+    for(NSUInteger y = 0; y < HeightInTiles; y++) {
+        for (NSUInteger x = 0; x < WidthInTiles; x++) {
+            BoardTile *tile = [self tile:BoardPointMake(x, y)];
+            scores[tile.owner] += tile.value;
+        }
+    }
+    [controller setScores:scores];
+}
 
 @end

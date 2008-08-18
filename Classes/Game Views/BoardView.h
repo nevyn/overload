@@ -12,10 +12,11 @@
 #import "TypesAndConstants.h"
 
 extern NSTimeInterval BoardAnimationOccurredAt;
-
+@class MainViewController;
 @interface BoardView : UIView {
     BoardTile *boardTiles[10][12]; // [x][y]
     Player currentPlayer;
+    MainViewController *controller;
 }
 
 -(BoardTile*)tile:(BoardPoint)point;
@@ -24,4 +25,7 @@ extern NSTimeInterval BoardAnimationOccurredAt;
 
 @property Player currentPlayer;
 
+-(void)updateScores;
+
+@property (assign) MainViewController *controller;
 @end

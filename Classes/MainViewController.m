@@ -9,7 +9,6 @@
 #import "MainViewController.h"
 #import "MainView.h"
 #import "BoardView.h"
-#import "ScoreBarView.h"
 
 @implementation MainViewController
 
@@ -20,7 +19,9 @@
 	return self;
 }
 - (void)viewDidLoad {
-    [self.view addSubview:[[BoardView alloc] initWithFrame:CGRectMake(0, 45, BoardWidth, BoardHeight)]];
+    BoardView *boardView = [[BoardView alloc] initWithFrame:CGRectMake(0, 45, BoardWidth, BoardHeight)];
+    boardView.controller = self;
+    [self.view addSubview:boardView];
     score1 = [[ScoreBarView alloc] initWithFrame:CGRectMake(0, 0, 320, 44) color:[UIColor colorWithHue:.0 saturation:0.6 brightness:0.75 alpha:1.0]];
     score2 = [[ScoreBarView alloc] initWithFrame:CGRectMake(0, 46+BoardHeight, 320, 43) color:[UIColor colorWithHue:.35 saturation:0.6 brightness:0.55 alpha:1.0]];
     score1.transform = CGAffineTransformMakeRotation(M_PI);
@@ -43,6 +44,14 @@
 
 - (void)dealloc {
 	[super dealloc];
+}
+
+-(void)setScores:(CGFloat[])scores;
+{
+    NSString *score = [NSString stringWithFormat:@"%.2f (you) %.2f (opponent) of 120", scores[1], scores[2]];
+    score1.score = score;
+    score = [NSString stringWithFormat:@"%.2f (you) %.2f (opponent) of 120", scores[2], scores[1]];
+    score2.score = score;
 }
 
 
