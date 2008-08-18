@@ -13,6 +13,7 @@
 @interface MainViewController : UIViewController {
     ScoreBarView *score1, *score2;
     BoardView *boardView;
+    BOOL chaosGame, tinyGame;
 }
 -(void)setScores:(CGFloat[])scores;
 -(void)setCurrentPlayer:(Player)player;

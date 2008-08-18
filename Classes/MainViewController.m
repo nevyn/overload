@@ -77,6 +77,8 @@
     boardView = [[BoardView alloc] initWithFrame:CGRectMake(0, 45, BoardWidth, BoardHeight) controller:self];
     CGFloat scores[3] = {0,0,0};
     [self setScores:scores];
+    boardView.chaosGame = chaosGame;
+    boardView.tinyGame = tinyGame;
     [self.view addSubview:boardView];
 }
 -(void)shuffle;
@@ -84,9 +86,9 @@
     [boardView shuffle];
 }
 
--(void)setChaosGame:(BOOL)_; { boardView.chaosGame = _; }
+-(void)setChaosGame:(BOOL)_; { chaosGame = boardView.chaosGame = _; }
 -(BOOL)chaosGame; { return boardView.chaosGame; }
--(void)setTinyGame:(BOOL)_; { boardView.tinyGame = _; }
+-(void)setTinyGame:(BOOL)_; { tinyGame = boardView.tinyGame = _; }
 -(BOOL)tinyGame; { return boardView.tinyGame; }
 
 

@@ -22,7 +22,8 @@ extern NSTimeInterval BoardAnimationOccurredAt;
     
     BOOL chaosGame;
     BOOL tinyGame;
-
+    
+    NSThread *explosionThread;
 }
 - (id)initWithFrame:(CGRect)frame controller:(MainViewController*)controller_;
 

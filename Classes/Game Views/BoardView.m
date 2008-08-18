@@ -34,12 +34,34 @@ NSTimeInterval BoardAnimationOccurredAt = 0;
     self.currentPlayer = PlayerP1;
     [self scheduleWinningConditionCheck];
     
+    //explosionThread = [[NSThread alloc] initWithTarget:self selector:@selector(explosionThreadMain) object:nil];
+    //[explosionThread start];
+    
 	return self;
 }
 - (void)dealloc {
     [winningConditionTimer invalidate];
+    [explosionThread cancel];
+    [explosionThread release];
+
 	[super dealloc];
 }
+-(void)explosionThreadMain;
+{
+    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+    NSRunLoop *runLoop = [NSRunLoop currentRunLoop];
+    while ( ! [[NSThread currentThread] isCancelled]) {
+        NSAutoreleasePool *pool2 = [[NSAutoreleasePool alloc] init];
+        
+        [runLoop runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
+        
+        [pool2 release];
+    }
+    
+    [pool release];
+}
+
+
 
 -(BoardTile*)tile:(BoardPoint)tilePos;
 {
@@ -58,6 +80,9 @@ NSTimeInterval BoardAnimationOccurredAt = 0;
     
     if( !chaosGame && (BoardAnimationOccurredAt+(2.*ExplosionDelay) > [NSDate timeIntervalSinceReferenceDate]))
         return; // Still animating; moving now would be invalid
+    
+    if(chaosGame)
+        NSLog(@"CHAOS");
     
     BoardTile *tile = [self tile:point];
     if( ! (tile.owner == currentPlayer || tile.owner == PlayerNone) )

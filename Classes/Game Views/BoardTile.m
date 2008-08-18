@@ -13,6 +13,7 @@
 
 @interface BoardTile()
 -(void)updateColor;
+-(void)_backgroundExplode;
 @end
 
 @implementation BoardTile
@@ -97,15 +98,19 @@
     [UIView setAnimationDidStopSelector:@selector(_resetExplosionAnimation::)];
     [UIView commitAnimations];
     
+     //[self performSelector:@selector(_backgroundExplode) onThread:self.board.explosionThread withObject:nil waitUntilDone:NO];
+    [self _backgroundExplode];
+}
+-(void)_backgroundExplode; {
     BoardTile *targets[] = {[self.board tile:BoardPointMake(self.boardPosition.x, self.boardPosition.y-1)],
                             [self.board tile:BoardPointMake(self.boardPosition.x+1, self.boardPosition.y)],
                             [self.board tile:BoardPointMake(self.boardPosition.x, self.boardPosition.y+1)],
                             [self.board tile:BoardPointMake(self.boardPosition.x-1, self.boardPosition.y)]};
     
-    [NSTimer scheduledTimerWithTimeInterval:0 target:targets[0] selector:@selector(_explosionCharge:) userInfo:self repeats:NO];
-    [NSTimer scheduledTimerWithTimeInterval:ExplosionDelay*1 target:targets[1] selector:@selector(_explosionCharge:) userInfo:self repeats:NO];
-    [NSTimer scheduledTimerWithTimeInterval:ExplosionDelay*2 target:targets[2] selector:@selector(_explosionCharge:) userInfo:self repeats:NO];
-    [NSTimer scheduledTimerWithTimeInterval:ExplosionDelay*3 target:targets[3] selector:@selector(_explosionCharge:) userInfo:self repeats:NO];
+    [NSTimer scheduledTimerWithTimeInterval:ExplosionDelay*1 target:targets[0] selector:@selector(_explosionCharge:) userInfo:self repeats:NO];
+    [NSTimer scheduledTimerWithTimeInterval:ExplosionDelay*2 target:targets[1] selector:@selector(_explosionCharge:) userInfo:self repeats:NO];
+    [NSTimer scheduledTimerWithTimeInterval:ExplosionDelay*3 target:targets[2] selector:@selector(_explosionCharge:) userInfo:self repeats:NO];
+    [NSTimer scheduledTimerWithTimeInterval:ExplosionDelay*4 target:targets[3] selector:@selector(_explosionCharge:) userInfo:self repeats:NO];
 }
 
 -(void)_resetExplosionAnimation:(id)_:(id)__
