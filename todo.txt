@@ -1,5 +1,7 @@
-fix settings not taking when starting new game
-serialize & unserialize on boot
-nice tile in-transition
-make the scoreboards some kind of bezel (gloss?)
-
+- Save game state when quitting
+- Implement TinyGame mode
+- Nice transition when app loads (tile transitions)
+- icon
+- default.png
+- make the scorebars some kind of bezel (gloss?)
+- Chaos mode works so-so
