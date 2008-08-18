@@ -14,7 +14,6 @@
 @implementation RootViewController
 
 @synthesize infoButton;
-@synthesize flipsideNavigationBar;
 @synthesize mainViewController;
 @synthesize flipsideViewController;
 
@@ -31,23 +30,13 @@
 
 - (void)loadFlipsideViewController {
 	
-	FlipsideViewController *viewController = [[FlipsideViewController alloc] initWithNibName:@"FlipsideView" bundle:nil];
+	FlipsideViewController *viewController = [[FlipsideViewController alloc] initWithNibName:@"FlipsideView"
+                                                                                      bundle:nil
+                                                                              rootController:self
+                                                                              mainController:self.mainViewController];
 	self.flipsideViewController = viewController;
 	[viewController release];
 	
-	// Set up the navigation bar
-	UINavigationBar *aNavigationBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 44.0)];
-	aNavigationBar.barStyle = UIBarStyleBlackOpaque;
-	self.flipsideNavigationBar = aNavigationBar;
-	[aNavigationBar release];
-	
-	UIBarButtonItem *buttonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(toggleView)];
-    NSString *version = [[[NSBundle mainBundle]infoDictionary]objectForKey:@"CFBundleVersion"];
-	UINavigationItem *navigationItem = [[UINavigationItem alloc] initWithTitle:[NSString stringWithFormat:@"Overload v%@", version]];
-	navigationItem.rightBarButtonItem = buttonItem;
-	[flipsideNavigationBar pushNavigationItem:navigationItem animated:NO];
-	[navigationItem release];
-	[buttonItem release];
 }
 
 
@@ -73,7 +62,6 @@
 		[mainView removeFromSuperview];
         [infoButton removeFromSuperview];
 		[self.view addSubview:flipsideView];
-		[self.view insertSubview:flipsideNavigationBar aboveSubview:flipsideView];
 		[mainViewController viewDidDisappear:YES];
 		[flipsideViewController viewDidAppear:YES];
 
@@ -81,7 +69,6 @@
 		[mainViewController viewWillAppear:YES];
 		[flipsideViewController viewWillDisappear:YES];
 		[flipsideView removeFromSuperview];
-		[flipsideNavigationBar removeFromSuperview];
 		[self.view addSubview:mainView];
 		[self.view insertSubview:infoButton aboveSubview:mainViewController.view];
 		[flipsideViewController viewDidDisappear:YES];
@@ -106,7 +93,6 @@
 
 - (void)dealloc {
 	[infoButton release];
-	[flipsideNavigationBar release];
 	[mainViewController release];
 	[flipsideViewController release];
 	[super dealloc];

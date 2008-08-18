@@ -19,6 +19,10 @@ extern NSTimeInterval BoardAnimationOccurredAt;
     MainViewController *controller;
     NSTimer *winningConditionTimer;
     BOOL gameEnded;
+    
+    BOOL chaosGame;
+    BOOL tinyGame;
+
 }
 - (id)initWithFrame:(CGRect)frame controller:(MainViewController*)controller_;
 
@@ -30,5 +34,9 @@ extern NSTimeInterval BoardAnimationOccurredAt;
 
 -(void)updateScores;
 -(void)scheduleWinningConditionCheck;
+
+-(void)shuffle;
+@property BOOL chaosGame;
+@property BOOL tinyGame;
 
 @end

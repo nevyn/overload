@@ -30,3 +30,5 @@ CG_INLINE BoardPoint BoardPointMake(NSUInteger x, NSUInteger y) { BoardPoint p; 
 extern const CGFloat ChargeEnergy;
 extern const NSTimeInterval ExplosionDelay;
 extern const NSTimeInterval ExplosionSpreadEnergy;
+
+extern float frand(float max);

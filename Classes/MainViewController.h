@@ -19,4 +19,8 @@
 -(void)setWinner:(Player)player;
 
 -(void)restart;
+-(void)shuffle;
+
+@property BOOL chaosGame;
+@property BOOL tinyGame;
 @end

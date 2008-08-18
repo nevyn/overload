@@ -79,5 +79,15 @@
     [self setScores:scores];
     [self.view addSubview:boardView];
 }
+-(void)shuffle;
+{
+    [boardView shuffle];
+}
+
+-(void)setChaosGame:(BOOL)_; { boardView.chaosGame = _; }
+-(BOOL)chaosGame; { return boardView.chaosGame; }
+-(void)setTinyGame:(BOOL)_; { boardView.tinyGame = _; }
+-(BOOL)tinyGame; { return boardView.tinyGame; }
+
 
 @end

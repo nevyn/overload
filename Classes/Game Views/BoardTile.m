@@ -10,9 +10,6 @@
 #import <QuartzCore/QuartzCore.h>
 #import "BoardView.h"
 
-static float frand(float max) {
-    return (rand()/((float)INT_MAX))*max;
-}
 
 @interface BoardTile()
 -(void)updateColor;
@@ -54,6 +51,11 @@ static float frand(float max) {
 }
 
 @synthesize owner;
+-(void)setOwner:(Player)owner_;
+{
+    owner = owner_;
+    [self updateColor];
+}
 @synthesize value;
 -(void)setValue:(CGFloat)newValue;
 {

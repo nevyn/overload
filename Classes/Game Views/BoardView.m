@@ -56,7 +56,7 @@ NSTimeInterval BoardAnimationOccurredAt = 0;
         return;
     }
     
-    if(BoardAnimationOccurredAt+(2.*ExplosionDelay) > [NSDate timeIntervalSinceReferenceDate])
+    if( !chaosGame && (BoardAnimationOccurredAt+(2.*ExplosionDelay) > [NSDate timeIntervalSinceReferenceDate]))
         return; // Still animating; moving now would be invalid
     
     BoardTile *tile = [self tile:point];
@@ -109,5 +109,19 @@ NSTimeInterval BoardAnimationOccurredAt = 0;
     [timer invalidate]; timer = nil;
     [controller setWinner:winner];
 }
+
+-(void)shuffle;
+{
+    srand(time(NULL));
+    for(NSUInteger y = 0; y < HeightInTiles; y++) {
+        for (NSUInteger x = 0; x < WidthInTiles; x++) {
+            BoardTile *tile = [self tile:BoardPointMake(x, y)];
+            tile.owner = rand()%2 + 1;
+            tile.value = frand(1.0);
+        }
+    }
+}
+@synthesize chaosGame;
+@synthesize tinyGame;
 
 @end
