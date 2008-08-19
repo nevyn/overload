@@ -99,7 +99,6 @@
 }
 -(void)_setTinyView;
 {
-    NSLog(@"Setting");
     boardView.tinyGame = tinyGame;
 }
 
