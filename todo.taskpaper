@@ -1,8 +1,9 @@
 - Save game state when quitting @done
 - Implement TinyGame mode @done
-- Nice transition when app loads (tile transitions)
+- Nice transition when app loads (tile transitions) @done
 - icon @done
 - default.png
 - make the scorebars some kind of bezel (gloss?)
 - score progress bar instead of text
 - Make it more obvious that it's your turn
+- SOUND

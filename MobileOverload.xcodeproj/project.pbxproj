@@ -14,6 +14,7 @@
 		0517F4650E59EE700075F5A9 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 0517F4640E59EE700075F5A9 /* background.png */; };
 		0517F6DB0E5A2EA40075F5A9 /* bg-red.png in Resources */ = {isa = PBXBuildFile; fileRef = 0517F6DA0E5A2EA40075F5A9 /* bg-red.png */; };
 		0530E0320E5B59E200C73DC6 /* overload_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0530E0310E5B59E200C73DC6 /* overload_icon.png */; };
+		0530E12E0E5B8A2E00C73DC6 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 0530E12D0E5B8A2E00C73DC6 /* Default.png */; };
 		05D77E9A0E58C7D400FB00DB /* ScoreBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D77E990E58C7D400FB00DB /* ScoreBarView.m */; };
 		05D77E9D0E58C7E800FB00DB /* BoardTile.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D77E9C0E58C7E800FB00DB /* BoardTile.m */; };
 		05D77F280E58DB3C00FB00DB /* BoardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D77F270E58DB3C00FB00DB /* BoardView.m */; };
@@ -44,6 +45,7 @@
 		0517F6DA0E5A2EA40075F5A9 /* bg-red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-red.png"; sourceTree = "<group>"; };
 		0530DFFD0E5B474700C73DC6 /* todo.taskpaper */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = todo.taskpaper; sourceTree = "<group>"; };
 		0530E0310E5B59E200C73DC6 /* overload_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = overload_icon.png; sourceTree = "<group>"; };
+		0530E12D0E5B8A2E00C73DC6 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		05D77E980E58C7D400FB00DB /* ScoreBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreBarView.h; sourceTree = "<group>"; };
 		05D77E990E58C7D400FB00DB /* ScoreBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreBarView.m; sourceTree = "<group>"; };
 		05D77E9B0E58C7E800FB00DB /* BoardTile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardTile.h; sourceTree = "<group>"; };
@@ -191,6 +193,7 @@
 				280E754C0DD40C5E005A515E /* MainWindow.xib */,
 				8D1107310486CEB800E47090 /* Info.plist */,
 				05D7828C0E59152700FB00DB /* dist.plist */,
+				0530E12D0E5B8A2E00C73DC6 /* Default.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -266,6 +269,7 @@
 				0517F4650E59EE700075F5A9 /* background.png in Resources */,
 				0517F6DB0E5A2EA40075F5A9 /* bg-red.png in Resources */,
 				0530E0320E5B59E200C73DC6 /* overload_icon.png in Resources */,
+				0530E12E0E5B8A2E00C73DC6 /* Default.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
