@@ -200,12 +200,12 @@
 					<object class="IBUILabel" id="701778377">
 						<reference key="NSNextResponder" ref="242216480"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{20, 215}, {144, 21}}</string>
+						<string key="NSFrame">{{20, 215}, {164, 21}}</string>
 						<reference key="NSSuperview" ref="242216480"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
-						<string key="IBUIText">Small Game Board</string>
+						<string key="IBUIText">Gigantic Game Board</string>
 						<object class="NSColor" key="IBUITextColor" id="510100381">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MCAwIDAAA</bytes>
@@ -247,7 +247,7 @@
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
-						<string key="IBUIText">Halves the number of tiles on the game board.</string>
+						<string key="IBUIText">Quadruples the number of tiles on the game board.</string>
 						<object class="NSFont" key="IBUIFont" id="184160378">
 							<string key="NSName">Helvetica</string>
 							<double key="NSSize">1.200000e+01</double>

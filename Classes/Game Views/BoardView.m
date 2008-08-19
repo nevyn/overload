@@ -126,6 +126,18 @@ NSTimeInterval BoardAnimationOccurredAt = 0;
         }
     }
 }
+
+-(BOOL)isBoardEmpty;
+{
+    for(NSUInteger y = 0; y < sizeInTiles.height; y++) {
+        for (NSUInteger x = 0; x < sizeInTiles.width; x++) {
+            BoardTile *tile = [self tile:BoardPointMake(x, y)];
+            if(tile.owner != PlayerNone)
+                return NO;
+        }
+    }
+    return YES;
+}
 @synthesize chaosGame;
 @synthesize tinyGame;
 -(void)setTinyGame:(BOOL)tinyGame_;
@@ -136,9 +148,11 @@ NSTimeInterval BoardAnimationOccurredAt = 0;
 
     if(tileSize.width == [self tile:BoardPointMake(0, 0)].frame.size.width)
         return;
-
-    [UIView beginAnimations:@"Resize board" context:nil];
-    [UIView setAnimationDuration:1];
+    
+    if( ! [self isBoardEmpty] ) {
+        [UIView beginAnimations:@"Resize board" context:nil];
+        [UIView setAnimationDuration:1];
+    }
 
     for(NSUInteger y = 0; y < HeightInTiles; y++) {
         for (NSUInteger x = 0; x < WidthInTiles; x++) {
@@ -146,7 +160,8 @@ NSTimeInterval BoardAnimationOccurredAt = 0;
                 CGRectMake(x*tileSize.width, y*tileSize.height, tileSize.width, tileSize.height);
         }
     }
-    [UIView commitAnimations];
+    if( ! [self isBoardEmpty] )
+        [UIView commitAnimations];
 }
 
 @synthesize tileSize;

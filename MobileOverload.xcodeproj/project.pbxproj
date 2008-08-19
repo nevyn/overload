@@ -41,6 +41,7 @@
 		0517F4090E59EAF40075F5A9 /* Text vertcal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Text vertcal.png"; sourceTree = "<group>"; };
 		0517F4640E59EE700075F5A9 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 		0517F6DA0E5A2EA40075F5A9 /* bg-red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-red.png"; sourceTree = "<group>"; };
+		0530DFFD0E5B474700C73DC6 /* todo.taskpaper */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = todo.taskpaper; sourceTree = "<group>"; };
 		05D77E980E58C7D400FB00DB /* ScoreBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreBarView.h; sourceTree = "<group>"; };
 		05D77E990E58C7D400FB00DB /* ScoreBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreBarView.m; sourceTree = "<group>"; };
 		05D77E9B0E58C7E800FB00DB /* BoardTile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardTile.h; sourceTree = "<group>"; };
@@ -151,6 +152,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				0530DFFD0E5B474700C73DC6 /* todo.taskpaper */,
 				05D77E970E58C7B900FB00DB /* Game Views */,
 				289233A00DB2D0730083E9F9 /* Main View */,
 				281C6CD70DB2D82200F60ACC /* Flipside View */,

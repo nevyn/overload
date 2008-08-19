@@ -99,7 +99,7 @@
 }
 - (IBAction)toggleGameBoardSize:(UISwitch*)sender;
 {
-    mainController.tinyGame = sender.on;
+    mainController.tinyGame = !sender.on;
 }
 - (IBAction)toggleChaosGame:(UISwitch*)sender;
 {

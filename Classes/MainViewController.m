@@ -16,6 +16,8 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
 	if( ! [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) return nil;
     
+    self.tinyGame = YES;
+    
 	return self;
 }
 - (void)viewDidLoad {
@@ -24,6 +26,8 @@
     score2 = [[ScoreBarView alloc] initWithFrame:CGRectMake(0, 0, 320, 44) color:[UIColor colorWithHue:.35 saturation:0.6 brightness:0.55 alpha:1.0]];
     score2.transform = CGAffineTransformMakeRotation(M_PI);    
     boardView = [[BoardView alloc] initWithFrame:CGRectMake(0, 44, BoardWidth, BoardHeight) controller:self];
+    
+    boardView.tinyGame = tinyGame;
     
     [self.view addSubview:boardView];
     [self.view addSubview:score1];
