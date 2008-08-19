@@ -26,6 +26,13 @@ typedef struct {
 } BoardPoint;
 CG_INLINE BoardPoint BoardPointMake(NSUInteger x, NSUInteger y) { BoardPoint p; p.x = x, p.y = y; return p; }
 
+typedef struct {
+    NSUInteger width;
+    NSUInteger height;
+} BoardSize;
+CG_INLINE BoardSize BoardSizeMake(NSUInteger x, NSUInteger y) { BoardSize p; p.width = x, p.height = y; return p; }
+
+
 
 extern const CGFloat ChargeEnergy;
 extern const NSTimeInterval ExplosionDelay;

@@ -23,7 +23,8 @@ extern NSTimeInterval BoardAnimationOccurredAt;
     BOOL chaosGame;
     BOOL tinyGame;
     
-    NSThread *explosionThread;
+    CGSize tileSize;
+    BoardSize sizeInTiles;
 }
 - (id)initWithFrame:(CGRect)frame controller:(MainViewController*)controller_;
 
@@ -39,5 +40,8 @@ extern NSTimeInterval BoardAnimationOccurredAt;
 -(void)shuffle;
 @property BOOL chaosGame;
 @property BOOL tinyGame;
+
+@property (readonly) CGSize tileSize;
+@property (readonly) BoardSize sizeInTiles;
 
 @end

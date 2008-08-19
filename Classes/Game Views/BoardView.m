@@ -34,33 +34,16 @@ NSTimeInterval BoardAnimationOccurredAt = 0;
     self.currentPlayer = PlayerP1;
     [self scheduleWinningConditionCheck];
     
-    //explosionThread = [[NSThread alloc] initWithTarget:self selector:@selector(explosionThreadMain) object:nil];
-    //[explosionThread start];
+    self.chaosGame = NO;
+    self.tinyGame = NO;
+    
     
 	return self;
 }
 - (void)dealloc {
     [winningConditionTimer invalidate];
-    [explosionThread cancel];
-    [explosionThread release];
-
 	[super dealloc];
 }
--(void)explosionThreadMain;
-{
-    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-    NSRunLoop *runLoop = [NSRunLoop currentRunLoop];
-    while ( ! [[NSThread currentThread] isCancelled]) {
-        NSAutoreleasePool *pool2 = [[NSAutoreleasePool alloc] init];
-        
-        [runLoop runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
-        
-        [pool2 release];
-    }
-    
-    [pool release];
-}
-
 
 
 -(BoardTile*)tile:(BoardPoint)tilePos;
@@ -80,10 +63,7 @@ NSTimeInterval BoardAnimationOccurredAt = 0;
     
     if( !chaosGame && (BoardAnimationOccurredAt+(2.*ExplosionDelay) > [NSDate timeIntervalSinceReferenceDate]))
         return; // Still animating; moving now would be invalid
-    
-    if(chaosGame)
-        NSLog(@"CHAOS");
-    
+        
     BoardTile *tile = [self tile:point];
     if( ! (tile.owner == currentPlayer || tile.owner == PlayerNone) )
         return; // Invalid move
@@ -106,8 +86,8 @@ NSTimeInterval BoardAnimationOccurredAt = 0;
 -(void)updateScores;
 {
     CGFloat scores[3];
-    for(NSUInteger y = 0; y < HeightInTiles; y++) {
-        for (NSUInteger x = 0; x < WidthInTiles; x++) {
+    for(NSUInteger y = 0; y < sizeInTiles.height; y++) {
+        for (NSUInteger x = 0; x < sizeInTiles.width; x++) {
             BoardTile *tile = [self tile:BoardPointMake(x, y)];
             scores[tile.owner] += tile.value;
         }
@@ -123,8 +103,8 @@ NSTimeInterval BoardAnimationOccurredAt = 0;
     Player winner = [self tile:BoardPointMake(0, 0)].owner;
     if(winner == PlayerNone) return;
     
-    for(NSUInteger y = 0; y < HeightInTiles; y++) {
-        for (NSUInteger x = 0; x < WidthInTiles; x++) {
+    for(NSUInteger y = 0; y < sizeInTiles.height; y++) {
+        for (NSUInteger x = 0; x < sizeInTiles.width; x++) {
             BoardTile *tile = [self tile:BoardPointMake(x, y)];
             if(tile.owner != winner)
                 return;
@@ -138,8 +118,8 @@ NSTimeInterval BoardAnimationOccurredAt = 0;
 -(void)shuffle;
 {
     srand(time(NULL));
-    for(NSUInteger y = 0; y < HeightInTiles; y++) {
-        for (NSUInteger x = 0; x < WidthInTiles; x++) {
+    for(NSUInteger y = 0; y < sizeInTiles.height; y++) {
+        for (NSUInteger x = 0; x < sizeInTiles.width; x++) {
             BoardTile *tile = [self tile:BoardPointMake(x, y)];
             tile.owner = rand()%2 + 1;
             tile.value = frand(1.0);
@@ -148,5 +128,25 @@ NSTimeInterval BoardAnimationOccurredAt = 0;
 }
 @synthesize chaosGame;
 @synthesize tinyGame;
+-(void)setTinyGame:(BOOL)tinyGame_;
+{
+    tileSize = tinyGame_ ? CGSizeMake(TileWidth*2, TileHeight*2) : CGSizeMake(TileWidth, TileHeight);
+    sizeInTiles = tinyGame_ ? BoardSizeMake(WidthInTiles/2, HeightInTiles/2) : BoardSizeMake(WidthInTiles, HeightInTiles);
+    tinyGame = tinyGame_;
+    if(tileSize.width == [self tile:BoardPointMake(0, 0)].frame.size.width)
+        return;
+    
+    [UIView beginAnimations:@"Resize board" context:nil];
+    for(NSUInteger y = 0; y < HeightInTiles; y++) {
+        for (NSUInteger x = 0; x < WidthInTiles; x++) {
+            [self tile:BoardPointMake(x, y)].frame = 
+                CGRectMake(x*tileSize.width, y*tileSize.height, tileSize.width, tileSize.height);
+        }
+    }
+    [UIView commitAnimations];
+}
+
+@synthesize tileSize;
+@synthesize sizeInTiles;
 
 @end
