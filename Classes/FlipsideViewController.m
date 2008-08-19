@@ -33,6 +33,8 @@
     NSString *version = [[[NSBundle mainBundle]infoDictionary]objectForKey:@"CFBundleVersion"];
     versionLabel.text = [NSString stringWithFormat:@"v%@", version];
     
+    chaosGame.on = [[NSUserDefaults standardUserDefaults] boolForKey:@"chaosGame"];
+    giganticGame.on = ! [[NSUserDefaults standardUserDefaults] boolForKey:@"tinyGame"];
 }
 
 -(void)rotateWheels:(NSTimer*)caller;

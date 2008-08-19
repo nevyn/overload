@@ -57,11 +57,19 @@
     owner = owner_;
     [self updateColor];
 }
+-(void)setOwner_:(NSNumber*)owner_;
+{
+    self.owner = [owner_ intValue];
+}
 @synthesize value;
 -(void)setValue:(CGFloat)newValue;
 {
     value = newValue;
     [self updateColor];
+}
+-(void)setValue_:(NSNumber*)newValue;
+{
+    self.value = [newValue floatValue];
 }
 @synthesize boardPosition;
 @synthesize board;

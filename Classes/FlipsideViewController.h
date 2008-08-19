@@ -17,6 +17,9 @@
     NSTimer *rotationTimer;
     RootViewController *rootController;
     MainViewController *mainController;
+    
+    IBOutlet UISwitch *giganticGame;
+    IBOutlet UISwitch *chaosGame;
 }
 - (id)initWithNibName:(NSString *)nibNameOrNil
                bundle:(NSBundle *)nibBundleOrNil

@@ -8,6 +8,7 @@
 
 #import "MobileOverloadAppDelegate.h"
 #import "RootViewController.h"
+#import "MainViewController.h"
 
 @implementation MobileOverloadAppDelegate
 
@@ -21,7 +22,11 @@
 	[window addSubview:[rootViewController view]];
 	[window makeKeyAndVisible];
 }
-
+- (void)applicationWillTerminate:(UIApplication *)application;
+{
+    [self.rootViewController.mainViewController persistBoard];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
 
 - (void)dealloc {
 	[rootViewController release];

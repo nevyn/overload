@@ -12,11 +12,22 @@
 #import <QuartzCore/QuartzCore.h>
 @implementation MainViewController
 
++(void)initialize;
+{
+    [[NSUserDefaults standardUserDefaults] registerDefaults:
+        [NSDictionary dictionaryWithObjectsAndKeys:
+            [NSNumber numberWithBool:YES], @"tinyGame",
+            [NSNumber numberWithBool:NO], @"chaosGame",
+            nil, nil
+        ]
+     ];
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
 	if( ! [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) return nil;
     
-    self.tinyGame = YES;
+    self.tinyGame = [[NSUserDefaults standardUserDefaults] boolForKey:@"tinyGame"];
+    self.chaosGame = [[NSUserDefaults standardUserDefaults] boolForKey:@"chaosGame"];
     
 	return self;
 }
@@ -28,10 +39,13 @@
     boardView = [[BoardView alloc] initWithFrame:CGRectMake(0, 44, BoardWidth, BoardHeight) controller:self];
     
     boardView.tinyGame = tinyGame;
+    boardView.chaosGame = chaosGame;
     
     [self.view addSubview:boardView];
     [self.view addSubview:score1];
     [self.view addSubview:score2];
+    
+    [self performSelector:@selector(loadBoard) withObject:nil afterDelay:0.1];
 }
 
 
@@ -91,9 +105,16 @@
     [boardView shuffle];
 }
 
--(void)setChaosGame:(BOOL)_; { chaosGame = boardView.chaosGame = _; }
+-(void)setChaosGame:(BOOL)_; {
+    chaosGame = boardView.chaosGame = _;
+    [[NSUserDefaults standardUserDefaults] setBool:_ forKey:@"chaosGame"];
+}
 -(BOOL)chaosGame; { return boardView.chaosGame; }
--(void)setTinyGame:(BOOL)_; { tinyGame = _; } // note: not setting in boardView until on viewDidAppear
+-(void)setTinyGame:(BOOL)_; {
+    [[NSUserDefaults standardUserDefaults] setBool:_ forKey:@"tinyGame"];
+    tinyGame = _;
+    // note: not setting in boardView until on viewDidAppear
+} 
 -(BOOL)tinyGame; { return boardView.tinyGame; }
 
 - (void)viewDidAppear:(BOOL)animated; 
@@ -106,5 +127,23 @@
     boardView.tinyGame = tinyGame;
 }
 
+
+-(void)persistBoard;
+{
+    BoardStruct bs = boardView.boardStruct;
+    NSData *serializedBs = [NSData dataWithBytes:&bs length:sizeof(bs)];
+    [[NSUserDefaults standardUserDefaults] setObject:serializedBs forKey:@"boardStruct"];
+    [[NSUserDefaults standardUserDefaults] setInteger:boardView.currentPlayer forKey:@"currentPlayer"];
+}
+-(void)loadBoard;
+{
+    NSData *serializedBs = [[NSUserDefaults standardUserDefaults] objectForKey:@"boardStruct"];
+    if(!serializedBs) return;
+    BoardStruct bs;
+    [serializedBs getBytes:&bs length:sizeof(bs)];
+    boardView.boardStruct = bs;
+    boardView.currentPlayer = [[NSUserDefaults standardUserDefaults] integerForKey:@"currentPlayer"];
+    [boardView checkWinningCondition:nil];
+}
 
 @end

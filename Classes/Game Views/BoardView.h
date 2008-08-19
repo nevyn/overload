@@ -36,6 +36,7 @@ extern NSTimeInterval BoardAnimationOccurredAt;
 
 -(void)updateScores;
 -(void)scheduleWinningConditionCheck;
+-(void)checkWinningCondition:(NSTimer*)sender;
 
 -(void)shuffle;
 
@@ -45,5 +46,7 @@ extern NSTimeInterval BoardAnimationOccurredAt;
 
 @property (readonly) CGSize tileSize;
 @property (readonly) BoardSize sizeInTiles;
+
+@property BoardStruct boardStruct;
 
 @end

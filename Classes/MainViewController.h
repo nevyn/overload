@@ -22,6 +22,9 @@
 -(void)restart;
 -(void)shuffle;
 
+-(void)persistBoard;
+-(void)loadBoard;
+
 @property BOOL chaosGame;
 @property BOOL tinyGame;
 @end

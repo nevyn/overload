@@ -39,3 +39,9 @@ extern const NSTimeInterval ExplosionDelay;
 extern const NSTimeInterval ExplosionSpreadEnergy;
 
 extern float frand(float max);
+
+
+typedef struct {
+    CGFloat values[10][12];
+    Player  owners[10][12];
+} BoardStruct;

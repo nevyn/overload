@@ -96,9 +96,9 @@ NSTimeInterval BoardAnimationOccurredAt = 0;
 }
 -(void)scheduleWinningConditionCheck;
 {
-    winningConditionTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(_winningConditionCheck:) userInfo:nil repeats:YES];
+    winningConditionTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(checkWinningCondition:) userInfo:nil repeats:YES];
 }
--(void)_winningConditionCheck:(NSTimer*)timer;
+-(void)checkWinningCondition:(NSTimer*)timer;
 {
     Player winner = [self tile:BoardPointMake(0, 0)].owner;
     if(winner == PlayerNone) return;
@@ -111,7 +111,7 @@ NSTimeInterval BoardAnimationOccurredAt = 0;
         }
     }
     gameEnded = YES;
-    [timer invalidate]; timer = nil;
+    [winningConditionTimer invalidate]; winningConditionTimer = nil;
     [controller setWinner:winner];
 }
 
@@ -167,4 +167,33 @@ NSTimeInterval BoardAnimationOccurredAt = 0;
 @synthesize tileSize;
 @synthesize sizeInTiles;
 
+
+-(BoardStruct)boardStruct;
+{
+    BoardStruct bs;
+    for(NSUInteger y = 0; y < HeightInTiles; y++) {
+        for (NSUInteger x = 0; x < WidthInTiles; x++) {
+            BoardTile *tile = [self tile:BoardPointMake(x, y)];
+            bs.values[x][y] = tile.value;
+            bs.owners[x][y] = tile.owner;
+        }
+    }
+    return bs;
+}
+-(void)setBoardStruct:(BoardStruct)bs;
+{
+    for(NSUInteger y = 0; y < HeightInTiles; y++) {
+        for (NSUInteger x = 0; x < WidthInTiles; x++) {
+            BoardTile *tile = [self tile:BoardPointMake(x, y)];
+            NSNumber *val = [NSNumber numberWithFloat:bs.values[x][y]];
+            NSNumber *own = [NSNumber numberWithInteger:bs.owners[x][y]];
+            CGFloat delay = frand(0.5);
+            [tile performSelector:@selector(setOwner_:) withObject:own afterDelay:delay];
+            [tile performSelector:@selector(setValue_:) withObject:val afterDelay:delay];
+//            tile.value = bs.values[x][y];
+//            tile.owner = bs.owners[x][y];
+        }
+    }
+    [self updateScores];
+}
 @end
