@@ -133,10 +133,13 @@ NSTimeInterval BoardAnimationOccurredAt = 0;
     tileSize = tinyGame_ ? CGSizeMake(TileWidth*2, TileHeight*2) : CGSizeMake(TileWidth, TileHeight);
     sizeInTiles = tinyGame_ ? BoardSizeMake(WidthInTiles/2, HeightInTiles/2) : BoardSizeMake(WidthInTiles, HeightInTiles);
     tinyGame = tinyGame_;
+
     if(tileSize.width == [self tile:BoardPointMake(0, 0)].frame.size.width)
         return;
-    
+
     [UIView beginAnimations:@"Resize board" context:nil];
+    [UIView setAnimationDuration:1];
+
     for(NSUInteger y = 0; y < HeightInTiles; y++) {
         for (NSUInteger x = 0; x < WidthInTiles; x++) {
             [self tile:BoardPointMake(x, y)].frame = 

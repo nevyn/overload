@@ -20,7 +20,7 @@
 }
 - (void)viewDidLoad {
     score1 = [[ScoreBarView alloc] initWithFrame:CGRectMake(0, 44+BoardHeight, 320, 44) color:[UIColor colorWithHue:.0 saturation:0.6 brightness:0.75 alpha:1.0]];
-    //score1.layer.contents = [[UIImage imageNamed:@"bg-red.png"] CGImage];
+
     score2 = [[ScoreBarView alloc] initWithFrame:CGRectMake(0, 0, 320, 44) color:[UIColor colorWithHue:.35 saturation:0.6 brightness:0.55 alpha:1.0]];
     score2.transform = CGAffineTransformMakeRotation(M_PI);    
     boardView = [[BoardView alloc] initWithFrame:CGRectMake(0, 44, BoardWidth, BoardHeight) controller:self];
@@ -80,7 +80,7 @@
     [self setScores:scores];
     boardView.chaosGame = chaosGame;
     boardView.tinyGame = tinyGame;
-    [self.view addSubview:boardView];
+    [self.view insertSubview:boardView belowSubview:score1];
 }
 -(void)shuffle;
 {
@@ -89,8 +89,19 @@
 
 -(void)setChaosGame:(BOOL)_; { chaosGame = boardView.chaosGame = _; }
 -(BOOL)chaosGame; { return boardView.chaosGame; }
--(void)setTinyGame:(BOOL)_; { tinyGame = boardView.tinyGame = _; }
+-(void)setTinyGame:(BOOL)_; { tinyGame = _; } // note: not setting in boardView until on viewDidAppear
 -(BOOL)tinyGame; { return boardView.tinyGame; }
+
+- (void)viewDidAppear:(BOOL)animated; 
+{
+    [super viewDidAppear:YES];
+    [self performSelector:@selector(_setTinyView) withObject:nil afterDelay:1.0];
+}
+-(void)_setTinyView;
+{
+    NSLog(@"Setting");
+    boardView.tinyGame = tinyGame;
+}
 
 
 @end
