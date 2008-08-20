@@ -85,7 +85,7 @@ NSTimeInterval BoardAnimationOccurredAt = 0;
 
 -(void)updateScores;
 {
-    CGFloat scores[3];
+    CGFloat scores[3] = {0,0,0};
     for(NSUInteger y = 0; y < sizeInTiles.height; y++) {
         for (NSUInteger x = 0; x < sizeInTiles.width; x++) {
             BoardTile *tile = [self tile:BoardPointMake(x, y)];
@@ -137,6 +137,10 @@ NSTimeInterval BoardAnimationOccurredAt = 0;
         }
     }
     return YES;
+}
+-(BOOL)hasGameEnded;
+{
+    return gameEnded;
 }
 @synthesize chaosGame;
 @synthesize tinyGame;

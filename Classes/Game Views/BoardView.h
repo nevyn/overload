@@ -41,6 +41,7 @@ extern NSTimeInterval BoardAnimationOccurredAt;
 -(void)shuffle;
 
 -(BOOL)isBoardEmpty;
+-(BOOL)hasGameEnded;
 @property BOOL chaosGame;
 @property BOOL tinyGame;
 

@@ -15,6 +15,7 @@
     CGFloat value;
     BoardPoint boardPosition;
     BoardView *board;
+    BOOL sparkle2;
 }
 @property Player owner;
 @property CGFloat value;
@@ -24,4 +25,7 @@
 -(void)charge:(CGFloat)amount;
 -(void)charge:(CGFloat)amount forPlayer:(Player)newOwner;
 -(void)explode;
+
+-(void)sparkle;
+-(void)sparkle2;
 @end

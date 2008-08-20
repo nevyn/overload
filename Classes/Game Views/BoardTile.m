@@ -35,15 +35,47 @@
 -(void)updateColor;
 {
     [UIView beginAnimations:@"Tile color" context:nil];
-    static CGFloat hues[] = {.6, .0, .35 };
     CGFloat brightness = 0.25+(1.0-self.value)*0.75;
-    CGFloat saturation = (self.value >= 0.74)?1.0:0.6;
+    CGFloat saturation = 0.6;
     if(self.owner == PlayerNone) {
         saturation = 0.3;
     }
+    if(self.value >= SparkleEnergy) {
+        //self.transform = CGAffineTransformMakeScale(0.8, 0.8);
+        [self sparkle2]; //[self sparkle];
+    } else {
+        self.transform = CGAffineTransformIdentity;
+        self.layer.opacity = 1.0;
+    }
 
-    self.backgroundColor = [UIColor colorWithHue:hues[self.owner] saturation:saturation brightness:brightness alpha:1.0];
+    self.backgroundColor = [UIColor colorWithHue:Hues[self.owner] saturation:saturation brightness:brightness alpha:1.0];
     [UIView commitAnimations];
+}
+-(void)sparkle;
+{
+    //[UIView beginAnimations:@"sparkle" context:nil];
+    if(self.value >= SparkleEnergy)
+        [self performSelector:@selector(sparkle) withObject:nil afterDelay:0.1];
+        //[UIView setAnimationDidStopSelector:@selector(sparkle)];
+    
+    self.transform = CGAffineTransformMakeTranslation(frand(2.)-1., frand(2.)-1.);
+    
+}
+-(void)sparkle2;
+{
+    [UIView beginAnimations:@"sparkle" context:nil];
+    [UIView setAnimationDelegate:self];
+    [UIView setAnimationDelay:0.2];
+    if(self.value >= SparkleEnergy)
+        [UIView setAnimationDidStopSelector:@selector(sparkle2)];
+    
+    if(self.layer.opacity == 1.) {
+        self.layer.opacity = .9;
+    } else {
+        self.layer.opacity = 1.;
+    }
+    
+    [UIView commitAnimations];    
 }
 
 
@@ -111,6 +143,7 @@
     [self _backgroundExplode];
 }
 -(void)_backgroundExplode; {
+    
     BoardTile *targets[] = {[self.board tile:BoardPointMake(self.boardPosition.x, self.boardPosition.y-1)],
                             [self.board tile:BoardPointMake(self.boardPosition.x+1, self.boardPosition.y)],
                             [self.board tile:BoardPointMake(self.boardPosition.x, self.boardPosition.y+1)],
@@ -128,6 +161,7 @@
 }
 -(void)_explosionCharge:(NSTimer*)caller;
 {
+    if(board.isBoardEmpty) return; // new game has started, stop it ffs
     [self charge:ExplosionSpreadEnergy forPlayer:[(BoardTile*)[caller userInfo] owner]];
     BoardAnimationOccurredAt = [NSDate timeIntervalSinceReferenceDate];
 }
