@@ -67,9 +67,9 @@
 
 -(void)setScores:(CGFloat[])scores;
 {
-    NSString *score = [NSString stringWithFormat:@"%.2f (you) %.2f (opponent) of 120", scores[1], scores[2]];
+    NSString *score = [NSString stringWithFormat:@"%.2f (you) %.2f (opponent)", scores[1], scores[2]];
     score1.score = score;
-    score = [NSString stringWithFormat:@"%.2f (you) %.2f (opponent) of 120", scores[2], scores[1]];
+    score = [NSString stringWithFormat:@"%.2f (you) %.2f (opponent)", scores[2], scores[1]];
     score2.score = score;
 }
 -(void)setCurrentPlayer:(Player)player;

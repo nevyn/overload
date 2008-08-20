@@ -7,3 +7,6 @@
 - score progress bar instead of text
 - Make it more obvious that it's your turn
 - SOUND
+- BUG: Score not updated after loading @done
+- BUG: Max scorecount invalid when tinygaming @done
+- FEATURE: Make >=0.75 tiles sparkle

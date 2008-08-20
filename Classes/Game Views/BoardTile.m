@@ -60,12 +60,14 @@
 -(void)setOwner_:(NSNumber*)owner_;
 {
     self.owner = [owner_ intValue];
+    [board updateScores];
 }
 @synthesize value;
 -(void)setValue:(CGFloat)newValue;
 {
     value = newValue;
     [self updateColor];
+    [board updateScores];
 }
 -(void)setValue_:(NSNumber*)newValue;
 {
@@ -79,7 +81,6 @@
     self.value += amount;
     if(self.value >= 0.9999)
         [self explode];
-    [self.board updateScores];
 }
 -(void)charge:(CGFloat)amount forPlayer:(Player)newOwner;
 {

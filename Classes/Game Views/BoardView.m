@@ -194,6 +194,5 @@ NSTimeInterval BoardAnimationOccurredAt = 0;
 //            tile.owner = bs.owners[x][y];
         }
     }
-    [self updateScores];
 }
 @end
