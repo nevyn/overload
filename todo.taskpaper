@@ -10,3 +10,4 @@
 - BUG: Score not updated after loading @done
 - BUG: Max scorecount invalid when tinygaming @done
 - FEATURE: Make >=0.75 tiles sparkle @done
+- 1px error

@@ -8,6 +8,7 @@
 
 #import "BoardView.h"
 #import "MainViewController.h"
+#import <QuartzCore/QuartzCore.h>
 NSTimeInterval BoardAnimationOccurredAt = 0;
 
 
@@ -37,14 +38,40 @@ NSTimeInterval BoardAnimationOccurredAt = 0;
     self.chaosGame = NO;
     self.tinyGame = NO;
     
+    //[self performSelector:@selector(sparkle) withObject:nil afterDelay:0.2];
     
 	return self;
 }
 - (void)dealloc {
     [winningConditionTimer invalidate];
+    [sparkleTimer invalidate];
 	[super dealloc];
 }
 
+-(void)sparkle;
+{
+    static BOOL on = NO;
+    [UIView beginAnimations:@"sparkle" context:nil];
+    [UIView setAnimationDelay:0.3];
+    [UIView setAnimationDelegate:self];
+    [self performSelector:@selector(sparkle) withObject:nil afterDelay:0.4];
+    
+    
+    for(NSUInteger y = 0; y < sizeInTiles.height; y++) {
+        for (NSUInteger x = 0; x < sizeInTiles.width; x++) {
+            BoardTile *tile = [self tile:BoardPointMake(x, y)];
+            if(tile.value >= SparkleEnergy)
+                if(on == NO) {
+                    tile.layer.opacity = .6;
+                } else {
+                    tile.layer.opacity = 1.;
+                }
+            
+        }
+    }
+    [UIView commitAnimations];    
+    on = ! on;    
+}
 
 -(BoardTile*)tile:(BoardPoint)tilePos;
 {

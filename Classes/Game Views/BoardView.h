@@ -18,6 +18,7 @@ extern NSTimeInterval BoardAnimationOccurredAt;
     Player currentPlayer;
     MainViewController *controller;
     NSTimer *winningConditionTimer;
+    NSTimer *sparkleTimer;
     BOOL gameEnded;
     
     BOOL chaosGame;

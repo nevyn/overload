@@ -35,14 +35,15 @@
 -(void)updateColor;
 {
     [UIView beginAnimations:@"Tile color" context:nil];
+    [UIView setAnimationBeginsFromCurrentState:YES];
     CGFloat brightness = 0.25+(1.0-self.value)*0.75;
-    CGFloat saturation = 0.8;
+    CGFloat saturation = 0.6;
     if(self.owner == PlayerNone) {
         saturation = 0.3;
     }
     if(self.value >= SparkleEnergy) {
         //self.transform = CGAffineTransformMakeScale(0.8, 0.8);
-        [self sparkle2]; //[self sparkle];
+        [self sparkle2];
     } else {
         self.transform = CGAffineTransformIdentity;
         self.layer.opacity = 1.0;
