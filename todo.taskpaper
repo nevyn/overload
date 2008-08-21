@@ -11,3 +11,5 @@
 - BUG: Max scorecount invalid when tinygaming @done
 - FEATURE: Make >=0.75 tiles sparkle @done
 - 1px error
+- No need to stop explosions
+- stop explosions outside Tiny @done
