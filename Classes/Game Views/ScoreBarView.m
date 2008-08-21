@@ -20,19 +20,27 @@
     
     [self setCurrentPlayer:PlayerNone];
     
-    CGRect frame1 = frame;
-    frame1.size.height /= 2.2;
-    frame1.size.width -= 12;
-    frame1.origin.y = 0;
-    frame1.origin.x += 6;
-    frame1 = CGRectIntegral(frame1);
-    frame1.origin.y += frame1.size.height;
-    frame1 = CGRectIntegral(frame1);
-    scoreText = [[UILabel alloc] initWithFrame:frame1];
-    scoreText.text = @"0 (you) 0 (opponent)";
+    CGRect pen = frame;
+    pen.size.height -= 14;
+    pen.origin.y = 0;
+    pen.origin.x = 6;
+    pen = CGRectIntegral(pen);
+    status = [[[UILabel alloc] initWithFrame:pen] autorelease];
+    status.text = @"Welcome to Overload.";
+    status.backgroundColor = [UIColor clearColor];
     
-    scoreText.backgroundColor = [UIColor clearColor];
-    [self addSubview:scoreText];
+    pen.origin.x = 0;
+    pen.size.height = 14;
+    pen.origin.y = frame.size.height-pen.size.height;
+    pen = CGRectIntegral(pen);
+    NSArray *scoreColors = [NSArray arrayWithObjects:
+                            [UIColor colorWithHue:Hues[1] saturation:0.6 brightness:0.6 alpha:1.0],
+                            [UIColor colorWithHue:Hues[2] saturation:0.6 brightness:0.6 alpha:1.0],
+                            nil];
+    scoreIndicator = [[[ScoreIndicator alloc] initWithFrame:pen colors:scoreColors] autorelease];
+    
+    [self addSubview:status];
+    [self addSubview:scoreIndicator];
     
 	return self;
 }
@@ -42,8 +50,16 @@
 
 -(void)setScores:(CGFloat[])scores;
 {
-    Player other = (self.player==PlayerP1)?PlayerP2:PlayerP1;
-    scoreText.text= [NSString stringWithFormat:@"%.2f (you) %.2f (opponent)", scores[player], scores[other]];
+    [scoreIndicator setScores:scores];
+}
+
+-(void)setStatus:(NSString*)newStatus;
+{
+    status.text = newStatus;
+}
+-(NSString*)status;
+{
+    return status.text;
 }
 
 @synthesize player;
@@ -54,5 +70,10 @@
     [UIView beginAnimations:@"statusBar.changeCurrentPlayer" context:nil];
     self.backgroundColor = [UIColor colorWithHue:Hues[self.player] saturation:_?0.8:0.3 brightness:_?0.8:0.5 alpha:1.0];
     [UIView commitAnimations];
+    
+    if(_)
+        self.status = @"Your turn.";
+    else
+        self.status = @"Their turn.";
 }
 @end

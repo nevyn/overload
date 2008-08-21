@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "TypesAndConstants.h"
+#import "ScoreIndicator.h"
 
 @interface ScoreBarView : UIView {
-    IBOutlet UILabel *scoreText;
+    ScoreIndicator *scoreIndicator;
+    UILabel *status;
     Player player;
 }
 - (id)initWithFrame:(CGRect)frame player:(Player)player;
@@ -18,6 +20,7 @@
 -(void)setScores:(CGFloat[])scores;
 
 @property Player player;
+@property (copy) NSString *status;
 
 -(void)setCurrentPlayer:(Player)currentPlayer_;
 @end
