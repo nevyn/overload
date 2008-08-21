@@ -10,6 +10,7 @@
 
 
 @interface ScoreIndicator : UIView {
+    UIView *container;
 }
 -(id)initWithFrame:(CGRect)frame colors:(NSArray*)colors;
 -(void)setScores:(CGFloat[])scores;

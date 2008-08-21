@@ -18,6 +18,7 @@
 		054615710E5DF18400DAF3BD /* lose.png in Resources */ = {isa = PBXBuildFile; fileRef = 0546156F0E5DF18400DAF3BD /* lose.png */; };
 		054615720E5DF18400DAF3BD /* win.png in Resources */ = {isa = PBXBuildFile; fileRef = 054615700E5DF18400DAF3BD /* win.png */; };
 		054615D00E5E0E9600DAF3BD /* ScoreIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 054615CF0E5E0E9600DAF3BD /* ScoreIndicator.m */; };
+		0546168E0E5E220600DAF3BD /* gloss.png in Resources */ = {isa = PBXBuildFile; fileRef = 0546168D0E5E220600DAF3BD /* gloss.png */; };
 		05D77E9A0E58C7D400FB00DB /* ScoreBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D77E990E58C7D400FB00DB /* ScoreBarView.m */; };
 		05D77E9D0E58C7E800FB00DB /* BoardTile.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D77E9C0E58C7E800FB00DB /* BoardTile.m */; };
 		05D77F280E58DB3C00FB00DB /* BoardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D77F270E58DB3C00FB00DB /* BoardView.m */; };
@@ -53,6 +54,7 @@
 		054615700E5DF18400DAF3BD /* win.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = win.png; sourceTree = "<group>"; };
 		054615CE0E5E0E9600DAF3BD /* ScoreIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreIndicator.h; sourceTree = "<group>"; };
 		054615CF0E5E0E9600DAF3BD /* ScoreIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreIndicator.m; sourceTree = "<group>"; };
+		0546168D0E5E220600DAF3BD /* gloss.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gloss.png; sourceTree = "<group>"; };
 		05D77E980E58C7D400FB00DB /* ScoreBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreBarView.h; sourceTree = "<group>"; };
 		05D77E990E58C7D400FB00DB /* ScoreBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreBarView.m; sourceTree = "<group>"; };
 		05D77E9B0E58C7E800FB00DB /* BoardTile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardTile.h; sourceTree = "<group>"; };
@@ -190,6 +192,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				0546168D0E5E220600DAF3BD /* gloss.png */,
 				0546156F0E5DF18400DAF3BD /* lose.png */,
 				054615700E5DF18400DAF3BD /* win.png */,
 				0530E0310E5B59E200C73DC6 /* overload_icon.png */,
@@ -283,6 +286,7 @@
 				0530E12E0E5B8A2E00C73DC6 /* Default.png in Resources */,
 				054615710E5DF18400DAF3BD /* lose.png in Resources */,
 				054615720E5DF18400DAF3BD /* win.png in Resources */,
+				0546168E0E5E220600DAF3BD /* gloss.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

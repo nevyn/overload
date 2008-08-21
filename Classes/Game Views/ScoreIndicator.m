@@ -20,8 +20,17 @@
     
     CGRect pen = frame;
     pen.origin = CGPointMake(0, 0);
-    pen.size.width /= playerCount;
     
+    container = [[[UIView alloc] initWithFrame:pen] autorelease];
+    [self addSubview:container];
+    
+    pen.size.height /= 2;
+    UIImageView *gloss = [[[UIImageView alloc] initWithFrame:pen] autorelease];
+    gloss.image = [UIImage imageNamed:@"gloss.png"];
+    [self addSubview:gloss];
+    pen.size.height *= 2;
+    
+    pen.size.width /= playerCount;
     for (UIColor *color in colors) {
         UIView *bar = [[[UIView alloc] initWithFrame:pen] autorelease];
         bar.backgroundColor = color;
@@ -33,7 +42,7 @@
         barText.font = [UIFont systemFontOfSize:12];
         barText.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         [bar addSubview:barText];
-        [self addSubview:bar];
+        [container addSubview:bar];
     }
     
 	return self;
@@ -45,7 +54,7 @@
 
 -(NSUInteger)playerCount;
 {
-    return [self.subviews count];
+    return [container.subviews count];
 }
 
 -(void)setScores:(CGFloat[])scores;
@@ -54,7 +63,7 @@
     for (NSUInteger i = 1; i < self.playerCount+1; i++) {
         totalScore += scores[i];
     }
-    NSArray *views = [self subviews];
+    NSArray *views = [container subviews];
     CGFloat widthPerPoint = self.frame.size.width/totalScore;
     CGFloat pen = 0;
     
