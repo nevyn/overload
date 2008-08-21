@@ -15,9 +15,10 @@
 - (id)initWithFrame:(CGRect)frame player:(Player)player_;
 {
 	if (![super initWithFrame:frame]) return nil;
-    self.backgroundColor = [UIColor colorWithHue:Hues[player_] saturation:0.6 brightness:0.75 alpha:1.0];
     
     self.player = player_;
+    
+    [self setCurrentPlayer:PlayerNone];
     
     CGRect frame1 = frame;
     frame1.size.height /= 2.2;
@@ -66,7 +67,14 @@
 {
     scoreText.text = newScore;
 }
-
-
 @synthesize player;
+
+-(void)setCurrentPlayer:(Player)currentPlayer;
+{
+    BOOL _ = currentPlayer == self.player;
+    [UIView beginAnimations:@"statusBar.changeCurrentPlayer" context:nil];
+    self.backgroundColor = [UIColor colorWithHue:Hues[self.player] saturation:_?0.8:0.3 brightness:_?0.8:0.5 alpha:1.0];
+    statusText.text = _?@"Your turn":@"Their turn";
+    [UIView commitAnimations];
+}
 @end

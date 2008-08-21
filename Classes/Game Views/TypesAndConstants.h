@@ -36,6 +36,7 @@ CG_INLINE BoardSize BoardSizeMake(NSUInteger x, NSUInteger y) { BoardSize p; p.w
 
 extern const CGFloat ChargeEnergy;
 extern const CGFloat SparkleEnergy;
+extern const CGFloat SparkleOpacityLow;
 extern const NSTimeInterval ExplosionDelay;
 extern const NSTimeInterval ExplosionSpreadEnergy;
 
@@ -48,3 +49,4 @@ typedef struct {
 } BoardStruct;
 
 extern const CGFloat Hues[3];
+extern const CGFloat Saturations[3];

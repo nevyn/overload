@@ -5,7 +5,7 @@
 - default.png @done
 - make the scorebars some kind of bezel (gloss?)
 - score progress bar instead of text
-- Make it more obvious that it's your turn
+- Make it more obvious that it's your turn @done
 - SOUND
 - BUG: Score not updated after loading @done
 - BUG: Max scorecount invalid when tinygaming @done
@@ -14,4 +14,10 @@
 - No need to stop explosions @done
 - stop explosions outside Tiny @done
 - "Player X Wins!" plaque
+
+Future:
 - Explosions that actually travel in the direction of the energy
+- >2 local players
+- Online play
+- More flexible board size
+- 

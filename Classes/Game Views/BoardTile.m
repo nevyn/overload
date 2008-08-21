@@ -36,11 +36,10 @@
 {
     [UIView beginAnimations:@"Tile color" context:nil];
     [UIView setAnimationBeginsFromCurrentState:YES];
+    CGFloat hue = Hues[self.owner];
+    CGFloat saturation = Saturations[self.owner];
     CGFloat brightness = 0.25+(1.0-self.value)*0.75;
-    CGFloat saturation = 0.6;
-    if(self.owner == PlayerNone) {
-        saturation = 0.3;
-    }
+    
     if(self.value >= SparkleEnergy) {
         //self.transform = CGAffineTransformMakeScale(0.8, 0.8);
         //[self sparkle2]; // sparkling occurs in the board view
@@ -49,7 +48,7 @@
         self.layer.opacity = 1.0;
     }
 
-    self.backgroundColor = [UIColor colorWithHue:Hues[self.owner] saturation:saturation brightness:brightness alpha:1.0];
+    self.backgroundColor = [UIColor colorWithHue:hue saturation:saturation brightness:brightness alpha:1.0];
     [UIView commitAnimations];
 }
 -(void)sparkle;
@@ -71,7 +70,7 @@
         [UIView setAnimationDidStopSelector:@selector(sparkle2)];
     
     if(self.layer.opacity == 1.) {
-        self.layer.opacity = .7;
+        self.layer.opacity = SparkleOpacityLow;
     } else {
         self.layer.opacity = 1.;
     }

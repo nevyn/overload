@@ -76,11 +76,8 @@
 }
 -(void)setCurrentPlayer:(Player)player;
 {
-    NSString *my = @"Your turn.", *theirs = @"Their turn.";
-    if(player == PlayerP1)
-        score1.status = my, score2.status = theirs;
-    else
-        score1.status = theirs, score2.status = my;
+    [score1 setCurrentPlayer:player];
+    [score2 setCurrentPlayer:player];
 }
 -(void)setWinner:(Player)winner;
 {

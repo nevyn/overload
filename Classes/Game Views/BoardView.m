@@ -61,11 +61,12 @@ NSTimeInterval BoardAnimationOccurredAt = 0;
 }
 -(void)sparkle;
 {
+    static CGFloat animationDuration = 0.5;
     static BOOL on = NO;
     [UIView beginAnimations:@"sparkle" context:nil];
-    [UIView setAnimationDuration:0.3];
+    [UIView setAnimationDuration:animationDuration];
     if(sparkling)
-        [self performSelector:@selector(sparkle) withObject:nil afterDelay:0.4];
+        [self performSelector:@selector(sparkle) withObject:nil afterDelay:animationDuration];
     
     
     for(NSUInteger y = 0; y < sizeInTiles.height; y++) {
@@ -73,7 +74,7 @@ NSTimeInterval BoardAnimationOccurredAt = 0;
             BoardTile *tile = [self tile:BoardPointMake(x, y)];
             if(tile.value >= SparkleEnergy)
                 if(on == NO) {
-                    tile.layer.opacity = .7;
+                    tile.layer.opacity = SparkleOpacityLow;
                 } else {
                     tile.layer.opacity = 1.;
                 }

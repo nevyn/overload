@@ -18,9 +18,11 @@ const NSTimeInterval ExplosionDelay = 0.10;
 const CGFloat ChargeEnergy = 0.25;
 const NSTimeInterval ExplosionSpreadEnergy = 0.25;
 const CGFloat SparkleEnergy = 0.75;
+const CGFloat SparkleOpacityLow = 0.7;
 
 float frand(float max) {
     return (rand()/((float)INT_MAX))*max;
 }
 
-const CGFloat Hues[3] = {.6, .0, .35 };
+const CGFloat Hues[3]        = {.6, .0, .35 };
+const CGFloat Saturations[3] = {.3, .6 , .6  };

@@ -21,4 +21,6 @@
 @property (copy) NSString *status;
 @property Player player;
 @property (copy) NSString* score;
+
+-(void)setCurrentPlayer:(Player)currentPlayer_;
 @end
