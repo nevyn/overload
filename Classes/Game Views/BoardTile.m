@@ -169,7 +169,6 @@
 }
 -(void)_explosionCharge:(NSTimer*)caller;
 {
-    if(board.isBoardEmpty) return; // new game has started, stop it ffs
     [self charge:ExplosionSpreadEnergy forPlayer:[(BoardTile*)[caller userInfo] owner]];
     BoardAnimationOccurredAt = [NSDate timeIntervalSinceReferenceDate];
 }
