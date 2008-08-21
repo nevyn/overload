@@ -32,9 +32,12 @@
     
     pen.size.width /= playerCount;
     for (UIColor *color in colors) {
+        NSLog(@"Pen is %@", NSStringFromCGRect(pen));
+
         UIView *bar = [[[UIView alloc] initWithFrame:pen] autorelease];
         bar.backgroundColor = color;
         pen.origin.x += pen.size.width;
+        
         UILabel *barText = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, pen.size.width, pen.size.height)] autorelease];
         barText.text = @"0";
         barText.backgroundColor = [UIColor clearColor];
@@ -63,6 +66,9 @@
     for (NSUInteger i = 1; i < self.playerCount+1; i++) {
         totalScore += scores[i];
     }
+    if(totalScore == 0)
+        totalScore = 1;
+    
     NSArray *views = [container subviews];
     CGFloat widthPerPoint = self.frame.size.width/totalScore;
     CGFloat pen = 0;
