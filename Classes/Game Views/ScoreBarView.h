@@ -10,7 +10,6 @@
 #import "TypesAndConstants.h"
 
 @interface ScoreBarView : UIView {
-    IBOutlet UILabel *statusText;
     IBOutlet UILabel *scoreText;
     Player player;
 }
@@ -18,9 +17,7 @@
 
 -(void)setScores:(CGFloat[])scores;
 
-@property (copy) NSString *status;
 @property Player player;
-@property (copy) NSString* score;
 
 -(void)setCurrentPlayer:(Player)currentPlayer_;
 @end

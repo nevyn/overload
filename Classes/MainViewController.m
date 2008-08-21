@@ -81,22 +81,43 @@
 }
 -(void)setWinner:(Player)winner;
 {
-    NSString *win = @"Congratulations, you win!", *lose = @"Bummer, you lose.";
-    if(winner == PlayerP1)
-        score1.status = win, score2.status = lose;
-    else
-        score1.status = lose, score2.status = win;
-    score1.score = score2.score = @"Tap board to play again.";
+    [UIView beginAnimations:nil context:NULL];
+	[UIView setAnimationDuration:1];
+
+    if(winner == PlayerNone) {
+        [winPlaque removeFromSuperview];
+        [losePlaque removeFromSuperview];
+        [UIView commitAnimations];
+        return;
+    }
+    winPlaque = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"win.png"]] autorelease];
+    losePlaque = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"lose.png"]] autorelease];
+    
+    UIImageView *p1Plaque = winner==PlayerP1?winPlaque:losePlaque,
+                *p2Plaque = winner==PlayerP2?winPlaque:losePlaque;
+    
+    p1Plaque.frame = CGRectMake(0, 230, 320, 230);
+    p2Plaque.frame = CGRectMake(0, 0, 320, 230);
+    p2Plaque.transform = CGAffineTransformMakeRotation(M_PI);
+    
+
+    [self.view addSubview:p1Plaque];
+    [self.view addSubview:p2Plaque];
+    
+	[UIView commitAnimations];
 }
 
 -(void)restart;
 {
+    [self setWinner:PlayerNone];
+    boardView.sparkling = NO;
     [boardView removeFromSuperview];
-    boardView = [[BoardView alloc] initWithFrame:CGRectMake(0, 45, BoardWidth, BoardHeight) controller:self];
+    boardView = [[BoardView alloc] initWithFrame:CGRectMake(0, 44, BoardWidth, BoardHeight) controller:self];
     CGFloat scores[3] = {0,0,0};
     [self setScores:scores];
     boardView.chaosGame = chaosGame;
     boardView.tinyGame = tinyGame;
+    boardView.sparkling = YES;
     [self.view insertSubview:boardView belowSubview:score1];
 }
 -(void)shuffle;

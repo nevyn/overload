@@ -14,6 +14,7 @@
     ScoreBarView *score1, *score2;
     BoardView *boardView;
     BOOL chaosGame, tinyGame;
+    UIImageView *winPlaque, *losePlaque;
 }
 -(void)setScores:(CGFloat[])scores;
 -(void)setCurrentPlayer:(Player)player;
