@@ -45,7 +45,7 @@
 						<object class="IBUIButton" id="328191559">
 							<reference key="NSNextResponder" ref="282269593"/>
 							<int key="NSvFlags">265</int>
-							<string key="NSFrame">{{288, 428}, {18, 19}}</string>
+							<string key="NSFrame">{{288, 421}, {18, 19}}</string>
 							<reference key="NSSuperview" ref="282269593"/>
 							<bool key="IBUIOpaque">NO</bool>
 							<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
@@ -224,7 +224,7 @@
 					<string>MobileOverloadAppDelegate</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>RootViewController</string>
-					<string>{{586, 356}, {320, 480}}</string>
+					<string>{{931, 275}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				</object>
 			</object>

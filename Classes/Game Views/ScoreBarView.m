@@ -28,7 +28,16 @@
     status = [[[UILabel alloc] initWithFrame:pen] autorelease];
     status.text = @"Welcome to Overload.";
     status.backgroundColor = [UIColor clearColor];
+    [self addSubview:status];
     
+    pen.size.height /= 2;
+    pen.origin.x = 0;
+    UIImageView *gloss = [[[UIImageView alloc] initWithFrame:pen] autorelease];
+    gloss.image = [UIImage imageNamed:@"gloss.png"];
+    [self addSubview:gloss];
+    pen.size.height *= 2;
+    
+
     pen.origin.x = 0;
     pen.size.height = 14;
     pen.origin.y = frame.size.height-pen.size.height;
@@ -38,8 +47,6 @@
                             [UIColor colorWithHue:Hues[2] saturation:0.6 brightness:0.6 alpha:1.0],
                             nil];
     scoreIndicator = [[[ScoreIndicator alloc] initWithFrame:pen colors:scoreColors] autorelease];
-    
-    [self addSubview:status];
     [self addSubview:scoreIndicator];
     
 	return self;
