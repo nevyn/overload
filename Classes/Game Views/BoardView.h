@@ -24,6 +24,8 @@ extern NSTimeInterval BoardAnimationOccurredAt;
     BOOL chaosGame;
     BOOL tinyGame;
     
+    BOOL sparkling;
+    
     CGSize tileSize;
     BoardSize sizeInTiles;
 }
@@ -45,6 +47,7 @@ extern NSTimeInterval BoardAnimationOccurredAt;
 -(BOOL)hasGameEnded;
 @property BOOL chaosGame;
 @property BOOL tinyGame;
+@property BOOL sparkling; // for turning of sparkling when the game is inactive
 
 @property (readonly) CGSize tileSize;
 @property (readonly) BoardSize sizeInTiles;

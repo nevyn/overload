@@ -32,9 +32,9 @@
 	return self;
 }
 - (void)viewDidLoad {
-    score1 = [[ScoreBarView alloc] initWithFrame:CGRectMake(0, 44+BoardHeight, 320, 44) color:[UIColor colorWithHue:.0 saturation:0.6 brightness:0.75 alpha:1.0]];
+    score1 = [[ScoreBarView alloc] initWithFrame:CGRectMake(0, 44+BoardHeight, 320, 44) player:PlayerP1];
 
-    score2 = [[ScoreBarView alloc] initWithFrame:CGRectMake(0, 0, 320, 44) color:[UIColor colorWithHue:.35 saturation:0.6 brightness:0.55 alpha:1.0]];
+    score2 = [[ScoreBarView alloc] initWithFrame:CGRectMake(0, 0, 320, 44) player:PlayerP2];
     score2.transform = CGAffineTransformMakeRotation(M_PI);    
     boardView = [[BoardView alloc] initWithFrame:CGRectMake(0, 44, BoardWidth, BoardHeight) controller:self];
     
@@ -45,6 +45,8 @@
     [self.view addSubview:score1];
     [self.view addSubview:score2];
     
+    boardView.sparkling = YES;
+    
     [self performSelector:@selector(loadBoard) withObject:nil afterDelay:0.1];
 }
 
@@ -53,6 +55,8 @@
 	// Return YES for supported orientations
 	return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
+
+
 
 
 - (void)didReceiveMemoryWarning {
@@ -67,10 +71,8 @@
 
 -(void)setScores:(CGFloat[])scores;
 {
-    NSString *score = [NSString stringWithFormat:@"%.2f (you) %.2f (opponent)", scores[1], scores[2]];
-    score1.score = score;
-    score = [NSString stringWithFormat:@"%.2f (you) %.2f (opponent)", scores[2], scores[1]];
-    score2.score = score;
+    [score1 setScores:scores];
+    [score2 setScores:scores];
 }
 -(void)setCurrentPlayer:(Player)player;
 {
@@ -119,9 +121,14 @@
 
 - (void)viewDidAppear:(BOOL)animated; 
 {
-    [super viewDidAppear:YES];
+    boardView.sparkling = YES;
     [self performSelector:@selector(_setTinyView) withObject:nil afterDelay:1.0];
 }
+- (void)viewDidDisappear:(BOOL)animated;
+{
+    boardView.sparkling = NO;
+}
+
 -(void)_setTinyView;
 {
     boardView.tinyGame = tinyGame;

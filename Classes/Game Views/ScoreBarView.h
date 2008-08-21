@@ -7,14 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "TypesAndConstants.h"
 
 @interface ScoreBarView : UIView {
     IBOutlet UILabel *statusText;
     IBOutlet UILabel *scoreText;
+    Player player;
 }
-- (id)initWithFrame:(CGRect)frame color:(UIColor*)bg;
+- (id)initWithFrame:(CGRect)frame player:(Player)player;
+
+-(void)setScores:(CGFloat[])scores;
 
 @property (copy) NSString *status;
-@property (copy) NSString *score;
+@property Player player;
+@property (copy) NSString* score;
 @end

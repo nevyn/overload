@@ -43,7 +43,7 @@
     }
     if(self.value >= SparkleEnergy) {
         //self.transform = CGAffineTransformMakeScale(0.8, 0.8);
-        [self sparkle2];
+        //[self sparkle2]; // sparkling occurs in the board view
     } else {
         self.transform = CGAffineTransformIdentity;
         self.layer.opacity = 1.0;
@@ -71,7 +71,7 @@
         [UIView setAnimationDidStopSelector:@selector(sparkle2)];
     
     if(self.layer.opacity == 1.) {
-        self.layer.opacity = .9;
+        self.layer.opacity = .7;
     } else {
         self.layer.opacity = 1.;
     }
