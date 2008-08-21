@@ -1,7 +1,8 @@
 - SOUND
 - Pick better colors @mandy
 - Make nicer winning plaques @mandy
-- Sparkle goes crazy when restarting game
+- Sparkle goes crazy when restarting game @bug
+- New default.png
 Future:
 - Computer players (AI) @important
 - Explosions that actually travel in the direction of the energy
@@ -9,19 +10,19 @@ Future:
 - Online play
 - More flexible board size
 Archive:
-- Save game state when quitting @done
-- Implement TinyGame mode @done
-- Nice transition when app loads (tile transitions) @done
-- icon @done
-- default.png @done
-- make the scorebars some kind of bezel (gloss?) @done
-- score progress bar instead of text @done
-- Make it more obvious that it's your turn @done
-- BUG: Score not updated after loading @done
-- BUG: Max scorecount invalid when tinygaming @done
-- FEATURE: Make >=0.75 tiles sparkle @done
-- 1px error @done
-- No need to stop explosions @done
-- stop explosions outside Tiny @done
-- "Player X Wins!" plaque @done
-- Sparkling stops on new game @done
+- Save game state when quitting @done @1.0b3
+- Implement TinyGame mode @done @1.0b3
+- Nice transition when app loads (tile transitions) @done @1.0b3
+- icon @done @1.0b3
+- default.png @done @1.0b3
+- make the scorebars some kind of bezel (gloss?) @done @1.0b4
+- score progress bar instead of text @done @1.0b4
+- Make it more obvious that it's your turn @done @1.0b4
+- BUG: Score not updated after loading @done @1.0b4
+- BUG: Max scorecount invalid when tinygaming @done @1.0b4
+- FEATURE: Make >=0.75 tiles sparkle @done @1.0b4
+- 1px error @done @1.0b4
+- No need to stop explosions @done @1.0b4
+- stop explosions outside Tiny @done @1.0b4
+- "Player X Wins!" plaque @done @1.0b4
+- Sparkling stops on new game @done @1.0b4
