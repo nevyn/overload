@@ -84,6 +84,7 @@
 }
 -(void)setWinner:(Player)winner;
 {
+    Player loser = (!(winner-1))+1;
     [UIView beginAnimations:nil context:NULL];
 	[UIView setAnimationDuration:1];
 
@@ -93,8 +94,8 @@
         [UIView commitAnimations];
         return;
     }
-    winPlaque = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"win.png"]] autorelease];
-    losePlaque = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"lose.png"]] autorelease];
+    winPlaque =  [[[UIImageView alloc] initWithImage:[UIImage imageNamed:[NSString stringWithFormat:@"win-p%d.png", winner]]] autorelease];
+    losePlaque = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:[NSString stringWithFormat:@"lose-p%d.png", loser]]] autorelease];
     
     UIImageView *p1Plaque = winner==PlayerP1?winPlaque:losePlaque,
                 *p2Plaque = winner==PlayerP2?winPlaque:losePlaque;
