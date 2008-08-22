@@ -109,6 +109,10 @@
 
 -(void)restart;
 {
+    [UIView beginAnimations:nil context:NULL];
+	[UIView setAnimationDuration:1];
+    [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:self.view cache:YES];
+
     [self setWinner:PlayerNone];
     boardView.sparkling = NO;
     [boardView removeFromSuperview];
@@ -119,6 +123,8 @@
     boardView.tinyGame = tinyGame;
     boardView.sparkling = YES;
     [self.view insertSubview:boardView belowSubview:score1];
+    
+    [UIView commitAnimations];
 }
 -(void)shuffle;
 {
