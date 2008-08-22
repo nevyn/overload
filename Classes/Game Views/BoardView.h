@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "BoardTile.h"
-
+#import <AudioToolbox/AudioToolbox.h>
 #import "TypesAndConstants.h"
 
 extern NSTimeInterval BoardAnimationOccurredAt;
@@ -28,6 +28,12 @@ extern NSTimeInterval BoardAnimationOccurredAt;
     
     CGSize tileSize;
     BoardSize sizeInTiles;
+    
+    SystemSoundID explosion;
+    SystemSoundID charge25;
+    SystemSoundID charge50;
+    SystemSoundID charge75;
+    SystemSoundID charge100;
 }
 - (id)initWithFrame:(CGRect)frame controller:(MainViewController*)controller_;
 
@@ -47,11 +53,15 @@ extern NSTimeInterval BoardAnimationOccurredAt;
 -(BOOL)hasGameEnded;
 @property BOOL chaosGame;
 @property BOOL tinyGame;
-@property BOOL sparkling; // for turning of sparkling when the game is inactive
+@property BOOL sparkling; // for turning off sparkling when the game is inactive
 
 @property (readonly) CGSize tileSize;
 @property (readonly) BoardSize sizeInTiles;
 
 @property BoardStruct boardStruct;
+
+
+-(void)playChargeSound:(CGFloat)chargeLevel;
+-(void)playExplosionSound;
 
 @end

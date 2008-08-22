@@ -4,6 +4,8 @@
 - Sparkle goes crazy when restarting game @bug @done @0.1b5
 - Explosions that actually travel in the direction of the energy @done @0.1b5
 - New default.png
+- Fade new game in nicely @0.1b5 @done
+- handle incoming call
 Future:
 - Computer players (AI) @important
 - >2 local players

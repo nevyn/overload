@@ -41,11 +41,27 @@ NSTimeInterval BoardAnimationOccurredAt = 0;
     self.chaosGame = NO;
     self.tinyGame = NO;
     
+#define __wavPath(name) ((CFURLRef)[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:name ofType:@"wav"]])
+    
+    AudioServicesCreateSystemSoundID(__wavPath(@"explosion"), &explosion);
+    AudioServicesCreateSystemSoundID(__wavPath(@"charge25"), &charge25);
+    AudioServicesCreateSystemSoundID(__wavPath(@"charge50"), &charge50);
+    AudioServicesCreateSystemSoundID(__wavPath(@"charge75"), &charge75);
+    AudioServicesCreateSystemSoundID(__wavPath(@"charge100"), &charge100);
+    
+    
 	return self;
 }
 - (void)dealloc {
     [winningConditionTimer invalidate];
     [sparkleTimer invalidate];
+    
+    AudioServicesDisposeSystemSoundID(explosion);
+    AudioServicesDisposeSystemSoundID(charge25);
+    AudioServicesDisposeSystemSoundID(charge50);
+    AudioServicesDisposeSystemSoundID(charge75);
+    AudioServicesDisposeSystemSoundID(charge100);
+    
 	[super dealloc];
 }
 
@@ -109,7 +125,8 @@ NSTimeInterval BoardAnimationOccurredAt = 0;
     BoardTile *tile = [self tile:point];
     if( ! (tile.owner == currentPlayer || tile.owner == PlayerNone) )
         return; // Invalid move
-
+    
+    [self playChargeSound:tile.value+ChargeEnergy];
     [tile charge:ChargeEnergy forPlayer:self.currentPlayer];
     
     if(self.currentPlayer == PlayerP1)
@@ -240,5 +257,24 @@ NSTimeInterval BoardAnimationOccurredAt = 0;
 //            tile.owner = bs.owners[x][y];
         }
     }
+}
+
+
+#pragma mark Sound
+-(void)playChargeSound:(CGFloat)chargeLevel;
+{
+    if(chargeLevel < 0.26)
+        AudioServicesPlaySystemSound(charge25);
+    else if(chargeLevel < 0.51)
+        AudioServicesPlaySystemSound(charge50);
+    else if(chargeLevel < 0.76)
+        AudioServicesPlaySystemSound(charge75);
+    else
+        AudioServicesPlaySystemSound(charge100);
+    
+}
+-(void)playExplosionSound;
+{
+    AudioServicesPlaySystemSound(explosion);
 }
 @end
