@@ -1,11 +1,7 @@
 - SOUND
-- Pick better colors @mandy
-- Make nicer winning plaques @mandy
-- Sparkle goes crazy when restarting game @bug @done @0.1b5
-- Explosions that actually travel in the direction of the energy @done @0.1b5
 - New default.png
-- Fade new game in nicely @0.1b5 @done
 - handle incoming call
+- PERFORMANCE
 Future:
 - Computer players (AI) @important
 - >2 local players
@@ -28,3 +24,9 @@ Archive:
 - stop explosions outside Tiny @done @1.0b4
 - "Player X Wins!" plaque @done @1.0b4
 - Sparkling stops on new game @done @1.0b4
+- Pick better colors @mandy @done @0.1b5
+- Make nicer winning plaques @0.1b5 @done
+- Sparkle goes crazy when restarting game @bug @done @0.1b5
+- Explosions that actually travel in the direction of the energy @done @0.1b5
+- Fade new game in nicely @0.1b5 @done 
+- Nicer tiles @0.1b5 @done
