@@ -263,6 +263,8 @@ NSTimeInterval BoardAnimationOccurredAt = 0;
 #pragma mark Sound
 -(void)playChargeSound:(CGFloat)chargeLevel;
 {
+    if( ! controller.sound) return;
+    
     if(chargeLevel < 0.26)
         AudioServicesPlaySystemSound(charge25);
     else if(chargeLevel < 0.51)
@@ -275,6 +277,8 @@ NSTimeInterval BoardAnimationOccurredAt = 0;
 }
 -(void)playExplosionSound;
 {
+    if( ! controller.sound) return;
+    
     AudioServicesPlaySystemSound(explosion);
 }
 @end

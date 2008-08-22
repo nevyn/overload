@@ -20,6 +20,7 @@
     
     IBOutlet UISwitch *giganticGame;
     IBOutlet UISwitch *chaosGame;
+    IBOutlet UISwitch *soundSwitch;
 }
 - (id)initWithNibName:(NSString *)nibNameOrNil
                bundle:(NSBundle *)nibBundleOrNil
@@ -30,4 +31,6 @@
 - (IBAction)shuffleGame:(id)sender;
 - (IBAction)toggleGameBoardSize:(UISwitch*)sender;
 - (IBAction)toggleChaosGame:(UISwitch*)sender;
+- (IBAction)toggleSound:(UISwitch*)sender;
+
 @end

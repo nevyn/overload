@@ -105,11 +105,10 @@
 					<object class="IBUIImageView" id="560935535">
 						<reference key="NSNextResponder" ref="242216480"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{13, 20}, {155, 169}}</string>
+						<string key="NSFrame">{{13, 20}, {155, 167}}</string>
 						<reference key="NSSuperview" ref="242216480"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
-						<int key="IBUIContentMode">4</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
@@ -189,7 +188,7 @@
 					<object class="IBUISwitch" id="324364438">
 						<reference key="NSNextResponder" ref="242216480"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{206, 213}, {94, 27}}</string>
+						<string key="NSFrame">{{206, 193}, {94, 27}}</string>
 						<reference key="NSSuperview" ref="242216480"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -200,7 +199,7 @@
 					<object class="IBUILabel" id="701778377">
 						<reference key="NSNextResponder" ref="242216480"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{20, 215}, {164, 21}}</string>
+						<string key="NSFrame">{{20, 195}, {164, 21}}</string>
 						<reference key="NSSuperview" ref="242216480"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -217,7 +216,7 @@
 					<object class="IBUISwitch" id="595889296">
 						<reference key="NSNextResponder" ref="242216480"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{206, 276}, {94, 27}}</string>
+						<string key="NSFrame">{{206, 256}, {94, 27}}</string>
 						<reference key="NSSuperview" ref="242216480"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -228,7 +227,7 @@
 					<object class="IBUILabel" id="952014012">
 						<reference key="NSNextResponder" ref="242216480"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{20, 276}, {144, 21}}</string>
+						<string key="NSFrame">{{20, 256}, {144, 21}}</string>
 						<reference key="NSSuperview" ref="242216480"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -239,10 +238,35 @@
 						<int key="IBUIBaselineAdjustment">1</int>
 						<float key="IBUIMinimumFontSize">1.000000e+01</float>
 					</object>
+					<object class="IBUISwitch" id="1000297829">
+						<reference key="NSNextResponder" ref="242216480"/>
+						<int key="NSvFlags">292</int>
+						<string key="NSFrame">{{206, 323}, {94, 27}}</string>
+						<reference key="NSSuperview" ref="242216480"/>
+						<bool key="IBUIOpaque">NO</bool>
+						<bool key="IBUIClipsSubviews">YES</bool>
+						<bool key="IBUIMultipleTouchEnabled">YES</bool>
+						<int key="IBUIContentHorizontalAlignment">0</int>
+						<int key="IBUIContentVerticalAlignment">0</int>
+					</object>
+					<object class="IBUILabel" id="196339651">
+						<reference key="NSNextResponder" ref="242216480"/>
+						<int key="NSvFlags">292</int>
+						<string key="NSFrame">{{20, 323}, {144, 21}}</string>
+						<reference key="NSSuperview" ref="242216480"/>
+						<bool key="IBUIOpaque">NO</bool>
+						<bool key="IBUIClipsSubviews">YES</bool>
+						<bool key="IBUIUserInteractionEnabled">NO</bool>
+						<string key="IBUIText">Game Sounds</string>
+						<reference key="IBUITextColor" ref="510100381"/>
+						<nil key="IBUIHighlightedColor"/>
+						<int key="IBUIBaselineAdjustment">1</int>
+						<float key="IBUIMinimumFontSize">1.000000e+01</float>
+					</object>
 					<object class="IBUILabel" id="39348964">
 						<reference key="NSNextResponder" ref="242216480"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{36, 239}, {162, 29}}</string>
+						<string key="NSFrame">{{36, 224}, {162, 29}}</string>
 						<reference key="NSSuperview" ref="242216480"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -263,7 +287,7 @@
 					<object class="IBUILabel" id="754422048">
 						<reference key="NSNextResponder" ref="242216480"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{36, 303}, {162, 28}}</string>
+						<string key="NSFrame">{{36, 283}, {162, 28}}</string>
 						<reference key="NSSuperview" ref="242216480"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -417,6 +441,23 @@
 					</object>
 					<int key="connectionID">80</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">soundSwitch</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="1000297829"/>
+					</object>
+					<int key="connectionID">83</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">toggleSound:</string>
+						<reference key="source" ref="1000297829"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">13</int>
+					</object>
+					<int key="connectionID">84</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -447,16 +488,18 @@
 							<reference ref="345326446"/>
 							<reference ref="819595591"/>
 							<reference ref="560935535"/>
-							<reference ref="324364438"/>
-							<reference ref="701778377"/>
-							<reference ref="595889296"/>
 							<reference ref="1012041417"/>
 							<reference ref="885303007"/>
 							<reference ref="333698759"/>
 							<reference ref="971852189"/>
-							<reference ref="39348964"/>
+							<reference ref="324364438"/>
+							<reference ref="701778377"/>
+							<reference ref="595889296"/>
 							<reference ref="952014012"/>
+							<reference ref="1000297829"/>
+							<reference ref="196339651"/>
 							<reference ref="754422048"/>
+							<reference ref="39348964"/>
 						</object>
 						<reference key="parent" ref="360949347"/>
 						<string key="objectName">Flipside View</string>
@@ -551,6 +594,16 @@
 						<reference key="object" ref="971852189"/>
 						<reference key="parent" ref="242216480"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">81</int>
+						<reference key="object" ref="1000297829"/>
+						<reference key="parent" ref="242216480"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">82</int>
+						<reference key="object" ref="196339651"/>
+						<reference key="parent" ref="242216480"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -579,6 +632,8 @@
 					<string>75.IBPluginDependency</string>
 					<string>76.IBPluginDependency</string>
 					<string>77.IBPluginDependency</string>
+					<string>81.IBPluginDependency</string>
+					<string>82.IBPluginDependency</string>
 				</object>
 				<object class="NSMutableArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -586,6 +641,8 @@
 					<string>UIResponder</string>
 					<string>FlipsideView</string>
 					<string>{{533, 109}, {320, 460}}</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -626,7 +683,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">80</int>
+			<int key="maxID">84</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -650,12 +707,14 @@
 							<string>shuffleGame:</string>
 							<string>toggleChaosGame:</string>
 							<string>toggleGameBoardSize:</string>
+							<string>toggleSound:</string>
 							<string>toggleView:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>id</string>
 							<string>id</string>
+							<string>UISwitch</string>
 							<string>UISwitch</string>
 							<string>UISwitch</string>
 							<string>id</string>
@@ -670,6 +729,7 @@
 							<string>cogM</string>
 							<string>cogU</string>
 							<string>giganticGame</string>
+							<string>soundSwitch</string>
 							<string>versionLabel</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
@@ -678,6 +738,7 @@
 							<string>UIImageView</string>
 							<string>UIImageView</string>
 							<string>UIImageView</string>
+							<string>UISwitch</string>
 							<string>UISwitch</string>
 							<string>UILabel</string>
 						</object>

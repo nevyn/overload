@@ -18,6 +18,7 @@
         [NSDictionary dictionaryWithObjectsAndKeys:
             [NSNumber numberWithBool:YES], @"tinyGame",
             [NSNumber numberWithBool:NO], @"chaosGame",
+            [NSNumber numberWithBool:YES], @"sound",
             nil, nil
         ]
      ];
@@ -28,6 +29,8 @@
     
     self.tinyGame = [[NSUserDefaults standardUserDefaults] boolForKey:@"tinyGame"];
     self.chaosGame = [[NSUserDefaults standardUserDefaults] boolForKey:@"chaosGame"];
+    sound = [[NSUserDefaults standardUserDefaults] boolForKey:@"sound"];
+
     
 	return self;
 }
@@ -85,8 +88,8 @@
 	[UIView setAnimationDuration:1];
 
     if(winner == PlayerNone) {
-        [winPlaque removeFromSuperview];
-        [losePlaque removeFromSuperview];
+        [winPlaque removeFromSuperview]; winPlaque = nil;
+        [losePlaque removeFromSuperview]; winPlaque = nil;
         [UIView commitAnimations];
         return;
     }
@@ -141,6 +144,12 @@
     tinyGame = _;
     // note: not setting in boardView until on viewDidAppear
 } 
+@synthesize sound;
+-(void)setSound:(BOOL)_; {
+    [[NSUserDefaults standardUserDefaults] setBool:_ forKey:@"sound"];
+    sound = _;
+} 
+
 -(BOOL)tinyGame; { return boardView.tinyGame; }
 
 - (void)viewDidAppear:(BOOL)animated; 

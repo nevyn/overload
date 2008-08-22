@@ -26,7 +26,6 @@
 		058994710E5F162A002BF0FE /* charge100.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0589946D0E5F162A002BF0FE /* charge100.wav */; };
 		058994720E5F162A002BF0FE /* charge50.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0589946E0E5F162A002BF0FE /* charge50.wav */; };
 		058994730E5F162A002BF0FE /* charge25.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0589946F0E5F162A002BF0FE /* charge25.wav */; };
-		058995DF0E5F392C002BF0FE /* SettingsTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 058995DE0E5F392C002BF0FE /* SettingsTableController.m */; };
 		05D77E9A0E58C7D400FB00DB /* ScoreBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D77E990E58C7D400FB00DB /* ScoreBarView.m */; };
 		05D77E9D0E58C7E800FB00DB /* BoardTile.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D77E9C0E58C7E800FB00DB /* BoardTile.m */; };
 		05D77F280E58DB3C00FB00DB /* BoardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D77F270E58DB3C00FB00DB /* BoardView.m */; };
@@ -70,8 +69,6 @@
 		0589946D0E5F162A002BF0FE /* charge100.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = charge100.wav; sourceTree = "<group>"; };
 		0589946E0E5F162A002BF0FE /* charge50.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = charge50.wav; sourceTree = "<group>"; };
 		0589946F0E5F162A002BF0FE /* charge25.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = charge25.wav; sourceTree = "<group>"; };
-		058995DD0E5F392C002BF0FE /* SettingsTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsTableController.h; sourceTree = "<group>"; };
-		058995DE0E5F392C002BF0FE /* SettingsTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsTableController.m; sourceTree = "<group>"; };
 		05D77E980E58C7D400FB00DB /* ScoreBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreBarView.h; sourceTree = "<group>"; };
 		05D77E990E58C7D400FB00DB /* ScoreBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreBarView.m; sourceTree = "<group>"; };
 		05D77E9B0E58C7E800FB00DB /* BoardTile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardTile.h; sourceTree = "<group>"; };
@@ -168,8 +165,6 @@
 				289233A30DB2D0840083E9F9 /* FlipsideView.m */,
 				289233AC0DB2D0DB0083E9F9 /* FlipsideViewController.h */,
 				289233AD0DB2D0DB0083E9F9 /* FlipsideViewController.m */,
-				058995DD0E5F392C002BF0FE /* SettingsTableController.h */,
-				058995DE0E5F392C002BF0FE /* SettingsTableController.m */,
 			);
 			name = "Flipside View";
 			sourceTree = "<group>";
@@ -342,7 +337,6 @@
 				05D77F280E58DB3C00FB00DB /* BoardView.m in Sources */,
 				05D77F8E0E58E63E00FB00DB /* TypesAndConstants.m in Sources */,
 				054615D00E5E0E9600DAF3BD /* ScoreIndicator.m in Sources */,
-				058995DF0E5F392C002BF0FE /* SettingsTableController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

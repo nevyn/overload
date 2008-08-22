@@ -35,6 +35,8 @@
     
     chaosGame.on = [[NSUserDefaults standardUserDefaults] boolForKey:@"chaosGame"];
     giganticGame.on = ! [[NSUserDefaults standardUserDefaults] boolForKey:@"tinyGame"];
+    soundSwitch.on = [[NSUserDefaults standardUserDefaults] boolForKey:@"sound"];
+
 }
 
 -(void)rotateWheels:(NSTimer*)caller;
@@ -108,6 +110,10 @@
     mainController.chaosGame = sender.on;
 }
 
+- (IBAction)toggleSound:(UISwitch*)sender;
+{
+    mainController.sound = sender.on;
+}
 
 
 @end
