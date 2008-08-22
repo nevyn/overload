@@ -2,7 +2,7 @@
 - Pick better colors @mandy
 - Make nicer winning plaques @mandy
 - Sparkle goes crazy when restarting game @bug
-- Explosions that actually travel in the direction of the energy
+- Explosions that actually travel in the direction of the energy @done @0.1b5
 - New default.png
 Future:
 - Computer players (AI) @important
