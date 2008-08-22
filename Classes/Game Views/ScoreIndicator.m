@@ -32,7 +32,6 @@
     
     pen.size.width /= playerCount;
     for (UIColor *color in colors) {
-        NSLog(@"Pen is %@", NSStringFromCGRect(pen));
 
         UIView *bar = [[[UIView alloc] initWithFrame:pen] autorelease];
         bar.backgroundColor = color;

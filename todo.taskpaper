@@ -2,10 +2,10 @@
 - Pick better colors @mandy
 - Make nicer winning plaques @mandy
 - Sparkle goes crazy when restarting game @bug
+- Explosions that actually travel in the direction of the energy
 - New default.png
 Future:
 - Computer players (AI) @important
-- Explosions that actually travel in the direction of the energy
 - >2 local players
 - Online play
 - More flexible board size

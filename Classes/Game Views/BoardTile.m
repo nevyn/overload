@@ -13,7 +13,6 @@
 
 @interface BoardTile()
 -(void)updateColor;
--(void)_backgroundExplode;
 @end
 
 @implementation BoardTile
@@ -119,35 +118,50 @@
     self.owner = newOwner;
     [self charge:amount];
 }
+
+static CGRect boardPointToFrameRect(CGSize ts, BoardPoint bp)
+{
+    return CGRectMake(bp.x*ts.width, bp.y*ts.height, ts.width, ts.height);
+}
 -(void)explode;
 {
-    [UIView beginAnimations:@"Explosion" context:nil];
-    //[UIView setAnimationDuration:1.0];
-    [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
-    
-    // Actions for self
-    self.value = 0.0;
-    
-    // Actions for explosion
-    BoardTile *animationTile = [[[BoardTile alloc] initWithFrame:self.frame] autorelease];
-    animationTile.owner = self.owner;
-    animationTile.value = self.value;
-    [self.superview addSubview:animationTile];
-    animationTile.transform = CGAffineTransformMakeScale(4, 4);
-    animationTile.layer.opacity = 0.0;
-    [UIView setAnimationDelegate:animationTile];
-    [UIView setAnimationDidStopSelector:@selector(_resetExplosionAnimation::)];
-    [UIView commitAnimations];
-    
-     //[self performSelector:@selector(_backgroundExplode) onThread:self.board.explosionThread withObject:nil waitUntilDone:NO];
-    [self _backgroundExplode];
-}
--(void)_backgroundExplode; {
-    
     BoardPoint urdl[4] =   {BoardPointMake(self.boardPosition.x, self.boardPosition.y-1),
-                            BoardPointMake(self.boardPosition.x+1, self.boardPosition.y),
-                            BoardPointMake(self.boardPosition.x, self.boardPosition.y+1),
-                            BoardPointMake(self.boardPosition.x-1, self.boardPosition.y)};
+        BoardPointMake(self.boardPosition.x+1, self.boardPosition.y),
+        BoardPointMake(self.boardPosition.x, self.boardPosition.y+1),
+        BoardPointMake(self.boardPosition.x-1, self.boardPosition.y)};
+
+    
+    
+    self.value = 0.0;
+        
+    // Actions for explosion
+    CGSize ts = board.tileSize;
+    NSArray *animationTiles = [NSArray arrayWithObjects:
+                               [[[BoardTile alloc] initWithFrame:self.frame] autorelease],
+                               [[[BoardTile alloc] initWithFrame:self.frame] autorelease], 
+                               [[[BoardTile alloc] initWithFrame:self.frame] autorelease], 
+                               [[[BoardTile alloc] initWithFrame:self.frame] autorelease],
+                              nil];
+    for (NSUInteger i = 0; i < 4; i++) {
+        [UIView beginAnimations:@"Explosion1" context:nil];
+        [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
+        [UIView setAnimationDuration:0.6];
+        [UIView setAnimationDelay:(ExplosionDelay/2)*(i+1)];
+        
+        BoardTile *aniTile = [animationTiles objectAtIndex:i];
+        aniTile.owner = self.owner;
+        aniTile.value = 1.0-0.25*i;
+        [self.superview addSubview:aniTile];
+        
+        aniTile.frame = boardPointToFrameRect(ts, urdl[i]);
+        aniTile.layer.opacity = 0.0;
+        
+        [UIView setAnimationDelegate:aniTile];
+        [UIView setAnimationDidStopSelector:@selector(_resetExplosionAnimation::)];
+        
+        [UIView commitAnimations];
+    }
+    
     
     BoardTile *targets[] = {[self.board tile:urdl[0]],
                             [self.board tile:urdl[1]],
