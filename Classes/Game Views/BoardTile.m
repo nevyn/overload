@@ -23,6 +23,12 @@
     
     [self updateColor];
     
+    UIImageView *image = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tile.png"]] autorelease];
+    frame.origin = CGPointMake(0, 0);
+    image.frame = frame;
+    image.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
+    [self addSubview:image];
+    
     return self;
 }
 
@@ -37,7 +43,7 @@
     [UIView setAnimationBeginsFromCurrentState:YES];
     CGFloat hue = Hues[self.owner];
     CGFloat saturation = Saturations[self.owner];
-    CGFloat brightness = 0.25+(1.0-self.value)*0.75;
+    CGFloat brightness = 1.0-self.value;
     
     if(self.value >= SparkleEnergy) {
         //self.transform = CGAffineTransformMakeScale(0.8, 0.8);
@@ -145,12 +151,15 @@ static CGRect boardPointToFrameRect(CGSize ts, BoardPoint bp)
                                [[[BoardTile alloc] initWithFrame:self.frame] autorelease],
                               nil];
     for (NSUInteger i = 0; i < 4; i++) {
+        BoardTile *aniTile = [animationTiles objectAtIndex:i];
+
+        [[[aniTile subviews] objectAtIndex:0] removeFromSuperview];
+        
         [UIView beginAnimations:@"Explosion1" context:nil];
         [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
         [UIView setAnimationDuration:0.6];
         [UIView setAnimationDelay:(ExplosionDelay/2)*(i+1)];
         
-        BoardTile *aniTile = [animationTiles objectAtIndex:i];
         aniTile.owner = self.owner;
         aniTile.value = 1.0-0.25*i;
         [self.superview addSubview:aniTile];

@@ -26,6 +26,7 @@
 		058994710E5F162A002BF0FE /* charge100.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0589946D0E5F162A002BF0FE /* charge100.wav */; };
 		058994720E5F162A002BF0FE /* charge50.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0589946E0E5F162A002BF0FE /* charge50.wav */; };
 		058994730E5F162A002BF0FE /* charge25.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0589946F0E5F162A002BF0FE /* charge25.wav */; };
+		05CF88440E5F59BF00E2D8B4 /* tile.png in Resources */ = {isa = PBXBuildFile; fileRef = 05CF88430E5F59BF00E2D8B4 /* tile.png */; };
 		05D77E9A0E58C7D400FB00DB /* ScoreBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D77E990E58C7D400FB00DB /* ScoreBarView.m */; };
 		05D77E9D0E58C7E800FB00DB /* BoardTile.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D77E9C0E58C7E800FB00DB /* BoardTile.m */; };
 		05D77F280E58DB3C00FB00DB /* BoardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D77F270E58DB3C00FB00DB /* BoardView.m */; };
@@ -69,6 +70,7 @@
 		0589946D0E5F162A002BF0FE /* charge100.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = charge100.wav; sourceTree = "<group>"; };
 		0589946E0E5F162A002BF0FE /* charge50.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = charge50.wav; sourceTree = "<group>"; };
 		0589946F0E5F162A002BF0FE /* charge25.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = charge25.wav; sourceTree = "<group>"; };
+		05CF88430E5F59BF00E2D8B4 /* tile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tile.png; sourceTree = "<group>"; };
 		05D77E980E58C7D400FB00DB /* ScoreBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreBarView.h; sourceTree = "<group>"; };
 		05D77E990E58C7D400FB00DB /* ScoreBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreBarView.m; sourceTree = "<group>"; };
 		05D77E9B0E58C7E800FB00DB /* BoardTile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardTile.h; sourceTree = "<group>"; };
@@ -208,6 +210,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				05CF88430E5F59BF00E2D8B4 /* tile.png */,
 				0589946C0E5F162A002BF0FE /* charge75.wav */,
 				0589946D0E5F162A002BF0FE /* charge100.wav */,
 				0589946E0E5F162A002BF0FE /* charge50.wav */,
@@ -315,6 +318,7 @@
 				058994710E5F162A002BF0FE /* charge100.wav in Resources */,
 				058994720E5F162A002BF0FE /* charge50.wav in Resources */,
 				058994730E5F162A002BF0FE /* charge25.wav in Resources */,
+				05CF88440E5F59BF00E2D8B4 /* tile.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
