@@ -25,4 +25,5 @@ float frand(float max) {
 }
 
 const CGFloat Hues[3]        = {.6, .0, .35 };
-const CGFloat Saturations[3] = {.3, .6 , .6  };
+
+const CGFloat Saturations[4] = {0.0, .5 , .8,  1.};

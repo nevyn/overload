@@ -75,7 +75,7 @@
 {
     BOOL _ = currentPlayer == self.player;
     [UIView beginAnimations:@"statusBar.changeCurrentPlayer" context:nil];
-    self.backgroundColor = [UIColor colorWithHue:Hues[self.player] saturation:_?0.8:0.3 brightness:_?0.8:0.5 alpha:1.0];
+    self.backgroundColor = [UIColor colorWithHue:Hues[self.player] saturation:_?0.6:0.3 brightness:_?0.8:0.5 alpha:1.0];
     [UIView commitAnimations];
     
     if(_)

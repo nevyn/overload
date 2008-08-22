@@ -49,4 +49,4 @@ typedef struct {
 } BoardStruct;
 
 extern const CGFloat Hues[3];
-extern const CGFloat Saturations[3];
+extern const CGFloat Saturations[4];

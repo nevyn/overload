@@ -45,6 +45,11 @@
     CGFloat saturation = Saturations[self.owner];
     CGFloat brightness = 1.0-self.value;
     
+    if(self.owner == PlayerNone)
+        saturation = Saturations[self.owner];
+    
+
+    
     if(self.value >= SparkleEnergy) {
         //self.transform = CGAffineTransformMakeScale(0.8, 0.8);
         //[self sparkle2]; // sparkling occurs in the board view

@@ -35,6 +35,8 @@ NSTimeInterval BoardAnimationOccurredAt = 0;
         }
     }
     
+    self.backgroundColor = [UIColor whiteColor];
+    
     self.currentPlayer = PlayerP1;
     [self scheduleWinningConditionCheck];
     
