@@ -51,9 +51,12 @@ NSTimeInterval BoardAnimationOccurredAt = 0;
 
 -(void)setSparkling:(BOOL)sparkling_;
 {
-    sparkling = sparkling_;
-    if(sparkling)
+    if(sparkling_ && !sparkling) {
+        sparkling = sparkling_;
         [self sparkle];
+    }
+
+    sparkling = sparkling_;
 }
 -(BOOL)sparkling;
 {
