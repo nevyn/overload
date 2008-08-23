@@ -9,7 +9,7 @@
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIconFile</key>
-	<string>overload_icon</string>
+	<string>icon</string>
 	<key>CFBundleIdentifier</key>
 	<string>eu.thirdcog.MobileOverload</string>
 	<key>CFBundleInfoDictionaryVersion</key>
@@ -21,7 +21,7 @@
 	<key>CFBundleSignature</key>
 	<string>tcMO</string>
 	<key>CFBundleVersion</key>
-	<string>0.1rc1</string>
+	<string>0.1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSMainNibFile</key>
