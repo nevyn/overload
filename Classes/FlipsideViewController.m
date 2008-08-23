@@ -72,24 +72,22 @@
 - (IBAction)newGame:(id)sender;
 {
     UIAlertView *alert = 
-    [[UIAlertView alloc] initWithTitle:@"Really start new game?"
+    [[[UIAlertView alloc] initWithTitle:@"Really start new game?"
                                message:@"This will empty your game board."
                               delegate:self
                      cancelButtonTitle:@"Cancel"
-                     otherButtonTitles:@"New Game", nil]; // todo: use destructiveButtonTitle
+                     otherButtonTitles:@"New Game", nil] autorelease]; // todo: use destructiveButtonTitle
     [alert show];
-    [alert release];
 }
 - (IBAction)shuffleGame:(id)sender;
 {
     UIAlertView *alert = 
-    [[UIAlertView alloc] initWithTitle:@"Really shuffle?"
+    [[[UIAlertView alloc] initWithTitle:@"Really shuffle?"
                                message:@"This will undo your current game board and replace it with a random board."
                               delegate:self
                      cancelButtonTitle:@"Cancel"
-                     otherButtonTitles:@"Shuffle", nil]; // todo: use destructiveButtonTitle
+                     otherButtonTitles:@"Shuffle", nil] autorelease]; // todo: use destructiveButtonTitle
     [alert show];
-    [alert release];
 }
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex;
 {

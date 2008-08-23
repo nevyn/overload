@@ -35,12 +35,12 @@
 	return self;
 }
 - (void)viewDidLoad {
-    score1 = [[ScoreBarView alloc] initWithFrame:CGRectMake(0, 44+BoardHeight, 320, 44) player:PlayerP1];
+    score1 = [[[ScoreBarView alloc] initWithFrame:CGRectMake(0, 44+BoardHeight, 320, 44) player:PlayerP1] autorelease];
 
-    score2 = [[ScoreBarView alloc] initWithFrame:CGRectMake(0, 0, 320, 44) player:PlayerP2];
+    score2 = [[[ScoreBarView alloc] initWithFrame:CGRectMake(0, 0, 320, 44) player:PlayerP2] autorelease];
     score2.transform = CGAffineTransformMakeRotation(M_PI);    
-    boardView = [[BoardView alloc] initWithFrame:CGRectMake(0, 44, BoardWidth, BoardHeight) controller:self];
     
+    boardView = [[[BoardView alloc] initWithFrame:CGRectMake(0, 44, BoardWidth, BoardHeight) controller:self] autorelease];
     boardView.tinyGame = tinyGame;
     boardView.chaosGame = chaosGame;
     
@@ -120,7 +120,7 @@
     [self setWinner:PlayerNone];
     boardView.sparkling = NO;
     [boardView removeFromSuperview];
-    boardView = [[BoardView alloc] initWithFrame:CGRectMake(0, 44, BoardWidth, BoardHeight) controller:self];
+    boardView = [[[BoardView alloc] initWithFrame:CGRectMake(0, 44, BoardWidth, BoardHeight) controller:self] autorelease];
     CGFloat scores[3] = {0,0,0};
     [self setScores:scores];
     boardView.chaosGame = chaosGame;

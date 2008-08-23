@@ -9,6 +9,7 @@
 #import "BoardView.h"
 #import "MainViewController.h"
 #import <QuartzCore/QuartzCore.h>
+#import "SoundEngine.h"
 NSTimeInterval BoardAnimationOccurredAt = 0;
 
 @interface BoardView()
@@ -26,12 +27,11 @@ NSTimeInterval BoardAnimationOccurredAt = 0;
 
     for(NSUInteger y = 0; y < HeightInTiles; y++) {
         for (NSUInteger x = 0; x < WidthInTiles; x++) {
-            BoardTile *tile = [[BoardTile alloc] initWithFrame:CGRectMake(x*TileWidth, y*TileHeight, TileWidth, TileHeight)];
+            BoardTile *tile = [[[BoardTile alloc] initWithFrame:CGRectMake(x*TileWidth, y*TileHeight, TileWidth, TileHeight)] autorelease];
             tile.boardPosition = BoardPointMake(x, y);
             tile.board = self;
             boardTiles[x][y] = tile;
             [self addSubview:tile];
-            [tile autorelease]; // match alloc; still retained as subview
         }
     }
     
@@ -43,13 +43,20 @@ NSTimeInterval BoardAnimationOccurredAt = 0;
     self.chaosGame = NO;
     self.tinyGame = NO;
     
-#define __wavPath(name) ((CFURLRef)[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:name ofType:@"wav"]])
-    
-    AudioServicesCreateSystemSoundID(__wavPath(@"explosion"), &explosion);
+//#define __wavPath(name) ((CFURLRef)[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:name ofType:@"wav"]])
+#define __wavPath(name) [[[NSBundle mainBundle] pathForResource:name ofType:@"wav"] UTF8String]
+    /*AudioServicesCreateSystemSoundID(__wavPath(@"explosion"), &explosion);
     AudioServicesCreateSystemSoundID(__wavPath(@"charge25"), &charge25);
     AudioServicesCreateSystemSoundID(__wavPath(@"charge50"), &charge50);
     AudioServicesCreateSystemSoundID(__wavPath(@"charge75"), &charge75);
-    AudioServicesCreateSystemSoundID(__wavPath(@"charge100"), &charge100);
+    AudioServicesCreateSystemSoundID(__wavPath(@"charge100"), &charge100);*/
+    SoundEngine_Initialize(0);
+    SoundEngine_LoadEffect(__wavPath(@"explosion"), &(sounds[kExplosion]));
+    SoundEngine_LoadEffect(__wavPath(@"charge25"), &(sounds[kCharge25]));
+    SoundEngine_LoadEffect(__wavPath(@"charge50"), &(sounds[kCharge50]));
+    SoundEngine_LoadEffect(__wavPath(@"charge75"), &(sounds[kCharge75]));
+    SoundEngine_LoadEffect(__wavPath(@"charge100"), &(sounds[kCharge100]));
+
     
     
 	return self;
@@ -57,12 +64,16 @@ NSTimeInterval BoardAnimationOccurredAt = 0;
 - (void)dealloc {
     [winningConditionTimer invalidate];
     [sparkleTimer invalidate];
-    
-    AudioServicesDisposeSystemSoundID(explosion);
+    for (NSUInteger i = 0; i < kSoundNamesMax; i++) {
+        SoundEngine_StopEffect(sounds[i], 0);
+        SoundEngine_UnloadEffect(sounds[i]);
+    }
+    SoundEngine_Teardown();
+    /*AudioServicesDisposeSystemSoundID(explosion);
     AudioServicesDisposeSystemSoundID(charge25);
     AudioServicesDisposeSystemSoundID(charge50);
     AudioServicesDisposeSystemSoundID(charge75);
-    AudioServicesDisposeSystemSoundID(charge100);
+    AudioServicesDisposeSystemSoundID(charge100);*/
     
 	[super dealloc];
 }
@@ -268,19 +279,19 @@ NSTimeInterval BoardAnimationOccurredAt = 0;
     if( ! controller.sound) return;
     
     if(chargeLevel < 0.26)
-        AudioServicesPlaySystemSound(charge25);
+        SoundEngine_StartEffect(sounds[kCharge25]); //AudioServicesPlaySystemSound(charge25);
     else if(chargeLevel < 0.51)
-        AudioServicesPlaySystemSound(charge50);
+        SoundEngine_StartEffect(sounds[kCharge50]); //AudioServicesPlaySystemSound(charge50);
     else if(chargeLevel < 0.76)
-        AudioServicesPlaySystemSound(charge75);
+        SoundEngine_StartEffect(sounds[kCharge75]); //AudioServicesPlaySystemSound(charge75);
     else
-        AudioServicesPlaySystemSound(charge100);
+        SoundEngine_StartEffect(sounds[kCharge100]); //AudioServicesPlaySystemSound(charge100);
     
 }
 -(void)playExplosionSound;
 {
     if( ! controller.sound) return;
     
-    AudioServicesPlaySystemSound(explosion);
+    SoundEngine_StartEffect(sounds[kExplosion]); //AudioServicesPlaySystemSound(explosion);
 }
 @end

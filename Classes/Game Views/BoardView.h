@@ -11,6 +11,11 @@
 #import <AudioToolbox/AudioToolbox.h>
 #import "TypesAndConstants.h"
 
+typedef enum {
+    kExplosion, kCharge25, kCharge50, kCharge75, kCharge100, kSoundNamesMax
+}soundNames;
+
+
 extern NSTimeInterval BoardAnimationOccurredAt;
 @class MainViewController;
 @interface BoardView : UIView {
@@ -28,12 +33,8 @@ extern NSTimeInterval BoardAnimationOccurredAt;
     
     CGSize tileSize;
     BoardSize sizeInTiles;
-    
-    SystemSoundID explosion;
-    SystemSoundID charge25;
-    SystemSoundID charge50;
-    SystemSoundID charge75;
-    SystemSoundID charge100;
+        
+    UInt32 sounds[kSoundNamesMax];
 }
 - (id)initWithFrame:(CGRect)frame controller:(MainViewController*)controller_;
 

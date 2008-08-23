@@ -20,9 +20,8 @@
 
 - (void)viewDidLoad {
 	
-	MainViewController *viewController = [[MainViewController alloc] initWithNibName:@"MainView" bundle:nil];
+	MainViewController *viewController = [[[MainViewController alloc] initWithNibName:@"MainView" bundle:nil] autorelease];
 	self.mainViewController = viewController;
-	[viewController release];
 	
 	[self.view insertSubview:mainViewController.view belowSubview:infoButton];
 }
@@ -30,12 +29,11 @@
 
 - (void)loadFlipsideViewController {
 	
-	FlipsideViewController *viewController = [[FlipsideViewController alloc] initWithNibName:@"FlipsideView"
+	FlipsideViewController *viewController = [[[FlipsideViewController alloc] initWithNibName:@"FlipsideView"
                                                                                       bundle:nil
                                                                               rootController:self
-                                                                              mainController:self.mainViewController];
+                                                                               mainController:self.mainViewController] autorelease];
 	self.flipsideViewController = viewController;
-	[viewController release];
 	
 }
 

@@ -14,7 +14,6 @@
 		0517F4650E59EE700075F5A9 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 0517F4640E59EE700075F5A9 /* background.png */; };
 		0517F6DB0E5A2EA40075F5A9 /* bg-red.png in Resources */ = {isa = PBXBuildFile; fileRef = 0517F6DA0E5A2EA40075F5A9 /* bg-red.png */; };
 		0530E0320E5B59E200C73DC6 /* overload_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0530E0310E5B59E200C73DC6 /* overload_icon.png */; };
-		0530E12E0E5B8A2E00C73DC6 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 0530E12D0E5B8A2E00C73DC6 /* Default.png */; };
 		0541F5370E5EFFEE000D6368 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0541F5360E5EFFEE000D6368 /* AudioToolbox.framework */; };
 		054615D00E5E0E9600DAF3BD /* ScoreIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 054615CF0E5E0E9600DAF3BD /* ScoreIndicator.m */; };
 		0546168E0E5E220600DAF3BD /* gloss.png in Resources */ = {isa = PBXBuildFile; fileRef = 0546168D0E5E220600DAF3BD /* gloss.png */; };
@@ -29,6 +28,8 @@
 		05CF88E90E5F78DF00E2D8B4 /* win-p1.png in Resources */ = {isa = PBXBuildFile; fileRef = 05CF88E50E5F78DF00E2D8B4 /* win-p1.png */; };
 		05CF88EA0E5F78DF00E2D8B4 /* lose-p2.png in Resources */ = {isa = PBXBuildFile; fileRef = 05CF88E60E5F78DF00E2D8B4 /* lose-p2.png */; };
 		05CF88EB0E5F78DF00E2D8B4 /* win-p2.png in Resources */ = {isa = PBXBuildFile; fileRef = 05CF88E70E5F78DF00E2D8B4 /* win-p2.png */; };
+		05CF89370E6028B900E2D8B4 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 05CF89360E6028B900E2D8B4 /* Default.png */; };
+		05CF89700E6033FB00E2D8B4 /* SoundEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 05CF896E0E6033FB00E2D8B4 /* SoundEngine.cpp */; };
 		05D77E9A0E58C7D400FB00DB /* ScoreBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D77E990E58C7D400FB00DB /* ScoreBarView.m */; };
 		05D77E9D0E58C7E800FB00DB /* BoardTile.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D77E9C0E58C7E800FB00DB /* BoardTile.m */; };
 		05D77F280E58DB3C00FB00DB /* BoardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D77F270E58DB3C00FB00DB /* BoardView.m */; };
@@ -59,7 +60,6 @@
 		0517F6DA0E5A2EA40075F5A9 /* bg-red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-red.png"; sourceTree = "<group>"; };
 		0530DFFD0E5B474700C73DC6 /* todo.taskpaper */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = todo.taskpaper; sourceTree = "<group>"; };
 		0530E0310E5B59E200C73DC6 /* overload_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = overload_icon.png; sourceTree = "<group>"; };
-		0530E12D0E5B8A2E00C73DC6 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		0541F5360E5EFFEE000D6368 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = /System/Library/Frameworks/AudioToolbox.framework; sourceTree = "<absolute>"; };
 		054615CE0E5E0E9600DAF3BD /* ScoreIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreIndicator.h; sourceTree = "<group>"; };
 		054615CF0E5E0E9600DAF3BD /* ScoreIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreIndicator.m; sourceTree = "<group>"; };
@@ -75,6 +75,9 @@
 		05CF88E50E5F78DF00E2D8B4 /* win-p1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "win-p1.png"; sourceTree = "<group>"; };
 		05CF88E60E5F78DF00E2D8B4 /* lose-p2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lose-p2.png"; sourceTree = "<group>"; };
 		05CF88E70E5F78DF00E2D8B4 /* win-p2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "win-p2.png"; sourceTree = "<group>"; };
+		05CF89360E6028B900E2D8B4 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		05CF896E0E6033FB00E2D8B4 /* SoundEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SoundEngine.cpp; sourceTree = "<group>"; };
+		05CF896F0E6033FB00E2D8B4 /* SoundEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundEngine.h; sourceTree = "<group>"; };
 		05D77E980E58C7D400FB00DB /* ScoreBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreBarView.h; sourceTree = "<group>"; };
 		05D77E990E58C7D400FB00DB /* ScoreBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreBarView.m; sourceTree = "<group>"; };
 		05D77E9B0E58C7E800FB00DB /* BoardTile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardTile.h; sourceTree = "<group>"; };
@@ -205,6 +208,8 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				05CF896E0E6033FB00E2D8B4 /* SoundEngine.cpp */,
+				05CF896F0E6033FB00E2D8B4 /* SoundEngine.h */,
 				32CA4F630368D1EE00C91783 /* MobileOverload_Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
 			);
@@ -237,7 +242,7 @@
 				280E754C0DD40C5E005A515E /* MainWindow.xib */,
 				8D1107310486CEB800E47090 /* Info.plist */,
 				05D7828C0E59152700FB00DB /* dist.plist */,
-				0530E12D0E5B8A2E00C73DC6 /* Default.png */,
+				05CF89360E6028B900E2D8B4 /* Default.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -315,7 +320,6 @@
 				0517F4650E59EE700075F5A9 /* background.png in Resources */,
 				0517F6DB0E5A2EA40075F5A9 /* bg-red.png in Resources */,
 				0530E0320E5B59E200C73DC6 /* overload_icon.png in Resources */,
-				0530E12E0E5B8A2E00C73DC6 /* Default.png in Resources */,
 				0546168E0E5E220600DAF3BD /* gloss.png in Resources */,
 				0589946B0E5F15BA002BF0FE /* explosion.wav in Resources */,
 				058994700E5F162A002BF0FE /* charge75.wav in Resources */,
@@ -327,6 +331,7 @@
 				05CF88E90E5F78DF00E2D8B4 /* win-p1.png in Resources */,
 				05CF88EA0E5F78DF00E2D8B4 /* lose-p2.png in Resources */,
 				05CF88EB0E5F78DF00E2D8B4 /* win-p2.png in Resources */,
+				05CF89370E6028B900E2D8B4 /* Default.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -349,6 +354,7 @@
 				05D77F280E58DB3C00FB00DB /* BoardView.m in Sources */,
 				05D77F8E0E58E63E00FB00DB /* TypesAndConstants.m in Sources */,
 				054615D00E5E0E9600DAF3BD /* ScoreIndicator.m in Sources */,
+				05CF89700E6033FB00E2D8B4 /* SoundEngine.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
