@@ -1,4 +1,3 @@
-- Better sounds
 Future:
 - Computer players (AI) @important
 - >2 local players
@@ -31,3 +30,4 @@ Archive:
 - New default.png @0.1b6 @done
 - PERFORMANCE @done @0.1b6
 - Explosions occur more concurrently @0.1b6 @done
+- Better sounds @done @0.1rc1
