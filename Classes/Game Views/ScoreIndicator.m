@@ -24,11 +24,6 @@
     container = [[[UIView alloc] initWithFrame:pen] autorelease];
     [self addSubview:container];
     
-    pen.size.height /= 2;
-    UIImageView *gloss = [[[UIImageView alloc] initWithFrame:pen] autorelease];
-    gloss.image = [UIImage imageNamed:@"gloss.png"];
-    [self addSubview:gloss];
-    pen.size.height *= 2;
     
     pen.size.width /= playerCount;
     for (UIColor *color in colors) {
@@ -37,15 +32,24 @@
         bar.backgroundColor = color;
         pen.origin.x += pen.size.width;
         
-        UILabel *barText = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, pen.size.width, pen.size.height)] autorelease];
+        /*UILabel *barText = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, pen.size.width, pen.size.height)] autorelease];
         barText.text = @"0";
-        barText.backgroundColor = [UIColor clearColor];
+        barText.backgroundColor = color;
+        barText.opaque = YES;
         barText.textAlignment = UITextAlignmentCenter;
         barText.font = [UIFont systemFontOfSize:12];
         barText.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-        [bar addSubview:barText];
+        [bar addSubview:barText];*/
         [container addSubview:bar];
     }
+    
+    pen = frame;
+    pen.size.height /= 2;
+    pen.origin = CGPointMake(0, 0);
+    UIImageView *gloss = [[[UIImageView alloc] initWithFrame:pen] autorelease];
+    gloss.image = [UIImage imageNamed:@"gloss.png"];
+    [self addSubview:gloss];
+    
     
 	return self;
 }
@@ -82,8 +86,8 @@
             CGRectMake(pen, 0, thisProportion, self.frame.size.height)];
         pen += thisProportion;
         
-        UILabel *barText = [[colorBar subviews] objectAtIndex:0];
-        barText.text = [NSString stringWithFormat:@"%.2f", scores[i]];
+        //UILabel *barText = [[colorBar subviews] objectAtIndex:0];
+        //barText.text = [NSString stringWithFormat:@"%.2f", scores[i]];
     }
     [UIView commitAnimations];
 }

@@ -186,10 +186,10 @@ static CGRect boardPointToFrameRect(CGSize ts, BoardPoint bp)
     
     [NSTimer scheduledTimerWithTimeInterval:ExplosionDelay*1 target:targets[0] selector:@selector(_explosionCharge:) userInfo:self repeats:NO];
     if(urdl[1].x < board.sizeInTiles.width)
-        [NSTimer scheduledTimerWithTimeInterval:ExplosionDelay*2 target:targets[1] selector:@selector(_explosionCharge:) userInfo:self repeats:NO];
+        [NSTimer scheduledTimerWithTimeInterval:ExplosionDelay*1 target:targets[1] selector:@selector(_explosionCharge:) userInfo:self repeats:NO];
     if(urdl[2].y < board.sizeInTiles.height)
-        [NSTimer scheduledTimerWithTimeInterval:ExplosionDelay*3 target:targets[2] selector:@selector(_explosionCharge:) userInfo:self repeats:NO];
-    [NSTimer scheduledTimerWithTimeInterval:ExplosionDelay*4 target:targets[3] selector:@selector(_explosionCharge:) userInfo:self repeats:NO];
+        [NSTimer scheduledTimerWithTimeInterval:ExplosionDelay*1 target:targets[2] selector:@selector(_explosionCharge:) userInfo:self repeats:NO];
+    [NSTimer scheduledTimerWithTimeInterval:ExplosionDelay*1 target:targets[3] selector:@selector(_explosionCharge:) userInfo:self repeats:NO];
 }
 
 -(void)_resetExplosionAnimation:(id)_:(id)__

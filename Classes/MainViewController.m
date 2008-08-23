@@ -90,7 +90,7 @@
 
     if(winner == PlayerNone) {
         [winPlaque removeFromSuperview]; winPlaque = nil;
-        [losePlaque removeFromSuperview]; winPlaque = nil;
+        [losePlaque removeFromSuperview]; losePlaque = nil;
         [UIView commitAnimations];
         return;
     }

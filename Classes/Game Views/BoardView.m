@@ -16,8 +16,31 @@ NSTimeInterval BoardAnimationOccurredAt = 0;
 -(void)sparkle;
 @end
 
-@implementation BoardView
+typedef enum {
+    kExplosion, kCharge25, kCharge50, kCharge75, kCharge100, kSoundNamesMax
+}soundNames;
+UInt32 sounds[kSoundNamesMax];
 
+
+@implementation BoardView
++(void)initialize
+{
+    SoundEngine_Initialize(0);
+#define __wavPath(name) [[[NSBundle mainBundle] pathForResource:name ofType:@"wav"] UTF8String]
+    SoundEngine_LoadEffect(__wavPath(@"explosion"), &(sounds[kExplosion]));
+    SoundEngine_LoadEffect(__wavPath(@"charge25"), &(sounds[kCharge25]));
+    SoundEngine_LoadEffect(__wavPath(@"charge50"), &(sounds[kCharge50]));
+    SoundEngine_LoadEffect(__wavPath(@"charge75"), &(sounds[kCharge75]));
+    SoundEngine_LoadEffect(__wavPath(@"charge100"), &(sounds[kCharge100]));
+    
+}
+/* Never uninitialize, no need
+ for (NSUInteger i = 0; i < kSoundNamesMax; i++) {
+ SoundEngine_StopEffect(sounds[i], 0);
+ SoundEngine_UnloadEffect(sounds[i]);
+ }
+ SoundEngine_Teardown();
+*/
 
 - (id)initWithFrame:(CGRect)frame controller:(MainViewController*)controller_;
 {
@@ -44,18 +67,11 @@ NSTimeInterval BoardAnimationOccurredAt = 0;
     self.tinyGame = NO;
     
 //#define __wavPath(name) ((CFURLRef)[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:name ofType:@"wav"]])
-#define __wavPath(name) [[[NSBundle mainBundle] pathForResource:name ofType:@"wav"] UTF8String]
     /*AudioServicesCreateSystemSoundID(__wavPath(@"explosion"), &explosion);
     AudioServicesCreateSystemSoundID(__wavPath(@"charge25"), &charge25);
     AudioServicesCreateSystemSoundID(__wavPath(@"charge50"), &charge50);
     AudioServicesCreateSystemSoundID(__wavPath(@"charge75"), &charge75);
     AudioServicesCreateSystemSoundID(__wavPath(@"charge100"), &charge100);*/
-    SoundEngine_Initialize(0);
-    SoundEngine_LoadEffect(__wavPath(@"explosion"), &(sounds[kExplosion]));
-    SoundEngine_LoadEffect(__wavPath(@"charge25"), &(sounds[kCharge25]));
-    SoundEngine_LoadEffect(__wavPath(@"charge50"), &(sounds[kCharge50]));
-    SoundEngine_LoadEffect(__wavPath(@"charge75"), &(sounds[kCharge75]));
-    SoundEngine_LoadEffect(__wavPath(@"charge100"), &(sounds[kCharge100]));
 
     
     
@@ -63,12 +79,6 @@ NSTimeInterval BoardAnimationOccurredAt = 0;
 }
 - (void)dealloc {
     [winningConditionTimer invalidate];
-    [sparkleTimer invalidate];
-    for (NSUInteger i = 0; i < kSoundNamesMax; i++) {
-        SoundEngine_StopEffect(sounds[i], 0);
-        SoundEngine_UnloadEffect(sounds[i]);
-    }
-    SoundEngine_Teardown();
     /*AudioServicesDisposeSystemSoundID(explosion);
     AudioServicesDisposeSystemSoundID(charge25);
     AudioServicesDisposeSystemSoundID(charge50);
