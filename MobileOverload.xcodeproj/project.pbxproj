@@ -13,6 +13,7 @@
 		0517F40A0E59EAF40075F5A9 /* Text vertcal.png in Resources */ = {isa = PBXBuildFile; fileRef = 0517F4090E59EAF40075F5A9 /* Text vertcal.png */; };
 		0517F4650E59EE700075F5A9 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 0517F4640E59EE700075F5A9 /* background.png */; };
 		0530E0320E5B59E200C73DC6 /* overload_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0530E0310E5B59E200C73DC6 /* overload_icon.png */; };
+		053494260E60B1B4003A834C /* win.wav in Resources */ = {isa = PBXBuildFile; fileRef = 053494250E60B1B4003A834C /* win.wav */; };
 		0541F5370E5EFFEE000D6368 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0541F5360E5EFFEE000D6368 /* AudioToolbox.framework */; };
 		054615D00E5E0E9600DAF3BD /* ScoreIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 054615CF0E5E0E9600DAF3BD /* ScoreIndicator.m */; };
 		0546168E0E5E220600DAF3BD /* gloss.png in Resources */ = {isa = PBXBuildFile; fileRef = 0546168D0E5E220600DAF3BD /* gloss.png */; };
@@ -58,6 +59,7 @@
 		0517F4640E59EE700075F5A9 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 		0530DFFD0E5B474700C73DC6 /* todo.taskpaper */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = todo.taskpaper; sourceTree = "<group>"; };
 		0530E0310E5B59E200C73DC6 /* overload_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = overload_icon.png; sourceTree = "<group>"; };
+		053494250E60B1B4003A834C /* win.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = win.wav; sourceTree = "<group>"; };
 		0541F5360E5EFFEE000D6368 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = /System/Library/Frameworks/AudioToolbox.framework; sourceTree = "<absolute>"; };
 		054615CE0E5E0E9600DAF3BD /* ScoreIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreIndicator.h; sourceTree = "<group>"; };
 		054615CF0E5E0E9600DAF3BD /* ScoreIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreIndicator.m; sourceTree = "<group>"; };
@@ -226,6 +228,7 @@
 				0589946D0E5F162A002BF0FE /* charge100.wav */,
 				0589946E0E5F162A002BF0FE /* charge50.wav */,
 				0589946F0E5F162A002BF0FE /* charge25.wav */,
+				053494250E60B1B4003A834C /* win.wav */,
 				0589946A0E5F15BA002BF0FE /* explosion.wav */,
 				0546168D0E5E220600DAF3BD /* gloss.png */,
 				0530E0310E5B59E200C73DC6 /* overload_icon.png */,
@@ -328,6 +331,7 @@
 				05CF88EA0E5F78DF00E2D8B4 /* lose-p2.png in Resources */,
 				05CF88EB0E5F78DF00E2D8B4 /* win-p2.png in Resources */,
 				05CF89370E6028B900E2D8B4 /* Default.png in Resources */,
+				053494260E60B1B4003A834C /* win.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

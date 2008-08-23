@@ -17,7 +17,7 @@ NSTimeInterval BoardAnimationOccurredAt = 0;
 @end
 
 typedef enum {
-    kExplosion, kCharge25, kCharge50, kCharge75, kCharge100, kSoundNamesMax
+    kExplosion, kCharge25, kCharge50, kCharge75, kCharge100, kWin, kSoundNamesMax
 }soundNames;
 UInt32 sounds[kSoundNamesMax];
 
@@ -32,7 +32,7 @@ UInt32 sounds[kSoundNamesMax];
     SoundEngine_LoadEffect(__wavPath(@"charge50"), &(sounds[kCharge50]));
     SoundEngine_LoadEffect(__wavPath(@"charge75"), &(sounds[kCharge75]));
     SoundEngine_LoadEffect(__wavPath(@"charge100"), &(sounds[kCharge100]));
-    
+    SoundEngine_LoadEffect(__wavPath(@"win"), &(sounds[kWin]));
 }
 /* Never uninitialize, no need
  for (NSUInteger i = 0; i < kSoundNamesMax; i++) {
@@ -73,6 +73,7 @@ UInt32 sounds[kSoundNamesMax];
     AudioServicesCreateSystemSoundID(__wavPath(@"charge50"), &charge50);
     AudioServicesCreateSystemSoundID(__wavPath(@"charge75"), &charge75);
     AudioServicesCreateSystemSoundID(__wavPath(@"charge100"), &charge100);
+    AudioServicesCreateSystemSoundID(__wavPath(@"win"), &win);
 #endif
     
     
@@ -86,6 +87,7 @@ UInt32 sounds[kSoundNamesMax];
     AudioServicesDisposeSystemSoundID(charge50);
     AudioServicesDisposeSystemSoundID(charge75);
     AudioServicesDisposeSystemSoundID(charge100);
+    AudioServicesDisposeSystemSoundID(win);
 #endif
     
 	[super dealloc];
@@ -198,6 +200,8 @@ UInt32 sounds[kSoundNamesMax];
     gameEnded = YES;
     [winningConditionTimer invalidate]; winningConditionTimer = nil;
     [controller setWinner:winner];
+    [self playWinSound];
+
 }
 
 -(void)shuffle;
@@ -320,4 +324,14 @@ UInt32 sounds[kSoundNamesMax];
     SoundEngine_StartEffect(sounds[kExplosion]);
 #endif
 }
+-(void)playWinSound;
+{
+    if( ! controller.sound) return;
+#if TARGET_IPHONE_SIMULATOR
+    AudioServicesPlaySystemSound(win);
+#else
+    SoundEngine_StartEffect(sounds[kWin]);
+#endif
+}
+
 @end

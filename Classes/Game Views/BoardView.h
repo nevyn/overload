@@ -29,7 +29,7 @@ extern NSTimeInterval BoardAnimationOccurredAt;
     CGSize tileSize;
     BoardSize sizeInTiles;
 #if TARGET_IPHONE_SIMULATOR
-    SystemSoundID explosion, charge25, charge50, charge75, charge100;
+    SystemSoundID explosion, charge25, charge50, charge75, charge100, win;
 #endif
 }
 - (id)initWithFrame:(CGRect)frame controller:(MainViewController*)controller_;
@@ -60,5 +60,6 @@ extern NSTimeInterval BoardAnimationOccurredAt;
 
 -(void)playChargeSound:(CGFloat)chargeLevel;
 -(void)playExplosionSound;
+-(void)playWinSound;
 
 @end
