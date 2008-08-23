@@ -65,25 +65,28 @@ UInt32 sounds[kSoundNamesMax];
     
     self.chaosGame = NO;
     self.tinyGame = NO;
-    
-//#define __wavPath(name) ((CFURLRef)[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:name ofType:@"wav"]])
-    /*AudioServicesCreateSystemSoundID(__wavPath(@"explosion"), &explosion);
+#if TARGET_IPHONE_SIMULATOR
+#undef __wavPath
+#define __wavPath(name) ((CFURLRef)[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:name ofType:@"wav"]])
+    AudioServicesCreateSystemSoundID(__wavPath(@"explosion"), &explosion);
     AudioServicesCreateSystemSoundID(__wavPath(@"charge25"), &charge25);
     AudioServicesCreateSystemSoundID(__wavPath(@"charge50"), &charge50);
     AudioServicesCreateSystemSoundID(__wavPath(@"charge75"), &charge75);
-    AudioServicesCreateSystemSoundID(__wavPath(@"charge100"), &charge100);*/
-
+    AudioServicesCreateSystemSoundID(__wavPath(@"charge100"), &charge100);
+#endif
     
     
 	return self;
 }
 - (void)dealloc {
     [winningConditionTimer invalidate];
-    /*AudioServicesDisposeSystemSoundID(explosion);
+#if TARGET_IPHONE_SIMULATOR
+    AudioServicesDisposeSystemSoundID(explosion);
     AudioServicesDisposeSystemSoundID(charge25);
     AudioServicesDisposeSystemSoundID(charge50);
     AudioServicesDisposeSystemSoundID(charge75);
-    AudioServicesDisposeSystemSoundID(charge100);*/
+    AudioServicesDisposeSystemSoundID(charge100);
+#endif
     
 	[super dealloc];
 }
@@ -288,20 +291,33 @@ UInt32 sounds[kSoundNamesMax];
 {
     if( ! controller.sound) return;
     
+#if TARGET_IPHONE_SIMULATOR
     if(chargeLevel < 0.26)
-        SoundEngine_StartEffect(sounds[kCharge25]); //AudioServicesPlaySystemSound(charge25);
+        AudioServicesPlaySystemSound(charge25);
     else if(chargeLevel < 0.51)
-        SoundEngine_StartEffect(sounds[kCharge50]); //AudioServicesPlaySystemSound(charge50);
+        AudioServicesPlaySystemSound(charge50);
     else if(chargeLevel < 0.76)
-        SoundEngine_StartEffect(sounds[kCharge75]); //AudioServicesPlaySystemSound(charge75);
+        AudioServicesPlaySystemSound(charge75);
     else
-        SoundEngine_StartEffect(sounds[kCharge100]); //AudioServicesPlaySystemSound(charge100);
-    
+        AudioServicesPlaySystemSound(charge100);
+#else
+    if(chargeLevel < 0.26)
+        SoundEngine_StartEffect(sounds[kCharge25]);
+    else if(chargeLevel < 0.51)
+        SoundEngine_StartEffect(sounds[kCharge50]);
+    else if(chargeLevel < 0.76)
+        SoundEngine_StartEffect(sounds[kCharge75]);
+    else
+        SoundEngine_StartEffect(sounds[kCharge100]);
+#endif
 }
 -(void)playExplosionSound;
 {
     if( ! controller.sound) return;
-    
-    SoundEngine_StartEffect(sounds[kExplosion]); //AudioServicesPlaySystemSound(explosion);
+#if TARGET_IPHONE_SIMULATOR
+    AudioServicesPlaySystemSound(explosion);
+#else
+    SoundEngine_StartEffect(sounds[kExplosion]);
+#endif
 }
 @end
