@@ -63,7 +63,7 @@
 
 
 - (void)didReceiveMemoryWarning {
-	[super didReceiveMemoryWarning]; // Releases the view if it doesn't have a superview
+	 [super didReceiveMemoryWarning]; // Releases the view if it doesn't have a superview // Can't do that. If we did that, we'd have to kill the board and... Crap. Back to the drawing board...
 	// Release anything that's not essential, such as cached data
 }
 
@@ -121,6 +121,7 @@
     boardView.sparkling = NO;
     [boardView removeFromSuperview];
     boardView = [[[BoardView alloc] initWithFrame:CGRectMake(0, 44, BoardWidth, BoardHeight) controller:self] autorelease];
+    [self persistBoard];
     CGFloat scores[3] = {0,0,0};
     [self setScores:scores];
     boardView.chaosGame = chaosGame;
