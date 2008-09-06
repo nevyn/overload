@@ -78,8 +78,8 @@
 		05CF88E50E5F78DF00E2D8B4 /* win-p1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "win-p1.png"; sourceTree = "<group>"; };
 		05CF88E60E5F78DF00E2D8B4 /* lose-p2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lose-p2.png"; sourceTree = "<group>"; };
 		05CF88E70E5F78DF00E2D8B4 /* win-p2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "win-p2.png"; sourceTree = "<group>"; };
-		05CF896E0E6033FB00E2D8B4 /* SoundEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SoundEngine.cpp; sourceTree = "<group>"; };
-		05CF896F0E6033FB00E2D8B4 /* SoundEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundEngine.h; sourceTree = "<group>"; };
+		05CF896E0E6033FB00E2D8B4 /* SoundEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SoundEngine.cpp; path = Classes/SoundEngine.cpp; sourceTree = "<group>"; };
+		05CF896F0E6033FB00E2D8B4 /* SoundEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SoundEngine.h; path = Classes/SoundEngine.h; sourceTree = "<group>"; };
 		05D77E980E58C7D400FB00DB /* ScoreBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreBarView.h; sourceTree = "<group>"; };
 		05D77E990E58C7D400FB00DB /* ScoreBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreBarView.m; sourceTree = "<group>"; };
 		05D77E9B0E58C7E800FB00DB /* BoardTileView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardTileView.h; sourceTree = "<group>"; };
@@ -207,6 +207,10 @@
 				281C6CD70DB2D82200F60ACC /* Flipside View */,
 				080E96DDFE201D6D7F000001 /* Application Controllers */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
+				8D1107310486CEB800E47090 /* Info.plist */,
+				05D7828C0E59152700FB00DB /* dist.plist */,
+				0530E0310E5B59E200C73DC6 /* icon.png */,
+				053494460E60BBF1003A834C /* Default.png */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
@@ -240,7 +244,6 @@
 				053494250E60B1B4003A834C /* win.wav */,
 				0589946A0E5F15BA002BF0FE /* explosion.wav */,
 				0546168D0E5E220600DAF3BD /* gloss.png */,
-				0530E0310E5B59E200C73DC6 /* icon.png */,
 				0517F4640E59EE700075F5A9 /* background.png */,
 				0517F4090E59EAF40075F5A9 /* Text vertcal.png */,
 				0517F3F70E59E6F30075F5A9 /* cog-screw.png */,
@@ -249,11 +252,8 @@
 				280E754A0DD40C5E005A515E /* FlipsideView.xib */,
 				280E754B0DD40C5E005A515E /* MainView.xib */,
 				280E754C0DD40C5E005A515E /* MainWindow.xib */,
-				8D1107310486CEB800E47090 /* Info.plist */,
-				05D7828C0E59152700FB00DB /* dist.plist */,
-				053494460E60BBF1003A834C /* Default.png */,
 			);
-			name = Resources;
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
