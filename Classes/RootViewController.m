@@ -7,7 +7,7 @@
 //
 
 #import "RootViewController.h"
-#import "MainViewController.h"
+#import "BoardViewController.h"
 #import "FlipsideViewController.h"
 
 
@@ -20,7 +20,7 @@
 
 - (void)viewDidLoad {
 	
-	MainViewController *viewController = [[[MainViewController alloc] initWithNibName:@"MainView" bundle:nil] autorelease];
+	BoardViewController *viewController = [[[BoardViewController alloc] initWithNibName:@"MainView" bundle:nil] autorelease];
 	self.mainViewController = viewController;
 	
 	[self.view insertSubview:mainViewController.view belowSubview:infoButton];

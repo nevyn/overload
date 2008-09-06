@@ -8,7 +8,7 @@
 
 #import "MobileOverloadAppDelegate.h"
 #import "RootViewController.h"
-#import "MainViewController.h"
+#import "BoardViewController.h"
 
 @implementation MobileOverloadAppDelegate
 
@@ -24,7 +24,7 @@
 }
 - (void)applicationWillTerminate:(UIApplication *)application;
 {
-    [self.rootViewController.mainViewController persistBoard];
+    [self.rootViewController.mainViewController.board persist];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 

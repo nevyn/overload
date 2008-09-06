@@ -9,14 +9,14 @@
 #import "FlipsideViewController.h"
 #import "FlipsideView.h"
 #import "RootViewController.h"
-#import "MainViewController.h"
+#import "BoardViewController.h"
 
 @implementation FlipsideViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil
                bundle:(NSBundle *)nibBundleOrNil
        rootController:(RootViewController*)rootController_
-       mainController:(MainViewController*)mainController_;
+       mainController:(BoardViewController*)mainController_;
 {
     if(![super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) return nil;
     rootController = rootController_;
@@ -94,23 +94,23 @@
     if(buttonIndex == 0) return;
 
     if([alertView.title isEqualToString:@"Really shuffle?"])
-        [mainController shuffle];
+        [mainController.board shuffle];
     else
-        [mainController restart];
+        [mainController.board restart];
     [rootController toggleView];
 }
 - (IBAction)toggleGameBoardSize:(UISwitch*)sender;
 {
-    mainController.tinyGame = !sender.on;
+    mainController.board.tinyGame = !sender.on;
 }
 - (IBAction)toggleChaosGame:(UISwitch*)sender;
 {
-    mainController.chaosGame = sender.on;
+    mainController.board.chaosGame = sender.on;
 }
 
 - (IBAction)toggleSound:(UISwitch*)sender;
 {
-    mainController.sound = sender.on;
+    mainController.board.sound = sender.on;
 }
 
 

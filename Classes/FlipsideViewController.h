@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 @class RootViewController;
-@class MainViewController;
+@class BoardViewController;
 
 @interface FlipsideViewController : UIViewController {
     IBOutlet UIImageView *cogU, *cogM, *cogL;
@@ -16,7 +16,7 @@
     NSTimeInterval first;
     NSTimer *rotationTimer;
     RootViewController *rootController;
-    MainViewController *mainController;
+    BoardViewController *mainController;
     
     IBOutlet UISwitch *giganticGame;
     IBOutlet UISwitch *chaosGame;
@@ -25,7 +25,7 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil
                bundle:(NSBundle *)nibBundleOrNil
        rootController:(RootViewController*)rootController_
-       mainController:(MainViewController*)mainController_;
+       mainController:(BoardViewController*)mainController_;
 - (IBAction)toggleView:(id)sender;
 - (IBAction)newGame:(id)sender;
 - (IBAction)shuffleGame:(id)sender;

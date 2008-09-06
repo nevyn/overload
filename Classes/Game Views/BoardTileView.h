@@ -10,22 +10,17 @@
 #import "TypesAndConstants.h"
 
 @class BoardView;
-@interface BoardTile : UIView {
-    Player owner;
-    CGFloat value;
+@interface BoardTileView : UIView {
     BoardPoint boardPosition;
     BoardView *board;
-    BOOL sparkle2;
+    
+    Player owner;
+    CGFloat value;
 }
 @property Player owner;
 @property CGFloat value;
 @property BoardPoint boardPosition;
 @property (assign) BoardView *board;
 
--(void)charge:(CGFloat)amount;
--(void)charge:(CGFloat)amount forPlayer:(Player)newOwner;
 -(void)explode;
-
--(void)sparkle;
--(void)sparkle2;
 @end
