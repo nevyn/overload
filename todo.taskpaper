@@ -1,10 +1,10 @@
 0.2:
-- [BUG] New Game sometimes loads the old game instead of starting new
-	- Which is actually the bug where the app runs out of memory, and the mainView and boardView are removed. This is a crasher. A bad one. Need to go MVC on its ass.
+- [BUG] New Game sometimes loads the old game instead of starting new @done @0.2b1
+	- Which is actually the bug where the app runs out of memory, and the mainView and boardView are removed. This is a crasher. A bad one. Need to go MVC on its ass. @done @0.2b1
 - Scoreboard
 - 
 Future:
-- Computer players (AI) @important
+- Computer players (AI) @important @done @0.2b1
 - >2 local players
 - Online play
 - More flexible board size
