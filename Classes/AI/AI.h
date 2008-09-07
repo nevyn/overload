@@ -20,6 +20,9 @@
 
 -(void)performMove;
 
+// Override this in subclasses for smarter behavior
+-(Tile*)chooseTile;
+
 @property (assign) Board *board;
 @property (assign) id<BoardViewDelegate> delegate;
 @property (assign) Player player;

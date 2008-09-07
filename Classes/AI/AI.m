@@ -29,9 +29,16 @@
     
     if(![board canMakeMoveNow])
         [self performSelector:@selector(performMove) withObject:nil afterDelay:ExplosionDelay];
+    
+    Tile *chosenTile = [self chooseTile];
+    
+    [delegate boardTileViewWasTouched:(BoardTileView*)chosenTile];
+}
 
+-(Tile*)chooseTile;
+{
     Tile *chosenTile = nil;
-        
+    
     for(NSUInteger x = 0; x < board.sizeInTiles.width; x++) {
         for(NSUInteger y = 0; y < board.sizeInTiles.height; y++) {
             Tile *tile = [board tile:BoardPointMake(x, y)];
@@ -40,7 +47,7 @@
         }
     }
     
-    [delegate boardTileViewWasTouched:(BoardTileView*)chosenTile];
+    return chosenTile;
 }
 
 @synthesize board;
