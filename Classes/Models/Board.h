@@ -8,13 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "TypesAndConstants.h"
-#import <AudioToolbox/AudioToolbox.h>
 
 @class Board;
 @class Tile;
 
 @protocol BoardDelegate
 -(void)tile:(Tile*)tile changedOwner:(Player)owner value:(CGFloat)value;
+-(void)tile:(Tile*)tile wasChargedTo:(CGFloat)value byPlayer:(Player)player;
 -(void)tileExploded:(Tile*)tile;
 -(void)board:(Board*)board changedScores:(CGFloat[])scores;
 -(void)board:(Board*)board endedWithWinner:(Player)winner;
@@ -31,15 +31,10 @@
     
     BOOL chaosGame;
     BOOL tinyGame;
-    BOOL sound;
     
     id<BoardDelegate> delegate;
     
     NSTimeInterval lastExplosionTime;
-
-#if TARGET_IPHONE_SIMULATOR
-    SystemSoundID explosion, charge25, charge50, charge75, charge100, win;
-#endif    
 }
 #pragma mark Accessors
 -(Tile*)tile:(BoardPoint)point;
@@ -61,7 +56,6 @@
 @property Player currentPlayer;
 @property BOOL chaosGame;
 @property BOOL tinyGame;
-@property BOOL sound;
 @property (readonly) BoardSize sizeInTiles;
 @end
 

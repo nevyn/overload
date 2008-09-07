@@ -29,9 +29,10 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
 	if( ! [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) return nil;
     
+    soundPlayer = [[OLSoundPlayer alloc] init];
+    
     board = [[Board alloc] init];
     [board load];
-    
     
 	return self;
 }
@@ -78,6 +79,7 @@
 
 - (void)dealloc {
     [board release];
+    [soundPlayer release];
 	[super dealloc];
 }
 
@@ -88,8 +90,13 @@
     tileView.value = tile.value;
     tileView.owner = tile.owner;
 }
+-(void)tile:(Tile*)tile wasChargedTo:(CGFloat)value byPlayer:(Player)player;
+{
+    [soundPlayer playChargeSound:value];
+}
 -(void)tileExploded:(Tile*)tile;
 {
+    [soundPlayer playExplosionSound];
     [[boardView tile:tile.boardPosition] explode];
 }
 -(void)board:(Board*)board changedScores:(CGFloat[])scores;
@@ -99,6 +106,7 @@
 }
 -(void)board:(Board*)board endedWithWinner:(Player)winner;
 {
+    [soundPlayer playWinSound];
     Player loser = (!(winner-1))+1;
     [UIView beginAnimations:nil context:NULL];
 	[UIView setAnimationDuration:1];
@@ -147,5 +155,5 @@
 
 #pragma mark Properties
 @synthesize board;
-
+@synthesize soundPlayer;
 @end

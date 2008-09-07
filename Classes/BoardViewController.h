@@ -11,11 +11,14 @@
 #import "TypesAndConstants.h"
 #import "Board.h"
 #import "BoardView.h"
+#import "OLSoundPlayer.h"
 
 @interface BoardViewController : UIViewController <BoardDelegate, BoardViewDelegate> {
     ScoreBarView *score1, *score2;
     BoardView *boardView;
     UIImageView *winPlaque, *losePlaque;
+    
+    OLSoundPlayer *soundPlayer;
     
     Board *board;
 }
@@ -23,6 +26,7 @@
 
 #pragma mark Board delegates
 -(void)tile:(Tile*)tile changedOwner:(Player)owner value:(CGFloat)value;
+-(void)tile:(Tile*)tile wasChargedTo:(CGFloat)value byPlayer:(Player)player;
 -(void)tileExploded:(Tile*)tile;
 -(void)board:(Board*)board changedScores:(CGFloat[])scores;
 -(void)board:(Board*)board endedWithWinner:(Player)winner;
@@ -33,4 +37,5 @@
 
 #pragma mark Properties
 @property (readonly) Board *board;
+@property (readonly) OLSoundPlayer *soundPlayer;
 @end

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0511F3590E71B64E003FFA22 /* Board.m in Sources */ = {isa = PBXBuildFile; fileRef = 0511F3580E71B64E003FFA22 /* Board.m */; };
 		0511F5760E742C5F003FFA22 /* CInvocationGrabber.m in Sources */ = {isa = PBXBuildFile; fileRef = 0511F5740E742C5F003FFA22 /* CInvocationGrabber.m */; };
+		0511F6180E743977003FFA22 /* OLSoundPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0511F6170E743977003FFA22 /* OLSoundPlayer.m */; };
 		0517F3FA0E59E6F30075F5A9 /* cog-screw.png in Resources */ = {isa = PBXBuildFile; fileRef = 0517F3F70E59E6F30075F5A9 /* cog-screw.png */; };
 		0517F3FB0E59E6F30075F5A9 /* cog 150px 6cog 35deg.png in Resources */ = {isa = PBXBuildFile; fileRef = 0517F3F80E59E6F30075F5A9 /* cog 150px 6cog 35deg.png */; };
 		0517F3FC0E59E6F30075F5A9 /* cog 150px 12cog 35deg.png in Resources */ = {isa = PBXBuildFile; fileRef = 0517F3F90E59E6F30075F5A9 /* cog 150px 12cog 35deg.png */; };
@@ -57,6 +58,8 @@
 		0511F3580E71B64E003FFA22 /* Board.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Board.m; sourceTree = "<group>"; };
 		0511F5740E742C5F003FFA22 /* CInvocationGrabber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CInvocationGrabber.m; path = Classes/CInvocationGrabber.m; sourceTree = "<group>"; };
 		0511F5750E742C5F003FFA22 /* CInvocationGrabber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CInvocationGrabber.h; path = Classes/CInvocationGrabber.h; sourceTree = "<group>"; };
+		0511F6160E743977003FFA22 /* OLSoundPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OLSoundPlayer.h; sourceTree = "<group>"; };
+		0511F6170E743977003FFA22 /* OLSoundPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OLSoundPlayer.m; sourceTree = "<group>"; };
 		0517F3F70E59E6F30075F5A9 /* cog-screw.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cog-screw.png"; sourceTree = "<group>"; };
 		0517F3F80E59E6F30075F5A9 /* cog 150px 6cog 35deg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cog 150px 6cog 35deg.png"; sourceTree = "<group>"; };
 		0517F3F90E59E6F30075F5A9 /* cog 150px 12cog 35deg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cog 150px 12cog 35deg.png"; sourceTree = "<group>"; };
@@ -104,8 +107,8 @@
 		280E754C0DD40C5E005A515E /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		289233A20DB2D0840083E9F9 /* FlipsideView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FlipsideView.h; path = Classes/FlipsideView.h; sourceTree = "<group>"; };
 		289233A30DB2D0840083E9F9 /* FlipsideView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FlipsideView.m; path = Classes/FlipsideView.m; sourceTree = "<group>"; };
-		289233A80DB2D0DB0083E9F9 /* BoardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BoardViewController.h; path = Classes/BoardViewController.h; sourceTree = "<group>"; };
-		289233A90DB2D0DB0083E9F9 /* BoardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BoardViewController.m; path = Classes/BoardViewController.m; sourceTree = "<group>"; };
+		289233A80DB2D0DB0083E9F9 /* BoardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardViewController.h; sourceTree = "<group>"; };
+		289233A90DB2D0DB0083E9F9 /* BoardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoardViewController.m; sourceTree = "<group>"; };
 		289233AA0DB2D0DB0083E9F9 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		289233AB0DB2D0DB0083E9F9 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		289233AC0DB2D0DB0083E9F9 /* FlipsideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FlipsideViewController.h; path = Classes/FlipsideViewController.h; sourceTree = "<group>"; };
@@ -196,8 +199,11 @@
 			children = (
 				289233A80DB2D0DB0083E9F9 /* BoardViewController.h */,
 				289233A90DB2D0DB0083E9F9 /* BoardViewController.m */,
+				0511F6160E743977003FFA22 /* OLSoundPlayer.h */,
+				0511F6170E743977003FFA22 /* OLSoundPlayer.m */,
 			);
 			name = "Main View";
+			path = Classes;
 			sourceTree = "<group>";
 		};
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
@@ -370,6 +376,7 @@
 				05CF89700E6033FB00E2D8B4 /* SoundEngine.cpp in Sources */,
 				0511F3590E71B64E003FFA22 /* Board.m in Sources */,
 				0511F5760E742C5F003FFA22 /* CInvocationGrabber.m in Sources */,
+				0511F6180E743977003FFA22 /* OLSoundPlayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

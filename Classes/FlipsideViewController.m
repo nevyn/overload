@@ -45,7 +45,7 @@
     
     chaosGame.on = mainController.board.chaosGame;
     giganticGame.on = ! mainController.board.tinyGame;
-    soundSwitch.on = mainController.board.sound;
+    soundSwitch.on = mainController.soundPlayer.sound;
 
 }
 
@@ -126,7 +126,7 @@
 
 - (IBAction)toggleSound:(UISwitch*)sender;
 {
-    mainController.board.sound = sender.on;
+    mainController.soundPlayer.sound = sender.on;
 }
 
 
