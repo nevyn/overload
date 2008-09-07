@@ -13,6 +13,8 @@
 #import "BoardView.h"
 #import "OLSoundPlayer.h"
 
+@class AI;
+
 @interface BoardViewController : UIViewController <BoardDelegate, BoardViewDelegate> {
     ScoreBarView *score1, *score2;
     BoardView *boardView;
@@ -21,11 +23,14 @@
     OLSoundPlayer *soundPlayer;
     
     Board *board;
+    
+    AI *ai;
 }
 
 
 #pragma mark Board delegates
--(void)tile:(Tile*)tile changedOwner:(Player)owner value:(CGFloat)value;
+-(void)tile:(Tile*)tile changedOwner:(Player)owner;
+-(void)tile:(Tile*)tile changedValue:(CGFloat)value;
 -(void)tile:(Tile*)tile wasChargedTo:(CGFloat)value byPlayer:(Player)player;
 -(void)tileExploded:(Tile*)tile;
 -(void)board:(Board*)board changedScores:(CGFloat[])scores;

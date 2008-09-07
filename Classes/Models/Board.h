@@ -13,7 +13,8 @@
 @class Tile;
 
 @protocol BoardDelegate
--(void)tile:(Tile*)tile changedOwner:(Player)owner value:(CGFloat)value;
+-(void)tile:(Tile*)tile changedOwner:(Player)owner;
+-(void)tile:(Tile*)tile changedValue:(CGFloat)value;
 -(void)tile:(Tile*)tile wasChargedTo:(CGFloat)value byPlayer:(Player)player;
 -(void)tileExploded:(Tile*)tile;
 -(void)board:(Board*)board changedScores:(CGFloat[])scores;
@@ -40,6 +41,8 @@
 -(Tile*)tile:(BoardPoint)point;
 -(BOOL)isBoardEmpty;
 -(BOOL)hasGameEnded;
+-(BOOL)canMakeMoveNow;
+
 
 #pragma mark Mutators
 -(void)restart;

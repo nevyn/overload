@@ -50,9 +50,9 @@
     
 
     
-    /*if(self.value < SparkleEnergy) {
+    if(self.value < SparkleEnergy) {
         self.layer.opacity = 1.0;
-    }*/
+    }
 
     self.backgroundColor = [UIColor colorWithHue:hue saturation:saturation brightness:brightness alpha:1.0];
     [UIView commitAnimations];

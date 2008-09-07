@@ -127,6 +127,16 @@
 {
     return gameEnded;
 }
+-(BOOL)canMakeMoveNow;
+{
+    if( chaosGame )
+        return YES;
+    
+    if( [NSDate timeIntervalSinceReferenceDate] > lastExplosionTime+(2.*ExplosionDelay) )
+        return YES;
+    
+    return NO;
+}
 
 #pragma mark Mutators
 -(void)restart;
@@ -171,8 +181,8 @@
         return;
     }
     
-    if( !chaosGame && (lastExplosionTime+(2.*ExplosionDelay) > [NSDate timeIntervalSinceReferenceDate]))
-        return; // Still animating; moving now would be invalid
+    if(![self canMakeMoveNow])
+        return;
     
     Tile *tile = [self tile:tilePoint];
     if( ! (tile.owner == currentPlayer || tile.owner == PlayerNone) )
@@ -271,6 +281,8 @@
     self.value += amount;
     if(self.value >= 0.9999)
         [self explode];
+    
+    [board setLastExplosionTime:[NSDate timeIntervalSinceReferenceDate]-ExplosionDelay];
 }
 -(void)charge:(CGFloat)amount forPlayer:(Player)newOwner;
 {
@@ -313,14 +325,14 @@
 -(void)setOwner:(Player)newOwner;
 {
     owner = newOwner;
-    [self.board.delegate tile:self changedOwner:owner value:value];
+    [self.board.delegate tile:self changedOwner:owner];
     [self.board updateScores];
 }
 @synthesize value;
 -(void)setValue:(CGFloat)newValue;
 {
     value = newValue;
-    [self.board.delegate tile:self changedOwner:owner value:value];
+    [self.board.delegate tile:self changedValue:value];
     [self.board updateScores];
 }
 @synthesize boardPosition;

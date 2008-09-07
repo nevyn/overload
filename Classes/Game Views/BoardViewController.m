@@ -10,6 +10,7 @@
 #import "BoardView.h"
 #import <QuartzCore/QuartzCore.h>
 #import "CInvocationGrabber.h"
+#import "AI.h"
 @implementation BoardViewController
 
 #pragma mark Initialization and memory management
@@ -33,6 +34,8 @@
     
     board = [[Board alloc] init];
     [board load];
+    
+    ai = [[AI alloc] initPlaying:PlayerP2 onBoard:board delegate:self];
     
 	return self;
 }
@@ -80,15 +83,20 @@
 - (void)dealloc {
     [board release];
     [soundPlayer release];
+    [ai release];
 	[super dealloc];
 }
 
 #pragma mark Board delegates
--(void)tile:(Tile*)tile changedOwner:(Player)owner value:(CGFloat)value;
+-(void)tile:(Tile*)tile changedOwner:(Player)owner;
 {
     BoardTileView *tileView = [boardView tile:tile.boardPosition];
-    tileView.value = tile.value;
-    tileView.owner = tile.owner;
+    tileView.owner = owner;
+}
+-(void)tile:(Tile*)tile changedValue:(CGFloat)value;
+{
+    BoardTileView *tileView = [boardView tile:tile.boardPosition];
+    tileView.value = value;
 }
 -(void)tile:(Tile*)tile wasChargedTo:(CGFloat)value byPlayer:(Player)player;
 {
@@ -137,10 +145,13 @@
     [UIView commitAnimations];
 }
 
--(void)board:(Board*)board changedCurrentPlayer:(Player)currentPlayer;
+-(void)board:(Board*)board_ changedCurrentPlayer:(Player)currentPlayer;
 {
     [score1 setCurrentPlayer:currentPlayer];
     [score2 setCurrentPlayer:currentPlayer];
+    
+    if(currentPlayer == PlayerP2)
+        [ai performMove];
 }
 -(void)board:(Board*)board changedSize:(BoardSize)newSize;
 {
