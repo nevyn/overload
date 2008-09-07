@@ -10,10 +10,18 @@
 #import "TypesAndConstants.h"
 #import "ScoreIndicator.h"
 
+@class ScoreBarView;
+@protocol ScoreBarViewDelegate
+-(void)scoreBarTouched:(ScoreBarView*)scoreBarView;
+@end
+
+
 @interface ScoreBarView : UIView {
     ScoreIndicator *scoreIndicator;
     UILabel *status;
     Player player;
+    
+    id<ScoreBarViewDelegate> delegate;
 }
 - (id)initWithFrame:(CGRect)frame player:(Player)player;
 
@@ -21,6 +29,11 @@
 
 @property Player player;
 @property (copy) NSString *status;
+-(void)flipStatus;
+
+@property (assign) id<ScoreBarViewDelegate> delegate;
+
 
 -(void)setCurrentPlayer:(Player)currentPlayer_;
+
 @end

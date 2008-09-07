@@ -15,7 +15,7 @@
 
 @class AI;
 
-@interface BoardViewController : UIViewController <BoardDelegate, BoardViewDelegate> {
+@interface BoardViewController : UIViewController <BoardDelegate, BoardViewDelegate, ScoreBarViewDelegate> {
     ScoreBarView *score1, *score2;
     BoardView *boardView;
     UIImageView *winPlaque, *losePlaque;
@@ -39,6 +39,13 @@
 
 #pragma mark Board view delegates
 -(void)boardTileViewWasTouched:(BoardTileView*)boardTileView;
+
+#pragma mark Score bar delegates
+-(void)scoreBarTouched:(ScoreBarView*)scoreBarView;
+
+#pragma mark AI
+-(void)startAI;
+-(void)stopAI;
 
 #pragma mark Properties
 @property (readonly) Board *board;

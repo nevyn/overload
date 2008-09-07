@@ -34,8 +34,7 @@
     
     board = [[Board alloc] init];
     [board load];
-    
-    ai = [[AI alloc] initPlaying:PlayerP2 onBoard:board delegate:self];
+    [self boardIsStartingAnew:board];
     
 	return self;
 }
@@ -43,10 +42,16 @@
     score1 = [[[ScoreBarView alloc] initWithFrame:CGRectMake(0, 44+BoardHeight, 320, 44) player:PlayerP1] autorelease];
 
     score2 = [[[ScoreBarView alloc] initWithFrame:CGRectMake(0, 0, 320, 44) player:PlayerP2] autorelease];
-    score2.transform = CGAffineTransformMakeRotation(M_PI);    
+    score2.transform = CGAffineTransformMakeRotation(M_PI);   
+    score2.delegate = self;
         
     [self.view addSubview:score1];
     [self.view addSubview:score2];
+    
+    if([[NSUserDefaults standardUserDefaults] boolForKey:@"currentGame.hasAI"])
+        [self startAI];
+    
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated; 
@@ -131,17 +136,19 @@
     
     [self.view addSubview:p1Plaque];
     [self.view addSubview:p2Plaque];
-    
+        
 	[UIView commitAnimations];
 }
 -(void)boardIsStartingAnew:(Board*)board;
 {
+    [self stopAI];
+
     [UIView beginAnimations:nil context:NULL]; // Why doesn't it animate?
 	[UIView setAnimationDuration:1];
 
     [winPlaque removeFromSuperview]; winPlaque = nil;
     [losePlaque removeFromSuperview]; losePlaque = nil;
-    
+        
     [UIView commitAnimations];
 }
 
@@ -149,6 +156,11 @@
 {
     [score1 setCurrentPlayer:currentPlayer];
     [score2 setCurrentPlayer:currentPlayer];
+    
+    if(board.isBoardEmpty) {
+        score2.status = @"    Tap me to play against iPhone";
+        [score2 flipStatus];
+    }
     
     if(currentPlayer == PlayerP2)
         [ai performMove];
@@ -163,6 +175,31 @@
 {
     [board chargeTileForCurrentPlayer:boardTileView.boardPosition];
 }
+
+#pragma mark Score bar delegates
+-(void)scoreBarTouched:(ScoreBarView*)scoreBarView;
+{
+    if(scoreBarView == score2 && score2.status == @"    Tap me to play against iPhone") {
+        [self startAI];
+    }
+    
+}
+
+#pragma mark AI
+-(void)startAI;
+{
+    ai = [[AI alloc] initPlaying:PlayerP2 onBoard:board delegate:self];
+    score2.status = @"    iPhone is waiting on you...";
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"currentGame.hasAI"];
+}
+-(void)stopAI;
+{
+    if(!ai) return;
+    
+    [ai release]; ai = nil;
+    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"currentGame.hasAI"];
+}
+          
 
 #pragma mark Properties
 @synthesize board;

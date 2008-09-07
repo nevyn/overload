@@ -7,7 +7,7 @@
 //
 
 #import "Board.h"
-
+#import "CInvocationGrabber.h"
 
 
 @interface Board()
@@ -71,6 +71,7 @@
 }
 -(void)scheduleWinningConditionCheck;
 {
+    [winningConditionTimer invalidate];
     winningConditionTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(checkWinningCondition:) userInfo:nil repeats:YES];
 }
 -(void)checkWinningCondition:(NSTimer*)sender;
@@ -94,7 +95,7 @@
     if(self.currentPlayer == PlayerP1)
         self.currentPlayer = PlayerP2;
     else
-        self.currentPlayer = PlayerP1;    
+        self.currentPlayer = PlayerP1;
 }
 
 -(void)setLastExplosionTime:(NSTimeInterval)explodedAt;
@@ -141,8 +142,8 @@
 #pragma mark Mutators
 -(void)restart;
 {
-    self.currentPlayer = PlayerP1;
     gameEnded = NO;
+    self.currentPlayer = PlayerP1;
     [delegate boardIsStartingAnew:self];
     for(NSUInteger y = 0; y < HeightInTiles; y++) {
         for (NSUInteger x = 0; x < WidthInTiles; x++) {
@@ -151,6 +152,11 @@
         }
     }
     [self scheduleWinningConditionCheck];
+    
+    id selfProxy = [[CInvocationGrabber invocationGrabber] prepareWithInvocationTarget:self];
+    [selfProxy setCurrentPlayer:PlayerP1];
+    [[selfProxy invocation] performSelector:@selector(invoke) withObject:nil afterDelay:0.6];
+
 }
 -(void)_zeroTile:(Tile*)tile;
 {
@@ -209,6 +215,8 @@
             [udef setInteger:tile.owner forKey:[NSString stringWithFormat:@"board.%d.%d.owner", x, y]];
         }
     }
+    
+    [[NSUserDefaults standardUserDefaults] setInteger:currentPlayer forKey:@"currentPlayer"];
 }
 -(void)load;
 {
@@ -223,6 +231,8 @@
             tile.owner = [udef integerForKey:[NSString stringWithFormat:@"board.%d.%d.owner", x, y]];
         }
     }
+    
+    self.currentPlayer = [[NSUserDefaults standardUserDefaults] integerForKey:@"currentPlayer"];
 }
 
 #pragma mark Properties

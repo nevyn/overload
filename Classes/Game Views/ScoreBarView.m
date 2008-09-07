@@ -55,6 +55,12 @@
 	[super dealloc];
 }
 
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event;
+{
+    [delegate scoreBarTouched:self];
+}
+
+
 -(void)setScores:(CGFloat[])scores;
 {
     [scoreIndicator setScores:scores];
@@ -71,12 +77,25 @@
 
 @synthesize player;
 
+-(void)flipStatus;
+{
+    [UIView beginAnimations:nil context:NULL];
+	[UIView setAnimationDuration:0.5];
+    status.transform = CGAffineTransformMakeRotation(M_PI);
+    [UIView commitAnimations];
+}
+
+@synthesize delegate;
+
 -(void)setCurrentPlayer:(Player)currentPlayer;
 {
     BOOL _ = currentPlayer == self.player;
     [UIView beginAnimations:@"statusBar.changeCurrentPlayer" context:nil];
     self.backgroundColor = [UIColor colorWithHue:Hues[self.player] saturation:_?0.6:0.3 brightness:_?0.8:0.5 alpha:1.0];
     [UIView commitAnimations];
+    
+    status.transform = CGAffineTransformIdentity;
+    
     
     if(_)
         self.status = @"Your turn.";
