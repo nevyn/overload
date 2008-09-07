@@ -52,7 +52,7 @@ UInt32 sounds[kSoundNamesMax];
     
     for(NSUInteger y = 0; y < HeightInTiles; y++) {
         for (NSUInteger x = 0; x < WidthInTiles; x++) {
-            Tile *tile = [[[Tile alloc] init] autorelease];
+            Tile *tile = [[Tile alloc] init];
             tile.boardPosition = BoardPointMake(x, y);
             tile.board = self;
             boardTiles[x][y] = tile;

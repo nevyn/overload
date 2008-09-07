@@ -23,7 +23,9 @@
 	BoardViewController *viewController = [[[BoardViewController alloc] initWithNibName:@"MainView" bundle:nil] autorelease];
 	self.mainViewController = viewController;
 	
+    [mainViewController viewWillAppear:NO];
 	[self.view insertSubview:mainViewController.view belowSubview:infoButton];
+    [mainViewController viewDidAppear:NO];
 }
 
 

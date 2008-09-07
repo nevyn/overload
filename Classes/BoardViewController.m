@@ -30,6 +30,8 @@
     
     board = [[Board alloc] init];
     
+    
+    
 	return self;
 }
 - (void)viewDidLoad {
