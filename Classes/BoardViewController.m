@@ -9,6 +9,7 @@
 #import "BoardViewController.h"
 #import "BoardView.h"
 #import <QuartzCore/QuartzCore.h>
+#import "CInvocationGrabber.h"
 @implementation BoardViewController
 
 #pragma mark Initialization and memory management
@@ -29,7 +30,7 @@
 	if( ! [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) return nil;
     
     board = [[Board alloc] init];
-    
+    [board load];
     
     
 	return self;
@@ -48,12 +49,17 @@
 {
     if(!boardView) {
         boardView = [[[BoardView alloc] initWithFrame:CGRectMake(0, 44, BoardWidth, BoardHeight)] autorelease];
+        [boardView setSize:board.sizeInTiles];
         boardView.delegate = self;
         boardView.sparkling = YES;
-        [self.view addSubview:boardView];
-        board.delegate = self; // Triggers calling all delegate methods to match board view to model
+        [self.view insertSubview:boardView belowSubview:score1];
     }    
-    boardView.sparkling = YES;
+    board.delegate = self; // Triggers calling all delegate methods to match board view to model
+
+    id boardViewProxy = [[CInvocationGrabber invocationGrabber] prepareWithInvocationTarget:boardView];
+    [boardViewProxy setSparkling:YES];
+    [[boardViewProxy invocation] performSelector:@selector(invoke) withObject:nil afterDelay:1.0];
+    
 }
 - (void)viewDidDisappear:(BOOL)animated;
 {
@@ -66,9 +72,8 @@
 }
 
 - (void)didReceiveMemoryWarning {
-    if(!self.view.superview) {
-        // TODO: Remove the board view, and restore it on viewWillAppear
-    }
+    if(!self.view.superview)
+        [boardView removeFromSuperview]; boardView = nil;
 }
 
 - (void)dealloc {
@@ -115,7 +120,7 @@
 }
 -(void)boardIsStartingAnew:(Board*)board;
 {
-    [UIView beginAnimations:nil context:NULL];
+    [UIView beginAnimations:nil context:NULL]; // Why doesn't it animate?
 	[UIView setAnimationDuration:1];
 
     [winPlaque removeFromSuperview]; winPlaque = nil;

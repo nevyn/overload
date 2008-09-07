@@ -88,8 +88,6 @@ static CGRect boardPointToFrameRect(CGSize ts, BoardPoint bp)
         BoardPointMake(self.boardPosition.x+1, self.boardPosition.y),
         BoardPointMake(self.boardPosition.x, self.boardPosition.y+1),
         BoardPointMake(self.boardPosition.x-1, self.boardPosition.y)};
-
-    
         
     CGSize ts = board.tileSize;
     NSArray *animationTiles = [NSArray arrayWithObjects:

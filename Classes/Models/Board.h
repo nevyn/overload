@@ -56,6 +56,7 @@
 -(void)load;
 
 #pragma mark Properties
+/// Setting the delegate will also trigger all delegate methods to give the delegate a complete view of the board state.
 @property (assign) id<BoardDelegate> delegate;
 @property Player currentPlayer;
 @property BOOL chaosGame;

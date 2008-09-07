@@ -176,14 +176,21 @@ UInt32 sounds[kSoundNamesMax];
 #pragma mark Mutators
 -(void)restart;
 {
+    self.currentPlayer = PlayerP1;
+    gameEnded = NO;
     [delegate boardIsStartingAnew:self];
     for(NSUInteger y = 0; y < HeightInTiles; y++) {
         for (NSUInteger x = 0; x < WidthInTiles; x++) {
             Tile *tile = [self tile:BoardPointMake(x, y)];
-            tile.owner = PlayerNone;
-            tile.value = 0;
+            [self performSelector:@selector(_zeroTile:) withObject:tile afterDelay:frand(0.5)];
         }
     }
+    [self scheduleWinningConditionCheck];
+}
+-(void)_zeroTile:(Tile*)tile;
+{
+    tile.owner = PlayerNone;
+    tile.value = 0;
 }
 -(void)shuffle;
 {
@@ -191,11 +198,17 @@ UInt32 sounds[kSoundNamesMax];
     for(NSUInteger y = 0; y < HeightInTiles; y++) {
         for (NSUInteger x = 0; x < WidthInTiles; x++) {
             Tile *tile = [self tile:BoardPointMake(x, y)];
-            tile.owner = rand()%2 + 1;
-            tile.value = frand(1.0);
+            [self performSelector:@selector(_shuffleTile:) withObject:tile afterDelay:frand(0.5)];
         }
     }
 }
+-(void)_shuffleTile:(Tile*)tile;
+{
+    tile.owner = rand()%2 + 1;
+    tile.value = frand(1.0);
+}
+
+
 -(void)chargeTileForCurrentPlayer:(BoardPoint)tilePoint;
 {
     if(gameEnded) {
@@ -219,15 +232,62 @@ UInt32 sounds[kSoundNamesMax];
 #pragma mark Persistance
 -(void)persist;
 {
-    // TODO
+    NSUserDefaults *udef = [NSUserDefaults standardUserDefaults];
+
+    [udef setBool:self.chaosGame forKey:@"chaosGame"];
+    [udef setBool:self.tinyGame forKey:@"tinyGame"];
+    [udef setBool:self.sound forKey:@"sound"];
+    
+    for(NSUInteger y = 0; y < HeightInTiles; y++) {
+        for (NSUInteger x = 0; x < WidthInTiles; x++) {
+            Tile *tile = [self tile:BoardPointMake(x, y)];
+            [udef setFloat:tile.value forKey:[NSString stringWithFormat:@"board.%d.%d.value", x, y]];
+            [udef setInteger:tile.owner forKey:[NSString stringWithFormat:@"board.%d.%d.owner", x, y]];
+        }
+    }
 }
 -(void)load;
 {
-    // TODO
+    NSUserDefaults *udef = [NSUserDefaults standardUserDefaults];
+    self.chaosGame = [udef boolForKey:@"chaosGame"];
+    self.tinyGame = [udef boolForKey:@"tinyGame"];
+    self.sound = [udef boolForKey:@"sound"];
+
+    for(NSUInteger y = 0; y < HeightInTiles; y++) {
+        for (NSUInteger x = 0; x < WidthInTiles; x++) {
+            Tile *tile = [self tile:BoardPointMake(x, y)];
+            tile.value = [udef floatForKey:[NSString stringWithFormat:@"board.%d.%d.value", x, y]];
+            tile.owner = [udef integerForKey:[NSString stringWithFormat:@"board.%d.%d.owner", x, y]];
+        }
+    }
 }
 
 #pragma mark Properties
 @synthesize delegate;
+-(void)setDelegate:(id<BoardDelegate>)delegate_;
+{
+    delegate = delegate_;
+    srand(time(NULL));
+    
+    // Trigger all delegate methods
+    for(NSUInteger y = 0; y < HeightInTiles; y++) {
+        for (NSUInteger x = 0; x < WidthInTiles; x++) {
+            Tile *tile = [self tile:BoardPointMake(x, y)];
+            [self performSelector:@selector(_sendTile:) withObject:tile afterDelay:frand(0.5)];
+        }
+    }
+    
+    self.chaosGame = self.chaosGame;
+    self.tinyGame = self.tinyGame;
+    self.sound = self.sound;
+    [self updateScores];
+    self.currentPlayer = self.currentPlayer;
+}
+-(void)_sendTile:(Tile*)tile;
+{
+    tile.value = tile.value;
+    tile.owner = tile.owner;
+}
 
 @synthesize currentPlayer;
 -(void)setCurrentPlayer:(Player)newPlayer;

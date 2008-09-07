@@ -21,6 +21,8 @@
     IBOutlet UISwitch *giganticGame;
     IBOutlet UISwitch *chaosGame;
     IBOutlet UISwitch *soundSwitch;
+    
+    NSMutableArray *stuffToDoWhenFlipped;
 }
 - (id)initWithNibName:(NSString *)nibNameOrNil
                bundle:(NSBundle *)nibBundleOrNil

@@ -33,7 +33,7 @@
     }
     
     self.backgroundColor = [UIColor whiteColor];
-    sizeInTiles = BoardSizeMake(WidthInTiles, HeightInTiles);
+    [self setSize:BoardSizeMake(WidthInTiles, HeightInTiles)];
     
 	return self;
 }
@@ -49,7 +49,7 @@
         [self sparkle];
     }
 
-    sparkling = sparkling_;
+    sparkling = sparkling_; // don't remove this line
 }
 -(BOOL)sparkling;
 {
@@ -98,8 +98,10 @@
     if(tileSize.width == [self tile:BoardPointMake(0, 0)].frame.size.width)
         return;
     
-    [UIView beginAnimations:@"Resize board" context:nil];
-    [UIView setAnimationDuration:1];
+    if(delegate) {
+        [UIView beginAnimations:@"Resize board" context:nil];
+        [UIView setAnimationDuration:1];
+    }
 
     for(NSUInteger y = 0; y < HeightInTiles; y++) {
         for (NSUInteger x = 0; x < WidthInTiles; x++) {
@@ -107,8 +109,9 @@
                 CGRectMake(x*tileSize.width, y*tileSize.height, tileSize.width, tileSize.height);
         }
     }
-
-    [UIView commitAnimations];
+    
+    if(delegate)
+        [UIView commitAnimations];
 }
 
 
