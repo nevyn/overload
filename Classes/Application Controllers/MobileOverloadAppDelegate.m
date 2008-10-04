@@ -9,6 +9,8 @@
 #import "MobileOverloadAppDelegate.h"
 #import "RootViewController.h"
 #import "BoardViewController.h"
+#import "Beacon.h"
+
 
 @implementation MobileOverloadAppDelegate
 
@@ -18,7 +20,10 @@
 
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application {
-	
+    NSString *applicationCode = @"f41f960eeef940e4f2bbc28259d1165c";
+    [Beacon initAndStartBeaconWithApplicationCode:applicationCode useCoreLocation:NO];
+
+    
 	[window addSubview:[rootViewController view]];
 	[window makeKeyAndVisible];
 }
@@ -26,6 +31,7 @@
 {
     [self.rootViewController.mainViewController.board persist];
     [[NSUserDefaults standardUserDefaults] synchronize];
+    [[Beacon shared] endBeacon];
 }
 
 - (void)dealloc {

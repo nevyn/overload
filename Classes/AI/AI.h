@@ -15,13 +15,15 @@
     Board *board;
     id<BoardViewDelegate> delegate;
     Player player;
+    Player opponent;
 }
 -(id)initPlaying:(Player)player_ onBoard:(Board*)board_ delegate:(id<BoardViewDelegate>)delegate_;
 
 -(void)performMove;
 
-// Override this in subclasses for smarter behavior
--(Tile*)chooseTile;
+// Override these:
+-(void)player:(Player)player choseTile:(BoardPoint)boardPoint;
+-(BoardPoint)chooseTile;
 
 @property (assign) Board *board;
 @property (assign) id<BoardViewDelegate> delegate;

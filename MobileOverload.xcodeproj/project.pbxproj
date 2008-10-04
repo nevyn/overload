@@ -22,6 +22,11 @@
 		0541F5370E5EFFEE000D6368 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0541F5360E5EFFEE000D6368 /* AudioToolbox.framework */; };
 		054615D00E5E0E9600DAF3BD /* ScoreIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 054615CF0E5E0E9600DAF3BD /* ScoreIndicator.m */; };
 		0546168E0E5E220600DAF3BD /* gloss.png in Resources */ = {isa = PBXBuildFile; fileRef = 0546168D0E5E220600DAF3BD /* gloss.png */; };
+		054F78610E97D7B000E17413 /* libPinchAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 054F78600E97D7B000E17413 /* libPinchAnalytics.a */; };
+		054F78640E97D82C00E17413 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 054F78630E97D82C00E17413 /* libsqlite3.0.dylib */; };
+		054F78660E97D83400E17413 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 054F78650E97D83400E17413 /* SystemConfiguration.framework */; };
+		054F78680E97D83900E17413 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 054F78670E97D83900E17413 /* CoreLocation.framework */; };
+		0589082F0E749ECB0014135B /* AIMinMax.m in Sources */ = {isa = PBXBuildFile; fileRef = 0589082E0E749ECB0014135B /* AIMinMax.m */; };
 		058994300E5F07D2002BF0FE /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0589942F0E5F07D2002BF0FE /* OpenAL.framework */; };
 		0589946B0E5F15BA002BF0FE /* explosion.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0589946A0E5F15BA002BF0FE /* explosion.wav */; };
 		058994700E5F162A002BF0FE /* charge75.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0589946C0E5F162A002BF0FE /* charge75.wav */; };
@@ -76,6 +81,13 @@
 		054615CE0E5E0E9600DAF3BD /* ScoreIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreIndicator.h; sourceTree = "<group>"; };
 		054615CF0E5E0E9600DAF3BD /* ScoreIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreIndicator.m; sourceTree = "<group>"; };
 		0546168D0E5E220600DAF3BD /* gloss.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gloss.png; sourceTree = "<group>"; };
+		054F785F0E97D7B000E17413 /* Beacon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Beacon.h; sourceTree = "<group>"; };
+		054F78600E97D7B000E17413 /* libPinchAnalytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libPinchAnalytics.a; sourceTree = "<group>"; };
+		054F78630E97D82C00E17413 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
+		054F78650E97D83400E17413 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		054F78670E97D83900E17413 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		0589082D0E749ECB0014135B /* AIMinMax.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AIMinMax.h; sourceTree = "<group>"; };
+		0589082E0E749ECB0014135B /* AIMinMax.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AIMinMax.m; sourceTree = "<group>"; };
 		0589942F0E5F07D2002BF0FE /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = /System/Library/Frameworks/OpenAL.framework; sourceTree = "<absolute>"; };
 		0589946A0E5F15BA002BF0FE /* explosion.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = explosion.wav; sourceTree = "<group>"; };
 		0589946C0E5F162A002BF0FE /* charge75.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = charge75.wav; sourceTree = "<group>"; };
@@ -132,6 +144,10 @@
 				05D780C70E58FA7400FB00DB /* CoreGraphics.framework in Frameworks */,
 				0541F5370E5EFFEE000D6368 /* AudioToolbox.framework in Frameworks */,
 				058994300E5F07D2002BF0FE /* OpenAL.framework in Frameworks */,
+				054F78610E97D7B000E17413 /* libPinchAnalytics.a in Frameworks */,
+				054F78640E97D82C00E17413 /* libsqlite3.0.dylib in Frameworks */,
+				054F78660E97D83400E17413 /* SystemConfiguration.framework in Frameworks */,
+				054F78680E97D83900E17413 /* CoreLocation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -165,6 +181,8 @@
 			children = (
 				0511F6A80E744774003FFA22 /* AI.h */,
 				0511F6A90E744774003FFA22 /* AI.m */,
+				0589082D0E749ECB0014135B /* AIMinMax.h */,
+				0589082E0E749ECB0014135B /* AIMinMax.m */,
 			);
 			path = AI;
 			sourceTree = "<group>";
@@ -239,6 +257,8 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				054F785F0E97D7B000E17413 /* Beacon.h */,
+				054F78600E97D7B000E17413 /* libPinchAnalytics.a */,
 				0511F5740E742C5F003FFA22 /* CInvocationGrabber.m */,
 				0511F5750E742C5F003FFA22 /* CInvocationGrabber.h */,
 				05CF896E0E6033FB00E2D8B4 /* SoundEngine.cpp */,
@@ -279,6 +299,9 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				054F78630E97D82C00E17413 /* libsqlite3.0.dylib */,
+				054F78650E97D83400E17413 /* SystemConfiguration.framework */,
+				054F78670E97D83900E17413 /* CoreLocation.framework */,
 				0589942F0E5F07D2002BF0FE /* OpenAL.framework */,
 				0541F5360E5EFFEE000D6368 /* AudioToolbox.framework */,
 				05D780C60E58FA7400FB00DB /* CoreGraphics.framework */,
@@ -387,6 +410,7 @@
 				0511F5760E742C5F003FFA22 /* CInvocationGrabber.m in Sources */,
 				0511F6180E743977003FFA22 /* OLSoundPlayer.m in Sources */,
 				0511F6AA0E744774003FFA22 /* AI.m in Sources */,
+				0589082F0E749ECB0014135B /* AIMinMax.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -413,9 +437,14 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Joachim Bengtsson";
 				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = MobileOverload_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Classes/Other Sources\"",
+				);
 				PRODUCT_NAME = MobileOverload;
 			};
 			name = "App Store Distribution";
@@ -440,9 +469,14 @@
 				CODE_SIGN_ENTITLEMENTS = dist.plist;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Joachim Bengtsson";
 				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = MobileOverload_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Classes/Other Sources\"",
+				);
 				PRODUCT_NAME = MobileOverload;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "CB2AA25A-25D8-46E8-A460-715C1CE09CFB";
 			};
@@ -453,11 +487,16 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = MobileOverload_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Classes/Other Sources\"",
+				);
 				PRODUCT_NAME = MobileOverload;
 			};
 			name = Debug;
@@ -467,9 +506,14 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = MobileOverload_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Classes/Other Sources\"",
+				);
 				PRODUCT_NAME = MobileOverload;
 			};
 			name = Release;

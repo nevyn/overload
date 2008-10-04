@@ -45,6 +45,37 @@
     
     return self;
 }
+-(id)initWithBoard:(Board*)other;
+{
+    if(![super init]) return nil;
+    
+    for(NSUInteger y = 0; y < HeightInTiles; y++) {
+        for (NSUInteger x = 0; x < WidthInTiles; x++) {
+            Tile *tile = [[Tile alloc] init];
+            tile.boardPosition = BoardPointMake(x, y);
+            tile.board = self;
+            
+            Tile *otherTile = [other tile:tile.boardPosition];
+            tile.value = otherTile.value;
+            tile.owner = otherTile.owner;
+
+            boardTiles[x][y] = tile;
+        }
+    }
+    
+    self.currentPlayer = other.currentPlayer;
+    self.chaosGame = other.chaosGame;
+    self.tinyGame = other.tinyGame;
+    
+    return self;
+}
+- (id)copyWithZone:(NSZone *)zone
+{
+    Board *copy = [[[self class] allocWithZone: zone]
+                     initWithBoard:self];
+    return copy;
+    
+}
 -(void)dealloc;
 {
     [winningConditionTimer invalidate];
@@ -60,14 +91,8 @@
 #pragma mark Game logic
 -(void)updateScores;
 {
-    CGFloat scores[3] = {0,0,0};
-    for(NSUInteger y = 0; y < self.sizeInTiles.height; y++) {
-        for (NSUInteger x = 0; x < self.sizeInTiles.width; x++) {
-            Tile *tile = [self tile:BoardPointMake(x, y)];
-            scores[tile.owner] += tile.value;
-        }
-    }
-    [delegate board:self changedScores:scores];
+    if(delegate)
+        [delegate board:self changedScores:self.scores];
 }
 -(void)scheduleWinningConditionCheck;
 {
@@ -124,9 +149,25 @@
     return YES;
 }
 
--(BOOL)hasGameEnded;
+-(Player)winner;
 {
-    return gameEnded;
+    //return gameEnded;
+    Player winner = [self tile:BoardPointMake(0, 0)].owner;
+    if(winner == PlayerNone) return PlayerNone;
+    
+    for(NSUInteger y = 0; y < self.sizeInTiles.height; y++) {
+        for (NSUInteger x = 0; x < self.sizeInTiles.width; x++) {
+            Tile *tile = [self tile:BoardPointMake(x, y)];
+            if(tile.owner != winner)
+                return PlayerNone;
+        }
+    }
+    return winner;
+    
+}
+-(BOOL)hasEnded;
+{
+    return self.winner;
 }
 -(BOOL)canMakeMoveNow;
 {
@@ -137,6 +178,24 @@
         return YES;
     
     return NO;
+}
+-(Scores)scores;
+{
+    Scores scores = {{0,0,0}};
+    for(NSUInteger y = 0; y < self.sizeInTiles.height; y++) {
+        for (NSUInteger x = 0; x < self.sizeInTiles.width; x++) {
+            Tile *tile = [self tile:BoardPointMake(x, y)];
+            scores.scores[tile.owner] += tile.value;
+        }
+    }
+    return scores;
+}
+-(BOOL)player:(Player)player canChargeTile:(BoardPoint)tilePoint;
+{    
+    Tile *tile = [self tile:tilePoint];
+    if( ! (tile.owner == player || tile.owner == PlayerNone) )
+        return NO;
+    return YES;
 }
 
 #pragma mark Mutators
@@ -180,24 +239,25 @@
 }
 
 
--(void)chargeTileForCurrentPlayer:(BoardPoint)tilePoint;
+-(BOOL)chargeTileForCurrentPlayer:(BoardPoint)tilePoint;
 {
     if(gameEnded) {
         [self restart];
-        return;
+        return NO;
     }
     
     if(![self canMakeMoveNow])
-        return;
+        return NO;
     
     Tile *tile = [self tile:tilePoint];
     if( ! (tile.owner == currentPlayer || tile.owner == PlayerNone) )
-        return; // Invalid move
+        return NO; // Invalid move
     
     [delegate tile:tile wasChargedTo:tile.value+ChargeEnergy byPlayer:self.currentPlayer];
     [tile charge:ChargeEnergy forPlayer:self.currentPlayer];
 
     [self advancePlayer];
+    return YES;
 }
 
 #pragma mark Persistance
@@ -292,12 +352,20 @@
     if(self.value >= 0.9999)
         [self explode];
     
-    [board setLastExplosionTime:[NSDate timeIntervalSinceReferenceDate]-ExplosionDelay];
+    [board setLastExplosionTime:[NSDate timeIntervalSinceReferenceDate]-ExplosionDelay/2];
 }
 -(void)charge:(CGFloat)amount forPlayer:(Player)newOwner;
 {
     self.owner = newOwner;
     [self charge:amount];
+}
+
+
+-(void)_explosionCharge:(NSTimer*)caller;
+{
+    Player p = (int)caller < 10 ? (Player)caller : [(Tile*)[caller userInfo] owner];
+    [self charge:ExplosionSpreadEnergy forPlayer:p];
+    [board setLastExplosionTime:[NSDate timeIntervalSinceReferenceDate]];
 }
 -(void)explode;
 {
@@ -313,20 +381,27 @@
         [self.board tile:urdl[2]],
     [self.board tile:urdl[3]]};
     
-    [NSTimer scheduledTimerWithTimeInterval:ExplosionDelay*1 target:targets[0] selector:@selector(_explosionCharge:) userInfo:self repeats:NO];
-    if(urdl[1].x < board.sizeInTiles.width)
-        [NSTimer scheduledTimerWithTimeInterval:ExplosionDelay*1 target:targets[1] selector:@selector(_explosionCharge:) userInfo:self repeats:NO];
-    if(urdl[2].y < board.sizeInTiles.height)
-        [NSTimer scheduledTimerWithTimeInterval:ExplosionDelay*1 target:targets[2] selector:@selector(_explosionCharge:) userInfo:self repeats:NO];
-    [NSTimer scheduledTimerWithTimeInterval:ExplosionDelay*1 target:targets[3] selector:@selector(_explosionCharge:) userInfo:self repeats:NO];    
+#define doitnow(target) [target _explosionCharge:(NSTimer*)self.owner]
+#define doitlater(target_) [NSTimer scheduledTimerWithTimeInterval:ExplosionDelay*1 target:target_ selector:@selector(_explosionCharge:) userInfo:self repeats:NO];
+    
+    if(board.delegate) {
+        doitlater(targets[0]);
+        if(urdl[1].x < board.sizeInTiles.width)
+            doitlater(targets[1]);
+        if(urdl[2].y < board.sizeInTiles.height)
+            doitlater(targets[2]);
+        doitlater(targets[3]);
+    } else {
+        doitnow(targets[0]);
+        if(urdl[1].x < board.sizeInTiles.width)
+            doitnow(targets[1]);
+        if(urdl[2].y < board.sizeInTiles.height)
+            doitnow(targets[2]);
+        doitnow(targets[3]);
+    }
     
     
     [self.board.delegate tileExploded:self];
-}
--(void)_explosionCharge:(NSTimer*)caller;
-{
-    [self charge:ExplosionSpreadEnergy forPlayer:[(Tile*)[caller userInfo] owner]];
-    [board setLastExplosionTime:[NSDate timeIntervalSinceReferenceDate]];
 }
 
 

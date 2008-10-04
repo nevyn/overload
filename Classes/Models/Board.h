@@ -17,14 +17,14 @@
 -(void)tile:(Tile*)tile changedValue:(CGFloat)value;
 -(void)tile:(Tile*)tile wasChargedTo:(CGFloat)value byPlayer:(Player)player;
 -(void)tileExploded:(Tile*)tile;
--(void)board:(Board*)board changedScores:(CGFloat[])scores;
+-(void)board:(Board*)board changedScores:(Scores)scores;
 -(void)board:(Board*)board endedWithWinner:(Player)winner;
 -(void)boardIsStartingAnew:(Board*)board;
 -(void)board:(Board*)board changedCurrentPlayer:(Player)currentPlayer;
 -(void)board:(Board*)board changedSize:(BoardSize)newSize;
 @end
 
-@interface Board : NSObject {
+@interface Board : NSObject <NSCopying>{
     Tile *boardTiles[10][12]; // [x][y]
     Player currentPlayer;
     NSTimer *winningConditionTimer;
@@ -37,17 +37,23 @@
     
     NSTimeInterval lastExplosionTime;
 }
+-(id)init;
+-(id)initWithBoard:(Board*)other;
+- (id)copyWithZone:(NSZone *)zone;
+
 #pragma mark Accessors
 -(Tile*)tile:(BoardPoint)point;
 -(BOOL)isBoardEmpty;
--(BOOL)hasGameEnded;
+-(Player)winner;
+-(BOOL)hasEnded;
 -(BOOL)canMakeMoveNow;
-
+-(Scores)scores;
+-(BOOL)player:(Player)player canChargeTile:(BoardPoint)tilePoint;
 
 #pragma mark Mutators
 -(void)restart;
 -(void)shuffle;
--(void)chargeTileForCurrentPlayer:(BoardPoint)tilePoint;
+-(BOOL)chargeTileForCurrentPlayer:(BoardPoint)tilePoint;
 
 #pragma mark Persistance
 -(void)persist;

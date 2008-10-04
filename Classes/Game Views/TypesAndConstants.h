@@ -50,3 +50,7 @@ typedef struct {
 
 extern const CGFloat Hues[3];
 extern const CGFloat Saturations[4];
+
+typedef struct {
+    CGFloat scores[3];
+} Scores;

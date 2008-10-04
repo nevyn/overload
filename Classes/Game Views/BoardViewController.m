@@ -11,6 +11,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "CInvocationGrabber.h"
 #import "AI.h"
+#import "AIMinMax.h"
 @implementation BoardViewController
 
 #pragma mark Initialization and memory management
@@ -106,16 +107,19 @@
 -(void)tile:(Tile*)tile wasChargedTo:(CGFloat)value byPlayer:(Player)player;
 {
     [soundPlayer playChargeSound:value];
+    
+    if(ai && player == PlayerP1)
+        [ai player:player choseTile:tile.boardPosition];
 }
 -(void)tileExploded:(Tile*)tile;
 {
     [soundPlayer playExplosionSound];
     [[boardView tile:tile.boardPosition] explode];
 }
--(void)board:(Board*)board changedScores:(CGFloat[])scores;
+-(void)board:(Board*)board changedScores:(Scores)scores;
 {
-    [score1 setScores:scores];
-    [score2 setScores:scores];
+    [score1 setScores:scores.scores];
+    [score2 setScores:scores.scores];
 }
 -(void)board:(Board*)board endedWithWinner:(Player)winner;
 {

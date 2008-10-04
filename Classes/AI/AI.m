@@ -16,6 +16,7 @@
     if(![super init]) return nil;
     
     self.player = player_;
+    opponent = (!(player-1))+1;
     self.board = board_;
     self.delegate = delegate_;
     
@@ -24,18 +25,26 @@
 
 -(void)performMove;
 {
-    if([board hasGameEnded])
+    if([board hasEnded])
+        return;
+    
+    if(board.currentPlayer != self.player)
         return;
     
     if(![board canMakeMoveNow])
         [self performSelector:@selector(performMove) withObject:nil afterDelay:ExplosionDelay];
     
-    Tile *chosenTile = [self chooseTile];
+    BoardPoint chosenTilePoint = [self chooseTile];
     
-    [delegate boardTileViewWasTouched:(BoardTileView*)chosenTile];
+    [delegate boardTileViewWasTouched:(BoardTileView*)[board tile:chosenTilePoint]];
 }
 
--(Tile*)chooseTile;
+-(void)player:(Player)player choseTile:(BoardPoint)boardPoint;
+{
+    // Ignore
+}
+
+-(BoardPoint)chooseTile;
 {
     Tile *chosenTile = nil;
     
@@ -47,7 +56,7 @@
         }
     }
     
-    return chosenTile;
+    return chosenTile.boardPosition;
 }
 
 @synthesize board;

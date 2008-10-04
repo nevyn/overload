@@ -33,7 +33,7 @@
 -(void)tile:(Tile*)tile changedValue:(CGFloat)value;
 -(void)tile:(Tile*)tile wasChargedTo:(CGFloat)value byPlayer:(Player)player;
 -(void)tileExploded:(Tile*)tile;
--(void)board:(Board*)board changedScores:(CGFloat[])scores;
+-(void)board:(Board*)board changedScores:(Scores)scores;
 -(void)board:(Board*)board endedWithWinner:(Player)winner;
 -(void)board:(Board*)board changedCurrentPlayer:(Player)currentPlayer;
 
