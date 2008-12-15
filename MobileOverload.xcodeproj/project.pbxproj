@@ -447,6 +447,7 @@
 					"\"$(SRCROOT)/Classes/Other Sources\"",
 				);
 				PRODUCT_NAME = MobileOverload;
+				SDKROOT = iphoneos2.2;
 			};
 			name = "App Store Distribution";
 		};
@@ -454,12 +455,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Joachim Bengtsson";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
-				SDKROOT = iphoneos2.0;
+				SDKROOT = iphoneos2.2;
 			};
 			name = "Beta Testing";
 		};
@@ -480,7 +481,8 @@
 					"\"$(SRCROOT)/Classes/Other Sources\"",
 				);
 				PRODUCT_NAME = MobileOverload;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "CB2AA25A-25D8-46E8-A460-715C1CE09CFB";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F5663BFD-9EC9-4E2F-9504-3D3A14D8A187";
+				SDKROOT = iphoneos2.2;
 			};
 			name = "Beta Testing";
 		};
@@ -501,6 +503,7 @@
 					"\"$(SRCROOT)/Classes/Other Sources\"",
 				);
 				PRODUCT_NAME = MobileOverload;
+				SDKROOT = iphoneos2.2;
 			};
 			name = Debug;
 		};
@@ -519,6 +522,7 @@
 					"\"$(SRCROOT)/Classes/Other Sources\"",
 				);
 				PRODUCT_NAME = MobileOverload;
+				SDKROOT = iphoneos2.2;
 			};
 			name = Release;
 		};
