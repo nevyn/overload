@@ -12,6 +12,7 @@
 #import "CInvocationGrabber.h"
 #import "AI.h"
 #import "AIMinMax.h"
+#import "Beacon.h"
 @implementation BoardViewController
 
 #pragma mark Initialization and memory management
@@ -123,6 +124,11 @@
 }
 -(void)board:(Board*)board endedWithWinner:(Player)winner;
 {
+    if(ai)
+        [[Beacon shared] endSubBeaconWithName:@"Local AI Game"];
+    else
+        [[Beacon shared] endSubBeaconWithName:@"Local 2P Game"];
+    
     [soundPlayer playWinSound];
     Player loser = (!(winner-1))+1;
     [UIView beginAnimations:nil context:NULL];
@@ -163,6 +169,7 @@
     
     if(board.isBoardEmpty) {
         score2.status = @"    Tap me to play against iPhone";
+        [[Beacon shared] startSubBeaconWithName:@"Local 2P Game" timeSession:YES];
         [score2 flipStatus];
     }
     
@@ -185,6 +192,7 @@
 {
     if(scoreBarView == score2 && score2.status == @"    Tap me to play against iPhone") {
         [self startAI];
+        [[Beacon shared] startSubBeaconWithName:@"Local AI Game" timeSession:YES];
     }
     
 }

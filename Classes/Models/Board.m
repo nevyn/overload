@@ -235,7 +235,7 @@
 -(void)_shuffleTile:(Tile*)tile;
 {
     tile.owner = rand()%2 + 1;
-    tile.value = frand(1.0);
+    tile.value = (rand()%4)*0.25;
 }
 
 

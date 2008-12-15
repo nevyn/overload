@@ -28,6 +28,7 @@
     image.frame = frame;
     image.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
     [self addSubview:image];
+    self.opaque = self.clearsContextBeforeDrawing = YES;
     
     return self;
 }
@@ -103,8 +104,8 @@ static CGRect boardPointToFrameRect(CGSize ts, BoardPoint bp)
         
         [UIView beginAnimations:@"Explosion1" context:nil];
         [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
-        [UIView setAnimationDuration:0.6];
-        [UIView setAnimationDelay:(ExplosionDelay/2)*(i+1)];
+        [UIView setAnimationDuration:0.45];
+        //[UIView setAnimationDelay:(ExplosionDelay/2)*(i+1)];
         
         aniTile.owner = self.owner;
         aniTile.value = 1.0-0.25*i;

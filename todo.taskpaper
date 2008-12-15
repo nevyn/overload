@@ -2,6 +2,7 @@
 - [BUG] New Game sometimes loads the old game instead of starting new @done @0.2b1
 	- Which is actually the bug where the app runs out of memory, and the mainView and boardView are removed. This is a crasher. A bad one. Need to go MVC on its ass. @done @0.2b1
 - Scoreboard
+- That new audio framework
 - 
 Future:
 - Computer players (AI) @important @done @0.2b1
@@ -9,22 +10,22 @@ Future:
 - Online play
 - More flexible board size
 Archive:
-- Save game state when quitting @done @1.0b3
-- Implement TinyGame mode @done @1.0b3
-- Nice transition when app loads (tile transitions) @done @1.0b3
-- icon @done @1.0b3
-- default.png @done @1.0b3
-- make the scorebars some kind of bezel (gloss?) @done @1.0b4
-- score progress bar instead of text @done @1.0b4
-- Make it more obvious that it's your turn @done @1.0b4
-- BUG: Score not updated after loading @done @1.0b4
-- BUG: Max scorecount invalid when tinygaming @done @1.0b4
-- FEATURE: Make >=0.75 tiles sparkle @done @1.0b4
-- 1px error @done @1.0b4
-- No need to stop explosions @done @1.0b4
-- stop explosions outside Tiny @done @1.0b4
-- "Player X Wins!" plaque @done @1.0b4
-- Sparkling stops on new game @done @1.0b4
+- Save game state when quitting @done @0.1b3
+- Implement TinyGame mode @done @0.1b3
+- Nice transition when app loads (tile transitions) @done @0.1b3
+- icon @done @0.1b3
+- default.png @done @0.1b3
+- make the scorebars some kind of bezel (gloss?) @done @0.1b4
+- score progress bar instead of text @done @0.1b4
+- Make it more obvious that it's your turn @done @0.1b4
+- BUG: Score not updated after loading @done @0.1b4
+- BUG: Max scorecount invalid when tinygaming @done @0.1b4
+- FEATURE: Make >=0.75 tiles sparkle @done @0.1b4
+- 1px error @done @0.1b4
+- No need to stop explosions @done @0.1b4
+- stop explosions outside Tiny @done @0.1b4
+- "Player X Wins!" plaque @done @0.1b4
+- Sparkling stops on new game @done @0.1b4
 - Pick better colors @mandy @done @0.1b5
 - Make nicer winning plaques @0.1b5 @done
 - Sparkle goes crazy when restarting game @bug @done @0.1b5

@@ -17,15 +17,26 @@
 
 @synthesize window;
 @synthesize rootViewController;
-
++(void)initialize;
+{
+    NSString *applicationCode = @"f41f960eeef940e4f2bbc28259d1165c";
+    [Beacon initAndStartBeaconWithApplicationCode:applicationCode useCoreLocation:YES];
+}
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application {
-    NSString *applicationCode = @"f41f960eeef940e4f2bbc28259d1165c";
-    [Beacon initAndStartBeaconWithApplicationCode:applicationCode useCoreLocation:NO];
-
-    
-	[window addSubview:[rootViewController view]];
+    [window addSubview:[rootViewController view]];
 	[window makeKeyAndVisible];
+    
+    paranoidTimer = [[NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(paranoid) userInfo:nil repeats:YES] retain];
+}
+- (void)applicationWillResignActive:(UIApplication *)application;
+{
+    [self.rootViewController.mainViewController.board persist];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+- (void)applicationDidBecomeActive:(UIApplication *)application;
+{
+    // ...
 }
 - (void)applicationWillTerminate:(UIApplication *)application;
 {
@@ -35,9 +46,16 @@
 }
 
 - (void)dealloc {
+    [paranoidTimer invalidate]; [paranoidTimer release]; paranoidTimer = nil;
 	[rootViewController release];
 	[window release];
 	[super dealloc];
+}
+
+-(void)paranoid;
+{
+    [self.rootViewController.mainViewController.board persist];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 @end

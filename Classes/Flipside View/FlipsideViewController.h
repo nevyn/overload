@@ -10,7 +10,7 @@
 @class RootViewController;
 @class BoardViewController;
 
-@interface FlipsideViewController : UIViewController {
+@interface FlipsideViewController : UIViewController <UIActionSheetDelegate>{
     IBOutlet UIImageView *cogU, *cogM, *cogL;
     IBOutlet UILabel *versionLabel;
     NSTimeInterval first;

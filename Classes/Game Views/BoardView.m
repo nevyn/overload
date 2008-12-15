@@ -68,7 +68,7 @@
     for(NSUInteger y = 0; y < sizeInTiles.height; y++) {
         for (NSUInteger x = 0; x < sizeInTiles.width; x++) {
             BoardTileView *tile = [self tile:BoardPointMake(x, y)];
-            if(tile.value >= SparkleEnergy)
+            if(tile.value >= SparkleEnergy-0.01)
                 if(on == NO) {
                     tile.layer.opacity = SparkleOpacityLow;
                 } else {

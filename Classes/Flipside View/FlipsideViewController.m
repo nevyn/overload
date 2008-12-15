@@ -86,29 +86,31 @@
 }
 - (IBAction)newGame:(id)sender;
 {
-    UIAlertView *alert = 
-    [[[UIAlertView alloc] initWithTitle:@"Really start new game?"
-                               message:@"This will empty your game board."
+    UIActionSheet *sheet = 
+    [[[UIActionSheet alloc] initWithTitle:@"Really start new game?"
                               delegate:self
                      cancelButtonTitle:@"Cancel"
-                     otherButtonTitles:@"New Game", nil] autorelease]; // todo: use destructiveButtonTitle
-    [alert show];
+                     destructiveButtonTitle:@"New Game"
+                      otherButtonTitles:nil] autorelease]; // todo: use destructiveButtonTitle
+    [sheet showInView:self.view];
 }
+
+#define SHUFFLE_TITLE @"Really shuffle? Every tile will be randomized."
 - (IBAction)shuffleGame:(id)sender;
 {
-    UIAlertView *alert = 
-    [[[UIAlertView alloc] initWithTitle:@"Really shuffle?"
-                               message:@"This will undo your current game board and replace it with a random board."
+    UIActionSheet *sheet = 
+    [[[UIActionSheet alloc] initWithTitle:SHUFFLE_TITLE
                               delegate:self
                      cancelButtonTitle:@"Cancel"
-                     otherButtonTitles:@"Shuffle", nil] autorelease]; // todo: use destructiveButtonTitle
-    [alert show];
+                     destructiveButtonTitle:@"Shuffle"
+                      otherButtonTitles:nil] autorelease]; // todo: use destructiveButtonTitle
+    [sheet showInView:self.view];
 }
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex;
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex;
 {
-    if(buttonIndex == 0) return;
+    if(buttonIndex == 1) return;
 
-    if([alertView.title isEqualToString:@"Really shuffle?"]) {
+    if([actionSheet.title isEqualToString:SHUFFLE_TITLE]) {
         schedule(mainController.board, shuffle);
     } else {
         schedule(mainController.board, restart);

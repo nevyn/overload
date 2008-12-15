@@ -13,6 +13,7 @@
 @interface MobileOverloadAppDelegate : NSObject <UIApplicationDelegate> {
 	IBOutlet UIWindow *window;
 	IBOutlet RootViewController *rootViewController;
+    NSTimer *paranoidTimer; // continually persists board
 }
 
 @property (nonatomic, retain) UIWindow *window;
