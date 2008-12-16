@@ -7,12 +7,8 @@
 //
 
 #import "OLSoundPlayer.h"
-
-typedef enum {
-    kExplosion, kCharge25, kCharge50, kCharge75, kCharge100, kWin, kSoundNamesMax
-}soundNames;
-UInt32 sounds[kSoundNamesMax];
-
+#import <AVFoundation/AVFoundation.h>
+#import "AVAudioPlayerQueue.h"
 
 @implementation OLSoundPlayer
 -(id)init;
@@ -21,42 +17,25 @@ UInt32 sounds[kSoundNamesMax];
     
     self.sound = [[NSUserDefaults standardUserDefaults] boolForKey:@"sound"];
     
-    SoundEngine_Initialize(0);
-#define __wavPath(name) [[[NSBundle mainBundle] pathForResource:name ofType:@"wav"] UTF8String]
-    SoundEngine_LoadEffect(__wavPath(@"explosion"), &(sounds[kExplosion]));
-    SoundEngine_LoadEffect(__wavPath(@"charge25"), &(sounds[kCharge25]));
-    SoundEngine_LoadEffect(__wavPath(@"charge50"), &(sounds[kCharge50]));
-    SoundEngine_LoadEffect(__wavPath(@"charge75"), &(sounds[kCharge75]));
-    SoundEngine_LoadEffect(__wavPath(@"charge100"), &(sounds[kCharge100]));
-    SoundEngine_LoadEffect(__wavPath(@"win"), &(sounds[kWin]));
+    avObjects = [[NSMutableDictionary alloc] init];
     
+#define loadSound(soundName) \
+    [avObjects setObject:[AVAudioPlayerQueue playerQueueWithPrototypePlayer:[[[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:soundName ofType:@"wav"]] error:nil] autorelease] maxConcurrentSounds:4] forKey:soundName]; \
     
-#if TARGET_IPHONE_SIMULATOR
-#undef __wavPath
-#define __wavPath(name) ((CFURLRef)[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:name ofType:@"wav"]])
-    AudioServicesCreateSystemSoundID(__wavPath(@"explosion"), &explosion);
-    AudioServicesCreateSystemSoundID(__wavPath(@"charge25"), &charge25);
-    AudioServicesCreateSystemSoundID(__wavPath(@"charge50"), &charge50);
-    AudioServicesCreateSystemSoundID(__wavPath(@"charge75"), &charge75);
-    AudioServicesCreateSystemSoundID(__wavPath(@"charge100"), &charge100);
-    AudioServicesCreateSystemSoundID(__wavPath(@"win"), &win);
-#endif
-
+    loadSound(@"explosion");
+    loadSound(@"charge25");
+    loadSound(@"charge50");
+    loadSound(@"charge75");
+    loadSound(@"charge100");
+    loadSound(@"win");
+    
     return self;
 }
 
 -(void)dealloc;
 {
-#if TARGET_IPHONE_SIMULATOR
-    AudioServicesDisposeSystemSoundID(explosion);
-    AudioServicesDisposeSystemSoundID(charge25);
-    AudioServicesDisposeSystemSoundID(charge50);
-    AudioServicesDisposeSystemSoundID(charge75);
-    AudioServicesDisposeSystemSoundID(charge100);
-    AudioServicesDisposeSystemSoundID(win);
-#endif
+    [avObjects release];
     
-    SoundEngine_Teardown();
     [super dealloc];
 }
 
@@ -65,43 +44,28 @@ UInt32 sounds[kSoundNamesMax];
 {
     if( ! sound) return;
     
-#if TARGET_IPHONE_SIMULATOR
+
+    
     if(chargeLevel < 0.26)
-        AudioServicesPlaySystemSound(charge25);
+        [[avObjects objectForKey:@"charge25"] play];
     else if(chargeLevel < 0.51)
-        AudioServicesPlaySystemSound(charge50);
+        [[avObjects objectForKey:@"charge50"] play];
     else if(chargeLevel < 0.76)
-        AudioServicesPlaySystemSound(charge75);
+        [[avObjects objectForKey:@"charge75"] play];
     else
-        AudioServicesPlaySystemSound(charge100);
-#else
-    if(chargeLevel < 0.26)
-        SoundEngine_StartEffect(sounds[kCharge25]);
-    else if(chargeLevel < 0.51)
-        SoundEngine_StartEffect(sounds[kCharge50]);
-    else if(chargeLevel < 0.76)
-        SoundEngine_StartEffect(sounds[kCharge75]);
-    else
-        SoundEngine_StartEffect(sounds[kCharge100]);
-#endif
+        [[avObjects objectForKey:@"charge100"] play];
 }
 -(void)playExplosionSound;
 {
     if( ! sound) return;
-#if TARGET_IPHONE_SIMULATOR
-    AudioServicesPlaySystemSound(explosion);
-#else
-    SoundEngine_StartEffect(sounds[kExplosion]);
-#endif
+    [[avObjects objectForKey:@"explosion"] play];
+
 }
 -(void)playWinSound;
 {
     if( ! sound) return;
-#if TARGET_IPHONE_SIMULATOR
-    AudioServicesPlaySystemSound(win);
-#else
-    SoundEngine_StartEffect(sounds[kWin]);
-#endif
+    [[avObjects objectForKey:@"win"] play];
+
 }
 
 @synthesize sound;

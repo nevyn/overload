@@ -24,6 +24,7 @@
             [NSNumber numberWithBool:YES], @"tinyGame",
             [NSNumber numberWithBool:NO], @"chaosGame",
             [NSNumber numberWithBool:YES], @"sound",
+            [NSNumber numberWithInt:PlayerP1], @"currentPlayer",
             nil, nil
         ]
      ];

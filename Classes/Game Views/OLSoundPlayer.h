@@ -7,15 +7,10 @@
 //
 
 #import "SoundEngine.h"
-#import <AudioToolbox/AudioToolbox.h>
-
 
 @interface OLSoundPlayer : NSObject {
     BOOL sound;
-#if TARGET_IPHONE_SIMULATOR
-    SystemSoundID explosion, charge25, charge50, charge75, charge100, win;
-#endif    
-    
+    NSMutableDictionary *avObjects;
 }
 -(void)playChargeSound:(CGFloat)chargeLevel;
 -(void)playExplosionSound;

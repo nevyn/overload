@@ -293,7 +293,6 @@
     }
     
     self.currentPlayer = [[NSUserDefaults standardUserDefaults] integerForKey:@"currentPlayer"];
-    if(self.currentPlayer == PlayerNone) self.currentPlayer = PlayerP1;
 }
 
 #pragma mark Properties

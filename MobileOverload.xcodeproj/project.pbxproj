@@ -17,6 +17,7 @@
 		0517F40A0E59EAF40075F5A9 /* Text vertcal.png in Resources */ = {isa = PBXBuildFile; fileRef = 0517F4090E59EAF40075F5A9 /* Text vertcal.png */; };
 		0517F4650E59EE700075F5A9 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 0517F4640E59EE700075F5A9 /* background.png */; };
 		0530E0320E5B59E200C73DC6 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0530E0310E5B59E200C73DC6 /* icon.png */; };
+		053185710EF793EE0054A00D /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 053185700EF793EE0054A00D /* AVFoundation.framework */; };
 		053494260E60B1B4003A834C /* win.wav in Resources */ = {isa = PBXBuildFile; fileRef = 053494250E60B1B4003A834C /* win.wav */; };
 		053494470E60BBF1003A834C /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 053494460E60BBF1003A834C /* Default.png */; };
 		0541F5370E5EFFEE000D6368 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0541F5360E5EFFEE000D6368 /* AudioToolbox.framework */; };
@@ -33,6 +34,7 @@
 		058994710E5F162A002BF0FE /* charge100.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0589946D0E5F162A002BF0FE /* charge100.wav */; };
 		058994720E5F162A002BF0FE /* charge50.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0589946E0E5F162A002BF0FE /* charge50.wav */; };
 		058994730E5F162A002BF0FE /* charge25.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0589946F0E5F162A002BF0FE /* charge25.wav */; };
+		058FEB870EF841DF006FDFDA /* AVAudioPlayerQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 058FEB860EF841DF006FDFDA /* AVAudioPlayerQueue.m */; };
 		05CF88440E5F59BF00E2D8B4 /* tile.png in Resources */ = {isa = PBXBuildFile; fileRef = 05CF88430E5F59BF00E2D8B4 /* tile.png */; };
 		05CF88E80E5F78DF00E2D8B4 /* lose-p1.png in Resources */ = {isa = PBXBuildFile; fileRef = 05CF88E40E5F78DF00E2D8B4 /* lose-p1.png */; };
 		05CF88E90E5F78DF00E2D8B4 /* win-p1.png in Resources */ = {isa = PBXBuildFile; fileRef = 05CF88E50E5F78DF00E2D8B4 /* win-p1.png */; };
@@ -75,6 +77,7 @@
 		0517F4640E59EE700075F5A9 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 		0530DFFD0E5B474700C73DC6 /* todo.taskpaper */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = todo.taskpaper; sourceTree = "<group>"; };
 		0530E0310E5B59E200C73DC6 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		053185700EF793EE0054A00D /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		053494250E60B1B4003A834C /* win.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = win.wav; sourceTree = "<group>"; };
 		053494460E60BBF1003A834C /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		0541F5360E5EFFEE000D6368 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = /System/Library/Frameworks/AudioToolbox.framework; sourceTree = "<absolute>"; };
@@ -94,6 +97,8 @@
 		0589946D0E5F162A002BF0FE /* charge100.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = charge100.wav; sourceTree = "<group>"; };
 		0589946E0E5F162A002BF0FE /* charge50.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = charge50.wav; sourceTree = "<group>"; };
 		0589946F0E5F162A002BF0FE /* charge25.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = charge25.wav; sourceTree = "<group>"; };
+		058FEB850EF841DF006FDFDA /* AVAudioPlayerQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVAudioPlayerQueue.h; sourceTree = "<group>"; };
+		058FEB860EF841DF006FDFDA /* AVAudioPlayerQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVAudioPlayerQueue.m; sourceTree = "<group>"; };
 		05CF88430E5F59BF00E2D8B4 /* tile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tile.png; sourceTree = "<group>"; };
 		05CF88E40E5F78DF00E2D8B4 /* lose-p1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lose-p1.png"; sourceTree = "<group>"; };
 		05CF88E50E5F78DF00E2D8B4 /* win-p1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "win-p1.png"; sourceTree = "<group>"; };
@@ -148,6 +153,7 @@
 				054F78640E97D82C00E17413 /* libsqlite3.0.dylib in Frameworks */,
 				054F78660E97D83400E17413 /* SystemConfiguration.framework in Frameworks */,
 				054F78680E97D83900E17413 /* CoreLocation.framework in Frameworks */,
+				053185710EF793EE0054A00D /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -265,6 +271,8 @@
 				05CF896F0E6033FB00E2D8B4 /* SoundEngine.h */,
 				32CA4F630368D1EE00C91783 /* MobileOverload_Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
+				058FEB850EF841DF006FDFDA /* AVAudioPlayerQueue.h */,
+				058FEB860EF841DF006FDFDA /* AVAudioPlayerQueue.m */,
 			);
 			path = "Other Sources";
 			sourceTree = "<group>";
@@ -299,6 +307,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				053185700EF793EE0054A00D /* AVFoundation.framework */,
 				054F78630E97D82C00E17413 /* libsqlite3.0.dylib */,
 				054F78650E97D83400E17413 /* SystemConfiguration.framework */,
 				054F78670E97D83900E17413 /* CoreLocation.framework */,
@@ -411,6 +420,7 @@
 				0511F6180E743977003FFA22 /* OLSoundPlayer.m in Sources */,
 				0511F6AA0E744774003FFA22 /* AI.m in Sources */,
 				0589082F0E749ECB0014135B /* AIMinMax.m in Sources */,
+				058FEB870EF841DF006FDFDA /* AVAudioPlayerQueue.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -427,7 +437,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E6E6D5F3-0DCB-4A31-A93F-F3411184ACCA";
-				SDKROOT = iphoneos2.0;
+				SDKROOT = iphoneos2.2;
 			};
 			name = "App Store Distribution";
 		};
@@ -481,7 +491,7 @@
 					"\"$(SRCROOT)/Classes/Other Sources\"",
 				);
 				PRODUCT_NAME = MobileOverload;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F5663BFD-9EC9-4E2F-9504-3D3A14D8A187";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "D75FB176-B481-4E3D-AC47-C2691F517131";
 				SDKROOT = iphoneos2.2;
 			};
 			name = "Beta Testing";
@@ -536,7 +546,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
-				SDKROOT = iphoneos2.0;
+				SDKROOT = iphoneos2.2;
 			};
 			name = Debug;
 		};
@@ -549,7 +559,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
-				SDKROOT = iphoneos2.0;
+				SDKROOT = iphoneos2.2;
 			};
 			name = Release;
 		};
