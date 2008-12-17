@@ -15,6 +15,8 @@
 
 @class AI;
 
+#define AI_VS_AI
+
 @interface BoardViewController : UIViewController <BoardDelegate, BoardViewDelegate, ScoreBarViewDelegate> {
     ScoreBarView *score1, *score2;
     BoardView *boardView;
@@ -25,6 +27,9 @@
     Board *board;
     
     AI *ai;
+#ifdef AI_VS_AI
+    AI*ai2;
+#endif
 }
 
 

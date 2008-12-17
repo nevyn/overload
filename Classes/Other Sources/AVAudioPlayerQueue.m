@@ -41,13 +41,13 @@
     AVAudioPlayer *myCopy = self.data?[[AVAudioPlayer alloc] initWithData:self.data error:nil]:
                                       [[AVAudioPlayer alloc] initWithContentsOfURL:self.url error:nil];
     
-    myCopy.volume = self.volume;
-    if(self.currentTime > 0)
-        myCopy.currentTime = self.currentTime;
-    myCopy.numberOfLoops = self.numberOfLoops;
-    myCopy.meteringEnabled = self.meteringEnabled;
+    //myCopy.volume = self.volume;
+    //if(self.currentTime > 0)
+    //    myCopy.currentTime = self.currentTime;
+    //myCopy.numberOfLoops = self.numberOfLoops;
+    //myCopy.meteringEnabled = self.meteringEnabled;
     
-    myCopy.delegate = self.delegate;
+    //myCopy.delegate = self.delegate;
     
     return myCopy;
 }
@@ -103,7 +103,9 @@
     
     AVAudioPlayer *freePlayer = [freePlayers pop];
     [busyPlayers push:freePlayer];
-    return [freePlayer play];
+    BOOL playSuccess = [freePlayer play];
+    NSLog(@"playing for %@ is %@", freePlayer.url.path.lastPathComponent, playSuccess?@"success":@"failure");
+    return playSuccess;
 }
 -(void)stop;
 {
@@ -113,12 +115,31 @@
 }
 @synthesize prototypePlayer;
 
+-(NSString*)description;
+{
+    return [[NSDictionary dictionaryWithObjectsAndKeys:prototypePlayer.url.path.lastPathComponent, @"filename", busyPlayers, @"busyPlayers", freePlayers, @"freePlayers", nil] description];
+}
+
 #pragma mark AVAudioPlayer delegates
 - (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag;
 {
+    NSLog(@"didFinishPlaying for %@", player.url.path.lastPathComponent);
     [[player retain] autorelease];
     [busyPlayers removeObject:player];
     [freePlayers push:player];
+}
+- (void)audioPlayerDecodeErrorDidOccur:(AVAudioPlayer *)player error:(NSError *)error;
+{
+    NSLog(@"%@ had decode error: %@", player.url.path.lastPathComponent, error);
+    player.currentTime = 0.0;
+    [[player retain] autorelease];
+    [busyPlayers removeObject:player];
+    [freePlayers push:player];    
+}
+- (void)audioPlayerBeginInterruption:(AVAudioPlayer *)player;
+{
+    NSLog(@"%@ had interruption", player.url.path.lastPathComponent);
+
 }
 
 @end

@@ -176,6 +176,11 @@
     
     if(currentPlayer == PlayerP2)
         [ai performMove];
+#ifdef AI_VS_AI
+    else
+        if(!board.isBoardEmpty)
+            [ai2 performSelector:@selector(performMove) withObject:nil afterDelay:0.1];
+#endif
 }
 -(void)board:(Board*)board changedSize:(BoardSize)newSize;
 {
@@ -202,6 +207,9 @@
 -(void)startAI;
 {
     ai = [[AI alloc] initPlaying:PlayerP2 onBoard:board delegate:self];
+#ifdef AI_VS_AI
+    ai2 = [[AI alloc] initPlaying:PlayerP1 onBoard:board delegate:self];
+#endif
     score2.status = @"    iPhone is waiting on you...";
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"currentGame.hasAI"];
 }
