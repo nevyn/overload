@@ -13,14 +13,20 @@
 @interface BoardTileView : UIView {
     BoardPoint boardPosition;
     BoardView *board;
+    UIImageView *tileImageView;
     
     Player owner;
     CGFloat value;
+    
+    BOOL plain;
 }
 @property Player owner;
 @property CGFloat value;
 @property BoardPoint boardPosition;
 @property (assign) BoardView *board;
+
+- (id)initWithFrame:(CGRect)frame;
+- (id)initWithFrame:(CGRect)frame plain:(BOOL)isPlain;
 
 -(void)explode;
 @end

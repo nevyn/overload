@@ -36,18 +36,21 @@
 
 - (id)copyWithZone:(NSZone *)zone
 {
-    if(zone != nil) return nil;
+    if(zone != nil) {
+        NSLog(@"AVAudioPlayer can't be copied with non-nil zone");
+        return nil;
+    }
     
     AVAudioPlayer *myCopy = self.data?[[AVAudioPlayer alloc] initWithData:self.data error:nil]:
                                       [[AVAudioPlayer alloc] initWithContentsOfURL:self.url error:nil];
     
-    //myCopy.volume = self.volume;
-    //if(self.currentTime > 0)
-    //    myCopy.currentTime = self.currentTime;
-    //myCopy.numberOfLoops = self.numberOfLoops;
-    //myCopy.meteringEnabled = self.meteringEnabled;
+    myCopy.volume = self.volume;
+    if(self.currentTime > 0)
+        myCopy.currentTime = self.currentTime;
+    myCopy.numberOfLoops = self.numberOfLoops;
+    myCopy.meteringEnabled = self.meteringEnabled;
     
-    //myCopy.delegate = self.delegate;
+    myCopy.delegate = self.delegate;
     
     return myCopy;
 }
@@ -96,7 +99,6 @@
     [super dealloc];
 }
 
-
 -(BOOL)play;
 {
     if([freePlayers count] == 0) return NO;
@@ -104,7 +106,11 @@
     AVAudioPlayer *freePlayer = [freePlayers pop];
     [busyPlayers push:freePlayer];
     BOOL playSuccess = [freePlayer play];
-    NSLog(@"playing for %@ is %@", freePlayer.url.path.lastPathComponent, playSuccess?@"success":@"failure");
+    //NSLog(@"playing for %@ is %@", freePlayer.url.path.lastPathComponent, playSuccess?@"success":@"failure");
+    if(!playSuccess) {
+        [busyPlayers removeObject:freePlayer];
+        [freePlayers addObject:freePlayer];
+    }
     return playSuccess;
 }
 -(void)stop;
@@ -123,7 +129,7 @@
 #pragma mark AVAudioPlayer delegates
 - (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag;
 {
-    NSLog(@"didFinishPlaying for %@", player.url.path.lastPathComponent);
+    //NSLog(@"didFinishPlaying for %@", player.url.path.lastPathComponent);
     [[player retain] autorelease];
     [busyPlayers removeObject:player];
     [freePlayers push:player];

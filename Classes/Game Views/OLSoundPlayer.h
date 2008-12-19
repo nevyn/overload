@@ -6,7 +6,6 @@
 //  Copyright 2008 Third Cog Software. All rights reserved.
 //
 
-#import "SoundEngine.h"
 
 @interface OLSoundPlayer : NSObject {
     BOOL sound;

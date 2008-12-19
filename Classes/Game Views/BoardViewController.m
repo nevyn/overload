@@ -36,7 +36,12 @@
     soundPlayer = [[OLSoundPlayer alloc] init];
     
     board = [[Board alloc] init];
+#ifndef AI_VS_AI
     [board load];
+#else
+    board.tinyGame = YES;
+    board.chaosGame = YES;
+#endif
     [self boardIsStartingAnew:board];
     
 	return self;

@@ -15,20 +15,50 @@
 -(void)updateColor;
 @end
 
+static NSArray *tileImages;
+
 @implementation BoardTileView
 
-- (id)initWithFrame:(CGRect)frame {
-	if (![super initWithFrame:frame])
++(void)initialize;
+{
+    tileImages = [[NSArray alloc] initWithObjects:
+        [UIImage imageNamed:@"tile-0.png"],
+        [UIImage imageNamed:@"tile-25.png"],
+        [UIImage imageNamed:@"tile-50.png"],
+        [UIImage imageNamed:@"tile-75.png"],
+        nil];
+}
+
+- (id)initWithFrame:(CGRect)frame;
+{
+    return [self initWithFrame:frame plain:NO];
+}
+- (id)initWithFrame:(CGRect)frame plain:(BOOL)plain_;
+{
+    if (![super initWithFrame:frame])
         return nil;
     
-    [self updateColor];
     
-    UIImageView *image = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tile.png"]] autorelease];
-    frame.origin = CGPointMake(0, 0);
-    image.frame = frame;
-    image.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
-    [self addSubview:image];
+    plain = plain_;
+    BOOL fancy = !plain;
+    
+    if(fancy) {
+        frame.origin = CGPointMake(0, 0);
+        tileImageView = [[UIImageView alloc] initWithImage:[tileImages objectAtIndex:0]];
+        tileImageView.frame = frame;
+        tileImageView.frame = frame;
+        tileImageView.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
+        [self addSubview:tileImageView];
+        
+        UIImageView *tileGloss = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tile.png"]] autorelease];
+
+        tileGloss.frame = frame;
+        tileGloss.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
+        [self addSubview:tileGloss];
+    }
     self.opaque = self.clearsContextBeforeDrawing = YES;
+    
+    [self updateColor];
     
     return self;
 }
@@ -44,12 +74,11 @@
     [UIView setAnimationBeginsFromCurrentState:YES];
     CGFloat hue = Hues[self.owner];
     CGFloat saturation = Saturations[self.owner];
-    CGFloat brightness = 1.0-self.value;
+    CGFloat brightness = 1.0-(self.value/1.5);
     
-    if(self.owner == PlayerNone)
-        saturation = Saturations[self.owner];
     
-
+    NSUInteger tileImageIdx = MIN(floor(self.value*4.), 3);
+    tileImageView.image = [tileImages objectAtIndex:tileImageIdx];
     
     if(self.value < SparkleEnergy) {
         self.layer.opacity = 1.0;
@@ -60,6 +89,7 @@
 }
 
 - (void)dealloc {
+    [tileImageView release];
 	[super dealloc];
 }
 
@@ -92,15 +122,13 @@ static CGRect boardPointToFrameRect(CGSize ts, BoardPoint bp)
         
     CGSize ts = board.tileSize;
     NSArray *animationTiles = [NSArray arrayWithObjects:
-                               [[[BoardTileView alloc] initWithFrame:self.frame] autorelease],
-                               [[[BoardTileView alloc] initWithFrame:self.frame] autorelease], 
-                               [[[BoardTileView alloc] initWithFrame:self.frame] autorelease], 
-                               [[[BoardTileView alloc] initWithFrame:self.frame] autorelease],
+                               [[[BoardTileView alloc] initWithFrame:self.frame plain:YES] autorelease],
+                               [[[BoardTileView alloc] initWithFrame:self.frame plain:YES] autorelease], 
+                               [[[BoardTileView alloc] initWithFrame:self.frame plain:YES] autorelease], 
+                               [[[BoardTileView alloc] initWithFrame:self.frame plain:YES] autorelease],
                               nil];
     for (NSUInteger i = 0; i < 4; i++) {
         BoardTileView *aniTile = [animationTiles objectAtIndex:i];
-
-        [[[aniTile subviews] objectAtIndex:0] removeFromSuperview];
         
         [UIView beginAnimations:@"Explosion1" context:nil];
         [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
