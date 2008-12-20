@@ -15,6 +15,7 @@
 {
 
     // 1. Look for any fully charged tiles next to an opponent's fully charged tile
+    NSMutableArray *chainReactionStarters = [NSMutableArray array];
     for (Tile *tile in [self randomBoardTiles]) {
 
         if(tile.owner != self.player)
@@ -25,10 +26,32 @@
         
         for (Tile *sibling in tile.surroundingTiles) {
             if(sibling.owner != self.player && sibling.value >= SparkleEnergy-0.05)
-                //if(rand()%4 < 3) // one in four that he ignores it
-                return tile.boardPosition;
+                [chainReactionStarters addObject:tile];
         }
         
+    }
+    // 1.1 Look through the candidates from above and see which one would be most effective
+    if([chainReactionStarters count] == 1)
+        return [[chainReactionStarters objectAtIndex:0] boardPosition];
+    if([chainReactionStarters count] > 1) {
+        NSUInteger bestIdx = 0, currentIdx = 0;
+        CGFloat bestScore = -99999;
+        NSLog(@"Comparing chain reactions:");
+        for (Tile *tryThis in chainReactionStarters) {
+            Board *copy = [[self.board copy] autorelease];
+            [copy chargeTileForCurrentPlayer:tryThis.boardPosition];
+            
+            CGFloat currentScore = copy.scores.scores[self.player];
+            NSLog(@"%d @ %d%d: %f", currentIdx, tryThis.boardPosition.x, tryThis.boardPosition.y, currentScore);
+            if(currentScore > bestScore) {
+                bestScore = currentScore;
+                bestIdx = currentIdx;
+            }
+            currentIdx += 1;
+        }
+        NSLog(@"Choosing %d", bestIdx);
+        
+        return [[chainReactionStarters objectAtIndex:bestIdx] boardPosition];
     }
     
     // 2. Find my tile such as 0 < tile.value < 0.75 and charge it

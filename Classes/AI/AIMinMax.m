@@ -14,7 +14,7 @@ static NSInteger MinMaxDepth = 2;
 -(id)initWithState:(Board*)state inAI:(AIMinMax*)ai_;
 {
     if(![super init]) return nil;
-    board = state;
+    board = [state retain];
     ai = ai_;
     return self;
 }
@@ -53,6 +53,7 @@ static NSInteger MinMaxDepth = 2;
             [children[x][y] release];
         }
     }
+    [board release];
     [super dealloc];
 }
 
@@ -73,7 +74,7 @@ static NSInteger MinMaxDepth = 2;
             if( ! [board player:board.currentPlayer canChargeTile:p])
                 children[x][y] = nil;
             else {
-                Board *copy = [board copy];
+                Board *copy = [[board copy] autorelease];
                 [copy chargeTileForCurrentPlayer:p];
                 AIMMTreeNode *newNode = [[AIMMTreeNode alloc] initWithState:copy inAI:ai];
                 newNode->representsMoveAt = p;
@@ -125,7 +126,7 @@ static NSInteger MinMaxDepth = 2;
 {
     if(![super initPlaying:player_ onBoard:board_ delegate:delegate_]) return nil;
     
-    self.root = [[[AIMMTreeNode alloc] initWithState:[board_ copy] inAI:self] autorelease];
+    self.root = [[[AIMMTreeNode alloc] initWithState:[[board_ copy] autorelease] inAI:self] autorelease];
     
     
     return self;
