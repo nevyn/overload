@@ -37,11 +37,11 @@
         if(tile.owner != self.player)
             continue;
         
-        if(tile.value < SparkleEnergy) {
+        if(tile.value < SparkleEnergy || rand()%4==0) {
             // Here's a good tile, just make sure we're not walking into a trap first
             BOOL trap = NO;
             for (Tile *sibling in tile.surroundingTiles) {
-                if(sibling.owner != self.player && (sibling.value >= SparkleEnergy || rand()%3==0)) {
+                if(sibling.owner != self.player && sibling.value >= SparkleEnergy-0.05) {
                     trap = YES;
                     break;
                 }
