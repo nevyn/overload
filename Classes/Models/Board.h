@@ -79,6 +79,8 @@
 -(void)charge:(CGFloat)amount forPlayer:(Player)newOwner;
 -(void)explode;
 
+-(NSArray*)surroundingTiles;
+
 @property (assign) Board* board;
 @property Player owner;
 @property CGFloat value;

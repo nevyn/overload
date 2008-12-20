@@ -10,7 +10,7 @@
 #import "BoardView.h"
 #import <QuartzCore/QuartzCore.h>
 #import "CInvocationGrabber.h"
-#import "AI.h"
+#import "AI2.h"
 #import "AIMinMax.h"
 #import "Beacon.h"
 @implementation BoardViewController
@@ -211,9 +211,9 @@
 #pragma mark AI
 -(void)startAI;
 {
-    ai = [[AI alloc] initPlaying:PlayerP2 onBoard:board delegate:self];
+    ai = [[AI2 alloc] initPlaying:PlayerP2 onBoard:board delegate:self];
 #ifdef AI_VS_AI
-    ai2 = [[AI alloc] initPlaying:PlayerP1 onBoard:board delegate:self];
+    ai2 = [[AI2 alloc] initPlaying:PlayerP1 onBoard:board delegate:self];
 #endif
     score2.status = @"    iPhone is waiting on you...";
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"currentGame.hasAI"];

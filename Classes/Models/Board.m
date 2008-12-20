@@ -370,38 +370,39 @@
 -(void)explode;
 {
     self.value = 0.0;
-
-    BoardPoint urdl[4] =   {BoardPointMake(self.boardPosition.x, self.boardPosition.y-1),
-                            BoardPointMake(self.boardPosition.x+1, self.boardPosition.y),
-                            BoardPointMake(self.boardPosition.x, self.boardPosition.y+1),
-                            BoardPointMake(self.boardPosition.x-1, self.boardPosition.y)};
-
-    Tile *targets[] = {[self.board tile:urdl[0]],
-        [self.board tile:urdl[1]],
-        [self.board tile:urdl[2]],
-    [self.board tile:urdl[3]]};
     
 #define doitnow(target) [target _explosionCharge:(NSTimer*)self.owner]
 #define doitlater(target_) [NSTimer scheduledTimerWithTimeInterval:ExplosionDelay*1 target:target_ selector:@selector(_explosionCharge:) userInfo:self repeats:NO];
     
     if(board.delegate) {
-        doitlater(targets[0]);
-        if(urdl[1].x < board.sizeInTiles.width)
-            doitlater(targets[1]);
-        if(urdl[2].y < board.sizeInTiles.height)
-            doitlater(targets[2]);
-        doitlater(targets[3]);
+        for (Tile *sibling in self.surroundingTiles)
+            doitlater(sibling);
     } else {
-        doitnow(targets[0]);
-        if(urdl[1].x < board.sizeInTiles.width)
-            doitnow(targets[1]);
-        if(urdl[2].y < board.sizeInTiles.height)
-            doitnow(targets[2]);
-        doitnow(targets[3]);
+        for (Tile *sibling in self.surroundingTiles)
+            doitnow(sibling);
     }
     
     
     [self.board.delegate tileExploded:self];
+}
+
+-(NSArray*)surroundingTiles;
+{
+    BoardPoint urdl[4] =   {BoardPointMake(self.boardPosition.x, self.boardPosition.y-1),
+                            BoardPointMake(self.boardPosition.x+1, self.boardPosition.y),
+                            BoardPointMake(self.boardPosition.x, self.boardPosition.y+1),
+                            BoardPointMake(self.boardPosition.x-1, self.boardPosition.y)};
+    NSMutableArray *surroundingTiles = [NSMutableArray array];
+    if(urdl[0].y >= 0)
+        [surroundingTiles addObject:[self.board tile:urdl[0]]];
+    if(urdl[1].x < self.board.sizeInTiles.width)
+        [surroundingTiles addObject:[self.board tile:urdl[1]]];
+    if(urdl[2].y < self.board.sizeInTiles.height)
+        [surroundingTiles addObject:[self.board tile:urdl[2]]];
+    if(urdl[3].x >= 0)
+        [surroundingTiles addObject:[self.board tile:urdl[3]]];
+    
+    return surroundingTiles;
 }
 
 

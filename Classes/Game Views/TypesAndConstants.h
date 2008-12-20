@@ -21,16 +21,16 @@ typedef enum {
 } Player;
 
 typedef struct {
-    NSUInteger x;
-    NSUInteger y;
+    NSInteger x;
+    NSInteger y;
 } BoardPoint;
-CG_INLINE BoardPoint BoardPointMake(NSUInteger x, NSUInteger y) { BoardPoint p; p.x = x, p.y = y; return p; }
+CG_INLINE BoardPoint BoardPointMake(NSInteger x, NSInteger y) { BoardPoint p; p.x = x, p.y = y; return p; }
 
 typedef struct {
-    NSUInteger width;
-    NSUInteger height;
+    NSInteger width;
+    NSInteger height;
 } BoardSize;
-CG_INLINE BoardSize BoardSizeMake(NSUInteger x, NSUInteger y) { BoardSize p; p.width = x, p.height = y; return p; }
+CG_INLINE BoardSize BoardSizeMake(NSInteger x, NSInteger y) { BoardSize p; p.width = x, p.height = y; return p; }
 
 
 

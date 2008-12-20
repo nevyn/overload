@@ -28,4 +28,6 @@
 @property (assign) Board *board;
 @property (assign) id<BoardViewDelegate> delegate;
 @property (assign) Player player;
+
+-(NSArray*)randomBoardTiles;
 @end

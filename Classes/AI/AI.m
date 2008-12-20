@@ -20,6 +20,8 @@
     self.board = board_;
     self.delegate = delegate_;
     
+    srand(time(NULL));
+    
     return self;
 }
 
@@ -48,12 +50,9 @@
 {
     Tile *chosenTile = nil;
     
-    for(NSUInteger x = 0; x < board.sizeInTiles.width; x++) {
-        for(NSUInteger y = 0; y < board.sizeInTiles.height; y++) {
-            Tile *tile = [board tile:BoardPointMake(x, y)];
-            if((tile.owner == self.player || tile.owner == PlayerNone) && tile.value >= chosenTile.value && (!chosenTile || rand()%2))
-                chosenTile = tile;
-        }
+    for (Tile *tile in [self randomBoardTiles]) {
+        if((tile.owner == self.player || tile.owner == PlayerNone) && tile.value >= chosenTile.value && (!chosenTile || rand()%2))
+            chosenTile = tile;
     }
     
     return chosenTile.boardPosition;
@@ -62,4 +61,27 @@
 @synthesize board;
 @synthesize delegate;
 @synthesize player;
+
+
+NSInteger randomSort(id obj1, id obj2, void *ctx) {
+    return rand()%3-1;
+}
+
+// In order to decrease predictability, we need to be able to iterate the
+// board in random order.
+-(NSArray*)randomBoardTiles;
+{
+    NSMutableArray *tiles = [NSMutableArray array];
+    for(NSUInteger x = 0; x < board.sizeInTiles.width; x++) {
+        for(NSUInteger y = 0; y < board.sizeInTiles.height; y++) {
+            Tile *tile = [board tile:BoardPointMake(x, y)];
+            [tiles addObject:tile];
+        }
+    }
+    [tiles sortUsingFunction:randomSort context:NULL];
+    
+    return tiles;
+}
+
+
 @end
