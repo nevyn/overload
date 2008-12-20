@@ -36,20 +36,17 @@
     if([chainReactionStarters count] > 1) {
         NSUInteger bestIdx = 0, currentIdx = 0;
         CGFloat bestScore = -99999;
-        NSLog(@"Comparing chain reactions:");
         for (Tile *tryThis in chainReactionStarters) {
             Board *copy = [[self.board copy] autorelease];
             [copy chargeTileForCurrentPlayer:tryThis.boardPosition];
             
             CGFloat currentScore = copy.scores.scores[self.player];
-            NSLog(@"%d @ %d%d: %f", currentIdx, tryThis.boardPosition.x, tryThis.boardPosition.y, currentScore);
             if(currentScore > bestScore) {
                 bestScore = currentScore;
                 bestIdx = currentIdx;
             }
             currentIdx += 1;
         }
-        NSLog(@"Choosing %d", bestIdx);
         
         return [[chainReactionStarters objectAtIndex:bestIdx] boardPosition];
     }
