@@ -21,6 +21,7 @@
     IBOutlet UISwitch *giganticGame;
     IBOutlet UISwitch *chaosGame;
     IBOutlet UISwitch *soundSwitch;
+    IBOutlet UISwitch *xmas;
     
     NSMutableArray *stuffToDoWhenFlipped;
 }
@@ -34,5 +35,7 @@
 - (IBAction)toggleGameBoardSize:(UISwitch*)sender;
 - (IBAction)toggleChaosGame:(UISwitch*)sender;
 - (IBAction)toggleSound:(UISwitch*)sender;
+
+- (IBAction)toggleXmas:(UISwitch*)sender;
 
 @end

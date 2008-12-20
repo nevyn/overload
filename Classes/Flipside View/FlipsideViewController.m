@@ -48,6 +48,8 @@
     giganticGame.on = ! mainController.board.tinyGame;
     soundSwitch.on = mainController.soundPlayer.sound;
 
+    xmas.on = [[NSUserDefaults standardUserDefaults] boolForKey:@"xmas tiles"];
+
 }
 
 -(void)rotateWheels:(NSTimer*)caller;
@@ -145,5 +147,11 @@
     mainController.soundPlayer.sound = sender.on;
 }
 
+
+- (IBAction)toggleXmas:(UISwitch*)sender;
+{
+    [[NSUserDefaults standardUserDefaults] setBool:sender.on forKey:@"xmas tiles"];
+    [[[[UIAlertView alloc] initWithTitle:@"need restart" message:@"restart the app for this change to take effect yo." delegate:nil cancelButtonTitle:@"k" otherButtonTitles:nil] autorelease] show];
+}
 
 @end
