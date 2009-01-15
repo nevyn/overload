@@ -9,6 +9,7 @@
 #import "OLSoundPlayer.h"
 #import <AVFoundation/AVFoundation.h>
 #import "AVAudioPlayerQueue.h"
+#import <AudioToolbox/AudioToolbox.h>
 
 @implementation OLSoundPlayer
 -(id)init;
@@ -18,6 +19,20 @@
     self.sound = [[NSUserDefaults standardUserDefaults] boolForKey:@"sound"];
     
     avObjects = [[NSMutableDictionary alloc] init];
+    
+    static BOOL sessionInitialized = NO;
+    if(!sessionInitialized) {
+        OSStatus sessionInitializedSuccessfully = AudioSessionInitialize(NULL, NULL, NULL, NULL);
+        sessionInitialized = sessionInitializedSuccessfully == noErr;
+    }
+    
+    UInt32 sessionCategory = kAudioSessionCategory_UserInterfaceSoundEffects;
+    AudioSessionSetProperty (
+                             kAudioSessionProperty_AudioCategory,
+                             sizeof (sessionCategory),
+                             &sessionCategory
+                             );
+    
     
 #define loadSound(soundName) \
     [avObjects setObject:[AVAudioPlayerQueue playerQueueWithPrototypePlayer:[[[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:soundName ofType:@"wav"]] error:nil] autorelease] maxConcurrentSounds:4] forKey:soundName]; \
@@ -74,6 +89,5 @@
     sound = sound_;
     [[NSUserDefaults standardUserDefaults] setBool:self.sound forKey:@"sound"];
 }
-
 
 @end

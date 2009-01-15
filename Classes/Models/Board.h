@@ -61,11 +61,11 @@
 
 #pragma mark Properties
 /// Setting the delegate will also trigger all delegate methods to give the delegate a complete view of the board state.
-@property (assign) id<BoardDelegate> delegate;
-@property Player currentPlayer;
-@property BOOL chaosGame;
-@property BOOL tinyGame;
-@property (readonly) BoardSize sizeInTiles;
+@property (assign, nonatomic) id<BoardDelegate> delegate;
+@property (nonatomic) Player currentPlayer;
+@property (nonatomic) BOOL chaosGame;
+@property (nonatomic) BOOL tinyGame;
+@property (readonly, nonatomic) BoardSize sizeInTiles;
 @end
 
 @interface Tile : NSObject
@@ -81,9 +81,9 @@
 
 -(NSArray*)surroundingTiles;
 
-@property (assign) Board* board;
-@property Player owner;
-@property CGFloat value;
-@property BoardPoint boardPosition;
+@property (assign, nonatomic) Board* board;
+@property (nonatomic) Player owner;
+@property (nonatomic) CGFloat value;
+@property (nonatomic) BoardPoint boardPosition;
 
 @end

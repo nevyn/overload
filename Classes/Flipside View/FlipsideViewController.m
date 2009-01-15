@@ -7,11 +7,11 @@
 //
 
 #import "FlipsideViewController.h"
-#import "FlipsideView.h"
 #import "RootViewController.h"
 #import "BoardViewController.h"
 #import "CInvocationGrabber.h"
 #import "Beacon.h"
+#import <MediaPlayer/MediaPlayer.h>
 
 #define schedule(target, stuff) {\
     id grabber = [[CInvocationGrabber invocationGrabber] prepareWithInvocationTarget:target]; \
@@ -37,7 +37,8 @@
 }
 
 - (void)viewDidLoad {
-    ((FlipsideView*)self.view).image = [UIImage imageNamed:@"background.png"];
+    ((UIImageView*)self.view).image = [UIImage imageNamed:@"background.png"];
+    
     first = [NSDate timeIntervalSinceReferenceDate];
     rotationTimer = [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(rotateWheels:) userInfo:nil repeats:YES];
     
@@ -143,7 +144,7 @@
 - (IBAction)toggleSound:(UISwitch*)sender;
 {
     [[Beacon shared] startSubBeaconWithName:[NSString stringWithFormat:@"Switched sound %@", sender.on?@"on":@"off"] timeSession:NO];
-
+    
     mainController.soundPlayer.sound = sender.on;
 }
 

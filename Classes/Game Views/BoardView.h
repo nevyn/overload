@@ -30,10 +30,11 @@
 
 -(BoardTileView*)tile:(BoardPoint)point;
 
--(void)setSize:(BoardSize)newSize;
+-(BoardSize)size;
+-(void)setSize:(BoardSize)newSizeInTiles;
 
-@property BOOL sparkling; // for turning off sparkling when the game is inactive
+@property (nonatomic) BOOL sparkling; // for turning off sparkling when the game is inactive
 
-@property (assign) id<BoardViewDelegate> delegate;
-@property (readonly) CGSize tileSize;
+@property (assign, nonatomic) id<BoardViewDelegate> delegate;
+@property (readonly, nonatomic) CGSize tileSize;
 @end

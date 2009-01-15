@@ -15,5 +15,5 @@
 -(id)initWithFrame:(CGRect)frame colors:(NSArray*)colors;
 -(void)setScores:(CGFloat[])scores;
 
-@property (readonly) NSUInteger playerCount;
+@property (readonly, nonatomic) NSUInteger playerCount;
 @end

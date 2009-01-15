@@ -20,10 +20,10 @@
     
     BOOL plain;
 }
-@property Player owner;
-@property CGFloat value;
-@property BoardPoint boardPosition;
-@property (assign) BoardView *board;
+@property (nonatomic) Player owner;
+@property (nonatomic) CGFloat value;
+@property (nonatomic) BoardPoint boardPosition;
+@property (assign, nonatomic) BoardView *board;
 
 - (id)initWithFrame:(CGRect)frame;
 - (id)initWithFrame:(CGRect)frame plain:(BOOL)isPlain;

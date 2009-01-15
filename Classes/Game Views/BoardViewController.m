@@ -43,34 +43,37 @@
     board.chaosGame = YES;
 #endif
     [self boardIsStartingAnew:board];
-    
+        
 	return self;
 }
-- (void)viewDidLoad {
-    score1 = [[[ScoreBarView alloc] initWithFrame:CGRectMake(0, 44+BoardHeight, 320, 44) player:PlayerP1] autorelease];
 
-    score2 = [[[ScoreBarView alloc] initWithFrame:CGRectMake(0, 0, 320, 44) player:PlayerP2] autorelease];
-    score2.transform = CGAffineTransformMakeRotation(M_PI);   
+- (void)viewDidLoad {
+    score1 = [[[ScoreBarView alloc] initWithFrame:CGRectMake(0, BoardHeight()+ScoreBarHeight, BoardWidth, ScoreBarHeight) player:PlayerP1] autorelease];
+    score1.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
+
+    score2 = [[[ScoreBarView alloc] initWithFrame:CGRectMake(0, 0, BoardWidth, ScoreBarHeight) player:PlayerP2] autorelease];
+    score2.transform = CGAffineTransformMakeRotation(M_PI);
     score2.delegate = self;
         
     [self.view addSubview:score1];
     [self.view addSubview:score2];
     
+    self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
+    
     if([[NSUserDefaults standardUserDefaults] boolForKey:@"currentGame.hasAI"])
         [self startAI];
-    
-    
 }
 
 - (void)viewDidAppear:(BOOL)animated; 
 {
     if(!boardView) {
-        boardView = [[[BoardView alloc] initWithFrame:CGRectMake(0, 44, BoardWidth, BoardHeight)] autorelease];
+        boardView = [[[BoardView alloc] initWithFrame:CGRectMake(0, ScoreBarHeight, BoardWidth, BoardHeight())] autorelease];
         [boardView setSize:board.sizeInTiles];
+        boardView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
         boardView.delegate = self;
         boardView.sparkling = YES;
         [self.view insertSubview:boardView belowSubview:score1];
-    }    
+    }
     board.delegate = self; // Triggers calling all delegate methods to match board view to model
 
     id boardViewProxy = [[CInvocationGrabber invocationGrabber] prepareWithInvocationTarget:boardView];
@@ -89,8 +92,10 @@
 }
 
 - (void)didReceiveMemoryWarning {
-    if(!self.view.superview)
-        [boardView removeFromSuperview]; boardView = nil;
+    if(!self.view.superview) {
+        [boardView removeFromSuperview];
+        boardView = nil;
+    }
 }
 
 - (void)dealloc {

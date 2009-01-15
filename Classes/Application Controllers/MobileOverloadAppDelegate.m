@@ -11,6 +11,17 @@
 #import "BoardViewController.h"
 #import "Beacon.h"
 
+@interface BoardViewController (BoardViewHack)
+@property (readonly, nonatomic) BoardView *boardView;
+@end
+@implementation BoardViewController (BoardViewHack)
+-(BoardView*)boardView; { return boardView; }
+@end
+@interface BoardView (BoardViewPrivate)
+-(void)relayoutTiles;
+@end
+
+
 
 @implementation MobileOverloadAppDelegate
 
@@ -27,7 +38,7 @@
     [window addSubview:[rootViewController view]];
 	[window makeKeyAndVisible];
     
-    paranoidTimer = [[NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(paranoid) userInfo:nil repeats:YES] retain];
+    paranoidTimer = [[NSTimer scheduledTimerWithTimeInterval:10.0 target:self selector:@selector(paranoid) userInfo:nil repeats:YES] retain];
 }
 - (void)applicationWillResignActive:(UIApplication *)application;
 {
@@ -43,6 +54,10 @@
     [self.rootViewController.mainViewController.board persist];
     [[NSUserDefaults standardUserDefaults] synchronize];
     [[Beacon shared] endBeacon];
+}
+- (void)application:(UIApplication *)application didChangeStatusBarFrame:(CGRect)oldStatusBarFrame
+{
+    [self.rootViewController.mainViewController.boardView relayoutTiles];
 }
 
 - (void)dealloc {

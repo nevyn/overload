@@ -29,9 +29,9 @@
 -(NSArray*)makeChildren;
 -(CGFloat)minMaxAtDepth:(NSUInteger)depth;
 
-@property (retain) Board *board;
-@property (readonly) CGFloat valueEstimate;
-@property (readonly) BoardPoint representsMoveAt;
+@property (retain, nonatomic) Board *board;
+@property (readonly, nonatomic) CGFloat valueEstimate;
+@property (readonly, nonatomic) BoardPoint representsMoveAt;
 
 @end
 
@@ -46,5 +46,5 @@
 -(void)player:(Player)player choseTile:(BoardPoint)boardPoint;
 -(BoardPoint)chooseTile;
 
-@property (retain) AIMMTreeNode *root;
+@property (retain, nonatomic) AIMMTreeNode *root;
 @end

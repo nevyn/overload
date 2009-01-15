@@ -25,9 +25,9 @@
 -(void)player:(Player)player choseTile:(BoardPoint)boardPoint;
 -(BoardPoint)chooseTile;
 
-@property (assign) Board *board;
-@property (assign) id<BoardViewDelegate> delegate;
-@property (assign) Player player;
+@property (assign, nonatomic) Board *board;
+@property (assign, nonatomic) id<BoardViewDelegate> delegate;
+@property (assign, nonatomic) Player player;
 
 -(NSArray*)randomBoardTiles;
 @end

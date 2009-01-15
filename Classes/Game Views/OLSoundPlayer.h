@@ -16,5 +16,5 @@
 -(void)playWinSound;
 
 
-@property BOOL sound;
+@property (nonatomic) BOOL sound;
 @end

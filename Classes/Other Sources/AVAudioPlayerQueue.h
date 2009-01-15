@@ -22,5 +22,5 @@
 
 -(BOOL)play;
 -(void)stop;
-@property (readonly) AVAudioPlayer *prototypePlayer;
+@property (readonly, nonatomic) AVAudioPlayer *prototypePlayer;
 @end

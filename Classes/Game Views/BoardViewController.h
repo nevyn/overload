@@ -53,6 +53,6 @@
 -(void)stopAI;
 
 #pragma mark Properties
-@property (readonly) Board *board;
-@property (readonly) OLSoundPlayer *soundPlayer;
+@property (readonly, nonatomic) Board *board;
+@property (readonly, nonatomic) OLSoundPlayer *soundPlayer;
 @end

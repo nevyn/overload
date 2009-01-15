@@ -27,11 +27,11 @@
 
 -(void)setScores:(CGFloat[])scores;
 
-@property Player player;
-@property (copy) NSString *status;
+@property (nonatomic) Player player;
+@property (copy, nonatomic) NSString *status;
 -(void)flipStatus;
 
-@property (assign) id<ScoreBarViewDelegate> delegate;
+@property (assign, nonatomic) id<ScoreBarViewDelegate> delegate;
 
 
 -(void)setCurrentPlayer:(Player)currentPlayer_;
