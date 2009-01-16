@@ -13,16 +13,14 @@
 @interface FlipsideViewController : UIViewController <UIActionSheetDelegate>{
     IBOutlet UIImageView *cogU, *cogM, *cogL;
     IBOutlet UILabel *versionLabel;
-    NSTimeInterval first;
     NSTimer *rotationTimer;
+    NSTimeInterval first;
     RootViewController *rootController;
     BoardViewController *mainController;
     
     IBOutlet UISwitch *giganticGame;
     IBOutlet UISwitch *chaosGame;
-    IBOutlet UISwitch *soundSwitch;
-    IBOutlet UISwitch *xmas;
-    
+    IBOutlet UISwitch *soundSwitch;    
     NSMutableArray *stuffToDoWhenFlipped;
 }
 - (id)initWithNibName:(NSString *)nibNameOrNil
@@ -35,7 +33,4 @@
 - (IBAction)toggleGameBoardSize:(UISwitch*)sender;
 - (IBAction)toggleChaosGame:(UISwitch*)sender;
 - (IBAction)toggleSound:(UISwitch*)sender;
-
-- (IBAction)toggleXmas:(UISwitch*)sender;
-
 @end

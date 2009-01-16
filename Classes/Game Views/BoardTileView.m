@@ -21,11 +21,8 @@ static NSArray *tileImages;
 
 +(void)initialize;
 {
-    BOOL xmas = [[NSUserDefaults standardUserDefaults] boolForKey:@"xmas tiles"];
     NSString *suffix = @"";
-    if(xmas)
-        suffix = @"-xmas";
-    tileImages = [[NSArray alloc] initWithObjects:
+     tileImages = [[NSArray alloc] initWithObjects:
         [UIImage imageNamed:[NSString stringWithFormat:@"tile-0%@.png", suffix]],
         [UIImage imageNamed:[NSString stringWithFormat:@"tile-25%@.png", suffix]],
         [UIImage imageNamed:[NSString stringWithFormat:@"tile-50%@.png", suffix]],

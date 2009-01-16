@@ -37,10 +37,8 @@
 }
 
 - (void)viewDidLoad {
-    ((UIImageView*)self.view).image = [UIImage imageNamed:@"background.png"];
     
     first = [NSDate timeIntervalSinceReferenceDate];
-    rotationTimer = [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(rotateWheels:) userInfo:nil repeats:YES];
     
     NSString *version = [[[NSBundle mainBundle]infoDictionary]objectForKey:@"CFBundleVersion"];
     versionLabel.text = [NSString stringWithFormat:@"v%@", version];
@@ -48,9 +46,18 @@
     chaosGame.on = mainController.board.chaosGame;
     giganticGame.on = ! mainController.board.tinyGame;
     soundSwitch.on = mainController.soundPlayer.sound;
-
-    xmas.on = [[NSUserDefaults standardUserDefaults] boolForKey:@"xmas tiles"];
-
+}
+-(void)startRotatingWheels;
+{
+    rotationTimer = [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(rotateWheels:) userInfo:nil repeats:YES];
+}
+-(void)viewWillAppear:(BOOL)yeah;
+{
+    [self startRotatingWheels];
+}
+-(void)viewDidDisappear:(BOOL)yeah;
+{
+    [rotationTimer invalidate]; rotationTimer = nil;
 }
 
 -(void)rotateWheels:(NSTimer*)caller;
@@ -146,13 +153,6 @@
     [[Beacon shared] startSubBeaconWithName:[NSString stringWithFormat:@"Switched sound %@", sender.on?@"on":@"off"] timeSession:NO];
     
     mainController.soundPlayer.sound = sender.on;
-}
-
-
-- (IBAction)toggleXmas:(UISwitch*)sender;
-{
-    [[NSUserDefaults standardUserDefaults] setBool:sender.on forKey:@"xmas tiles"];
-    [[[[UIAlertView alloc] initWithTitle:@"need restart" message:@"restart the app for this change to take effect yo." delegate:nil cancelButtonTitle:@"k" otherButtonTitles:nil] autorelease] show];
 }
 
 @end
