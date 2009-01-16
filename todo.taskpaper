@@ -1,14 +1,18 @@
+0.3:
+- Scoreboard
+- Abort a press
+- Highlight squares that are about to explode
+- Even nicer tiles
+- More flexible board size
 0.2:
+- That new audio framework @done(2009-01-16) @0.2b
 - [BUG] New Game sometimes loads the old game instead of starting new @done @0.2b1
 	- Which is actually the bug where the app runs out of memory, and the mainView and boardView are removed. This is a crasher. A bad one. Need to go MVC on its ass. @done @0.2b1
-- Scoreboard
-- That new audio framework
 - 
 Future:
 - Computer players (AI) @important @done @0.2b1
 - >2 local players
 - Online play
-- More flexible board size
 Archive:
 - Save game state when quitting @done @0.1b3
 - Implement TinyGame mode @done @0.1b3
