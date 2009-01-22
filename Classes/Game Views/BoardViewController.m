@@ -12,23 +12,10 @@
 #import "CInvocationGrabber.h"
 #import "AI2.h"
 #import "AIMinMax.h"
-#import "Beacon.h"
+#import "Beacon+OptIn.h"
 @implementation BoardViewController
 
 #pragma mark Initialization and memory management
-
-+(void)initialize;
-{
-    [[NSUserDefaults standardUserDefaults] registerDefaults:
-        [NSDictionary dictionaryWithObjectsAndKeys:
-            [NSNumber numberWithBool:YES], @"tinyGame",
-            [NSNumber numberWithBool:NO], @"chaosGame",
-            [NSNumber numberWithBool:YES], @"sound",
-            [NSNumber numberWithInt:PlayerP1], @"currentPlayer",
-            nil, nil
-        ]
-     ];
-}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
 	if( ! [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) return nil;
@@ -136,9 +123,9 @@
 -(void)board:(Board*)board endedWithWinner:(Player)winner;
 {
     if(ai)
-        [[Beacon shared] endSubBeaconWithName:@"Local AI Game"];
+        [[Beacon sharedIfOptedIn] endSubBeaconWithName:@"Local AI Game"];
     else
-        [[Beacon shared] endSubBeaconWithName:@"Local 2P Game"];
+        [[Beacon sharedIfOptedIn] endSubBeaconWithName:@"Local 2P Game"];
     
     [soundPlayer playWinSound];
     Player loser = (!(winner-1))+1;
@@ -180,7 +167,7 @@
     
     if(board.isBoardEmpty) {
         score2.status = @"    Tap me to play against iPhone";
-        [[Beacon shared] startSubBeaconWithName:@"Local 2P Game" timeSession:YES];
+        [[Beacon sharedIfOptedIn] startSubBeaconWithName:@"Local 2P Game" timeSession:YES];
         [score2 flipStatus];
     }
     
@@ -208,7 +195,7 @@
 {
     if(scoreBarView == score2 && score2.status == @"    Tap me to play against iPhone") {
         [self startAI];
-        [[Beacon shared] startSubBeaconWithName:@"Local AI Game" timeSession:YES];
+        [[Beacon sharedIfOptedIn] startSubBeaconWithName:@"Local AI Game" timeSession:YES];
     }
     
 }

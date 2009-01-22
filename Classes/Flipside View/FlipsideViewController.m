@@ -10,7 +10,7 @@
 #import "RootViewController.h"
 #import "BoardViewController.h"
 #import "CInvocationGrabber.h"
-#import "Beacon.h"
+#import "Beacon+OptIn.h"
 #import <MediaPlayer/MediaPlayer.h>
 
 #define schedule(target, stuff) {\
@@ -116,16 +116,17 @@
                      destructiveButtonTitle:@"Shuffle"
                       otherButtonTitles:nil] autorelease]; // todo: use destructiveButtonTitle
     [sheet showInView:self.view];
+    // TODO: release it?
 }
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex;
 {
     if(buttonIndex == 1) return;
 
     if([actionSheet.title isEqualToString:SHUFFLE_TITLE]) {
-        [[Beacon shared] startSubBeaconWithName:@"Shuffled Local Game from Options" timeSession:NO];
+        [[Beacon sharedIfOptedIn] startSubBeaconWithName:@"Shuffled Local Game from Options" timeSession:NO];
         schedule(mainController.board, shuffle);
     } else {
-        [[Beacon shared] startSubBeaconWithName:@"Restarted Local Game from Options" timeSession:NO];
+        [[Beacon sharedIfOptedIn] startSubBeaconWithName:@"Restarted Local Game from Options" timeSession:NO];
         schedule(mainController.board, restart);
     }
     [self toggleView:nil];
@@ -136,21 +137,21 @@
         BoardSize newSize = (!sender.on) ?
             BoardSizeMake(WidthInTiles/2, HeightInTiles/2) :
             BoardSizeMake(WidthInTiles, HeightInTiles);
-        [[Beacon shared] startSubBeaconWithName:[NSString stringWithFormat:@"Switched to local game board size %dx%d", newSize.width, newSize.height] timeSession:NO];
+        [[Beacon sharedIfOptedIn] startSubBeaconWithName:[NSString stringWithFormat:@"Switched to local game board size %dx%d", newSize.width, newSize.height] timeSession:NO];
     }
 
     schedule(mainController.board, setTinyGame:!sender.on);
 }
 - (IBAction)toggleChaosGame:(UISwitch*)sender;
 {
-    [[Beacon shared] startSubBeaconWithName:[NSString stringWithFormat:@"Switched local chaos game %@", sender.on?@"on":@"off"] timeSession:NO];
+    [[Beacon sharedIfOptedIn] startSubBeaconWithName:[NSString stringWithFormat:@"Switched local chaos game %@", sender.on?@"on":@"off"] timeSession:NO];
 
     mainController.board.chaosGame = sender.on;
 }
 
 - (IBAction)toggleSound:(UISwitch*)sender;
 {
-    [[Beacon shared] startSubBeaconWithName:[NSString stringWithFormat:@"Switched sound %@", sender.on?@"on":@"off"] timeSession:NO];
+    [[Beacon sharedIfOptedIn] startSubBeaconWithName:[NSString stringWithFormat:@"Switched sound %@", sender.on?@"on":@"off"] timeSession:NO];
     
     mainController.soundPlayer.sound = sender.on;
 }
