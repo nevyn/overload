@@ -57,10 +57,10 @@ static UIAlertView *askAboutStatistics;
 {
     askAboutStatistics = 
     [[UIAlertView alloc] initWithTitle:@"May I collect usage statistics?"
-                               message:@"The statistics are sent through the internet, but are completely anonymous. The statistics collected help guide Overload's development. Press 'Read more' for exact details.\n\n\n "
+                               message:@"The anonymous statistics are sent through the internet.\n\n The statistics collected help guide Overload's development."
                               delegate:self
                      cancelButtonTitle:nil
-                     otherButtonTitles:@"Yes", @"No", @"Read more", nil];
+                     otherButtonTitles:@"Collect", @"Do not collect", @"Read more", nil];
     
     [askAboutStatistics show];    
 }
