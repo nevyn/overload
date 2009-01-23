@@ -47,13 +47,12 @@
 		05CF88EA0E5F78DF00E2D8B4 /* lose-p2.png in Resources */ = {isa = PBXBuildFile; fileRef = 05CF88E60E5F78DF00E2D8B4 /* lose-p2.png */; };
 		05CF88EB0E5F78DF00E2D8B4 /* win-p2.png in Resources */ = {isa = PBXBuildFile; fileRef = 05CF88E70E5F78DF00E2D8B4 /* win-p2.png */; };
 		05D77E9A0E58C7D400FB00DB /* ScoreBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D77E990E58C7D400FB00DB /* ScoreBarView.m */; };
-		05D77E9D0E58C7E800FB00DB /* BoardTileView.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D77E9C0E58C7E800FB00DB /* BoardTileView.m */; };
-		05D77F280E58DB3C00FB00DB /* BoardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D77F270E58DB3C00FB00DB /* BoardView.m */; };
 		05D77F8E0E58E63E00FB00DB /* TypesAndConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D77F8D0E58E63E00FB00DB /* TypesAndConstants.m */; };
 		05D77FDF0E58E93F00FB00DB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05D77FDE0E58E93F00FB00DB /* QuartzCore.framework */; };
 		05D780C70E58FA7400FB00DB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05D780C60E58FA7400FB00DB /* CoreGraphics.framework */; };
 		05D7828D0E59152700FB00DB /* dist.plist in Resources */ = {isa = PBXBuildFile; fileRef = 05D7828C0E59152700FB00DB /* dist.plist */; };
 		05DD21620F28EFC0001A8532 /* Beacon+OptIn.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DD21610F28EFC0001A8532 /* Beacon+OptIn.m */; };
+		05E03B490F2A33C5006E6190 /* BoardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 05E03B470F2A33C5006E6190 /* BoardView.m */; };
 		1D3623260D0F684500981E51 /* MobileOverloadAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* MobileOverloadAppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -118,10 +117,6 @@
 		05CF88E70E5F78DF00E2D8B4 /* win-p2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "win-p2.png"; sourceTree = "<group>"; };
 		05D77E980E58C7D400FB00DB /* ScoreBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreBarView.h; sourceTree = "<group>"; };
 		05D77E990E58C7D400FB00DB /* ScoreBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreBarView.m; sourceTree = "<group>"; };
-		05D77E9B0E58C7E800FB00DB /* BoardTileView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardTileView.h; sourceTree = "<group>"; };
-		05D77E9C0E58C7E800FB00DB /* BoardTileView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoardTileView.m; sourceTree = "<group>"; };
-		05D77F260E58DB3C00FB00DB /* BoardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardView.h; sourceTree = "<group>"; };
-		05D77F270E58DB3C00FB00DB /* BoardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoardView.m; sourceTree = "<group>"; };
 		05D77F8C0E58E62300FB00DB /* TypesAndConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TypesAndConstants.h; sourceTree = "<group>"; };
 		05D77F8D0E58E63E00FB00DB /* TypesAndConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TypesAndConstants.m; sourceTree = "<group>"; };
 		05D77FDE0E58E93F00FB00DB /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = /System/Library/Frameworks/QuartzCore.framework; sourceTree = "<absolute>"; };
@@ -129,6 +124,8 @@
 		05D7828C0E59152700FB00DB /* dist.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = dist.plist; sourceTree = "<group>"; };
 		05DD21600F28EFC0001A8532 /* Beacon+OptIn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Beacon+OptIn.h"; sourceTree = "<group>"; };
 		05DD21610F28EFC0001A8532 /* Beacon+OptIn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Beacon+OptIn.m"; sourceTree = "<group>"; };
+		05E03B470F2A33C5006E6190 /* BoardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoardView.m; sourceTree = "<group>"; };
+		05E03B480F2A33C5006E6190 /* BoardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardView.h; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* MobileOverloadAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobileOverloadAppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* MobileOverloadAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobileOverloadAppDelegate.m; sourceTree = "<group>"; };
@@ -209,22 +206,28 @@
 		05D77E970E58C7B900FB00DB /* Game Views */ = {
 			isa = PBXGroup;
 			children = (
+				05E03B460F2A33B1006E6190 /* BoardGL */,
 				289233A80DB2D0DB0083E9F9 /* BoardViewController.h */,
 				289233A90DB2D0DB0083E9F9 /* BoardViewController.m */,
 				0511F6160E743977003FFA22 /* OLSoundPlayer.h */,
 				0511F6170E743977003FFA22 /* OLSoundPlayer.m */,
 				05D77E980E58C7D400FB00DB /* ScoreBarView.h */,
 				05D77E990E58C7D400FB00DB /* ScoreBarView.m */,
-				05D77E9B0E58C7E800FB00DB /* BoardTileView.h */,
-				05D77E9C0E58C7E800FB00DB /* BoardTileView.m */,
-				05D77F260E58DB3C00FB00DB /* BoardView.h */,
-				05D77F270E58DB3C00FB00DB /* BoardView.m */,
 				054615CE0E5E0E9600DAF3BD /* ScoreIndicator.h */,
 				054615CF0E5E0E9600DAF3BD /* ScoreIndicator.m */,
 				05D77F8C0E58E62300FB00DB /* TypesAndConstants.h */,
 				05D77F8D0E58E63E00FB00DB /* TypesAndConstants.m */,
 			);
 			path = "Game Views";
+			sourceTree = "<group>";
+		};
+		05E03B460F2A33B1006E6190 /* BoardGL */ = {
+			isa = PBXGroup;
+			children = (
+				05E03B470F2A33C5006E6190 /* BoardView.m */,
+				05E03B480F2A33C5006E6190 /* BoardView.h */,
+			);
+			path = BoardGL;
 			sourceTree = "<group>";
 		};
 		080E96DDFE201D6D7F000001 /* Application Controllers */ = {
@@ -430,8 +433,6 @@
 				289233AF0DB2D0DB0083E9F9 /* RootViewController.m in Sources */,
 				289233B00DB2D0DB0083E9F9 /* FlipsideViewController.m in Sources */,
 				05D77E9A0E58C7D400FB00DB /* ScoreBarView.m in Sources */,
-				05D77E9D0E58C7E800FB00DB /* BoardTileView.m in Sources */,
-				05D77F280E58DB3C00FB00DB /* BoardView.m in Sources */,
 				05D77F8E0E58E63E00FB00DB /* TypesAndConstants.m in Sources */,
 				054615D00E5E0E9600DAF3BD /* ScoreIndicator.m in Sources */,
 				0511F3590E71B64E003FFA22 /* Board.m in Sources */,
@@ -442,6 +443,7 @@
 				058FEB870EF841DF006FDFDA /* AVAudioPlayerQueue.m in Sources */,
 				05A762D90EFCE9EF005D899A /* AI2.m in Sources */,
 				05DD21620F28EFC0001A8532 /* Beacon+OptIn.m in Sources */,
+				05E03B490F2A33C5006E6190 /* BoardView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

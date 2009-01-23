@@ -38,7 +38,7 @@
     
     BoardPoint chosenTilePoint = [self chooseTile];
     
-    [delegate boardTileViewWasTouched:(BoardTileView*)[board tile:chosenTilePoint]];
+    [delegate boardTileViewWasTouched:chosenTilePoint];
 }
 
 -(void)player:(Player)player choseTile:(BoardPoint)boardPoint;

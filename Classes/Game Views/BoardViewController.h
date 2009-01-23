@@ -43,7 +43,7 @@
 -(void)board:(Board*)board changedCurrentPlayer:(Player)currentPlayer;
 
 #pragma mark Board view delegates
--(void)boardTileViewWasTouched:(BoardTileView*)boardTileView;
+-(void)boardTileViewWasTouched:(BoardPoint)pointThatWasTouched;
 
 #pragma mark Score bar delegates
 -(void)scoreBarTouched:(ScoreBarView*)scoreBarView;

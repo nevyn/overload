@@ -58,19 +58,12 @@
         [boardView setSize:board.sizeInTiles];
         boardView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
         boardView.delegate = self;
-        boardView.sparkling = YES;
         [self.view insertSubview:boardView belowSubview:score1];
     }
-    board.delegate = self; // Triggers calling all delegate methods to match board view to model
-
-    id boardViewProxy = [[CInvocationGrabber invocationGrabber] prepareWithInvocationTarget:boardView];
-    [boardViewProxy setSparkling:YES];
-    [[boardViewProxy invocation] performSelector:@selector(invoke) withObject:nil afterDelay:1.0];
-    
+    board.delegate = self; // Triggers calling all delegate methods to match board view to model    
 }
 - (void)viewDidDisappear:(BOOL)animated;
 {
-    boardView.sparkling = NO;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -95,13 +88,11 @@
 #pragma mark Board delegates
 -(void)tile:(Tile*)tile changedOwner:(Player)owner;
 {
-    BoardTileView *tileView = [boardView tile:tile.boardPosition];
-    tileView.owner = owner;
+    [boardView setOwner:owner atPosition:tile.boardPosition];
 }
 -(void)tile:(Tile*)tile changedValue:(CGFloat)value;
 {
-    BoardTileView *tileView = [boardView tile:tile.boardPosition];
-    tileView.value = value;
+    [boardView setValue:value atPosition:tile.boardPosition];
 }
 -(void)tile:(Tile*)tile wasChargedTo:(CGFloat)value byPlayer:(Player)player;
 {
@@ -113,7 +104,7 @@
 -(void)tileExploded:(Tile*)tile;
 {
     [soundPlayer playExplosionSound];
-    [[boardView tile:tile.boardPosition] explode];
+    [boardView explode:tile.boardPosition];
 }
 -(void)board:(Board*)board changedScores:(Scores)scores;
 {
@@ -185,9 +176,9 @@
 }
 
 #pragma mark Board view delegates
--(void)boardTileViewWasTouched:(BoardTileView*)boardTileView;
+-(void)boardTileViewWasTouched:(BoardPoint)pointThatWasTouched;
 {
-    [board chargeTileForCurrentPlayer:boardTileView.boardPosition];
+    [board chargeTileForCurrentPlayer:pointThatWasTouched];
 }
 
 #pragma mark Score bar delegates
