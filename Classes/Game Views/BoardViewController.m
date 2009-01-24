@@ -55,7 +55,7 @@
 {
     if(!boardView) {
         boardView = [[[BoardView alloc] initWithFrame:CGRectMake(0, ScoreBarHeight, BoardWidth, BoardHeight())] autorelease];
-        [boardView setSize:board.sizeInTiles];
+        [boardView setSizeInTiles:board.sizeInTiles];
         boardView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
         boardView.delegate = self;
         [self.view insertSubview:boardView belowSubview:score1];
@@ -172,7 +172,7 @@
 }
 -(void)board:(Board*)board changedSize:(BoardSize)newSize;
 {
-    [boardView setSize:newSize];
+    [boardView setSizeInTiles:newSize];
 }
 
 #pragma mark Board view delegates

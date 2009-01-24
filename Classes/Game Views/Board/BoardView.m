@@ -7,15 +7,13 @@
 //
 
 #import "BoardView.h"
-#import "BoardViewController.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface BoardView()
 -(void)sparkle;
-@end
-
-@interface BoardView (BoardViewPrivate)
 -(void)relayoutTiles;
+-(BoardTileView*)tile:(BoardPoint)tilePos;
+
 @end
 
 
@@ -38,6 +36,8 @@
     self.backgroundColor = [UIColor whiteColor];
     [self setSize:BoardSizeMake(WidthInTiles, HeightInTiles)];
     
+    [self sparkle];
+    
 	return self;
 }
 - (void)dealloc {
@@ -45,19 +45,6 @@
 	[super dealloc];
 }
 
--(void)setSparkling:(BOOL)sparkling_;
-{
-    if(sparkling_ && !sparkling) {
-        sparkling = sparkling_;
-        [self sparkle];
-    }
-
-    sparkling = sparkling_; // don't remove this line
-}
--(BOOL)sparkling;
-{
-    return sparkling;
-}
 -(void)sparkle;
 {
     static CGFloat animationDuration = 0.5;
