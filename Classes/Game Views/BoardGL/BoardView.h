@@ -35,6 +35,7 @@
     GLuint fbo, rbo;
     NSTimer *animationTimer;
     NSTimeInterval animationInterval;
+    BoardStruct board;
 #endif
 }
 

@@ -55,6 +55,7 @@
 		05E03BB00F2B211B006E6190 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 05E03BAF0F2B211B006E6190 /* libsqlite3.dylib */; };
 		05E03BCB0F2B2690006E6190 /* BoardTileView.m in Sources */ = {isa = PBXBuildFile; fileRef = 05E03BC80F2B2690006E6190 /* BoardTileView.m */; };
 		05E03BCC0F2B2690006E6190 /* BoardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 05E03BCA0F2B2690006E6190 /* BoardView.m */; };
+		05E03D850F2BBF22006E6190 /* ColorConversion.c in Sources */ = {isa = PBXBuildFile; fileRef = 05E03D840F2BBF22006E6190 /* ColorConversion.c */; };
 		1D3623260D0F684500981E51 /* MobileOverloadAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* MobileOverloadAppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -131,6 +132,8 @@
 		05E03BC70F2B2690006E6190 /* BoardTileView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardTileView.h; sourceTree = "<group>"; };
 		05E03BC80F2B2690006E6190 /* BoardTileView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoardTileView.m; sourceTree = "<group>"; };
 		05E03BCA0F2B2690006E6190 /* BoardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoardView.m; sourceTree = "<group>"; };
+		05E03D830F2BBF22006E6190 /* ColorConversion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorConversion.h; sourceTree = "<group>"; };
+		05E03D840F2BBF22006E6190 /* ColorConversion.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ColorConversion.c; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* MobileOverloadAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobileOverloadAppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* MobileOverloadAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobileOverloadAppDelegate.m; sourceTree = "<group>"; };
@@ -304,6 +307,8 @@
 				058FEB860EF841DF006FDFDA /* AVAudioPlayerQueue.m */,
 				05DD21600F28EFC0001A8532 /* Beacon+OptIn.h */,
 				05DD21610F28EFC0001A8532 /* Beacon+OptIn.m */,
+				05E03D830F2BBF22006E6190 /* ColorConversion.h */,
+				05E03D840F2BBF22006E6190 /* ColorConversion.c */,
 			);
 			path = "Other Sources";
 			sourceTree = "<group>";
@@ -462,6 +467,7 @@
 				05E03B490F2A33C5006E6190 /* BoardViewGL.m in Sources */,
 				05E03BCB0F2B2690006E6190 /* BoardTileView.m in Sources */,
 				05E03BCC0F2B2690006E6190 /* BoardView.m in Sources */,
+				05E03D850F2BBF22006E6190 /* ColorConversion.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

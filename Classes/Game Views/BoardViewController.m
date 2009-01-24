@@ -60,10 +60,12 @@
         boardView.delegate = self;
         [self.view insertSubview:boardView belowSubview:score1];
     }
+    boardView.animated = YES;
     board.delegate = self; // Triggers calling all delegate methods to match board view to model    
 }
 - (void)viewDidDisappear:(BOOL)animated;
 {
+    boardView.animated = NO;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
