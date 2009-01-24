@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "TypesAndConstants.h"
-
+#ifndef BOARDVIEW_OPENGL
+#import "BoardTileView.h"
+#endif
 @protocol BoardViewDelegate
 -(void)boardTileViewWasTouched:(BoardPoint)pointThatWasTouched;
 @end
@@ -21,7 +23,7 @@
     id<BoardViewDelegate> delegate;
     
 #ifndef BOARDVIEW_OPENGL
-    id boardTiles[10][12]; // [x][y]
+    BoardTileView *boardTiles[10][12]; // [x][y]
 #endif
 }
 

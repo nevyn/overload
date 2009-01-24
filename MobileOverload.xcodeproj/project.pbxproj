@@ -24,11 +24,9 @@
 		054615D00E5E0E9600DAF3BD /* ScoreIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 054615CF0E5E0E9600DAF3BD /* ScoreIndicator.m */; };
 		0546168E0E5E220600DAF3BD /* gloss.png in Resources */ = {isa = PBXBuildFile; fileRef = 0546168D0E5E220600DAF3BD /* gloss.png */; };
 		054F78610E97D7B000E17413 /* libPinchAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 054F78600E97D7B000E17413 /* libPinchAnalytics.a */; };
-		054F78640E97D82C00E17413 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 054F78630E97D82C00E17413 /* libsqlite3.0.dylib */; };
 		054F78660E97D83400E17413 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 054F78650E97D83400E17413 /* SystemConfiguration.framework */; };
 		054F78680E97D83900E17413 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 054F78670E97D83900E17413 /* CoreLocation.framework */; };
 		0589082F0E749ECB0014135B /* AIMinMax.m in Sources */ = {isa = PBXBuildFile; fileRef = 0589082E0E749ECB0014135B /* AIMinMax.m */; };
-		058994300E5F07D2002BF0FE /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0589942F0E5F07D2002BF0FE /* OpenAL.framework */; };
 		0589946B0E5F15BA002BF0FE /* explosion.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0589946A0E5F15BA002BF0FE /* explosion.wav */; };
 		058994700E5F162A002BF0FE /* charge75.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0589946C0E5F162A002BF0FE /* charge75.wav */; };
 		058994710E5F162A002BF0FE /* charge100.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0589946D0E5F162A002BF0FE /* charge100.wav */; };
@@ -52,7 +50,11 @@
 		05D780C70E58FA7400FB00DB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05D780C60E58FA7400FB00DB /* CoreGraphics.framework */; };
 		05D7828D0E59152700FB00DB /* dist.plist in Resources */ = {isa = PBXBuildFile; fileRef = 05D7828C0E59152700FB00DB /* dist.plist */; };
 		05DD21620F28EFC0001A8532 /* Beacon+OptIn.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DD21610F28EFC0001A8532 /* Beacon+OptIn.m */; };
-		05E03B490F2A33C5006E6190 /* BoardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 05E03B470F2A33C5006E6190 /* BoardView.m */; };
+		05E03B490F2A33C5006E6190 /* BoardViewGL.m in Sources */ = {isa = PBXBuildFile; fileRef = 05E03B470F2A33C5006E6190 /* BoardViewGL.m */; };
+		05E03BAE0F2B20F2006E6190 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05E03BAD0F2B20F2006E6190 /* OpenGLES.framework */; };
+		05E03BB00F2B211B006E6190 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 05E03BAF0F2B211B006E6190 /* libsqlite3.dylib */; };
+		05E03BCB0F2B2690006E6190 /* BoardTileView.m in Sources */ = {isa = PBXBuildFile; fileRef = 05E03BC80F2B2690006E6190 /* BoardTileView.m */; };
+		05E03BCC0F2B2690006E6190 /* BoardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 05E03BCA0F2B2690006E6190 /* BoardView.m */; };
 		1D3623260D0F684500981E51 /* MobileOverloadAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* MobileOverloadAppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -90,12 +92,10 @@
 		0546168D0E5E220600DAF3BD /* gloss.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gloss.png; sourceTree = "<group>"; };
 		054F785F0E97D7B000E17413 /* Beacon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Beacon.h; sourceTree = "<group>"; };
 		054F78600E97D7B000E17413 /* libPinchAnalytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libPinchAnalytics.a; sourceTree = "<group>"; };
-		054F78630E97D82C00E17413 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		054F78650E97D83400E17413 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		054F78670E97D83900E17413 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		0589082D0E749ECB0014135B /* AIMinMax.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AIMinMax.h; sourceTree = "<group>"; };
 		0589082E0E749ECB0014135B /* AIMinMax.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AIMinMax.m; sourceTree = "<group>"; };
-		0589942F0E5F07D2002BF0FE /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = /System/Library/Frameworks/OpenAL.framework; sourceTree = "<absolute>"; };
 		0589946A0E5F15BA002BF0FE /* explosion.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = explosion.wav; sourceTree = "<group>"; };
 		0589946C0E5F162A002BF0FE /* charge75.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = charge75.wav; sourceTree = "<group>"; };
 		0589946D0E5F162A002BF0FE /* charge100.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = charge100.wav; sourceTree = "<group>"; };
@@ -124,8 +124,13 @@
 		05D7828C0E59152700FB00DB /* dist.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = dist.plist; sourceTree = "<group>"; };
 		05DD21600F28EFC0001A8532 /* Beacon+OptIn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Beacon+OptIn.h"; sourceTree = "<group>"; };
 		05DD21610F28EFC0001A8532 /* Beacon+OptIn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Beacon+OptIn.m"; sourceTree = "<group>"; };
-		05E03B470F2A33C5006E6190 /* BoardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoardView.m; sourceTree = "<group>"; };
+		05E03B470F2A33C5006E6190 /* BoardViewGL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoardViewGL.m; sourceTree = "<group>"; };
 		05E03B480F2A33C5006E6190 /* BoardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardView.h; sourceTree = "<group>"; };
+		05E03BAD0F2B20F2006E6190 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		05E03BAF0F2B211B006E6190 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		05E03BC70F2B2690006E6190 /* BoardTileView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardTileView.h; sourceTree = "<group>"; };
+		05E03BC80F2B2690006E6190 /* BoardTileView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoardTileView.m; sourceTree = "<group>"; };
+		05E03BCA0F2B2690006E6190 /* BoardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoardView.m; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* MobileOverloadAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobileOverloadAppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* MobileOverloadAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobileOverloadAppDelegate.m; sourceTree = "<group>"; };
@@ -155,13 +160,13 @@
 				05D77FDF0E58E93F00FB00DB /* QuartzCore.framework in Frameworks */,
 				05D780C70E58FA7400FB00DB /* CoreGraphics.framework in Frameworks */,
 				0541F5370E5EFFEE000D6368 /* AudioToolbox.framework in Frameworks */,
-				058994300E5F07D2002BF0FE /* OpenAL.framework in Frameworks */,
 				054F78610E97D7B000E17413 /* libPinchAnalytics.a in Frameworks */,
-				054F78640E97D82C00E17413 /* libsqlite3.0.dylib in Frameworks */,
 				054F78660E97D83400E17413 /* SystemConfiguration.framework in Frameworks */,
 				054F78680E97D83900E17413 /* CoreLocation.framework in Frameworks */,
 				053185710EF793EE0054A00D /* AVFoundation.framework in Frameworks */,
 				05A7640D0EFE655C005D899A /* MediaPlayer.framework in Frameworks */,
+				05E03BAE0F2B20F2006E6190 /* OpenGLES.framework in Frameworks */,
+				05E03BB00F2B211B006E6190 /* libsqlite3.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -206,6 +211,7 @@
 		05D77E970E58C7B900FB00DB /* Game Views */ = {
 			isa = PBXGroup;
 			children = (
+				05E03BC60F2B2690006E6190 /* Board */,
 				05E03B460F2A33B1006E6190 /* BoardGL */,
 				289233A80DB2D0DB0083E9F9 /* BoardViewController.h */,
 				289233A90DB2D0DB0083E9F9 /* BoardViewController.m */,
@@ -224,10 +230,20 @@
 		05E03B460F2A33B1006E6190 /* BoardGL */ = {
 			isa = PBXGroup;
 			children = (
-				05E03B470F2A33C5006E6190 /* BoardView.m */,
+				05E03B470F2A33C5006E6190 /* BoardViewGL.m */,
 				05E03B480F2A33C5006E6190 /* BoardView.h */,
 			);
 			path = BoardGL;
+			sourceTree = "<group>";
+		};
+		05E03BC60F2B2690006E6190 /* Board */ = {
+			isa = PBXGroup;
+			children = (
+				05E03BC70F2B2690006E6190 /* BoardTileView.h */,
+				05E03BC80F2B2690006E6190 /* BoardTileView.m */,
+				05E03BCA0F2B2690006E6190 /* BoardView.m */,
+			);
+			path = Board;
 			sourceTree = "<group>";
 		};
 		080E96DDFE201D6D7F000001 /* Application Controllers */ = {
@@ -326,12 +342,12 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				05E03BAF0F2B211B006E6190 /* libsqlite3.dylib */,
+				05E03BAD0F2B20F2006E6190 /* OpenGLES.framework */,
 				05A7640C0EFE655C005D899A /* MediaPlayer.framework */,
 				053185700EF793EE0054A00D /* AVFoundation.framework */,
-				054F78630E97D82C00E17413 /* libsqlite3.0.dylib */,
 				054F78650E97D83400E17413 /* SystemConfiguration.framework */,
 				054F78670E97D83900E17413 /* CoreLocation.framework */,
-				0589942F0E5F07D2002BF0FE /* OpenAL.framework */,
 				0541F5360E5EFFEE000D6368 /* AudioToolbox.framework */,
 				05D780C60E58FA7400FB00DB /* CoreGraphics.framework */,
 				05D77FDE0E58E93F00FB00DB /* QuartzCore.framework */,
@@ -443,7 +459,9 @@
 				058FEB870EF841DF006FDFDA /* AVAudioPlayerQueue.m in Sources */,
 				05A762D90EFCE9EF005D899A /* AI2.m in Sources */,
 				05DD21620F28EFC0001A8532 /* Beacon+OptIn.m in Sources */,
-				05E03B490F2A33C5006E6190 /* BoardView.m in Sources */,
+				05E03B490F2A33C5006E6190 /* BoardViewGL.m in Sources */,
+				05E03BCB0F2B2690006E6190 /* BoardTileView.m in Sources */,
+				05E03BCC0F2B2690006E6190 /* BoardView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -473,6 +491,7 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = MobileOverload_Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = NO_BOARDVIEW_OPENGL;
 				GCC_THUMB_SUPPORT = NO;
 				INFOPLIST_FILE = Info.plist;
 				LIBRARY_SEARCH_PATHS = (
@@ -507,6 +526,7 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = MobileOverload_Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = NO_BOARDVIEW_OPENGL;
 				GCC_THUMB_SUPPORT = NO;
 				INFOPLIST_FILE = Info.plist;
 				LIBRARY_SEARCH_PATHS = (
@@ -529,6 +549,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = MobileOverload_Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = NO_BOARDVIEW_OPENGL;
 				GCC_THUMB_SUPPORT = NO;
 				INFOPLIST_FILE = Info.plist;
 				LIBRARY_SEARCH_PATHS = (
@@ -548,6 +569,7 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = MobileOverload_Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = NO_BOARDVIEW_OPENGL;
 				GCC_THUMB_SUPPORT = NO;
 				INFOPLIST_FILE = Info.plist;
 				LIBRARY_SEARCH_PATHS = (

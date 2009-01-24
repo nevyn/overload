@@ -1,3 +1,4 @@
+#ifndef BOARDVIEW_OPENGL
 //
 //  BoardView.m
 //  MobileOverload
@@ -9,11 +10,11 @@
 #import "BoardView.h"
 #import <QuartzCore/QuartzCore.h>
 
+
 @interface BoardView()
 -(void)sparkle;
 -(void)relayoutTiles;
 -(BoardTileView*)tile:(BoardPoint)tilePos;
-
 @end
 
 
@@ -34,7 +35,7 @@
     }
     
     self.backgroundColor = [UIColor whiteColor];
-    [self setSize:BoardSizeMake(WidthInTiles, HeightInTiles)];
+    [self setSizeInTiles:BoardSizeMake(WidthInTiles, HeightInTiles)];
     
     [self sparkle];
     
@@ -51,8 +52,7 @@
     static BOOL on = NO;
     [UIView beginAnimations:@"sparkle" context:nil];
     [UIView setAnimationDuration:animationDuration];
-    if(sparkling)
-        [self performSelector:@selector(sparkle) withObject:nil afterDelay:animationDuration];
+    [self performSelector:@selector(sparkle) withObject:nil afterDelay:animationDuration];
     
     
     for(NSUInteger y = 0; y < sizeInTiles.height; y++) {
@@ -71,6 +71,10 @@
     on = ! on;    
 }
 
+
+
+
+
 -(BoardTileView*)tile:(BoardPoint)tilePos;
 {
     if(tilePos.x > WidthInTiles-1 || tilePos.x < 0 || tilePos.y > HeightInTiles-1 || tilePos.y < 0) 
@@ -79,11 +83,23 @@
     return boardTiles[tilePos.x][tilePos.y];
 }
 
--(BoardSize)size;
+-(void)setValue:(CGFloat)v atPosition:(BoardPoint)p;
 {
-    return sizeInTiles;
+    [self tile:p].value = v;
 }
--(void)setSize:(BoardSize)newSize;
+-(void)setOwner:(Player)player atPosition:(BoardPoint)p;
+{
+    [self tile:p].owner = player;
+}
+-(void)explode:(BoardPoint)explodingTile;
+{
+    [[self tile:explodingTile] explode];
+}
+
+
+
+@synthesize sizeInTiles;
+-(void)setSizeInTiles:(BoardSize)newSize;
 {
     sizeInTiles = newSize;
     tileSize = CGSizeMake(BoardWidth/newSize.width, BoardHeight()/newSize.height);
@@ -118,3 +134,5 @@
 @synthesize delegate;
 @synthesize tileSize;
 @end
+
+#endif

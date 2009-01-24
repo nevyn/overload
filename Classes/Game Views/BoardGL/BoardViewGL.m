@@ -1,3 +1,4 @@
+#ifdef BOARDVIEW_OPENGL
 //
 //  BoardView.m
 //  MobileOverload
@@ -7,6 +8,9 @@
 //
 
 #import "BoardView.h"
+#import <QuartzCore/QuartzCore.h>
+#import <OpenGLES/EAGL.h>
+
 
 @implementation BoardView
 + (Class) layerClass
@@ -15,7 +19,7 @@
 }
 -(id)initWithFrame:(CGRect)frame;
 {
-    if( ! [super init] ) return nil;
+    if( ! [super initWithFrame:frame] ) return nil;
     
     CAEAGLLayer *glLayer = (CAEAGLLayer*)self.layer;
     glLayer.opaque = YES;
@@ -40,3 +44,6 @@
 @synthesize delegate;
 @synthesize tileSize;
 @end
+
+
+#endif

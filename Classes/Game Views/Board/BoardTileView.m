@@ -1,5 +1,6 @@
+#ifndef BOARDVIEW_OPENGL
 //
-//  BoardTile.m
+//  BoardTileView.m
 //  MobileOverload
 //
 //  Created by Joachim Bengtsson on 2008-08-17.
@@ -66,7 +67,7 @@ static NSArray *tileImages;
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event;
 {
-    [self.board.delegate boardTileViewWasTouched:self];
+    [self.board.delegate boardTileViewWasTouched:self.boardPosition];
 }
 
 -(void)updateColor;
@@ -157,3 +158,4 @@ static CGRect boardPointToFrameRect(CGSize ts, BoardPoint bp)
     [self removeFromSuperview];
 }
 @end
+#endif
