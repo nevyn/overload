@@ -10,10 +10,12 @@
 #import "BoardView.h"
 #import <QuartzCore/QuartzCore.h>
 #import "ColorConversion.h"
+#import "UIImage+GLTexture.h"
 
 @interface BoardView ()
 -(BOOL)createFramebuffer;
 -(void)destroyFramebuffer;
+-(void)prepareScene;
 -(void)render;
 @property (nonatomic, assign) NSTimer *animationTimer;
 @end
@@ -47,10 +49,21 @@ typedef struct tile_t {
         return nil;
     }
     
+    [self prepareScene];
+    
     self.animated = YES;
     
     return self;
 }
+-(void)dealloc;
+{
+    if ([EAGLContext currentContext] == ctx)
+        [EAGLContext setCurrentContext:nil];
+    
+    [ctx release];
+    [super dealloc];
+}
+
 #pragma mark 
 #pragma mark Context/buffer setup and teardown
 #pragma mark -
@@ -97,15 +110,29 @@ typedef struct tile_t {
     glDeleteRenderbuffersOES(1, &rbo); rbo = 0;
     // If we are using the depth buffer, remove that too
 }
--(void)dealloc;
-{
-    if ([EAGLContext currentContext] == ctx)
-        [EAGLContext setCurrentContext:nil];
-    
-    [ctx release];
-    [super dealloc];
-}
 
+
+#pragma mark Prepare scene
+-(void)prepareScene;
+{
+    // Enable use of the texture
+    glEnable(GL_TEXTURE_2D);
+    // Set a blending function to use
+    glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
+    // Enable blending
+    glEnable(GL_BLEND);    
+    // Set the texture parameters to use a minifying filter and a linear filer (weighted average)
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    
+    BOOL texOK = YES;
+    texOK &= [[UIImage imageNamed:@"tile.png"] loadIntoTexture:&gloss];
+    texOK &= [[UIImage imageNamed:@"tile-0.png"] loadIntoTexture:&t0];
+    texOK &= [[UIImage imageNamed:@"tile-25.png"] loadIntoTexture:&t25];
+    texOK &= [[UIImage imageNamed:@"tile-50.png"] loadIntoTexture:&t50];
+    texOK &= [[UIImage imageNamed:@"tile-75.png"] loadIntoTexture:&t75];
+    if(!texOK)
+        NSLog(@"[BoardViewGL prepareScene]: Textures failed to load");
+}
 
 #pragma mark 
 #pragma mark Rendering
@@ -128,16 +155,25 @@ typedef struct tile_t {
         0,     0,   0, 255,
         255,   0, 255, 255,
     };
+    const GLshort spriteTexcoords[] = {
+        0, 0,
+        1, 0,
+        0, 1,
+        1, 1,
+    };
+    
     
     // Setup our surface for this frame
     [EAGLContext setCurrentContext:ctx];
     glBindFramebufferOES(GL_FRAMEBUFFER_OES, fbo);
+    
+    // Setup the projection
     glViewport(0, 0, self.frame.size.width, self.frame.size.height);
     
-    // Reset the projection
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     glOrthof(0, sizeInTiles.width, sizeInTiles.height, 0, -1.0f, 1.0f);
+    
     
     // Begin drawing
     glMatrixMode(GL_MODELVIEW);
@@ -147,9 +183,13 @@ typedef struct tile_t {
     glClear(GL_COLOR_BUFFER_BIT);
     
     // Draw tiles
-    //  Setup shared state for tiles
+    //  Setup shared state for tiles (vert and texcoord pointers)
     glVertexPointer(2, GL_FLOAT, 0, squareVertices);
     glEnableClientState(GL_VERTEX_ARRAY);
+    glTexCoordPointer(2, GL_SHORT, 0, spriteTexcoords);
+	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+    glBindTexture(GL_TEXTURE_2D, gloss);
+
 
     for(NSUInteger y = 0; y < HeightInTiles; y++) {
         for(NSUInteger x = 0; x < WidthInTiles; x++) {
@@ -162,8 +202,8 @@ typedef struct tile_t {
             CGFloat value = board.values[x][y]; 
             CGFloat hue = Hues[owner];
             CGFloat sat = Saturations[owner];
-            CGFloat bri = 1.0-(value/1.5);
-            CGFloat r, g, b; HSLToRGB(hue, sat, bri, &r, &g, &b);
+            CGFloat lum = 0.75-(value/2.);
+            CGFloat r, g, b; HSLToRGB(hue, sat, lum, &r, &g, &b);
             squareColors[0] = squareColors[4] = squareColors[ 8] = squareColors[12] = r*255;
             squareColors[1] = squareColors[5] = squareColors[ 9] = squareColors[13] = g*255;
             squareColors[2] = squareColors[6] = squareColors[10] = squareColors[14] = b*255;

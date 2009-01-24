@@ -33,6 +33,8 @@
 #else
     EAGLContext *ctx;
     GLuint fbo, rbo;
+    GLuint gloss, t0, t25, t50, t75;
+    
     NSTimer *animationTimer;
     NSTimeInterval animationInterval;
     BoardStruct board;
