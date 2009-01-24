@@ -32,7 +32,7 @@ typedef struct tile_t {
 {
     if( ! [super initWithFrame:frame] ) return nil;
     
-    animationInterval = 1.0/60.0;
+    animationInterval = 1.0/40.0;
     
     memset(&board, 0, sizeof(board));
     
@@ -165,8 +165,8 @@ typedef struct tile_t {
             CGFloat bri = 1.0-(value/1.5);
             CGFloat r, g, b; HSLToRGB(hue, sat, bri, &r, &g, &b);
             squareColors[0] = squareColors[4] = squareColors[ 8] = squareColors[12] = r*255;
-            squareColors[1] = squareColors[5] = squareColors[ 9] = squareColors[13] = r*255;
-            squareColors[2] = squareColors[6] = squareColors[10] = squareColors[14] = r*255;
+            squareColors[1] = squareColors[5] = squareColors[ 9] = squareColors[13] = g*255;
+            squareColors[2] = squareColors[6] = squareColors[10] = squareColors[14] = b*255;
             
             glColorPointer(4, GL_UNSIGNED_BYTE, 0, squareColors);
             glEnableClientState(GL_COLOR_ARRAY);
@@ -188,7 +188,19 @@ typedef struct tile_t {
 #pragma mark 
 #pragma mark Input handling
 #pragma mark -
-
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event;
+{
+    UITouch *t = [[event allTouches] anyObject];
+    CGPoint tp = [t locationInView:self];
+    
+    BoardPoint p;
+    p.x = floor((tp.x/self.bounds.size.width)*sizeInTiles.width);
+    p.y = floor((tp.y/self.bounds.size.height)*sizeInTiles.height);
+    if(p.x < 0 || p.y < 0 || p.x >= sizeInTiles.width || p.y >= sizeInTiles.height)
+        return;
+    
+    [self.delegate boardTileViewWasTouched:p];
+}
 #pragma mark 
 #pragma mark Public interface
 #pragma mark -
