@@ -8,9 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import "TypesAndConstants.h"
-#ifndef BOARDVIEW_OPENGL
-#import "BoardTileView.h"
-#endif
+
+# ifndef BOARDVIEW_OPENGL
+#   import "BoardTileView.h"
+# else
+#   import <OpenGLES/EAGL.h>
+#   import <OpenGLES/EAGLDrawable.h>
+#   import <OpenGLES/ES1/gl.h>
+#   import <OpenGLES/ES1/glext.h>
+# endif
 @protocol BoardViewDelegate
 -(void)boardTileViewWasTouched:(BoardPoint)pointThatWasTouched;
 @end
@@ -24,6 +30,11 @@
     
 #ifndef BOARDVIEW_OPENGL
     BoardTileView *boardTiles[10][12]; // [x][y]
+#else
+    EAGLContext *ctx;
+    GLuint fbo, rbo;
+    NSTimer *animationTimer;
+    NSTimeInterval animationInterval;
 #endif
 }
 
@@ -31,6 +42,7 @@
 -(void)setOwner:(Player)player atPosition:(BoardPoint)p;
 -(void)explode:(BoardPoint)explodingTile;
 
+@property (assign, nonatomic) BOOL animated;
 
 @property (assign, nonatomic) BoardSize sizeInTiles;
 @property (assign, nonatomic) id<BoardViewDelegate> delegate;
