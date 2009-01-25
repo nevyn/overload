@@ -44,7 +44,7 @@ typedef struct tile_t {
     
     // 2. Get a context to the hardware [EAGL]
     ctx = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES1];
-    if( !ctx || ![EAGLContext setCurrentContext:ctx] || ![self createFramebuffer]) {
+    if( !ctx || ![EAGLContext setCurrentContext:ctx] ) {
         [self release];
         return nil;
     }
@@ -133,8 +133,6 @@ typedef struct tile_t {
 {
     if(!fbo) return;
     
-    // Replace the implementation of this method to do your own custom drawing
-    
     const GLfloat squareVertices[] = {
         0.f,   0.f,
         1.f,   0.f,
@@ -169,8 +167,13 @@ typedef struct tile_t {
     glOrthof(0, sizeInTiles.width, sizeInTiles.height, 0, -1.0f, 1.0f);
     
     // Prepare for textures
-    glEnable(GL_TEXTURE_2D);
+	glEnable(GL_TEXTURE_2D);
+    
+    
+//    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+//    glEnable(GL_BLEND);    
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    
     
     // Begin drawing
     glMatrixMode(GL_MODELVIEW);
@@ -183,18 +186,22 @@ typedef struct tile_t {
     
     // Draw tiles
     //  Setup shared state for tiles (vert and texcoord pointers)
-    glVertexPointer(2, GL_FLOAT, 0, squareVertices);
     glEnableClientState(GL_VERTEX_ARRAY);
+    glEnableClientState(GL_COLOR_ARRAY);
+    glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+
+    glVertexPointer(2, GL_FLOAT, 0, squareVertices);
 	glTexCoordPointer(2, GL_SHORT, 0, spriteTexcoords);
+    
+    
 
 
-    for(NSUInteger y = 0; y < HeightInTiles; y++) {
-        for(NSUInteger x = 0; x < WidthInTiles; x++) {
+    for(NSUInteger y = 0; y < self.sizeInTiles.height; y++) {
+        for(NSUInteger x = 0; x < self.sizeInTiles.width; x++) {
             glLoadIdentity();
             glTranslatef(x, y, 0);
             
-            // Draw the tile
-            //   Setup color for this tile
+            // Color
             Player owner = board.owners[x][y];
             CGFloat value = board.values[x][y]; 
             CGFloat hue = Hues[owner];
@@ -208,34 +215,17 @@ typedef struct tile_t {
             glColorPointer(4, GL_UNSIGNED_BYTE, 0, squareColors);
             glEnableClientState(GL_COLOR_ARRAY);
             
-            glDisableClientState(GL_TEXTURE_COORD_ARRAY);
-            glDisable(GL_TEXTURE_2D);
-            
-            //   Draw color layer
-            glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
-            
-            //   Draw texture layers
-            
-            glDisableClientState(GL_COLOR_ARRAY);
-            
-            glEnable(GL_TEXTURE_2D);
-            glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-            glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
-            glEnable(GL_BLEND);    
-            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-            
             const GLuint tileImageNames[] = {t0, t25, t50, t75};
-            NSUInteger tileImageIdx = MIN(floor(value*4.), 3);
-            GLuint tileImage = tileImageNames[tileImageIdx];
+            NSInteger tileImageIdx = MIN(floor(value*4.), 3);
+            GLuint tileImage = tileImageNames[tileImageIdx]; //tileImageNames[tileImageIdx];
+            glBindTexture(GL_TEXTURE_2D, tileImage);
             
 
-            glBindTexture(GL_TEXTURE_2D, tileImage);
+            
+            
             glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 
-            glBindTexture(GL_TEXTURE_2D, gloss);
-            glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
-
-
+            // Gloss
             
         }
     }
@@ -271,10 +261,20 @@ typedef struct tile_t {
 #pragma mark -
 -(void)setValue:(CGFloat)v atPosition:(BoardPoint)p;
 {
+    if(p.x < 0 || p.x >= WidthInTiles || p.y < 0 || p.y >= HeightInTiles) {
+        NSAssert(NO, @"Trying to write at invalid board point");
+        return;
+    }
+    
     board.values[p.x][p.y] = v;
 }
 -(void)setOwner:(Player)player atPosition:(BoardPoint)p;
 {
+    if(p.x < 0 || p.x >= WidthInTiles || p.y < 0 || p.y >= HeightInTiles) {
+        NSAssert(NO, @"Trying to write at invalid board point");
+        return;
+    }
+    
     board.owners[p.x][p.y] = player;
 }
 -(void)explode:(BoardPoint)explodingTile;
