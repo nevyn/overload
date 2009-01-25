@@ -44,12 +44,13 @@ typedef struct tile_t {
     
     // 2. Get a context to the hardware [EAGL]
     ctx = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES1];
-    if( !ctx || ![EAGLContext setCurrentContext:ctx]) {
+    if( !ctx || ![EAGLContext setCurrentContext:ctx] || ![self createFramebuffer]) {
         [self release];
         return nil;
     }
     
     [self prepareScene];
+    [self render];
     
     self.animated = YES;
     
@@ -115,15 +116,6 @@ typedef struct tile_t {
 #pragma mark Prepare scene
 -(void)prepareScene;
 {
-    // Enable use of the texture
-    glEnable(GL_TEXTURE_2D);
-    // Set a blending function to use
-    glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
-    // Enable blending
-    glEnable(GL_BLEND);    
-    // Set the texture parameters to use a minifying filter and a linear filer (weighted average)
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-    
     BOOL texOK = YES;
     texOK &= [[UIImage imageNamed:@"tile.png"] loadIntoTexture:&gloss];
     texOK &= [[UIImage imageNamed:@"tile-0.png"] loadIntoTexture:&t0];
@@ -163,6 +155,8 @@ typedef struct tile_t {
     };
     
     
+    
+    
     // Setup our surface for this frame
     [EAGLContext setCurrentContext:ctx];
     glBindFramebufferOES(GL_FRAMEBUFFER_OES, fbo);
@@ -174,6 +168,9 @@ typedef struct tile_t {
     glLoadIdentity();
     glOrthof(0, sizeInTiles.width, sizeInTiles.height, 0, -1.0f, 1.0f);
     
+    // Prepare for textures
+    glEnable(GL_TEXTURE_2D);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     
     // Begin drawing
     glMatrixMode(GL_MODELVIEW);
@@ -181,14 +178,14 @@ typedef struct tile_t {
     // Clear to background
     glClearColor(0.5f, 0.5f, 0.5f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT);
+
+    
     
     // Draw tiles
     //  Setup shared state for tiles (vert and texcoord pointers)
     glVertexPointer(2, GL_FLOAT, 0, squareVertices);
     glEnableClientState(GL_VERTEX_ARRAY);
-    glTexCoordPointer(2, GL_SHORT, 0, spriteTexcoords);
-	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-    glBindTexture(GL_TEXTURE_2D, gloss);
+	glTexCoordPointer(2, GL_SHORT, 0, spriteTexcoords);
 
 
     for(NSUInteger y = 0; y < HeightInTiles; y++) {
@@ -211,11 +208,39 @@ typedef struct tile_t {
             glColorPointer(4, GL_UNSIGNED_BYTE, 0, squareColors);
             glEnableClientState(GL_COLOR_ARRAY);
             
-
-            //   Draw it
+            glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+            glDisable(GL_TEXTURE_2D);
+            
+            //   Draw color layer
             glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+            
+            //   Draw texture layers
+            
+            glDisableClientState(GL_COLOR_ARRAY);
+            
+            glEnable(GL_TEXTURE_2D);
+            glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+            glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
+            glEnable(GL_BLEND);    
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+            
+            const GLuint tileImageNames[] = {t0, t25, t50, t75};
+            NSUInteger tileImageIdx = MIN(floor(value*4.), 3);
+            GLuint tileImage = tileImageNames[tileImageIdx];
+            
+
+            glBindTexture(GL_TEXTURE_2D, tileImage);
+            glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+
+            glBindTexture(GL_TEXTURE_2D, gloss);
+            glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+
+
+            
         }
     }
+    
+    
     
     
     
