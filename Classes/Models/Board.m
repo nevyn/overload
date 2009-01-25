@@ -406,6 +406,8 @@
 }
 
 
+
+
 @synthesize board;
 @synthesize owner;
 -(void)setOwner:(Player)newOwner;

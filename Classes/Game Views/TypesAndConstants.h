@@ -40,6 +40,7 @@ extern const CGFloat SparkleEnergy;
 extern const CGFloat SparkleOpacityLow;
 extern const NSTimeInterval ExplosionDelay;
 extern const NSTimeInterval ExplosionSpreadEnergy;
+extern const NSTimeInterval ExplosionDuration;
 
 extern float frand(float max);
 

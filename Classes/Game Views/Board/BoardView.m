@@ -133,6 +133,16 @@
 
 @synthesize delegate;
 @synthesize tileSize;
+
+
+-(BOOL)animated;
+{
+    return YES;
+}
+-(void)setAnimated:(BOOL)animated_;
+{
+    
+}
 @end
 
 #endif

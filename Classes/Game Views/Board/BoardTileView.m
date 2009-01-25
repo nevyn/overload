@@ -134,7 +134,7 @@ static CGRect boardPointToFrameRect(CGSize ts, BoardPoint bp)
         
         [UIView beginAnimations:@"Explosion1" context:nil];
         [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
-        [UIView setAnimationDuration:0.45];
+        [UIView setAnimationDuration:ExplosionDuration];
         //[UIView setAnimationDelay:(ExplosionDelay/2)*(i+1)];
         
         aniTile.owner = self.owner;

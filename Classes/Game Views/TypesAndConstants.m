@@ -22,6 +22,7 @@ const NSUInteger HeightInTiles = 12; //BoardHeight/TileHeight
 const NSTimeInterval ExplosionDelay = 0.10;
 const CGFloat ChargeEnergy = 0.25;
 const NSTimeInterval ExplosionSpreadEnergy = 0.25;
+const NSTimeInterval ExplosionDuration = 0.45;
 const CGFloat SparkleEnergy = 0.75;
 const CGFloat SparkleOpacityLow = 0.7;
 

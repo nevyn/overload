@@ -38,6 +38,8 @@
     NSTimer *animationTimer;
     NSTimeInterval animationInterval;
     BoardStruct board;
+    
+    NSMutableArray *explosions;
 #endif
 }
 

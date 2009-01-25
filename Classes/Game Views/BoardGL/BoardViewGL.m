@@ -20,6 +20,22 @@
 @property (nonatomic, assign) NSTimer *animationTimer;
 @end
 
+@interface BoardViewExplosion : NSObject
+{
+    NSTimeInterval start;
+    BoardPoint position;
+    Player owner;
+    id delegate;
+}
+-(void)render;
+@property (assign, nonatomic) NSTimeInterval start;
+@property (assign, nonatomic) BoardPoint position;
+@property (assign, nonatomic) Player owner;
+@property (assign, nonatomic) id delegate;
+@end
+
+
+
 typedef struct tile_t {
     CGFloat value;
     Player player;
@@ -37,6 +53,8 @@ typedef struct tile_t {
     animationInterval = 1.0/40.0;
     
     memset(&board, 0, sizeof(board));
+    
+    explosions = [[NSMutableArray alloc] init];
     
     // 1. Setup our "window"
     CAEAGLLayer *glLayer = (CAEAGLLayer*)self.layer;
@@ -61,6 +79,7 @@ typedef struct tile_t {
     if ([EAGLContext currentContext] == ctx)
         [EAGLContext setCurrentContext:nil];
     
+    [explosions release];
     [ctx release];
     [super dealloc];
 }
@@ -129,6 +148,28 @@ typedef struct tile_t {
 #pragma mark 
 #pragma mark Rendering
 #pragma mark -
+// Very much not thread safe, but neither is OpenGL, so that's okay
+void renderColor(Player owner, CGFloat value, CGFloat a)
+{
+    static GLubyte cornerColors[] = {
+        255, 255,   0, 255,
+        0,   255, 255, 255,
+        0,     0,   0, 255,
+        255,   0, 255, 255,
+    };
+    CGFloat hue = Hues[owner];
+    CGFloat sat = Saturations[owner];
+    CGFloat lum = 0.75-(value/2.);
+    CGFloat r, g, b; HSLToRGB(hue, sat, lum, &r, &g, &b);
+    cornerColors[0] = cornerColors[4] = cornerColors[ 8] = cornerColors[12] = r*255;
+    cornerColors[1] = cornerColors[5] = cornerColors[ 9] = cornerColors[13] = g*255;
+    cornerColors[2] = cornerColors[6] = cornerColors[10] = cornerColors[14] = b*255;
+    cornerColors[3] = cornerColors[7] = cornerColors[11] = cornerColors[15] = a*255;
+
+    
+    glColorPointer(4, GL_UNSIGNED_BYTE, 0, cornerColors);
+}
+
 -(void)render;
 {
     if(!fbo) return;
@@ -139,18 +180,12 @@ typedef struct tile_t {
         0.f,   1.f,
         1.f,   1.f,
     };
-    GLubyte squareColors[] = {
-        255, 255,   0, 255,
-        0,   255, 255, 255,
-        0,     0,   0, 255,
-        255,   0, 255, 255,
-    };
-    const GLshort spriteTexcoords[] = {
+    /*const GLshort spriteTexcoords[] = {
         0, 0,
         1, 0,
         0, 1,
         1, 1,
-    };
+    };*/
     
     
     
@@ -170,8 +205,8 @@ typedef struct tile_t {
 	glEnable(GL_TEXTURE_2D);
     
     
-//    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-//    glEnable(GL_BLEND);    
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    glEnable(GL_BLEND);    
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     
     
@@ -188,13 +223,12 @@ typedef struct tile_t {
     //  Setup shared state for tiles (vert and texcoord pointers)
     glEnableClientState(GL_VERTEX_ARRAY);
     glEnableClientState(GL_COLOR_ARRAY);
-    glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+    //glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 
     glVertexPointer(2, GL_FLOAT, 0, squareVertices);
-	glTexCoordPointer(2, GL_SHORT, 0, spriteTexcoords);
+	//glTexCoordPointer(2, GL_SHORT, 0, spriteTexcoords);
     
-    
-
+    glDisable(GL_TEXTURE_2D);
 
     for(NSUInteger y = 0; y < self.sizeInTiles.height; y++) {
         for(NSUInteger x = 0; x < self.sizeInTiles.width; x++) {
@@ -203,25 +237,18 @@ typedef struct tile_t {
             
             // Color
             Player owner = board.owners[x][y];
-            CGFloat value = board.values[x][y]; 
-            CGFloat hue = Hues[owner];
-            CGFloat sat = Saturations[owner];
-            CGFloat lum = 0.75-(value/2.);
-            CGFloat r, g, b; HSLToRGB(hue, sat, lum, &r, &g, &b);
-            squareColors[0] = squareColors[4] = squareColors[ 8] = squareColors[12] = r*255;
-            squareColors[1] = squareColors[5] = squareColors[ 9] = squareColors[13] = g*255;
-            squareColors[2] = squareColors[6] = squareColors[10] = squareColors[14] = b*255;
+            CGFloat value = board.values[x][y];
+            renderColor(owner, value, 1.0);
             
-            glColorPointer(4, GL_UNSIGNED_BYTE, 0, squareColors);
-            glEnableClientState(GL_COLOR_ARRAY);
-            
+            // Tex
+            /*
             const GLuint tileImageNames[] = {t0, t25, t50, t75};
             NSInteger tileImageIdx = MIN(floor(value*4.), 3);
-            GLuint tileImage = tileImageNames[tileImageIdx]; //tileImageNames[tileImageIdx];
-            glBindTexture(GL_TEXTURE_2D, tileImage);
-            
+            GLuint tileImage = tileImageNames[tileImageIdx];
+            if(tileImage != t0 && tileImage != t25 && tileImage != t50 && tileImage != t75) NSLog(@"FEL");
+*/
 
-            
+            //glBindTexture(GL_TEXTURE_2D, tileImage);
             
             glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 
@@ -229,6 +256,10 @@ typedef struct tile_t {
             
         }
     }
+    
+    // Explosions
+    for (id explosion in [[explosions copy] autorelease])
+        [explosion render];
     
     
     
@@ -277,9 +308,23 @@ typedef struct tile_t {
     
     board.owners[p.x][p.y] = player;
 }
--(void)explode:(BoardPoint)explodingTile;
+-(void)explode:(BoardPoint)p;
 {
+    if(p.x < 0 || p.x >= WidthInTiles || p.y < 0 || p.y >= HeightInTiles) {
+        NSAssert(NO, @"Trying to write at invalid board point");
+        return;
+    }
     
+    BoardViewExplosion *ex = [[BoardViewExplosion new] autorelease];
+    ex.start = [NSDate timeIntervalSinceReferenceDate];
+    ex.position = p;
+    ex.owner = board.owners[p.x][p.y];
+    ex.delegate = self;
+    [explosions addObject:ex];
+}
+-(void)explosionEnded:(BoardViewExplosion*)ex;
+{
+    [explosions removeObject:ex];
 }
 
 @synthesize animationTimer;
@@ -307,6 +352,52 @@ typedef struct tile_t {
 @synthesize delegate;
 @synthesize tileSize;
 @end
+
+#pragma mark 
+#pragma mark Animations (Explosions)
+#pragma mark -
+@implementation BoardViewExplosion
+-(void)render;
+{
+    NSTimeInterval now = [NSDate timeIntervalSinceReferenceDate];
+    NSTimeInterval d = now - self.start;
+    CGFloat frac = d/ExplosionDuration;
+    if(frac > 1.0) {
+        [delegate explosionEnded:self];
+        return;
+    }
+    BoardPoint s = self.position;
+    BoardPoint dir[] = {
+        { 0, -1},
+        { 1,  0},
+        { 0,  1},
+        {-1,  0}
+    };
+    
+    for(NSUInteger i = 0; i < 4; i++) {
+        glLoadIdentity();
+        BoardPoint d = dir[i];
+        CGFloat x = s.x + d.x*frac;
+        CGFloat y = s.y + d.y*frac;
+
+        glTranslatef(x, y, 0);
+        
+        renderColor(self.owner, 1.0, 1.0-frac);
+        
+        glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+
+    }
+    
+    
+}
+
+
+@synthesize start;
+@synthesize position;
+@synthesize owner;
+@synthesize delegate;
+@end
+
 
 
 #endif
