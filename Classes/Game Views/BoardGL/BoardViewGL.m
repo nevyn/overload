@@ -313,7 +313,7 @@ void renderWhite()
     
     glDisable(GL_TEXTURE_2D);
 
-    
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     // Explosions
     for (id explosion in [[explosions copy] autorelease])
         [explosion render];
