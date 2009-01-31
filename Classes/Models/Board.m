@@ -17,8 +17,7 @@
 -(void)checkWinningCondition:(NSTimer*)sender;
 -(void)advancePlayer;
 
--(void)setLastExplosionTime:(NSTimeInterval)explodedAt;
-@property (readwrite, assign) NSUInteger explosionsQueued;
+@property (readwrite, assign, nonatomic) NSUInteger explosionsQueued;
 @end
 
 
@@ -123,11 +122,6 @@
         self.currentPlayer = PlayerP1;
 }
 
--(void)setLastExplosionTime:(NSTimeInterval)explodedAt;
-{
-    lastExplosionTime = explodedAt;
-}
-
 
 #pragma mark Accessors
 -(Tile*)tile:(BoardPoint)tilePos;
@@ -175,7 +169,6 @@
         return YES;
     
     if( self.explosionsQueued == 0)
-//    if( [NSDate timeIntervalSinceReferenceDate] > lastExplosionTime+(2.*ExplosionDelay) )
         return YES;
     
     return NO;
@@ -256,8 +249,9 @@
     
     [delegate tile:tile wasChargedTo:tile.value+ChargeEnergy byPlayer:self.currentPlayer];
     [tile charge:ChargeEnergy forPlayer:self.currentPlayer];
-
-    [self advancePlayer];
+    
+    if(self.explosionsQueued == 0 || self.chaosGame)
+        [self advancePlayer];
     return YES;
 }
 
@@ -342,6 +336,13 @@
             BoardSizeMake(WidthInTiles, HeightInTiles);
 }
 @synthesize explosionsQueued;
+-(void)setExplosionsQueued:(NSUInteger)queueNo;
+{
+    explosionsQueued = queueNo;
+    
+    if(explosionsQueued == 0 && !self.chaosGame)
+        [self advancePlayer];
+}
 @end
 
 
@@ -353,8 +354,6 @@
     self.value += amount;
     if(self.value >= 0.9999)
         [self explode];
-    
-    [board setLastExplosionTime:[NSDate timeIntervalSinceReferenceDate]-ExplosionDelay/2];
 }
 -(void)charge:(CGFloat)amount forPlayer:(Player)newOwner;
 {
@@ -367,7 +366,6 @@
 {
     Player p = (int)caller < 10 ? (Player)caller : [(Tile*)[caller userInfo] owner];
     [self charge:ExplosionSpreadEnergy forPlayer:p];
-    [board setLastExplosionTime:[NSDate timeIntervalSinceReferenceDate]];
     board.explosionsQueued -= 1;
 }
 -(void)explode;
