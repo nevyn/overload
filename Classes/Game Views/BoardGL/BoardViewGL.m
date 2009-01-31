@@ -170,6 +170,19 @@ void renderColor(Player owner, CGFloat value, CGFloat a)
     glColorPointer(4, GL_UNSIGNED_BYTE, 0, cornerColors);
 }
 
+void renderWhite()
+{
+    static GLubyte cornerColors[] = {
+        255, 255, 255, 255,
+        255, 255, 255, 255,
+        255, 255, 255, 255,
+        255, 255, 255, 255,
+    };    
+    
+    glColorPointer(4, GL_UNSIGNED_BYTE, 0, cornerColors);
+}
+
+
 -(void)render;
 {
     if(!fbo) return;
@@ -180,12 +193,12 @@ void renderColor(Player owner, CGFloat value, CGFloat a)
         0.f,   1.f,
         1.f,   1.f,
     };
-    /*const GLshort spriteTexcoords[] = {
+    const GLshort spriteTexcoords[] = {
         0, 0,
         1, 0,
         0, 1,
         1, 1,
-    };*/
+    };
     
     
     
@@ -204,9 +217,8 @@ void renderColor(Player owner, CGFloat value, CGFloat a)
     // Prepare for textures
 	glEnable(GL_TEXTURE_2D);
     
-    
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-    glEnable(GL_BLEND);    
+    glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
+    glEnable(GL_BLEND);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     
     
@@ -223,13 +235,11 @@ void renderColor(Player owner, CGFloat value, CGFloat a)
     //  Setup shared state for tiles (vert and texcoord pointers)
     glEnableClientState(GL_VERTEX_ARRAY);
     glEnableClientState(GL_COLOR_ARRAY);
-    //glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 
     glVertexPointer(2, GL_FLOAT, 0, squareVertices);
-	//glTexCoordPointer(2, GL_SHORT, 0, spriteTexcoords);
     
+    //////// Color
     glDisable(GL_TEXTURE_2D);
-
     for(NSUInteger y = 0; y < self.sizeInTiles.height; y++) {
         for(NSUInteger x = 0; x < self.sizeInTiles.width; x++) {
             glLoadIdentity();
@@ -238,24 +248,57 @@ void renderColor(Player owner, CGFloat value, CGFloat a)
             // Color
             Player owner = board.owners[x][y];
             CGFloat value = board.values[x][y];
-            renderColor(owner, value, 1.0);
+            CGFloat pulse = 0;
+            if(value > 0.74)
+                pulse = sin(5.*[NSDate timeIntervalSinceReferenceDate]+x+y*self.sizeInTiles.width)*0.40+0.40;
+            renderColor(owner, value, 1.0-pulse);
             
-            // Tex
-            /*
+            glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+        }
+    }
+    
+    
+    glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+	glTexCoordPointer(2, GL_SHORT, 0, spriteTexcoords);
+    glEnable(GL_TEXTURE_2D);
+    renderWhite();
+    
+    
+    //////// Symbol
+    for(NSUInteger y = 0; y < self.sizeInTiles.height; y++) {
+        for(NSUInteger x = 0; x < self.sizeInTiles.width; x++) {
+            glLoadIdentity();
+            glTranslatef(x, y, 0);
+            
+            CGFloat value = board.values[x][y];
+            
             const GLuint tileImageNames[] = {t0, t25, t50, t75};
             NSInteger tileImageIdx = MIN(floor(value*4.), 3);
             GLuint tileImage = tileImageNames[tileImageIdx];
-            if(tileImage != t0 && tileImage != t25 && tileImage != t50 && tileImage != t75) NSLog(@"FEL");
-*/
-
-            //glBindTexture(GL_TEXTURE_2D, tileImage);
-            
+            if(tileImage != t0 && tileImage != t25 && tileImage != t50 && tileImage != t75 || t0 == 0 || t25 == 0 || t50 == 0 || t75 == 0) NSLog(@"FEL");
+    
+            glBindTexture(GL_TEXTURE_2D, tileImage);
             glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
-
-            // Gloss
-            
         }
     }
+    
+    //////// Gloss
+    
+    for(NSUInteger y = 0; y < self.sizeInTiles.height; y++) {
+        for(NSUInteger x = 0; x < self.sizeInTiles.width; x++) {
+            glLoadIdentity();
+            glTranslatef(x, y, 0);
+            
+            
+            
+            glBindTexture(GL_TEXTURE_2D, gloss);
+            glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+        }
+    }
+    
+    
+    glDisable(GL_TEXTURE_2D);
+
     
     // Explosions
     for (id explosion in [[explosions copy] autorelease])
@@ -292,34 +335,34 @@ void renderColor(Player owner, CGFloat value, CGFloat a)
 #pragma mark -
 -(void)setValue:(CGFloat)v atPosition:(BoardPoint)p;
 {
-    if(p.x < 0 || p.x >= WidthInTiles || p.y < 0 || p.y >= HeightInTiles) {
-        NSAssert(NO, @"Trying to write at invalid board point");
+    if(p.x < 0 || p.x >= WidthInTiles || p.y < 0 || p.y >= HeightInTiles) 
         return;
-    }
     
     board.values[p.x][p.y] = v;
 }
 -(void)setOwner:(Player)player atPosition:(BoardPoint)p;
 {
-    if(p.x < 0 || p.x >= WidthInTiles || p.y < 0 || p.y >= HeightInTiles) {
-        NSAssert(NO, @"Trying to write at invalid board point");
+    if(p.x < 0 || p.x >= WidthInTiles || p.y < 0 || p.y >= HeightInTiles) 
         return;
-    }
     
     board.owners[p.x][p.y] = player;
 }
 -(void)explode:(BoardPoint)p;
 {
-    if(p.x < 0 || p.x >= WidthInTiles || p.y < 0 || p.y >= HeightInTiles) {
-        NSAssert(NO, @"Trying to write at invalid board point");
+    if(p.x < 0 || p.x >= WidthInTiles || p.y < 0 || p.y >= HeightInTiles) 
         return;
-    }
     
     BoardViewExplosion *ex = [[BoardViewExplosion new] autorelease];
     ex.start = [NSDate timeIntervalSinceReferenceDate];
     ex.position = p;
     ex.owner = board.owners[p.x][p.y];
     ex.delegate = self;
+    
+    [self setOwner:ex.owner atPosition:BoardPointMake(p.x, p.y-1)];
+    [self setOwner:ex.owner atPosition:BoardPointMake(p.x+1, p.y)];
+    [self setOwner:ex.owner atPosition:BoardPointMake(p.x, p.y+1)];
+    [self setOwner:ex.owner atPosition:BoardPointMake(p.x-1, p.y)];
+    
     [explosions addObject:ex];
 }
 -(void)explosionEnded:(BoardViewExplosion*)ex;
@@ -360,8 +403,8 @@ void renderColor(Player owner, CGFloat value, CGFloat a)
 -(void)render;
 {
     NSTimeInterval now = [NSDate timeIntervalSinceReferenceDate];
-    NSTimeInterval d = now - self.start;
-    CGFloat frac = d/ExplosionDuration;
+    NSTimeInterval delta = now - self.start;
+    CGFloat frac = delta/ExplosionDuration;
     if(frac > 1.0) {
         [delegate explosionEnded:self];
         return;
@@ -376,6 +419,7 @@ void renderColor(Player owner, CGFloat value, CGFloat a)
     
     for(NSUInteger i = 0; i < 4; i++) {
         glLoadIdentity();
+        
         BoardPoint d = dir[i];
         CGFloat x = s.x + d.x*frac;
         CGFloat y = s.y + d.y*frac;

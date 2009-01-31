@@ -19,10 +19,10 @@ const CGFloat TileHeight = 31;
 const NSUInteger WidthInTiles = 10; //BoardWidth/TileWidth
 const NSUInteger HeightInTiles = 12; //BoardHeight/TileHeight
 
-const NSTimeInterval ExplosionDelay = 0.10;
+const NSTimeInterval ExplosionDelay = 0.20;
 const CGFloat ChargeEnergy = 0.25;
 const NSTimeInterval ExplosionSpreadEnergy = 0.25;
-const NSTimeInterval ExplosionDuration = 0.45;
+const NSTimeInterval ExplosionDuration = 0.40;
 const CGFloat SparkleEnergy = 0.75;
 const CGFloat SparkleOpacityLow = 0.7;
 

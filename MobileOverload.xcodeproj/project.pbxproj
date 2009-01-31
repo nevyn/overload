@@ -39,6 +39,7 @@
 		05A762460EFBFD54005D899A /* tile-0.png in Resources */ = {isa = PBXBuildFile; fileRef = 05A762420EFBFD54005D899A /* tile-0.png */; };
 		05A762D90EFCE9EF005D899A /* AI2.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A762D80EFCE9EF005D899A /* AI2.m */; };
 		05A7640D0EFE655C005D899A /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05A7640C0EFE655C005D899A /* MediaPlayer.framework */; };
+		05AD39420F3194A8004F746D /* Texture2D.m in Sources */ = {isa = PBXBuildFile; fileRef = 05AD39410F3194A8004F746D /* Texture2D.m */; };
 		05CF88440E5F59BF00E2D8B4 /* tile.png in Resources */ = {isa = PBXBuildFile; fileRef = 05CF88430E5F59BF00E2D8B4 /* tile.png */; };
 		05CF88E80E5F78DF00E2D8B4 /* lose-p1.png in Resources */ = {isa = PBXBuildFile; fileRef = 05CF88E40E5F78DF00E2D8B4 /* lose-p1.png */; };
 		05CF88E90E5F78DF00E2D8B4 /* win-p1.png in Resources */ = {isa = PBXBuildFile; fileRef = 05CF88E50E5F78DF00E2D8B4 /* win-p1.png */; };
@@ -112,6 +113,8 @@
 		05A762D70EFCE9EF005D899A /* AI2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AI2.h; sourceTree = "<group>"; };
 		05A762D80EFCE9EF005D899A /* AI2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AI2.m; sourceTree = "<group>"; };
 		05A7640C0EFE655C005D899A /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		05AD39400F3194A8004F746D /* Texture2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Texture2D.h; sourceTree = "<group>"; };
+		05AD39410F3194A8004F746D /* Texture2D.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Texture2D.m; sourceTree = "<group>"; };
 		05CF88430E5F59BF00E2D8B4 /* tile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tile.png; sourceTree = "<group>"; };
 		05CF88E40E5F78DF00E2D8B4 /* lose-p1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lose-p1.png"; sourceTree = "<group>"; };
 		05CF88E50E5F78DF00E2D8B4 /* win-p1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "win-p1.png"; sourceTree = "<group>"; };
@@ -300,6 +303,8 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				05AD39400F3194A8004F746D /* Texture2D.h */,
+				05AD39410F3194A8004F746D /* Texture2D.m */,
 				054F785F0E97D7B000E17413 /* Beacon.h */,
 				054F78600E97D7B000E17413 /* libPinchAnalytics.a */,
 				0511F5740E742C5F003FFA22 /* CInvocationGrabber.m */,
@@ -474,6 +479,7 @@
 				05E03BCC0F2B2690006E6190 /* BoardView.m in Sources */,
 				05E03D850F2BBF22006E6190 /* ColorConversion.c in Sources */,
 				05E03E680F2BD8F1006E6190 /* UIImage+GLTexture.m in Sources */,
+				05AD39420F3194A8004F746D /* Texture2D.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -503,7 +509,7 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = MobileOverload_Prefix.pch;
-				GCC_PREPROCESSOR_DEFINITIONS = NO_BOARDVIEW_OPENGL;
+				GCC_PREPROCESSOR_DEFINITIONS = BOARDVIEW_OPENGL;
 				GCC_THUMB_SUPPORT = NO;
 				INFOPLIST_FILE = Info.plist;
 				LIBRARY_SEARCH_PATHS = (
@@ -538,7 +544,7 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = MobileOverload_Prefix.pch;
-				GCC_PREPROCESSOR_DEFINITIONS = NO_BOARDVIEW_OPENGL;
+				GCC_PREPROCESSOR_DEFINITIONS = BOARDVIEW_OPENGL;
 				GCC_THUMB_SUPPORT = NO;
 				INFOPLIST_FILE = Info.plist;
 				LIBRARY_SEARCH_PATHS = (
@@ -561,7 +567,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = MobileOverload_Prefix.pch;
-				GCC_PREPROCESSOR_DEFINITIONS = NO_BOARDVIEW_OPENGL;
+				GCC_PREPROCESSOR_DEFINITIONS = BOARDVIEW_OPENGL;
 				GCC_THUMB_SUPPORT = NO;
 				INFOPLIST_FILE = Info.plist;
 				LIBRARY_SEARCH_PATHS = (
@@ -581,7 +587,7 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = MobileOverload_Prefix.pch;
-				GCC_PREPROCESSOR_DEFINITIONS = NO_BOARDVIEW_OPENGL;
+				GCC_PREPROCESSOR_DEFINITIONS = BOARDVIEW_OPENGL;
 				GCC_THUMB_SUPPORT = NO;
 				INFOPLIST_FILE = Info.plist;
 				LIBRARY_SEARCH_PATHS = (
