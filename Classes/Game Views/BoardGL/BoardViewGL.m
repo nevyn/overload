@@ -371,11 +371,12 @@ void renderWhite()
     ex.position = p;
     ex.owner = board.owners[p.x][p.y];
     ex.delegate = self;
-    
+    /*
     [self setOwner:ex.owner atPosition:BoardPointMake(p.x, p.y-1)];
     [self setOwner:ex.owner atPosition:BoardPointMake(p.x+1, p.y)];
     [self setOwner:ex.owner atPosition:BoardPointMake(p.x, p.y+1)];
-    [self setOwner:ex.owner atPosition:BoardPointMake(p.x-1, p.y)];
+    [self setOwner:ex.owner atPosition:BoardPointMake(p.x-1, p.y)];*/
+    // don't do that! just makes us out of sync with the model.
     
     [explosions addObject:ex];
 }
