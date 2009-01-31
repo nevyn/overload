@@ -17,8 +17,21 @@
 -(void)checkWinningCondition:(NSTimer*)sender;
 -(void)advancePlayer;
 
+-(void)scheduleCharge:(Tile*)t owner:(Player)owner;
 @property (readwrite, assign, nonatomic) NSUInteger explosionsQueued;
 @end
+
+@interface ScheduledCharge : NSObject {
+    Tile *tile;
+    Player owner;
+}
+@property (readwrite, assign, nonatomic) Tile *tile;
+@property (readwrite, assign, nonatomic) Player owner;
+@end
+@implementation ScheduledCharge
+@synthesize tile, owner;
+@end
+
 
 
 @implementation Board
@@ -39,6 +52,9 @@
     self.currentPlayer = PlayerP1;
     self.chaosGame = NO;
     self.tinyGame = NO;
+    
+    explosionsQueue = [[NSMutableDictionary alloc] init];
+    chargeTimer = [[NSTimer scheduledTimerWithTimeInterval:1./40. target:self selector:@selector(update) userInfo:nil repeats:YES] retain];
 
     [self scheduleWinningConditionCheck];
     
@@ -66,6 +82,10 @@
     self.chaosGame = other.chaosGame;
     self.tinyGame = other.tinyGame;
     
+    // Why no timer nor explosions queue? because this method is used for making
+    // a board for the AI, which uses neither. Should rename the method to reflect
+    // this, I know...
+    
     return self;
 }
 - (id)copyWithZone:(NSZone *)zone
@@ -77,7 +97,9 @@
 }
 -(void)dealloc;
 {
-    [winningConditionTimer invalidate];
+    [winningConditionTimer invalidate]; 
+    [chargeTimer invalidate]; [chargeTimer release]; chargeTimer = nil;
+    [explosionsQueue release]; explosionsQueue = nil;
 
     for(NSUInteger y = 0; y < HeightInTiles; y++) 
         for (NSUInteger x = 0; x < WidthInTiles; x++) 
@@ -335,6 +357,8 @@
             BoardSizeMake(WidthInTiles/2, HeightInTiles/2) :
             BoardSizeMake(WidthInTiles, HeightInTiles);
 }
+
+
 @synthesize explosionsQueued;
 -(void)setExplosionsQueued:(NSUInteger)queueNo;
 {
@@ -342,6 +366,31 @@
     
     if(explosionsQueued == 0 && !self.chaosGame)
         [self advancePlayer];
+}
+-(void)scheduleCharge:(Tile*)t owner:(Player)owner;
+{
+    ScheduledCharge *charge = [[ScheduledCharge alloc] init];
+    charge.owner = owner;
+    charge.tile = t;
+    [explosionsQueue setObject:charge forKey:[NSNumber numberWithDouble:[NSDate timeIntervalSinceReferenceDate]+ExplosionDelay]];
+}
+-(void)explosionCharge:(ScheduledCharge*)charge;
+{
+    [charge.tile charge:ExplosionSpreadEnergy forPlayer:charge.owner];
+    self.explosionsQueued -= 1;
+}
+-(void)update;
+{
+    if([explosionsQueue count] == 0)
+        return;
+    
+    NSNumber *when = [[explosionsQueue.allKeys sortedArrayUsingSelector:@selector(compare:)] objectAtIndex:0];
+    NSTimeInterval when2 = [when doubleValue];
+    if(when2 > [NSDate timeIntervalSinceReferenceDate])
+        return;
+    ScheduledCharge *charge = [explosionsQueue objectForKey:when];
+    [self explosionCharge:charge];
+    [explosionsQueue removeObjectForKey:when];
 }
 @end
 
@@ -361,26 +410,20 @@
     [self charge:amount];
 }
 
-
--(void)_explosionCharge:(NSTimer*)caller;
-{
-    Player p = (int)caller < 10 ? (Player)caller : [(Tile*)[caller userInfo] owner];
-    [self charge:ExplosionSpreadEnergy forPlayer:p];
-    board.explosionsQueued -= 1;
-}
 -(void)explode;
 {
     self.value = 0.0;
     
-#define doitnow(target) [target _explosionCharge:(NSTimer*)self.owner]
-#define doitlater(target_) [NSTimer scheduledTimerWithTimeInterval:ExplosionDelay*1 target:target_ selector:@selector(_explosionCharge:) userInfo:self repeats:NO]
-    
     for (Tile *sibling in self.surroundingTiles) {
         board.explosionsQueued += 1;
         if(board.delegate)
-            doitlater(sibling);
-        else
-            doitnow(sibling);
+            [self.board scheduleCharge:sibling owner:self.owner];
+        else {
+            ScheduledCharge *charge = [[ScheduledCharge alloc] init];
+            charge.owner = self.owner;
+            charge.tile = sibling;
+            [self.board explosionCharge:charge];
+        }
     }
     
     [self.board.delegate tileExploded:self];

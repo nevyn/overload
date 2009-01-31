@@ -36,6 +36,8 @@
     id<BoardDelegate> delegate;
     
     NSUInteger explosionsQueued;
+    NSMutableDictionary *explosionsQueue;
+    NSTimer *chargeTimer;
 }
 -(id)init;
 -(id)initWithBoard:(Board*)other;
