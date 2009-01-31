@@ -18,7 +18,7 @@
 -(void)advancePlayer;
 
 -(void)setLastExplosionTime:(NSTimeInterval)explodedAt;
-
+@property (readwrite, assign) NSUInteger explosionsQueued;
 @end
 
 
@@ -174,7 +174,8 @@
     if( chaosGame )
         return YES;
     
-    if( [NSDate timeIntervalSinceReferenceDate] > lastExplosionTime+(2.*ExplosionDelay) )
+    if( self.explosionsQueued == 0)
+//    if( [NSDate timeIntervalSinceReferenceDate] > lastExplosionTime+(2.*ExplosionDelay) )
         return YES;
     
     return NO;
@@ -340,6 +341,7 @@
             BoardSizeMake(WidthInTiles/2, HeightInTiles/2) :
             BoardSizeMake(WidthInTiles, HeightInTiles);
 }
+@synthesize explosionsQueued;
 @end
 
 
@@ -366,22 +368,22 @@
     Player p = (int)caller < 10 ? (Player)caller : [(Tile*)[caller userInfo] owner];
     [self charge:ExplosionSpreadEnergy forPlayer:p];
     [board setLastExplosionTime:[NSDate timeIntervalSinceReferenceDate]];
+    board.explosionsQueued -= 1;
 }
 -(void)explode;
 {
     self.value = 0.0;
     
 #define doitnow(target) [target _explosionCharge:(NSTimer*)self.owner]
-#define doitlater(target_) [NSTimer scheduledTimerWithTimeInterval:ExplosionDelay*1 target:target_ selector:@selector(_explosionCharge:) userInfo:self repeats:NO];
+#define doitlater(target_) [NSTimer scheduledTimerWithTimeInterval:ExplosionDelay*1 target:target_ selector:@selector(_explosionCharge:) userInfo:self repeats:NO]
     
-    if(board.delegate) {
-        for (Tile *sibling in self.surroundingTiles)
+    for (Tile *sibling in self.surroundingTiles) {
+        board.explosionsQueued += 1;
+        if(board.delegate)
             doitlater(sibling);
-    } else {
-        for (Tile *sibling in self.surroundingTiles)
+        else
             doitnow(sibling);
     }
-    
     
     [self.board.delegate tileExploded:self];
 }

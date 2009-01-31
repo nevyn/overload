@@ -36,6 +36,7 @@
     id<BoardDelegate> delegate;
     
     NSTimeInterval lastExplosionTime;
+    NSUInteger explosionsQueued;
 }
 -(id)init;
 -(id)initWithBoard:(Board*)other;

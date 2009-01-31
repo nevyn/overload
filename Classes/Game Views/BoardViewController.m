@@ -165,11 +165,11 @@
     }
     
     if(currentPlayer == PlayerP2)
-        [ai performMove];
+        [ai performSelector:@selector(performMove) withObject:nil afterDelay:0.2];
 #ifdef AI_VS_AI
     else
         if(!board.isBoardEmpty)
-            [ai2 performSelector:@selector(performMove) withObject:nil afterDelay:0.1];
+            [ai2 performSelector:@selector(performMove) withObject:nil afterDelay:0.2];
 #endif
 }
 -(void)board:(Board*)board changedSize:(BoardSize)newSize;
