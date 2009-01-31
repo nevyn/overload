@@ -16,7 +16,7 @@
 #   import <OpenGLES/EAGLDrawable.h>
 #   import <OpenGLES/ES1/gl.h>
 #   import <OpenGLES/ES1/glext.h>
-//#  import "Texture2D.h"
+#  import "Texture2D.h"
 # endif
 @protocol BoardViewDelegate
 -(void)boardTileViewWasTouched:(BoardPoint)pointThatWasTouched;
@@ -34,8 +34,7 @@
 #else
     EAGLContext *ctx;
     GLuint fbo, rbo;
-    GLuint gloss, t0, t25, t50, t75;
-//    Texture2D *gloss, *t0, *t25, *t50, *t75;
+    Texture2D *gloss, *t0, *t25, *t50, *t75;
     
     NSTimer *animationTimer;
     NSTimeInterval animationInterval;

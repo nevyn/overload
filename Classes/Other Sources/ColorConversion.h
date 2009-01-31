@@ -15,3 +15,4 @@ See also http://en.wikipedia.org/wiki/HSV_color_space for a theoretical explanat
  From the GLPaint sample
 */
 extern void HSLToRGB(float h, float s, float l, float* outR, float* outG, float* outB);
+extern void HSVtoRGB(float h, float s, float v, float *r, float *g, float *b );

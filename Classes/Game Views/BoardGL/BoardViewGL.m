@@ -18,6 +18,11 @@
 -(void)prepareScene;
 -(void)render;
 @property (nonatomic, assign) NSTimer *animationTimer;
+@property (retain) Texture2D *gloss;
+@property (retain) Texture2D *t0;
+@property (retain) Texture2D *t25;
+@property (retain) Texture2D *t50;
+@property (retain) Texture2D *t75;
 @end
 
 @interface BoardViewExplosion : NSObject
@@ -79,6 +84,8 @@ typedef struct tile_t {
     if ([EAGLContext currentContext] == ctx)
         [EAGLContext setCurrentContext:nil];
     
+    self.gloss = self.t0 = self.t25 = self.t50 = self.t75 = nil;
+    
     [explosions release];
     [ctx release];
     [super dealloc];
@@ -135,6 +142,7 @@ typedef struct tile_t {
 #pragma mark Prepare scene
 -(void)prepareScene;
 {
+    /*
     BOOL texOK = YES;
     texOK &= [[UIImage imageNamed:@"tile.png"] loadIntoTexture:&gloss];
     texOK &= [[UIImage imageNamed:@"tile-0.png"] loadIntoTexture:&t0];
@@ -142,7 +150,13 @@ typedef struct tile_t {
     texOK &= [[UIImage imageNamed:@"tile-50.png"] loadIntoTexture:&t50];
     texOK &= [[UIImage imageNamed:@"tile-75.png"] loadIntoTexture:&t75];
     if(!texOK)
-        NSLog(@"[BoardViewGL prepareScene]: Textures failed to load");
+        NSLog(@"[BoardViewGL prepareScene]: Textures failed to load");*/
+    self.gloss = [Texture2D textureNamed:@"tile.png"];
+    self.t0 = [Texture2D textureNamed:@"tile-0.png"];
+    self.t25 = [Texture2D textureNamed:@"tile-25.png"];
+    self.t50 = [Texture2D textureNamed:@"tile-50.png"];
+    self.t75 = [Texture2D textureNamed:@"tile-75.png"];
+    
 }
 
 #pragma mark 
@@ -159,8 +173,8 @@ void renderColor(Player owner, CGFloat value, CGFloat a)
     };
     CGFloat hue = Hues[owner];
     CGFloat sat = Saturations[owner];
-    CGFloat lum = 0.75-(value/2.);
-    CGFloat r, g, b; HSLToRGB(hue, sat, lum, &r, &g, &b);
+    CGFloat val = 1.0-(value/2.);
+    CGFloat r, g, b; HSVtoRGB(hue*360., sat, val, &r, &g, &b);
     cornerColors[0] = cornerColors[4] = cornerColors[ 8] = cornerColors[12] = r*255;
     cornerColors[1] = cornerColors[5] = cornerColors[ 9] = cornerColors[13] = g*255;
     cornerColors[2] = cornerColors[6] = cornerColors[10] = cornerColors[14] = b*255;
@@ -250,7 +264,7 @@ void renderWhite()
             CGFloat value = board.values[x][y];
             CGFloat pulse = 0;
             if(value > 0.74)
-                pulse = sin(5.*[NSDate timeIntervalSinceReferenceDate]+x+y*self.sizeInTiles.width)*0.40+0.40;
+                pulse = sin(5.*[NSDate timeIntervalSinceReferenceDate]+x+y*self.sizeInTiles.width)*0.20+0.20;
             renderColor(owner, value, 1.0-pulse);
             
             glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
@@ -272,12 +286,12 @@ void renderWhite()
             
             CGFloat value = board.values[x][y];
             
-            const GLuint tileImageNames[] = {t0, t25, t50, t75};
+            Texture2D *tileImages[] = {t0, t25, t50, t75};
             NSInteger tileImageIdx = MIN(floor(value*4.), 3);
-            GLuint tileImage = tileImageNames[tileImageIdx];
-            if(tileImage != t0 && tileImage != t25 && tileImage != t50 && tileImage != t75 || t0 == 0 || t25 == 0 || t50 == 0 || t75 == 0) NSLog(@"FEL");
+            Texture2D *tileImage = tileImages[tileImageIdx];
+            if(tileImageIdx < 0 || tileImageIdx > 3 || !tileImage) NSLog(@"FEL");
     
-            glBindTexture(GL_TEXTURE_2D, tileImage);
+            glBindTexture(GL_TEXTURE_2D, tileImage.name);
             glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
         }
     }
@@ -291,7 +305,7 @@ void renderWhite()
             
             
             
-            glBindTexture(GL_TEXTURE_2D, gloss);
+            glBindTexture(GL_TEXTURE_2D, gloss.name);
             glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
         }
     }
@@ -394,6 +408,8 @@ void renderWhite()
 @synthesize sizeInTiles;
 @synthesize delegate;
 @synthesize tileSize;
+
+@synthesize gloss, t0, t25, t50, t75;
 @end
 
 #pragma mark 
@@ -440,6 +456,7 @@ void renderWhite()
 @synthesize position;
 @synthesize owner;
 @synthesize delegate;
+
 @end
 
 
