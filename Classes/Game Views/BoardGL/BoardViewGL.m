@@ -16,8 +16,6 @@
 -(BOOL)createFramebuffer;
 -(void)destroyFramebuffer;
 -(void)prepareScene;
--(void)render;
-@property (nonatomic, assign) NSTimer *animationTimer;
 @property (retain) Texture2D *gloss;
 @property (retain) Texture2D *t0;
 @property (retain) Texture2D *t25;
@@ -54,9 +52,7 @@ typedef struct tile_t {
 -(id)initWithFrame:(CGRect)frame;
 {
     if( ! [super initWithFrame:frame] ) return nil;
-    
-    animationInterval = 1.0/40.0;
-    
+        
     memset(&board, 0, sizeof(board));
     
     explosions = [[NSMutableArray alloc] init];
@@ -385,32 +381,14 @@ void renderWhite()
     [explosions removeObject:ex];
 }
 
-@synthesize animationTimer;
--(void)setAnimationTimer:(NSTimer*)animationTimer_;
-{
-    [animationTimer invalidate];
-    [animationTimer_ retain];
-    [animationTimer release];
-    animationTimer = animationTimer_;
-}
--(BOOL)animated;
-{
-    return animationTimer != nil;
-}
--(void)setAnimated:(BOOL)animate_;
-{
-    if(!self.animated && animate_) {
-        [self.animationTimer invalidate];
-        self.animationTimer = [NSTimer scheduledTimerWithTimeInterval:animationInterval target:self selector:@selector(render) userInfo:nil repeats:YES];
-    } else if(self.animated && !animate_)
-        self.animationTimer = nil;
-}
 
 @synthesize sizeInTiles;
 @synthesize delegate;
 @synthesize tileSize;
 
 @synthesize gloss, t0, t25, t50, t75;
+-(BOOL)animated; { return YES; } // nops, not needed in GL version
+-(void)setAnimated:(BOOL)_; {}
 @end
 
 #pragma mark 

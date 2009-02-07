@@ -44,7 +44,7 @@
     versionLabel.text = [NSString stringWithFormat:@"v%@", version];
     
     chaosGame.on = mainController.board.chaosGame;
-    giganticGame.on = ! mainController.board.tinyGame;
+    boardSize.value = mainController.board.sizeInTiles.width/(float)WidthInTiles;
     soundSwitch.on = mainController.soundPlayer.sound;
 }
 -(void)startRotatingWheels;
@@ -131,20 +131,16 @@
     }
     [self toggleView:nil];
 }
-- (IBAction)toggleGameBoardSize:(UISwitch*)sender;
+- (IBAction)setGameBoardSize:(UISlider*)sender;
 {
-    {
-        BoardSize newSize = (!sender.on) ?
-            BoardSizeMake(WidthInTiles/2, HeightInTiles/2) :
-            BoardSizeMake(WidthInTiles, HeightInTiles);
-        [[Beacon sharedIfOptedIn] startSubBeaconWithName:[NSString stringWithFormat:@"Switched to local game board size %dx%d", newSize.width, newSize.height] timeSession:NO];
-    }
+    BoardSize newSize = BoardSizeMake(WidthInTiles*sender.value, HeightInTiles*sender.value);
+    [[Beacon sharedIfOptedIn] startSubBeaconWithName:[NSString stringWithFormat:@"Board size > %dx%d", newSize.width, newSize.height] timeSession:NO];
 
-    schedule(mainController.board, setTinyGame:!sender.on);
+    schedule(mainController.board, setSizeInTiles:newSize);
 }
 - (IBAction)toggleChaosGame:(UISwitch*)sender;
 {
-    [[Beacon sharedIfOptedIn] startSubBeaconWithName:[NSString stringWithFormat:@"Switched local chaos game %@", sender.on?@"on":@"off"] timeSession:NO];
+    [[Beacon sharedIfOptedIn] startSubBeaconWithName:[NSString stringWithFormat:@"Chaos game > %@", sender.on?@"on":@"off"] timeSession:NO];
 
     mainController.board.chaosGame = sender.on;
 }

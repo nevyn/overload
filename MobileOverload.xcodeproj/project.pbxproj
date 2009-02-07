@@ -32,6 +32,10 @@
 		058994710E5F162A002BF0FE /* charge100.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0589946D0E5F162A002BF0FE /* charge100.wav */; };
 		058994720E5F162A002BF0FE /* charge50.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0589946E0E5F162A002BF0FE /* charge50.wav */; };
 		058994730E5F162A002BF0FE /* charge25.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0589946F0E5F162A002BF0FE /* charge25.wav */; };
+		058BDFB10F3E160E00E4A699 /* Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 058BDFA90F3E160E00E4A699 /* Test.m */; };
+		058BDFB20F3E160E00E4A699 /* CollectionUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 058BDFAB0F3E160E00E4A699 /* CollectionUtils.m */; };
+		058BDFB30F3E160E00E4A699 /* Logging.m in Sources */ = {isa = PBXBuildFile; fileRef = 058BDFAD0F3E160E00E4A699 /* Logging.m */; };
+		058BDFB40F3E160E00E4A699 /* ExceptionUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 058BDFB00F3E160E00E4A699 /* ExceptionUtils.m */; };
 		058FEB870EF841DF006FDFDA /* AVAudioPlayerQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 058FEB860EF841DF006FDFDA /* AVAudioPlayerQueue.m */; };
 		05A762430EFBFD54005D899A /* tile-75.png in Resources */ = {isa = PBXBuildFile; fileRef = 05A7623F0EFBFD54005D899A /* tile-75.png */; };
 		05A762440EFBFD54005D899A /* tile-25.png in Resources */ = {isa = PBXBuildFile; fileRef = 05A762400EFBFD54005D899A /* tile-25.png */; };
@@ -104,6 +108,14 @@
 		0589946D0E5F162A002BF0FE /* charge100.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = charge100.wav; sourceTree = "<group>"; };
 		0589946E0E5F162A002BF0FE /* charge50.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = charge50.wav; sourceTree = "<group>"; };
 		0589946F0E5F162A002BF0FE /* charge25.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = charge25.wav; sourceTree = "<group>"; };
+		058BDFA90F3E160E00E4A699 /* Test.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Test.m; sourceTree = "<group>"; };
+		058BDFAA0F3E160E00E4A699 /* Logging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Logging.h; sourceTree = "<group>"; };
+		058BDFAB0F3E160E00E4A699 /* CollectionUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionUtils.m; sourceTree = "<group>"; };
+		058BDFAC0F3E160E00E4A699 /* Test.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Test.h; sourceTree = "<group>"; };
+		058BDFAD0F3E160E00E4A699 /* Logging.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Logging.m; sourceTree = "<group>"; };
+		058BDFAE0F3E160E00E4A699 /* CollectionUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionUtils.h; sourceTree = "<group>"; };
+		058BDFAF0F3E160E00E4A699 /* ExceptionUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExceptionUtils.h; sourceTree = "<group>"; };
+		058BDFB00F3E160E00E4A699 /* ExceptionUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExceptionUtils.m; sourceTree = "<group>"; };
 		058FEB850EF841DF006FDFDA /* AVAudioPlayerQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVAudioPlayerQueue.h; sourceTree = "<group>"; };
 		058FEB860EF841DF006FDFDA /* AVAudioPlayerQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVAudioPlayerQueue.m; sourceTree = "<group>"; };
 		05A7623F0EFBFD54005D899A /* tile-75.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tile-75.png"; sourceTree = "<group>"; };
@@ -303,6 +315,14 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				058BDFA90F3E160E00E4A699 /* Test.m */,
+				058BDFAA0F3E160E00E4A699 /* Logging.h */,
+				058BDFAB0F3E160E00E4A699 /* CollectionUtils.m */,
+				058BDFAC0F3E160E00E4A699 /* Test.h */,
+				058BDFAD0F3E160E00E4A699 /* Logging.m */,
+				058BDFAE0F3E160E00E4A699 /* CollectionUtils.h */,
+				058BDFAF0F3E160E00E4A699 /* ExceptionUtils.h */,
+				058BDFB00F3E160E00E4A699 /* ExceptionUtils.m */,
 				05AD39400F3194A8004F746D /* Texture2D.h */,
 				05AD39410F3194A8004F746D /* Texture2D.m */,
 				054F785F0E97D7B000E17413 /* Beacon.h */,
@@ -480,6 +500,10 @@
 				05E03D850F2BBF22006E6190 /* ColorConversion.c in Sources */,
 				05E03E680F2BD8F1006E6190 /* UIImage+GLTexture.m in Sources */,
 				05AD39420F3194A8004F746D /* Texture2D.m in Sources */,
+				058BDFB10F3E160E00E4A699 /* Test.m in Sources */,
+				058BDFB20F3E160E00E4A699 /* CollectionUtils.m in Sources */,
+				058BDFB30F3E160E00E4A699 /* Logging.m in Sources */,
+				058BDFB40F3E160E00E4A699 /* ExceptionUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

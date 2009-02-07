@@ -208,26 +208,15 @@
 							<bytes key="NSRGB">MC4xOTYwNzg0MyAwLjMwOTgwMzkzIDAuNTIxNTY4NjYAA</bytes>
 						</object>
 					</object>
-					<object class="IBUISwitch" id="324364438">
-						<reference key="NSNextResponder" ref="242216480"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{206, 193}, {94, 27}}</string>
-						<reference key="NSSuperview" ref="242216480"/>
-						<bool key="IBUIOpaque">NO</bool>
-						<bool key="IBUIClipsSubviews">YES</bool>
-						<bool key="IBUIMultipleTouchEnabled">YES</bool>
-						<int key="IBUIContentHorizontalAlignment">0</int>
-						<int key="IBUIContentVerticalAlignment">0</int>
-					</object>
 					<object class="IBUILabel" id="701778377">
 						<reference key="NSNextResponder" ref="242216480"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{20, 195}, {164, 21}}</string>
+						<string key="NSFrame">{{20, 195}, {91, 21}}</string>
 						<reference key="NSSuperview" ref="242216480"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
-						<string key="IBUIText">Gigantic Game Board</string>
+						<string key="IBUIText">Board Size</string>
 						<object class="NSColor" key="IBUITextColor" id="510100381">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MCAwIDAAA</bytes>
@@ -239,7 +228,7 @@
 					<object class="IBUISwitch" id="595889296">
 						<reference key="NSNextResponder" ref="242216480"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{206, 256}, {94, 27}}</string>
+						<string key="NSFrame">{{206, 253}, {94, 27}}</string>
 						<reference key="NSSuperview" ref="242216480"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -250,7 +239,7 @@
 					<object class="IBUILabel" id="952014012">
 						<reference key="NSNextResponder" ref="242216480"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{20, 256}, {144, 21}}</string>
+						<string key="NSFrame">{{20, 253}, {144, 21}}</string>
 						<reference key="NSSuperview" ref="242216480"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -278,12 +267,12 @@
 					<object class="IBUILabel" id="39348964">
 						<reference key="NSNextResponder" ref="242216480"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{36, 224}, {162, 29}}</string>
+						<string key="NSFrame">{{126, 220}, {197, 17}}</string>
 						<reference key="NSSuperview" ref="242216480"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
-						<string key="IBUIText">Quadruples the number of tiles on the game board.</string>
+						<string key="IBUIText">10s                  5m                     2h</string>
 						<object class="NSFont" key="IBUIFont" id="184160378">
 							<string key="NSName">Helvetica</string>
 							<double key="NSSize">1.200000e+01</double>
@@ -299,12 +288,29 @@
 					<object class="IBUILabel" id="754422048">
 						<reference key="NSNextResponder" ref="242216480"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{36, 283}, {162, 28}}</string>
+						<string key="NSFrame">{{20, 282}, {162, 28}}</string>
 						<reference key="NSSuperview" ref="242216480"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="IBUIText">You may move even when a chain reaction is taking place.</string>
+						<reference key="IBUIFont" ref="184160378"/>
+						<reference key="IBUITextColor" ref="510100381"/>
+						<nil key="IBUIHighlightedColor"/>
+						<int key="IBUIBaselineAdjustment">1</int>
+						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
+						<float key="IBUIMinimumFontSize">9.000000e+00</float>
+						<int key="IBUINumberOfLines">2</int>
+					</object>
+					<object class="IBUILabel" id="612800924">
+						<reference key="NSNextResponder" ref="242216480"/>
+						<int key="NSvFlags">292</int>
+						<string key="NSFrame">{{20, 222}, {98, 14}}</string>
+						<reference key="NSSuperview" ref="242216480"/>
+						<bool key="IBUIOpaque">NO</bool>
+						<bool key="IBUIClipsSubviews">YES</bool>
+						<bool key="IBUIUserInteractionEnabled">NO</bool>
+						<string key="IBUIText">Est. game length:</string>
 						<reference key="IBUIFont" ref="184160378"/>
 						<reference key="IBUITextColor" ref="510100381"/>
 						<nil key="IBUIHighlightedColor"/>
@@ -346,6 +352,20 @@
 						<bool key="IBUIMultipleTouchEnabled">YES</bool>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
+					</object>
+					<object class="IBUISlider" id="358278218">
+						<reference key="NSNextResponder" ref="242216480"/>
+						<int key="NSvFlags">292</int>
+						<string key="NSFrame">{{124, 195}, {180, 23}}</string>
+						<reference key="NSSuperview" ref="242216480"/>
+						<bool key="IBUIOpaque">NO</bool>
+						<bool key="IBUIClipsSubviews">YES</bool>
+						<bool key="IBUIMultipleTouchEnabled">YES</bool>
+						<int key="IBUIContentHorizontalAlignment">0</int>
+						<int key="IBUIContentVerticalAlignment">0</int>
+						<float key="IBUIValue">5.000000e-01</float>
+						<float key="IBUIMinValue">2.000000e-01</float>
+						<bool key="IBUIContinuous">NO</bool>
 					</object>
 				</object>
 				<string key="NSFrameSize">{320, 460}</string>
@@ -424,15 +444,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">toggleGameBoardSize:</string>
-						<reference key="source" ref="324364438"/>
-						<reference key="destination" ref="372490531"/>
-						<int key="IBEventType">13</int>
-					</object>
-					<int key="connectionID">73</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">toggleChaosGame:</string>
 						<reference key="source" ref="595889296"/>
 						<reference key="destination" ref="372490531"/>
@@ -447,14 +458,6 @@
 						<reference key="destination" ref="971852189"/>
 					</object>
 					<int key="connectionID">78</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">giganticGame</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="324364438"/>
-					</object>
-					<int key="connectionID">79</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
@@ -481,6 +484,23 @@
 					</object>
 					<int key="connectionID">92</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">boardSize</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="358278218"/>
+					</object>
+					<int key="connectionID">98</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">setGameBoardSize:</string>
+						<reference key="source" ref="358278218"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">13</int>
+					</object>
+					<int key="connectionID">100</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -505,13 +525,10 @@
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="709029666"/>
-							<reference ref="39348964"/>
-							<reference ref="754422048"/>
 							<reference ref="196339651"/>
 							<reference ref="952014012"/>
 							<reference ref="595889296"/>
 							<reference ref="701778377"/>
-							<reference ref="324364438"/>
 							<reference ref="971852189"/>
 							<reference ref="333698759"/>
 							<reference ref="885303007"/>
@@ -524,6 +541,10 @@
 							<reference ref="956486165"/>
 							<reference ref="837437172"/>
 							<reference ref="856203427"/>
+							<reference ref="358278218"/>
+							<reference ref="39348964"/>
+							<reference ref="612800924"/>
+							<reference ref="754422048"/>
 						</object>
 						<reference key="parent" ref="360949347"/>
 						<string key="objectName">Flipside View</string>
@@ -566,11 +587,6 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">64</int>
 						<reference key="object" ref="701778377"/>
-						<reference key="parent" ref="242216480"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">63</int>
-						<reference key="object" ref="324364438"/>
 						<reference key="parent" ref="242216480"/>
 					</object>
 					<object class="IBObjectRecord">
@@ -633,6 +649,16 @@
 						<reference key="object" ref="856203427"/>
 						<reference key="parent" ref="242216480"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">95</int>
+						<reference key="object" ref="358278218"/>
+						<reference key="parent" ref="242216480"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">96</int>
+						<reference key="object" ref="612800924"/>
+						<reference key="parent" ref="242216480"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -653,7 +679,6 @@
 					<string>60.IBPluginDependency</string>
 					<string>61.IBPluginDependency</string>
 					<string>62.IBPluginDependency</string>
-					<string>63.IBPluginDependency</string>
 					<string>64.IBPluginDependency</string>
 					<string>65.IBPluginDependency</string>
 					<string>66.IBPluginDependency</string>
@@ -663,12 +688,15 @@
 					<string>82.IBPluginDependency</string>
 					<string>90.IBPluginDependency</string>
 					<string>94.IBPluginDependency</string>
+					<string>95.IBPluginDependency</string>
+					<string>96.IBPluginDependency</string>
 				</object>
 				<object class="NSMutableArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>FlipsideViewController</string>
 					<string>UIResponder</string>
-					<string>{{444, 106}, {320, 460}}</string>
+					<string>{{581, 84}, {320, 460}}</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -712,7 +740,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">94</int>
+			<int key="maxID">100</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -725,17 +753,17 @@
 						<object class="NSMutableArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>newGame:</string>
+							<string>setGameBoardSize:</string>
 							<string>shuffleGame:</string>
 							<string>toggleChaosGame:</string>
-							<string>toggleGameBoardSize:</string>
 							<string>toggleSound:</string>
 							<string>toggleView:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>id</string>
+							<string>UISlider</string>
 							<string>id</string>
-							<string>UISwitch</string>
 							<string>UISwitch</string>
 							<string>UISwitch</string>
 							<string>id</string>
@@ -745,21 +773,21 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSMutableArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>boardSize</string>
 							<string>chaosGame</string>
 							<string>cogL</string>
 							<string>cogM</string>
 							<string>cogU</string>
-							<string>giganticGame</string>
 							<string>soundSwitch</string>
 							<string>versionLabel</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>UISlider</string>
 							<string>UISwitch</string>
 							<string>UIImageView</string>
 							<string>UIImageView</string>
 							<string>UIImageView</string>
-							<string>UISwitch</string>
 							<string>UISwitch</string>
 							<string>UILabel</string>
 						</object>

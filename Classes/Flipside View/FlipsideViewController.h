@@ -18,7 +18,7 @@
     RootViewController *rootController;
     BoardViewController *mainController;
     
-    IBOutlet UISwitch *giganticGame;
+    IBOutlet UISlider *boardSize;
     IBOutlet UISwitch *chaosGame;
     IBOutlet UISwitch *soundSwitch;    
     NSMutableArray *stuffToDoWhenFlipped;
@@ -30,7 +30,7 @@
 - (IBAction)toggleView:(id)sender;
 - (IBAction)newGame:(id)sender;
 - (IBAction)shuffleGame:(id)sender;
-- (IBAction)toggleGameBoardSize:(UISwitch*)sender;
+- (IBAction)setGameBoardSize:(UISlider*)sender;
 - (IBAction)toggleChaosGame:(UISwitch*)sender;
 - (IBAction)toggleSound:(UISwitch*)sender;
 @end

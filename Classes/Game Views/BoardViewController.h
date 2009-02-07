@@ -19,12 +19,14 @@
 
 @interface BoardViewController : UIViewController <BoardDelegate, BoardViewDelegate, ScoreBarViewDelegate> {
     ScoreBarView *score1, *score2;
-    BoardView *boardView;
     UIImageView *winPlaque, *losePlaque;
     
     OLSoundPlayer *soundPlayer;
     
+    BoardView *boardView;
     Board *board;
+    
+    NSTimer *heartbeat;
     
     AI *ai;
 #ifdef AI_VS_AI

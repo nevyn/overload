@@ -8,13 +8,11 @@
 
 #import "Board.h"
 #import "CInvocationGrabber.h"
-
+#import "CollectionUtils.h"
 
 @interface Board()
 #pragma mark Game logic
 -(void)updateScores;
--(void)scheduleWinningConditionCheck;
--(void)checkWinningCondition:(NSTimer*)sender;
 -(void)advancePlayer;
 
 -(void)scheduleCharge:(Tile*)t owner:(Player)owner;
@@ -51,12 +49,9 @@
     
     self.currentPlayer = PlayerP1;
     self.chaosGame = NO;
-    self.tinyGame = NO;
+    self.sizeInTiles = BoardSizeMake(WidthInTiles, HeightInTiles);
     
     explosionsQueue = [[NSMutableDictionary alloc] init];
-    chargeTimer = [[NSTimer scheduledTimerWithTimeInterval:1./40. target:self selector:@selector(update) userInfo:nil repeats:YES] retain];
-
-    [self scheduleWinningConditionCheck];
     
     return self;
 }
@@ -80,10 +75,10 @@
     
     self.currentPlayer = other.currentPlayer;
     self.chaosGame = other.chaosGame;
-    self.tinyGame = other.tinyGame;
+    self.sizeInTiles = other.sizeInTiles;
     
-    // Why no timer nor explosions queue? because this method is used for making
-    // a board for the AI, which uses neither. Should rename the method to reflect
+    // Why no explosions queue? because this method is used for making
+    // a board for the AI, which doesn't use it. Should rename the method to reflect
     // this, I know...
     
     return self;
@@ -97,8 +92,6 @@
 }
 -(void)dealloc;
 {
-    [winningConditionTimer invalidate]; 
-    [chargeTimer invalidate]; [chargeTimer release]; chargeTimer = nil;
     [explosionsQueue release]; explosionsQueue = nil;
 
     for(NSUInteger y = 0; y < HeightInTiles; y++) 
@@ -115,25 +108,14 @@
     if(delegate)
         [delegate board:self changedScores:self.scores];
 }
--(void)scheduleWinningConditionCheck;
+-(void)checkWinningCondition;
 {
-    [winningConditionTimer invalidate];
-    winningConditionTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(checkWinningCondition:) userInfo:nil repeats:YES];
-}
--(void)checkWinningCondition:(NSTimer*)sender;
-{
-    Player winner = [self tile:BoardPointMake(0, 0)].owner;
-    if(winner == PlayerNone) return;
+    if(gameEnded) return;
     
-    for(NSUInteger y = 0; y < self.sizeInTiles.height; y++) {
-        for (NSUInteger x = 0; x < self.sizeInTiles.width; x++) {
-            Tile *tile = [self tile:BoardPointMake(x, y)];
-            if(tile.owner != winner)
-                return;
-        }
-    }
+    Player winner = self.winner;
+    if(winner == PlayerNone) return;
+
     gameEnded = YES;
-    [winningConditionTimer invalidate]; winningConditionTimer = nil;
     [delegate board:self endedWithWinner:winner];    
 }
 -(void)advancePlayer;
@@ -167,7 +149,6 @@
 
 -(Player)winner;
 {
-    //return gameEnded;
     Player winner = [self tile:BoardPointMake(0, 0)].owner;
     if(winner == PlayerNone) return PlayerNone;
     
@@ -183,7 +164,7 @@
 }
 -(BOOL)hasEnded;
 {
-    return self.winner;
+    return self.winner != PlayerNone;
 }
 -(BOOL)canMakeMoveNow;
 {
@@ -226,7 +207,6 @@
             [self performSelector:@selector(_zeroTile:) withObject:tile afterDelay:frand(0.5)];
         }
     }
-    [self scheduleWinningConditionCheck];
     
     id selfProxy = [[CInvocationGrabber invocationGrabber] prepareWithInvocationTarget:self];
     [selfProxy setCurrentPlayer:PlayerP1];
@@ -283,7 +263,7 @@
     NSUserDefaults *udef = [NSUserDefaults standardUserDefaults];
 
     [udef setBool:self.chaosGame forKey:@"chaosGame"];
-    [udef setBool:self.tinyGame forKey:@"tinyGame"];
+    [udef setObject:$array($object(self.sizeInTiles.width), $object(self.sizeInTiles.height)) forKey:@"boardSize"];
     
     for(NSUInteger y = 0; y < HeightInTiles; y++) {
         for (NSUInteger x = 0; x < WidthInTiles; x++) {
@@ -299,7 +279,8 @@
 {
     NSUserDefaults *udef = [NSUserDefaults standardUserDefaults];
     self.chaosGame = [udef boolForKey:@"chaosGame"];
-    self.tinyGame = [udef boolForKey:@"tinyGame"];
+    NSArray *widthHeight = [udef objectForKey:@"boardSize"];
+    self.sizeInTiles = BoardSizeMake([[widthHeight objectAtIndex:0] intValue], [[widthHeight objectAtIndex:1] intValue]);
 
     for(NSUInteger y = 0; y < HeightInTiles; y++) {
         for (NSUInteger x = 0; x < WidthInTiles; x++) {
@@ -328,7 +309,7 @@
     }
     
     self.chaosGame = self.chaosGame;
-    self.tinyGame = self.tinyGame;
+    self.sizeInTiles = self.sizeInTiles;
     [self updateScores];
     self.currentPlayer = self.currentPlayer;
 }
@@ -345,17 +326,18 @@
     [delegate board:self changedCurrentPlayer:currentPlayer];
 }
 @synthesize chaosGame;
-@synthesize tinyGame;
--(void)setTinyGame:(BOOL)isTiny;
-{
-    tinyGame = isTiny;
-    [delegate board:self changedSize:self.sizeInTiles];
-}
 -(BoardSize)sizeInTiles;
 {
-    return tinyGame ?
-            BoardSizeMake(WidthInTiles/2, HeightInTiles/2) :
-            BoardSizeMake(WidthInTiles, HeightInTiles);
+    return sizeInTiles;
+}
+-(void)setSizeInTiles:(BoardSize)newSize;
+{
+    if(newSize.height > 0 && newSize.width > 0 && newSize.height <= HeightInTiles && newSize.width <= WidthInTiles) {
+        sizeInTiles = newSize;
+        [delegate board:self changedSize:self.sizeInTiles];
+    } else {
+        NSAssert(false, @"newSize must be >= 1 x 1 and <= WidthInTiles x HeightInTiles");
+    }
 }
 
 
@@ -381,6 +363,15 @@
 }
 -(void)update;
 {
+    static NSTimeInterval lastWinUpdate = 0;
+    static const NSTimeInterval winUpdateDt = 1.;
+    NSTimeInterval now = [NSDate timeIntervalSinceReferenceDate];
+    
+    if(lastWinUpdate + winUpdateDt < now) {
+        [self checkWinningCondition];
+        lastWinUpdate = now;
+    }
+    
     if([explosionsQueue count] == 0)
         return;
     

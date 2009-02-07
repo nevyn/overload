@@ -36,8 +36,6 @@
     GLuint fbo, rbo;
     Texture2D *gloss, *t0, *t25, *t50, *t75;
     
-    NSTimer *animationTimer;
-    NSTimeInterval animationInterval;
     BoardStruct board;
     
     NSMutableArray *explosions;
@@ -47,6 +45,9 @@
 -(void)setValue:(CGFloat)v atPosition:(BoardPoint)p;
 -(void)setOwner:(Player)player atPosition:(BoardPoint)p;
 -(void)explode:(BoardPoint)explodingTile;
+
+// heartbeat
+-(void)render;
 
 @property (assign, nonatomic) BOOL animated;
 

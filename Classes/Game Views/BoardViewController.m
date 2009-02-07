@@ -13,6 +13,12 @@
 #import "AI2.h"
 #import "AIMinMax.h"
 #import "Beacon+OptIn.h"
+
+@interface BoardViewController ()
+@property (retain, nonatomic) NSTimer *heartbeat;
+@end
+
+
 @implementation BoardViewController
 
 #pragma mark Initialization and memory management
@@ -26,7 +32,7 @@
 #ifndef AI_VS_AI
     [board load];
 #else
-    board.tinyGame = YES;
+    board.sizeInTiles = BoardSizeMake(WidthInTiles/2, HeightInTiles/2);
     board.chaosGame = YES;
 #endif
     [self boardIsStartingAnew:board];
@@ -47,12 +53,15 @@
     
     self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
     
+    
     if([[NSUserDefaults standardUserDefaults] boolForKey:@"currentGame.hasAI"])
         [self startAI];
 }
 
 - (void)viewDidAppear:(BOOL)animated; 
 {
+    self.heartbeat = [NSTimer scheduledTimerWithTimeInterval:1./60. target:self selector:@selector(update) userInfo:nil repeats:YES];
+
     if(!boardView) {
         boardView = [[[BoardView alloc] initWithFrame:CGRectMake(0, ScoreBarHeight, BoardWidth, BoardHeight())] autorelease];
         [boardView setSizeInTiles:board.sizeInTiles];
@@ -65,6 +74,7 @@
 }
 - (void)viewDidDisappear:(BOOL)animated;
 {
+    self.heartbeat = nil;
     boardView.animated = NO;
 }
 
@@ -81,11 +91,43 @@
 }
 
 - (void)dealloc {
+    self.heartbeat = nil;
     [board release];
     [soundPlayer release];
     [ai release];
 	[super dealloc];
 }
+
+#pragma mark Hearbeat
+@synthesize heartbeat;
+-(void)setHeartbeat:(NSTimer*)heartbeat_;
+{
+    if(heartbeat != heartbeat_)
+        [heartbeat invalidate];
+    [heartbeat_ retain];
+    [heartbeat release];
+    heartbeat = heartbeat_;
+}
+
+-(void)update;
+{
+    static NSTimeInterval lastBoardUpdate = 0;
+    static NSTimeInterval lastViewUpdate = 0;
+    
+    static const NSTimeInterval boardUpdateDt = 1./30.;
+    static const NSTimeInterval viewUpdateDt = 1./60.;
+    
+    NSTimeInterval now = [NSDate timeIntervalSinceReferenceDate];
+    if(lastBoardUpdate + boardUpdateDt < now) {
+        [board update];
+        lastBoardUpdate = now;
+    }
+    if(lastViewUpdate + viewUpdateDt < now) {
+        [boardView render];
+        lastViewUpdate = now;
+    }
+}
+
 
 #pragma mark Board delegates
 -(void)tile:(Tile*)tile changedOwner:(Player)owner;

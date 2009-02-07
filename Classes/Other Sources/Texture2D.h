@@ -53,14 +53,14 @@ Be aware that the content of the generated textures will be upside-down!
 -(GLuint)frameRow;
 -(void)setFrameRow:(int)row col:(int)col;
 
-@property(readonly) Texture2DPixelFormat pixelFormat;
-@property(readonly) NSUInteger pixelsWide;
-@property(readonly) NSUInteger pixelsHigh;
+@property(readonly, nonatomic) Texture2DPixelFormat pixelFormat;
+@property(readonly, nonatomic) NSUInteger pixelsWide;
+@property(readonly, nonatomic) NSUInteger pixelsHigh;
 
-@property(readonly) GLuint name;
+@property(readonly, nonatomic) GLuint name;
 
 @property(readonly, nonatomic) CGSize contentSize;
-@property(readonly) CGPoint frameCount; 
+@property(readonly, nonatomic) CGPoint frameCount; 
 
 @end
 

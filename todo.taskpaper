@@ -1,9 +1,18 @@
-0.3:
+0.4:
 - Scoreboard
-- Abort a press
-- Highlight squares that are about to explode
-- Even nicer tiles
+- Harder AI and skill levels
+
+0.3: 
+- OpenGL @done
+- Nicer tiles
 - More flexible board size
+- Highlight squares that are about to explode 
+- Abort a press @done
+- Make sure the player can't make a move for the AI
+- board should always reset if game over and change board size
+- Shuffle should restart to a new game?
+
+
 0.2:
 - That new audio framework @done(2009-01-16) @0.2b
 - [BUG] New Game sometimes loads the old game instead of starting new @done @0.2b1

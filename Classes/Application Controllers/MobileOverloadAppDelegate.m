@@ -10,6 +10,7 @@
 #import "RootViewController.h"
 #import "BoardViewController.h"
 #import "Beacon+OptIn.h"
+#import "CollectionUtils.h"
 
 @interface BoardViewController (BoardViewHack)
 @property (readonly, nonatomic) BoardView *boardView;
@@ -37,7 +38,7 @@ NSString *applicationCode = @"f41f960eeef940e4f2bbc28259d1165c";
 {
     [[NSUserDefaults standardUserDefaults] registerDefaults:
      [NSDictionary dictionaryWithObjectsAndKeys:
-      [NSNumber numberWithBool:YES], @"tinyGame",
+      $array($object(WidthInTiles/2), $object(HeightInTiles/2)), @"boardSize",
       [NSNumber numberWithBool:NO], @"chaosGame",
       [NSNumber numberWithBool:YES], @"sound",
       [NSNumber numberWithInt:PlayerP1], @"currentPlayer",

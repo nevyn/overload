@@ -27,21 +27,22 @@
 @interface Board : NSObject <NSCopying>{
     Tile *boardTiles[10][12]; // [x][y]
     Player currentPlayer;
-    NSTimer *winningConditionTimer;
     BOOL gameEnded;
     
     BOOL chaosGame;
-    BOOL tinyGame;
+    BoardSize sizeInTiles;
     
     id<BoardDelegate> delegate;
     
     NSUInteger explosionsQueued;
     NSMutableDictionary *explosionsQueue;
-    NSTimer *chargeTimer;
 }
 -(id)init;
 -(id)initWithBoard:(Board*)other;
 - (id)copyWithZone:(NSZone *)zone;
+
+// heartbeat
+-(void)update;
 
 #pragma mark Accessors
 -(Tile*)tile:(BoardPoint)point;
@@ -66,8 +67,7 @@
 @property (assign, nonatomic) id<BoardDelegate> delegate;
 @property (nonatomic) Player currentPlayer;
 @property (nonatomic) BOOL chaosGame;
-@property (nonatomic) BOOL tinyGame;
-@property (readonly, nonatomic) BoardSize sizeInTiles;
+@property (readwrite, nonatomic) BoardSize sizeInTiles;
 @end
 
 @interface Tile : NSObject
