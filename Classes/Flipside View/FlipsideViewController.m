@@ -124,6 +124,7 @@
 
     if([actionSheet.title isEqualToString:SHUFFLE_TITLE]) {
         [[Beacon sharedIfOptedIn] startSubBeaconWithName:@"Shuffled Local Game from Options" timeSession:NO];
+        schedule(mainController.board, restart);
         schedule(mainController.board, shuffle);
     } else {
         [[Beacon sharedIfOptedIn] startSubBeaconWithName:@"Restarted Local Game from Options" timeSession:NO];
@@ -135,7 +136,9 @@
 {
     BoardSize newSize = BoardSizeMake(WidthInTiles*sender.value, HeightInTiles*sender.value);
     [[Beacon sharedIfOptedIn] startSubBeaconWithName:[NSString stringWithFormat:@"Board size > %dx%d", newSize.width, newSize.height] timeSession:NO];
-
+    
+    if(mainController.board.hasEnded)
+        schedule(mainController.board, restart);
     schedule(mainController.board, setSizeInTiles:newSize);
 }
 - (IBAction)toggleChaosGame:(UISwitch*)sender;

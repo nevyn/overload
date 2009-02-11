@@ -201,17 +201,20 @@
     gameEnded = NO;
     self.currentPlayer = PlayerP1;
     [delegate boardIsStartingAnew:self];
+    
     for(NSUInteger y = 0; y < HeightInTiles; y++) {
         for (NSUInteger x = 0; x < WidthInTiles; x++) {
             Tile *tile = [self tile:BoardPointMake(x, y)];
-            [self performSelector:@selector(_zeroTile:) withObject:tile afterDelay:frand(0.5)];
+            tile.owner = PlayerNone;
+            tile.value = 0;
+//            [self performSelector:@selector(_zeroTile:) withObject:tile afterDelay:frand(0.5)];
         }
     }
     
-    id selfProxy = [[CInvocationGrabber invocationGrabber] prepareWithInvocationTarget:self];
-    [selfProxy setCurrentPlayer:PlayerP1];
-    [[selfProxy invocation] performSelector:@selector(invoke) withObject:nil afterDelay:0.6];
-
+    //id selfProxy = [[CInvocationGrabber invocationGrabber] prepareWithInvocationTarget:self];
+    //[selfProxy setCurrentPlayer:PlayerP1];
+    //[[selfProxy invocation] performSelector:@selector(invoke) withObject:nil afterDelay:0.6];
+    [self setCurrentPlayer:PlayerP1];
 }
 -(void)_zeroTile:(Tile*)tile;
 {
@@ -224,7 +227,10 @@
     for(NSUInteger y = 0; y < HeightInTiles; y++) {
         for (NSUInteger x = 0; x < WidthInTiles; x++) {
             Tile *tile = [self tile:BoardPointMake(x, y)];
-            [self performSelector:@selector(_shuffleTile:) withObject:tile afterDelay:frand(0.5)];
+            tile.owner = rand()%2 + 1;
+            tile.value = (rand()%4)*0.25;
+
+            //[self performSelector:@selector(_shuffleTile:) withObject:tile afterDelay:frand(0.5)];
         }
     }
 }
