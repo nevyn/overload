@@ -39,11 +39,13 @@
     BoardStruct board;
     
     NSMutableArray *explosions;
+    NSMutableArray *aboutToExplode;
 #endif
 }
 
 -(void)setValue:(CGFloat)v atPosition:(BoardPoint)p;
 -(void)setOwner:(Player)player atPosition:(BoardPoint)p;
+-(void)aboutToExplode:(BoardPoint)explodingTile;
 -(void)explode:(BoardPoint)explodingTile;
 
 // heartbeat

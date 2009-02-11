@@ -5,7 +5,7 @@
 0.3: 
 - OpenGL @done
 - Nicer tiles
-- More flexible board size
+- More flexible board size @done
 - Highlight squares that are about to explode 
 - Abort a press @done
 - Make sure the player can't make a move for the AI

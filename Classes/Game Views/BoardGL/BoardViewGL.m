@@ -23,6 +23,20 @@
 @property (retain) Texture2D *t75;
 @end
 
+@interface BoardPointWrapper : NSObject
+{
+    BoardPoint p;
+}
+@property (assign, nonatomic) BoardPoint p;
+@end
+@implementation BoardPointWrapper
++(id)wrap:(BoardPoint)p_; { BoardPointWrapper *pw = [[[BoardPointWrapper alloc] init] autorelease]; pw.p = p_; return pw; }
+-(BOOL)isEqual:(BoardPointWrapper*)other; { return (other.p.x == self.p.x) && (other.p.y == self.p.y); }
+@synthesize p;
+@end
+
+
+
 @interface BoardViewExplosion : NSObject
 {
     NSTimeInterval start;
@@ -56,6 +70,7 @@ typedef struct tile_t {
     memset(&board, 0, sizeof(board));
     
     explosions = [[NSMutableArray alloc] init];
+    aboutToExplode = [[NSMutableArray alloc] init];
     
     // 1. Setup our "window"
     CAEAGLLayer *glLayer = (CAEAGLLayer*)self.layer;
@@ -83,6 +98,7 @@ typedef struct tile_t {
     self.gloss = self.t0 = self.t25 = self.t50 = self.t75 = nil;
     
     [explosions release];
+    [aboutToExplode release];
     [ctx release];
     [super dealloc];
 }
@@ -280,6 +296,9 @@ void renderWhite()
             glLoadIdentity();
             glTranslatef(x, y, 0);
             
+            if([aboutToExplode containsObject:[BoardPointWrapper wrap:BoardPointMake(x, y)]])
+                glTranslatef(0.05-frand(0.1), 0.05-frand(0.1), 0);
+            
             CGFloat value = board.values[x][y];
             
             Texture2D *tileImages[] = {t0, t25, t50, t75};
@@ -362,6 +381,8 @@ void renderWhite()
     if(p.x < 0 || p.x >= WidthInTiles || p.y < 0 || p.y >= HeightInTiles) 
         return;
     
+    [aboutToExplode removeObject:[BoardPointWrapper wrap:p]];
+    
     BoardViewExplosion *ex = [[BoardViewExplosion new] autorelease];
     ex.start = [NSDate timeIntervalSinceReferenceDate];
     ex.position = p;
@@ -379,6 +400,14 @@ void renderWhite()
 -(void)explosionEnded:(BoardViewExplosion*)ex;
 {
     [explosions removeObject:ex];
+}
+
+-(void)aboutToExplode:(BoardPoint)p;
+{
+    if(p.x < 0 || p.x >= WidthInTiles || p.y < 0 || p.y >= HeightInTiles) 
+        return;
+
+    [aboutToExplode addObject:[BoardPointWrapper wrap:p]];
 }
 
 

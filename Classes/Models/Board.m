@@ -355,6 +355,8 @@
     charge.owner = owner;
     charge.tile = t;
     [explosionsQueue setObject:charge forKey:[NSNumber numberWithDouble:[NSDate timeIntervalSinceReferenceDate]+ExplosionDelay]];
+    if(charge.tile.value > 0.74)
+        [delegate tileWillSoonExplode:t];
 }
 -(void)explosionCharge:(ScheduledCharge*)charge;
 {

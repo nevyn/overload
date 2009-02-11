@@ -16,6 +16,7 @@
 -(void)tile:(Tile*)tile changedOwner:(Player)owner;
 -(void)tile:(Tile*)tile changedValue:(CGFloat)value;
 -(void)tile:(Tile*)tile wasChargedTo:(CGFloat)value byPlayer:(Player)player;
+-(void)tileWillSoonExplode:(Tile*)tile;
 -(void)tileExploded:(Tile*)tile;
 -(void)board:(Board*)board changedScores:(Scores)scores;
 -(void)board:(Board*)board endedWithWinner:(Player)winner;

@@ -150,6 +150,10 @@
     [soundPlayer playExplosionSound];
     [boardView explode:tile.boardPosition];
 }
+-(void)tileWillSoonExplode:(Tile*)tile;
+{
+    [boardView aboutToExplode:tile.boardPosition];
+}
 -(void)board:(Board*)board changedScores:(Scores)scores;
 {
     [score1 setScores:scores.scores];
