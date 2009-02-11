@@ -382,7 +382,19 @@
     
     if([explosionsQueue count] == 0)
         return;
-    
+
+#define FAST 1
+#if FAST
+    for (NSNumber *when in [explosionsQueue.allKeys sortedArrayUsingSelector:@selector(compare:)]) {
+        NSTimeInterval when2 = [when doubleValue];
+        if(when2 > [NSDate timeIntervalSinceReferenceDate])
+            return;
+        
+        ScheduledCharge *charge = [explosionsQueue objectForKey:when];
+        [self explosionCharge:charge];
+        [explosionsQueue removeObjectForKey:when];
+    }
+#else
     NSNumber *when = [[explosionsQueue.allKeys sortedArrayUsingSelector:@selector(compare:)] objectAtIndex:0];
     NSTimeInterval when2 = [when doubleValue];
     if(when2 > [NSDate timeIntervalSinceReferenceDate])
@@ -390,6 +402,7 @@
     ScheduledCharge *charge = [explosionsQueue objectForKey:when];
     [self explosionCharge:charge];
     [explosionsQueue removeObjectForKey:when];
+#endif
 }
 @end
 

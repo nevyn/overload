@@ -1,0 +1,173 @@
+Index: Classes/Models/Board.m
+===================================================================
+--- Classes/Models/Board.m	(revision 453)
++++ Classes/Models/Board.m	(working copy)
+@@ -207,20 +207,11 @@
+             Tile *tile = [self tile:BoardPointMake(x, y)];
+             tile.owner = PlayerNone;
+             tile.value = 0;
+-//            [self performSelector:@selector(_zeroTile:) withObject:tile afterDelay:frand(0.5)];
+         }
+     }
+     
+-    //id selfProxy = [[CInvocationGrabber invocationGrabber] prepareWithInvocationTarget:self];
+-    //[selfProxy setCurrentPlayer:PlayerP1];
+-    //[[selfProxy invocation] performSelector:@selector(invoke) withObject:nil afterDelay:0.6];
+     [self setCurrentPlayer:PlayerP1];
+ }
+--(void)_zeroTile:(Tile*)tile;
+-{
+-    tile.owner = PlayerNone;
+-    tile.value = 0;
+-}
+ -(void)shuffle;
+ {
+     srand(time(NULL));
+@@ -230,15 +221,9 @@
+             tile.owner = rand()%2 + 1;
+             tile.value = (rand()%4)*0.25;
+ 
+-            //[self performSelector:@selector(_shuffleTile:) withObject:tile afterDelay:frand(0.5)];
+         }
+     }
+ }
+--(void)_shuffleTile:(Tile*)tile;
+-{
+-    tile.owner = rand()%2 + 1;
+-    tile.value = (rand()%4)*0.25;
+-}
+ 
+ 
+ -(BOOL)chargeTileForCurrentPlayer:(BoardPoint)tilePoint;
+@@ -369,6 +354,12 @@
+     [charge.tile charge:ExplosionSpreadEnergy forPlayer:charge.owner];
+     self.explosionsQueued -= 1;
+ }
++-(BoardStruct)bs;
++{
++    return bs;
++}
++
++#pragma mark Update
+ -(void)update;
+ {
+     static NSTimeInterval lastWinUpdate = 0;
+@@ -452,17 +443,22 @@
+ 
+ @synthesize board;
+ @synthesize owner;
++-(Player)owner;
++{
++    return self.board->bs.owners[boardPosition.x][boardPosition.y];
++}
+ -(void)setOwner:(Player)newOwner;
+ {
+-    owner = newOwner;
+-    [self.board.delegate tile:self changedOwner:owner];
++    self.board->bs.owners[boardPosition.x][boardPosition.y] = newOwner;
+     [self.board updateScores];
+ }
+-@synthesize value;
++-(CGFloat)value;
++{
++    return self.board->bs.values[boardPosition.x][boardPosition.y];
++}
+ -(void)setValue:(CGFloat)newValue;
+ {
+-    value = newValue;
+-    [self.board.delegate tile:self changedValue:value];
++    self.board->bs.values[boardPosition.x][boardPosition.y] = newValue;
+     [self.board updateScores];
+ }
+ @synthesize boardPosition;
+Index: Classes/Models/Board.h
+===================================================================
+--- Classes/Models/Board.h	(revision 453)
++++ Classes/Models/Board.h	(working copy)
+@@ -13,8 +13,6 @@
+ @class Tile;
+ 
+ @protocol BoardDelegate
+--(void)tile:(Tile*)tile changedOwner:(Player)owner;
+--(void)tile:(Tile*)tile changedValue:(CGFloat)value;
+ -(void)tile:(Tile*)tile wasChargedTo:(CGFloat)value byPlayer:(Player)player;
+ -(void)tileWillSoonExplode:(Tile*)tile;
+ -(void)tileExploded:(Tile*)tile;
+@@ -37,6 +35,8 @@
+     
+     NSUInteger explosionsQueued;
+     NSMutableDictionary *explosionsQueue;
++    @public
++    BoardStruct bs;
+ }
+ -(id)init;
+ -(id)initWithBoard:(Board*)other;
+@@ -53,6 +53,7 @@
+ -(BOOL)canMakeMoveNow;
+ -(Scores)scores;
+ -(BOOL)player:(Player)player canChargeTile:(BoardPoint)tilePoint;
++-(BoardStruct)bs;
+ 
+ #pragma mark Mutators
+ -(void)restart;
+Index: Classes/Game Views/BoardViewController.m
+===================================================================
+--- Classes/Game Views/BoardViewController.m	(revision 453)
++++ Classes/Game Views/BoardViewController.m	(working copy)
+@@ -123,6 +123,7 @@
+         lastBoardUpdate = now;
+     }
+     if(lastViewUpdate + viewUpdateDt < now) {
++        [boardView setBoardStruct:board.bs];
+         [boardView render];
+         lastViewUpdate = now;
+     }
+@@ -130,14 +131,8 @@
+ 
+ 
+ #pragma mark Board delegates
+--(void)tile:(Tile*)tile changedOwner:(Player)owner;
+-{
+-    [boardView setOwner:owner atPosition:tile.boardPosition];
+-}
+--(void)tile:(Tile*)tile changedValue:(CGFloat)value;
+-{
+-    [boardView setValue:value atPosition:tile.boardPosition];
+-}
++
++
+ -(void)tile:(Tile*)tile wasChargedTo:(CGFloat)value byPlayer:(Player)player;
+ {
+     [soundPlayer playChargeSound:value];
+Index: Classes/Game Views/BoardGL/BoardViewGL.m
+===================================================================
+--- Classes/Game Views/BoardGL/BoardViewGL.m	(revision 453)
++++ Classes/Game Views/BoardGL/BoardViewGL.m	(working copy)
+@@ -410,7 +410,12 @@
+     [aboutToExplode addObject:[BoardPointWrapper wrap:p]];
+ }
+ 
++-(void)setBoardStruct:(BoardStruct)board_;
++{
++    board = board_;
++}
+ 
++
+ @synthesize sizeInTiles;
+ @synthesize delegate;
+ @synthesize tileSize;
+Index: Classes/Game Views/BoardGL/BoardView.h
+===================================================================
+--- Classes/Game Views/BoardGL/BoardView.h	(revision 453)
++++ Classes/Game Views/BoardGL/BoardView.h	(working copy)
+@@ -48,6 +48,10 @@
+ -(void)aboutToExplode:(BoardPoint)explodingTile;
+ -(void)explode:(BoardPoint)explodingTile;
+ 
++#ifdef BOARDVIEW_OPENGL
++-(void)setBoardStruct:(BoardStruct)board_;
++#endif
++
+ // heartbeat
+ -(void)render;
+ 
