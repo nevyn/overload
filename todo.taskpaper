@@ -6,14 +6,14 @@
 
 0.3: 
 - OpenGL @done
-- Nicer tiles
+- Nicer tiles @done
 - More flexible board size @done
 - Highlight squares that are about to explode @done
 - Abort a press @done
 - Make sure the player can't make a move for the AI @done @wontfix
 - board should always reset if game over and change board size @done
 - Shuffle should restart to a new game @done
-
+- Multirez symbols
 
 0.2:
 - That new audio framework @done(2009-01-16) @0.2b
