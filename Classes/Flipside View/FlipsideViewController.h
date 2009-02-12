@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TypesAndConstants.h"
 @class RootViewController;
 @class BoardViewController;
 
@@ -21,6 +22,8 @@
     IBOutlet UISlider *boardSize;
     IBOutlet UISwitch *chaosGame;
     IBOutlet UISwitch *soundSwitch;    
+    IBOutlet UILabel *sizeLabel;
+    BoardSize newBoardSize;
     NSMutableArray *stuffToDoWhenFlipped;
 }
 - (id)initWithNibName:(NSString *)nibNameOrNil
@@ -30,7 +33,10 @@
 - (IBAction)toggleView:(id)sender;
 - (IBAction)newGame:(id)sender;
 - (IBAction)shuffleGame:(id)sender;
+
+-(void)updateSizeLabel:(BoardSize)size;
 - (IBAction)setGameBoardSize:(UISlider*)sender;
+
 - (IBAction)toggleChaosGame:(UISwitch*)sender;
 - (IBAction)toggleSound:(UISwitch*)sender;
 @end

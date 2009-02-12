@@ -71,6 +71,7 @@ typedef struct tile_t {
     
     explosions = [[NSMutableArray alloc] init];
     aboutToExplode = [[NSMutableArray alloc] init];
+    touchedTile = BoardPointMake(-1, -1);
     
     // 1. Setup our "window"
     CAEAGLLayer *glLayer = (CAEAGLLayer*)self.layer;
@@ -317,12 +318,17 @@ void renderWhite()
         for(NSUInteger x = 0; x < self.sizeInTiles.width; x++) {
             glLoadIdentity();
             glTranslatef(x, y, 0);
-            
-            
-            
+                        
             glBindTexture(GL_TEXTURE_2D, gloss.name);
             glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
         }
+    }
+    
+    if(touchedTile.x != -1) {
+        glLoadIdentity();
+        glTranslatef(touchedTile.x, touchedTile.y, 0);
+        glBindTexture(GL_TEXTURE_2D, gloss.name);
+        glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
     }
     
     
@@ -346,7 +352,7 @@ void renderWhite()
 #pragma mark 
 #pragma mark Input handling
 #pragma mark -
-- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event;
+-(BoardPoint)boardPointFromEvent:(UIEvent *)event;
 {
     UITouch *t = [[event allTouches] anyObject];
     CGPoint tp = [t locationInView:self];
@@ -354,7 +360,27 @@ void renderWhite()
     BoardPoint p;
     p.x = floor((tp.x/self.bounds.size.width)*sizeInTiles.width);
     p.y = floor((tp.y/self.bounds.size.height)*sizeInTiles.height);
-    if(p.x < 0 || p.y < 0 || p.x >= sizeInTiles.width || p.y >= sizeInTiles.height)
+    return p;
+}
+#define ifPointOutsideBounds(p) if(p.x < 0 || p.y < 0 || p.x >= sizeInTiles.width || p.y >= sizeInTiles.height)
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event;
+{
+    [self touchesMoved:touches withEvent:event];
+}
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event;
+{
+    BoardPoint p = [self boardPointFromEvent:event];
+    ifPointOutsideBounds(p)
+        touchedTile = BoardPointMake(-1, -1);
+    else
+        touchedTile = p;
+}
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event;
+{
+    touchedTile = BoardPointMake(-1, -1);
+    BoardPoint p = [self boardPointFromEvent:event];
+    ifPointOutsideBounds(p)
         return;
     
     [self.delegate boardTileViewWasTouched:p];

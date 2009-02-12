@@ -38,6 +38,8 @@
     
     BoardStruct board;
     
+    BoardPoint touchedTile;
+    
     NSMutableArray *explosions;
     NSMutableArray *aboutToExplode;
 #endif

@@ -46,6 +46,8 @@
     chaosGame.on = mainController.board.chaosGame;
     boardSize.value = mainController.board.sizeInTiles.width/(float)WidthInTiles;
     soundSwitch.on = mainController.soundPlayer.sound;
+
+    [self updateSizeLabel:mainController.board.sizeInTiles];
 }
 -(void)startRotatingWheels;
 {
@@ -53,6 +55,7 @@
 }
 -(void)viewWillAppear:(BOOL)yeah;
 {
+    newBoardSize = BoardSizeMake(-1, -1);
     [self startRotatingWheels];
 }
 -(void)viewDidDisappear:(BOOL)yeah;
@@ -89,10 +92,22 @@
 
 - (IBAction)toggleView:(id)sender;
 {
+    if(newBoardSize.width != -1) {
+        [[Beacon sharedIfOptedIn] startSubBeaconWithName:[NSString stringWithFormat:@"Board size > %dx%d", newBoardSize.width, newBoardSize.height] timeSession:NO];
+        
+        if(mainController.board.hasEnded)
+            schedule(mainController.board, restart);
+        schedule(mainController.board, setSizeInTiles:newBoardSize);
+    }
+    
+    
     for (NSInvocation *invocation in stuffToDoWhenFlipped) {
         [invocation performSelector:@selector(invoke) withObject:nil afterDelay:1.1];
     }
     [stuffToDoWhenFlipped removeAllObjects];
+    
+    
+    
     [rootController toggleView];
 }
 - (IBAction)newGame:(id)sender;
@@ -132,14 +147,30 @@
     }
     [self toggleView:nil];
 }
+-(void)updateSizeLabel:(BoardSize)size;
+{
+    NSString *estimatedTime;
+    switch(size.width) {
+        case 2:  estimatedTime = @"10s"; break;
+        case 3:  estimatedTime = @"10s"; break;
+        case 4:  estimatedTime = @"1min"; break;
+        case 5:  estimatedTime = @"5min"; break;
+        case 6:  estimatedTime = @"5min"; break;
+        case 7:  estimatedTime = @"10min"; break;
+        case 8:  estimatedTime = @"30min"; break;
+        case 9:  estimatedTime = @"1.5h"; break;
+        default:
+        case 10: estimatedTime = @"2h"; break;
+    }
+    [sizeLabel setText:[NSString stringWithFormat:@"%dx%d%@\n%@",
+                        size.width, size.height, ((size.width==5&&size.height==6)?@" (default)":@""),
+                        estimatedTime]];
+    
+}
 - (IBAction)setGameBoardSize:(UISlider*)sender;
 {
-    BoardSize newSize = BoardSizeMake(WidthInTiles*sender.value, HeightInTiles*sender.value);
-    [[Beacon sharedIfOptedIn] startSubBeaconWithName:[NSString stringWithFormat:@"Board size > %dx%d", newSize.width, newSize.height] timeSession:NO];
-    
-    if(mainController.board.hasEnded)
-        schedule(mainController.board, restart);
-    schedule(mainController.board, setSizeInTiles:newSize);
+    newBoardSize = BoardSizeMake(WidthInTiles*sender.value, HeightInTiles*sender.value);
+    [self updateSizeLabel:newBoardSize];
 }
 - (IBAction)toggleChaosGame:(UISwitch*)sender;
 {
