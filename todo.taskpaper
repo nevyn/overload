@@ -14,6 +14,7 @@
 - board should always reset if game over and change board size @done
 - Shuffle should restart to a new game @done
 - Multirez symbols
+- Better sound engine
 
 0.2:
 - That new audio framework @done(2009-01-16) @0.2b
