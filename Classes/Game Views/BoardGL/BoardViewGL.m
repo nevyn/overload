@@ -11,6 +11,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "ColorConversion.h"
 #import "UIImage+GLTexture.h"
+#import "CollectionUtils.h"
 
 @interface BoardView ()
 -(BOOL)createFramebuffer;
@@ -153,23 +154,18 @@ typedef struct tile_t {
 
 
 #pragma mark Prepare scene
+-(void)reloadTexturesForResolution:(NSUInteger)resolution;
+{
+    self.gloss = [Texture2D textureNamed:$sprintf(@"%d/tilegloss.png", resolution)];
+    self.t0 = [Texture2D textureNamed:$sprintf(@"%d/tile-0.png", resolution)];
+    self.t25 = [Texture2D textureNamed:$sprintf(@"%d/tile-25.png", resolution)];
+    self.t50 = [Texture2D textureNamed:$sprintf(@"%d/tile-50.png", resolution)];
+    self.t75 = [Texture2D textureNamed:$sprintf(@"%d/tile-75.png", resolution)];
+}
+
 -(void)prepareScene;
 {
-    /*
-    BOOL texOK = YES;
-    texOK &= [[UIImage imageNamed:@"tile.png"] loadIntoTexture:&gloss];
-    texOK &= [[UIImage imageNamed:@"tile-0.png"] loadIntoTexture:&t0];
-    texOK &= [[UIImage imageNamed:@"tile-25.png"] loadIntoTexture:&t25];
-    texOK &= [[UIImage imageNamed:@"tile-50.png"] loadIntoTexture:&t50];
-    texOK &= [[UIImage imageNamed:@"tile-75.png"] loadIntoTexture:&t75];
-    if(!texOK)
-        NSLog(@"[BoardViewGL prepareScene]: Textures failed to load");*/
-    self.gloss = [Texture2D textureNamed:@"tile.png"];
-    self.t0 = [Texture2D textureNamed:@"tile-0.png"];
-    self.t25 = [Texture2D textureNamed:@"tile-25.png"];
-    self.t50 = [Texture2D textureNamed:@"tile-50.png"];
-    self.t75 = [Texture2D textureNamed:@"tile-75.png"];
-    
+    [self reloadTexturesForResolution:64];
 }
 
 #pragma mark 
