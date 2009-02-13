@@ -34,6 +34,7 @@
 +(id)wrap:(BoardPoint)p_; { BoardPointWrapper *pw = [[[BoardPointWrapper alloc] init] autorelease]; pw.p = p_; return pw; }
 -(BOOL)isEqual:(BoardPointWrapper*)other; { return (other.p.x == self.p.x) && (other.p.y == self.p.y); }
 @synthesize p;
+-(NSString*)description; { return $sprintf(@"BPW@%dx%d", p.x, p.y); }
 @end
 
 
@@ -222,9 +223,6 @@ void renderWhite()
         0, 1,
         1, 1,
     };
-    
-    
-    
     
     // Setup our surface for this frame
     [EAGLContext setCurrentContext:ctx];

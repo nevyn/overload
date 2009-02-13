@@ -357,7 +357,7 @@
 }
 -(void)scheduleCharge:(Tile*)t owner:(Player)owner;
 {
-    ScheduledCharge *charge = [[ScheduledCharge alloc] init];
+    ScheduledCharge *charge = [[[ScheduledCharge alloc] init] autorelease];
     charge.owner = owner;
     charge.tile = t;
     [explosionsQueue setObject:charge forKey:[NSNumber numberWithDouble:[NSDate timeIntervalSinceReferenceDate]+ExplosionDelay]];
@@ -431,7 +431,7 @@
         if(board.delegate)
             [self.board scheduleCharge:sibling owner:self.owner];
         else {
-            ScheduledCharge *charge = [[ScheduledCharge alloc] init];
+            ScheduledCharge *charge = [[[ScheduledCharge alloc] init] autorelease];
             charge.owner = self.owner;
             charge.tile = sibling;
             [self.board explosionCharge:charge];
