@@ -65,8 +65,8 @@
 {
   UIImage *img = [UIImage imageNamed:name];
   if(!img) return nil;
-  Texture2D *tex = [[Texture2D alloc] initWithImage:img];
-  [img release];
+  Texture2D *tex = [[[Texture2D alloc] initWithImage:img] autorelease];
+  
   return tex;
 }
 

@@ -434,6 +434,20 @@ void renderWhite()
 
 
 @synthesize sizeInTiles;
+-(void)setSizeInTiles:(BoardSize)newSize;
+{
+    sizeInTiles = newSize;
+    tileSize = CGSizeMake(BoardWidth/newSize.width, BoardHeight()/newSize.height);
+    
+    NSUInteger resolutions[] = {64, 128, 256};
+    NSUInteger resolution = 256;
+    for(int i = 0; i < 3; i++) {
+        resolution = resolutions[i];
+        if(resolution >= tileSize.width)
+            break;
+    }
+    [self reloadTexturesForResolution:resolution];
+}
 @synthesize delegate;
 @synthesize tileSize;
 

@@ -19,7 +19,6 @@
 
 
 - (void)viewDidLoad {
-	
 	BoardViewController *viewController = [[[BoardViewController alloc] initWithNibName:@"MainView" bundle:nil] autorelease];
 	self.mainViewController = viewController;
 	
