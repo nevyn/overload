@@ -166,7 +166,8 @@ typedef struct tile_t {
 
 -(void)prepareScene;
 {
-    [self reloadTexturesForResolution:64];
+    // setSizeInTiles will be called, which will call reloadTextures… anyway
+    //[self reloadTexturesForResolution:64];
 }
 
 #pragma mark 
@@ -284,12 +285,21 @@ void renderWhite()
     glEnable(GL_TEXTURE_2D);
     renderWhite();
     
+    // Figure out if the symbols will be squished, and if so, compensate
+    CGFloat horizontalScalingFactor = 1.0, verticalScalingFactor = 1.0;
+    if(tileSize.width > tileSize.height)
+        horizontalScalingFactor = tileSize.height/tileSize.width;
+    else if(tileSize.height > tileSize.width)
+        verticalScalingFactor = tileSize.width/tileSize.height;
+    
     
     //////// Symbol
     for(NSUInteger y = 0; y < self.sizeInTiles.height; y++) {
         for(NSUInteger x = 0; x < self.sizeInTiles.width; x++) {
             glLoadIdentity();
             glTranslatef(x, y, 0);
+            glTranslatef((1.0-horizontalScalingFactor)/2.0, (1.0-verticalScalingFactor)/2.0, 0);
+            glScalef(horizontalScalingFactor, verticalScalingFactor, 1.0);
             
             if([aboutToExplode containsObject:[BoardPointWrapper wrap:BoardPointMake(x, y)]])
                 glTranslatef(0.05-frand(0.1), 0.05-frand(0.1), 0);
