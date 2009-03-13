@@ -7,7 +7,7 @@
 //
 
 #import "ScoreBarView.h"
-
+#import "CollectionUtils.h"
 
 @implementation ScoreBarView
 
@@ -78,17 +78,12 @@
 
 -(void)setCurrentPlayer:(Player)currentPlayer;
 {
-    BOOL _ = currentPlayer == self.player;
     [UIView beginAnimations:@"statusBar.changeCurrentPlayer" context:nil];
-    self.backgroundColor = [UIColor colorWithHue:Hues[self.player] saturation:_?0.6:0.3 brightness:_?0.8:0.5 alpha:1.0];
+    self.backgroundColor = [UIColor colorWithHue:Hues[currentPlayer] saturation:0.6 brightness:0.8 alpha:1.0];
     [UIView commitAnimations];
     
     status.transform = CGAffineTransformIdentity;
     
-    
-    if(_)
-        self.status = @"Your turn.";
-    else
-        self.status = @"Their turn.";
+	self.status = $sprintf(@"Player %d's turn.", currentPlayer);
 }
 @end
