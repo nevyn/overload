@@ -43,6 +43,7 @@
 - (void)viewDidLoad {
     score1 = [[[ScoreBarView alloc] initWithFrame:CGRectMake(0, BoardHeight(), BoardWidth+14, ScoreBarHeight) player:PlayerP1] autorelease];
     score1.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
+	score1.delegate = self;
     [self.view addSubview:score1];
     /*score2 = [[[ScoreBarView alloc] initWithFrame:CGRectMake(0, 0, BoardWidth, ScoreBarHeight) player:PlayerP2] autorelease];
     score2.transform = CGAffineTransformMakeRotation(M_PI);
@@ -212,12 +213,10 @@
 -(void)board:(Board*)board_ changedCurrentPlayer:(Player)currentPlayer;
 {
     [score1 setCurrentPlayer:currentPlayer];
-    [score2 setCurrentPlayer:currentPlayer];
     
     if(board.isBoardEmpty) {
-        score2.status = @"    Tap me to play against iPhone";
+        score1.status = @"    Tap me to play against iPhone";
         [[Beacon sharedIfOptedIn] startSubBeaconWithName:@"Local 2P Game" timeSession:YES];
-        [score2 flipStatus];
     }
     
     if(currentPlayer == PlayerP2)
@@ -242,7 +241,7 @@
 #pragma mark Score bar delegates
 -(void)scoreBarTouched:(ScoreBarView*)scoreBarView;
 {
-    if(scoreBarView == score2 && score2.status == @"    Tap me to play against iPhone") {
+    if([score1.status isEqual:@"    Tap me to play against iPhone"]) {
         [self startAI];
         [[Beacon sharedIfOptedIn] startSubBeaconWithName:@"Local AI Game" timeSession:YES];
     }
@@ -256,7 +255,7 @@
 #ifdef AI_VS_AI
     ai2 = [[AI2 alloc] initPlaying:PlayerP1 onBoard:board delegate:self];
 #endif
-    score2.status = @"    iPhone is waiting on you...";
+    score1.status = @"    iPhone is waiting on you...";
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"currentGame.hasAI"];
 }
 -(void)stopAI;
