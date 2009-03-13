@@ -19,6 +19,7 @@
 
 @interface BoardViewController : UIViewController <BoardDelegate, BoardViewDelegate, ScoreBarViewDelegate> {
     ScoreBarView *score1, *score2;
+	ScoreIndicator *score;
     UIImageView *winPlaque, *losePlaque;
     
     OLSoundPlayer *soundPlayer;

@@ -182,7 +182,7 @@
     for(NSUInteger y = 0; y < self.sizeInTiles.height; y++) {
         for (NSUInteger x = 0; x < self.sizeInTiles.width; x++) {
             Tile *tile = [self tile:BoardPointMake(x, y)];
-            scores.scores[tile.owner] += tile.value;
+            scores.scores[tile.owner] += 1+tile.value;
         }
     }
     return scores;

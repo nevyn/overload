@@ -43,11 +43,12 @@
         [container addSubview:bar];
     }
     
-    pen = frame;
-    pen.size.height /= 2;
-    pen.origin = CGPointMake(0, 0);
+	pen.size.width = frame.size.height;
+    pen.size.height = frame.size.width/2;
+    pen.origin = CGPointMake(-212, 212);
     UIImageView *gloss = [[[UIImageView alloc] initWithFrame:pen] autorelease];
     gloss.image = [UIImage imageNamed:@"gloss.png"];
+	gloss.transform = CGAffineTransformMakeRotation(-M_PI/2);
     [self addSubview:gloss];
     
     
@@ -66,24 +67,24 @@
 -(void)setScores:(CGFloat[])scores;
 {
     CGFloat totalScore = 0;
-    for (NSUInteger i = 1; i < self.playerCount+1; i++) {
+    for (NSUInteger i = 0; i < self.playerCount; i++) {
         totalScore += scores[i];
     }
     if(totalScore == 0)
         totalScore = 1;
     
     NSArray *views = [container subviews];
-    CGFloat widthPerPoint = self.frame.size.width/totalScore;
+    CGFloat widthPerPoint = self.frame.size.height/totalScore;
     CGFloat pen = 0;
     
 
     [UIView beginAnimations:@"scorebar" context:nil];
-    for (NSUInteger i = 1; i < self.playerCount+1; i++) {
+    for (NSUInteger i = 0; i < self.playerCount; i++) {
         CGFloat thisProportion = widthPerPoint * scores[i];
         
-        UIView *colorBar = [views objectAtIndex:i-1];
+        UIView *colorBar = [views objectAtIndex:i];
         [colorBar setFrame:
-            CGRectMake(pen, 0, thisProportion, self.frame.size.height)];
+            CGRectMake(0, pen, self.frame.size.width, thisProportion)];
         pen += thisProportion;
         
         //UILabel *barText = [[colorBar subviews] objectAtIndex:0];

@@ -41,15 +41,26 @@
 }
 
 - (void)viewDidLoad {
-    score1 = [[[ScoreBarView alloc] initWithFrame:CGRectMake(0, BoardHeight()+ScoreBarHeight, BoardWidth, ScoreBarHeight) player:PlayerP1] autorelease];
+    score1 = [[[ScoreBarView alloc] initWithFrame:CGRectMake(0, BoardHeight(), BoardWidth+14, ScoreBarHeight) player:PlayerP1] autorelease];
     score1.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
-
-    score2 = [[[ScoreBarView alloc] initWithFrame:CGRectMake(0, 0, BoardWidth, ScoreBarHeight) player:PlayerP2] autorelease];
-    score2.transform = CGAffineTransformMakeRotation(M_PI);
-    score2.delegate = self;
-        
     [self.view addSubview:score1];
-    [self.view addSubview:score2];
+    /*score2 = [[[ScoreBarView alloc] initWithFrame:CGRectMake(0, 0, BoardWidth, ScoreBarHeight) player:PlayerP2] autorelease];
+    score2.transform = CGAffineTransformMakeRotation(M_PI);
+    score2.delegate = self;*/
+
+    /*[self.view addSubview:score2];*/
+	 
+	
+	NSArray *scoreColors = [NSArray arrayWithObjects:
+                            [UIColor colorWithHue:00 saturation:0.0 brightness:0.6 alpha:1.0],
+                            [UIColor colorWithHue:Hues[1] saturation:0.6 brightness:0.6 alpha:1.0],
+                            [UIColor colorWithHue:Hues[2] saturation:0.6 brightness:0.6 alpha:1.0],
+                            nil];
+	
+    score = [[ScoreIndicator alloc] initWithFrame:CGRectMake(0, 0, 14, BoardHeight()) colors:scoreColors];
+	
+	[self.view addSubview:score];
+        
     
     self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
     
@@ -63,7 +74,7 @@
     self.heartbeat = [NSTimer scheduledTimerWithTimeInterval:1./60. target:self selector:@selector(update) userInfo:nil repeats:YES];
 
     if(!boardView) {
-        boardView = [[[BoardView alloc] initWithFrame:CGRectMake(0, ScoreBarHeight, BoardWidth, BoardHeight())] autorelease];
+        boardView = [[[BoardView alloc] initWithFrame:CGRectMake(14, 0, BoardWidth, BoardHeight())] autorelease];
         [boardView setSizeInTiles:board.sizeInTiles];
         boardView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
         boardView.delegate = self;
@@ -156,8 +167,7 @@
 }
 -(void)board:(Board*)board changedScores:(Scores)scores;
 {
-    [score1 setScores:scores.scores];
-    [score2 setScores:scores.scores];
+    [score setScores:scores.scores];
 }
 -(void)board:(Board*)board endedWithWinner:(Player)winner;
 {

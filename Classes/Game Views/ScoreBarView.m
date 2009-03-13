@@ -21,7 +21,6 @@
     [self setCurrentPlayer:PlayerNone];
     
     CGRect pen = frame;
-    pen.size.height -= 14;
     pen.origin.y = 0;
     pen.origin.x = 6;
     pen = CGRectIntegral(pen);
@@ -38,16 +37,6 @@
     pen.size.height *= 2;
     
 
-    pen.origin.x = 0;
-    pen.size.height = 14;
-    pen.origin.y = frame.size.height-pen.size.height;
-    pen = CGRectIntegral(pen);
-    NSArray *scoreColors = [NSArray arrayWithObjects:
-                            [UIColor colorWithHue:Hues[1] saturation:0.6 brightness:0.6 alpha:1.0],
-                            [UIColor colorWithHue:Hues[2] saturation:0.6 brightness:0.6 alpha:1.0],
-                            nil];
-    scoreIndicator = [[[ScoreIndicator alloc] initWithFrame:pen colors:scoreColors] autorelease];
-    [self addSubview:scoreIndicator];
     
 	return self;
 }
