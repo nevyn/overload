@@ -12,11 +12,9 @@
 @implementation StatusBarView
 
 
-- (id)initWithFrame:(CGRect)frame player:(Player)player_;
+- (id)initWithFrame:(CGRect)frame;
 {
 	if (![super initWithFrame:frame]) return nil;
-    
-    self.player = player_;
     
     [self setCurrentPlayer:PlayerNone];
     
@@ -64,15 +62,6 @@
     return status.text;
 }
 
-@synthesize player;
-
--(void)flipStatus;
-{
-    [UIView beginAnimations:nil context:NULL];
-	[UIView setAnimationDuration:0.5];
-    status.transform = CGAffineTransformMakeRotation(M_PI);
-    [UIView commitAnimations];
-}
 
 @synthesize delegate;
 

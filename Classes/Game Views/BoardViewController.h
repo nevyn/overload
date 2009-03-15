@@ -9,13 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "StatusBarView.h"
 #import "TypesAndConstants.h"
-#import "Board.h"
 #import "BoardView.h"
 #import "OLSoundPlayer.h"
-
-@class AI;
-
-//#define AI_VS_AI
+#import "Game.h"
 
 @interface BoardViewController : UIViewController <BoardDelegate, BoardViewDelegate, ScoreBarViewDelegate> {
     StatusBarView *status;
@@ -25,37 +21,12 @@
     OLSoundPlayer *soundPlayer;
     
     BoardView *boardView;
-    Board *board;
-    
+	Game *game;
+
     NSTimer *heartbeat;
-    
-    AI *ai;
-#ifdef AI_VS_AI
-    AI*ai2;
-#endif
 }
 
-
-#pragma mark Board delegates
--(void)tile:(Tile*)tile changedOwner:(Player)owner;
--(void)tile:(Tile*)tile changedValue:(CGFloat)value;
--(void)tile:(Tile*)tile wasChargedTo:(CGFloat)value byPlayer:(Player)player;
--(void)tileExploded:(Tile*)tile;
--(void)board:(Board*)board changedScores:(Scores)scores;
--(void)board:(Board*)board endedWithWinner:(Player)winner;
--(void)board:(Board*)board changedCurrentPlayer:(Player)currentPlayer;
-
-#pragma mark Board view delegates
--(void)boardTileViewWasTouched:(BoardPoint)pointThatWasTouched;
-
-#pragma mark Score bar delegates
--(void)scoreBarTouched:(StatusBarView*)scoreBarView;
-
-#pragma mark AI
--(void)startAI;
--(void)stopAI;
-
 #pragma mark Properties
-@property (readonly, nonatomic) Board *board;
 @property (readonly, nonatomic) OLSoundPlayer *soundPlayer;
+@property (readonly, nonatomic) Game *game;
 @end

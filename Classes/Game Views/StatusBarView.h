@@ -19,17 +19,14 @@
 @interface StatusBarView : UIView {
     ScoreIndicator *scoreIndicator;
     UILabel *status;
-    Player player;
     
     id<ScoreBarViewDelegate> delegate;
 }
-- (id)initWithFrame:(CGRect)frame player:(Player)player;
+- (id)initWithFrame:(CGRect)frame;
 
 -(void)setScores:(CGFloat[])scores;
 
-@property (nonatomic) Player player;
 @property (copy, nonatomic) NSString *status;
--(void)flipStatus;
 
 @property (assign, nonatomic) id<ScoreBarViewDelegate> delegate;
 

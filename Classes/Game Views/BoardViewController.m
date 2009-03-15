@@ -28,20 +28,16 @@
     
     soundPlayer = [[OLSoundPlayer alloc] init];
     
-    board = [[Board alloc] init];
-#ifndef AI_VS_AI
-    [board load];
-#else
-    board.sizeInTiles = BoardSizeMake(WidthInTiles/2, HeightInTiles/2);
-    board.chaosGame = YES;
-#endif
-    [self boardIsStartingAnew:board];
+	game = [[Game alloc] init];
+	[game load];
+	
+    [self boardIsStartingAnew:game.board];
         
 	return self;
 }
 
 - (void)viewDidLoad {
-    status = [[[StatusBarView alloc] initWithFrame:CGRectMake(0, BoardHeight(), BoardWidth+14, ScoreBarHeight) player:PlayerP1] autorelease];
+    status = [[[StatusBarView alloc] initWithFrame:CGRectMake(0, BoardHeight(), BoardWidth+14, ScoreBarHeight)] autorelease];
     status.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
 	status.delegate = self;
     [self.view addSubview:status];	 
@@ -58,10 +54,6 @@
         
     
     self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
-    
-    
-    if([[NSUserDefaults standardUserDefaults] boolForKey:@"currentGame.hasAI"])
-        [self startAI];
 }
 
 - (void)viewDidAppear:(BOOL)animated; 
@@ -70,18 +62,16 @@
 
     if(!boardView) {
         boardView = [[[BoardView alloc] initWithFrame:CGRectMake(14, 0, BoardWidth, BoardHeight())] autorelease];
-        [boardView setSizeInTiles:board.sizeInTiles];
+        [boardView setSizeInTiles:game.board.sizeInTiles];
         boardView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
         boardView.delegate = self;
         [self.view insertSubview:boardView belowSubview:status];
     }
-    boardView.animated = YES;
-    board.delegate = self; // Triggers calling all delegate methods to match board view to model    
+    game.delegate = self; // Triggers calling all delegate methods to match board view to model    
 }
 - (void)viewDidDisappear:(BOOL)animated;
 {
     self.heartbeat = nil;
-    boardView.animated = NO;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -98,9 +88,8 @@
 
 - (void)dealloc {
     self.heartbeat = nil;
-    [board release];
+    [game release];
     [soundPlayer release];
-    [ai release];
 	[super dealloc];
 }
 
@@ -125,7 +114,7 @@
     
     NSTimeInterval now = [NSDate timeIntervalSinceReferenceDate];
     if(lastBoardUpdate + boardUpdateDt < now) {
-        [board update];
+        [game update];
         lastBoardUpdate = now;
     }
     if(lastViewUpdate + viewUpdateDt < now) {
@@ -147,9 +136,6 @@
 -(void)tile:(Tile*)tile wasChargedTo:(CGFloat)value byPlayer:(Player)player;
 {
     [soundPlayer playChargeSound:value];
-    
-    if(ai && player == PlayerP1)
-        [ai player:player choseTile:tile.boardPosition];
 }
 -(void)tileExploded:(Tile*)tile;
 {
@@ -165,12 +151,7 @@
     [score setScores:scores.scores];
 }
 -(void)board:(Board*)board endedWithWinner:(Player)winner;
-{
-    if(ai)
-        [[Beacon sharedIfOptedIn] endSubBeaconWithName:@"Local AI Game"];
-    else
-        [[Beacon sharedIfOptedIn] endSubBeaconWithName:@"Local 2P Game"];
-    
+{    
     [soundPlayer playWinSound];
     Player loser = (!(winner-1))+1;
     [UIView beginAnimations:nil context:NULL];
@@ -193,8 +174,6 @@
 }
 -(void)boardIsStartingAnew:(Board*)board;
 {
-    [self stopAI];
-
     [UIView beginAnimations:nil context:NULL]; // Why doesn't it animate?
 	[UIView setAnimationDuration:1];
 
@@ -208,18 +187,8 @@
 {
     [status setCurrentPlayer:currentPlayer];
     
-    if(board.isBoardEmpty) {
-        status.status = @"    Tap me to play against iPhone";
-        [[Beacon sharedIfOptedIn] startSubBeaconWithName:@"Local 2P Game" timeSession:YES];
-    }
-    
-    if(currentPlayer == PlayerP2)
-        [ai performSelector:@selector(performMove) withObject:nil afterDelay:0.2];
-#ifdef AI_VS_AI
-    else
-        if(!board.isBoardEmpty)
-            [ai2 performSelector:@selector(performMove) withObject:nil afterDelay:0.2];
-#endif
+    if(game.board.isBoardEmpty)
+        status.status = @"Tap me to play against iPhone";
 }
 -(void)board:(Board*)board changedSize:(BoardSize)newSize;
 {
@@ -229,39 +198,22 @@
 #pragma mark Board view delegates
 -(void)boardTileViewWasTouched:(BoardPoint)pointThatWasTouched;
 {
-    [board chargeTileForCurrentPlayer:pointThatWasTouched];
+	[game makeMoveForCurrentPlayer:pointThatWasTouched];
 }
 
 #pragma mark Score bar delegates
 -(void)scoreBarTouched:(StatusBarView*)scoreBarView;
 {
-    if([status.status isEqual:@"    Tap me to play against iPhone"]) {
-        [self startAI];
+    if([status.status isEqual:@"Tap me to play against iPhone"]) {
+        [game startAI];
         [[Beacon sharedIfOptedIn] startSubBeaconWithName:@"Local AI Game" timeSession:YES];
+		status.status = @"iPhone is waiting on you...";
     }
     
-}
-
-#pragma mark AI
--(void)startAI;
-{
-    ai = [[AI2 alloc] initPlaying:PlayerP2 onBoard:board delegate:self];
-#ifdef AI_VS_AI
-    ai2 = [[AI2 alloc] initPlaying:PlayerP1 onBoard:board delegate:self];
-#endif
-    status.status = @"    iPhone is waiting on you...";
-    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"currentGame.hasAI"];
-}
--(void)stopAI;
-{
-    if(!ai) return;
-    
-    [ai release]; ai = nil;
-    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"currentGame.hasAI"];
 }
           
 
 #pragma mark Properties
-@synthesize board;
 @synthesize soundPlayer;
+@synthesize game;
 @end
