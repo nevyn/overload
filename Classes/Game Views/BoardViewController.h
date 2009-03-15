@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ScoreBarView.h"
+#import "StatusBarView.h"
 #import "TypesAndConstants.h"
 #import "Board.h"
 #import "BoardView.h"
@@ -18,7 +18,7 @@
 //#define AI_VS_AI
 
 @interface BoardViewController : UIViewController <BoardDelegate, BoardViewDelegate, ScoreBarViewDelegate> {
-    ScoreBarView *score1, *score2;
+    StatusBarView *status;
 	ScoreIndicator *score;
     UIImageView *winPlaque, *losePlaque;
     
@@ -49,7 +49,7 @@
 -(void)boardTileViewWasTouched:(BoardPoint)pointThatWasTouched;
 
 #pragma mark Score bar delegates
--(void)scoreBarTouched:(ScoreBarView*)scoreBarView;
+-(void)scoreBarTouched:(StatusBarView*)scoreBarView;
 
 #pragma mark AI
 -(void)startAI;

@@ -10,13 +10,13 @@
 #import "TypesAndConstants.h"
 #import "ScoreIndicator.h"
 
-@class ScoreBarView;
+@class StatusBarView;
 @protocol ScoreBarViewDelegate
--(void)scoreBarTouched:(ScoreBarView*)scoreBarView;
+-(void)scoreBarTouched:(StatusBarView*)scoreBarView;
 @end
 
 
-@interface ScoreBarView : UIView {
+@interface StatusBarView : UIView {
     ScoreIndicator *scoreIndicator;
     UILabel *status;
     Player player;

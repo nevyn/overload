@@ -6,10 +6,10 @@
 //  Copyright 2008 Third Cog Software. All rights reserved.
 //
 
-#import "ScoreBarView.h"
+#import "StatusBarView.h"
 #import "CollectionUtils.h"
 
-@implementation ScoreBarView
+@implementation StatusBarView
 
 
 - (id)initWithFrame:(CGRect)frame player:(Player)player_;

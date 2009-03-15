@@ -6,8 +6,9 @@
 //  Copyright 2008 Third Cog Software. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 #import "TypesAndConstants.h"
+#import "Tile.h"
 
 @class Board;
 @class Tile;
@@ -71,22 +72,3 @@
 @property (readwrite, nonatomic) BoardSize sizeInTiles;
 @end
 
-@interface Tile : NSObject
-{
-    Player owner;
-    CGFloat value;
-    BoardPoint boardPosition;
-    Board *board;
-}
--(void)charge:(CGFloat)amount;
--(void)charge:(CGFloat)amount forPlayer:(Player)newOwner;
--(void)explode;
-
--(NSArray*)surroundingTiles;
-
-@property (assign, nonatomic) Board* board;
-@property (nonatomic) Player owner;
-@property (nonatomic) CGFloat value;
-@property (nonatomic) BoardPoint boardPosition;
-
-@end

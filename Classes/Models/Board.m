@@ -7,27 +7,12 @@
 //
 
 #import "Board.h"
+#import "Board+Private.h"
 #import "CInvocationGrabber.h"
 #import "CollectionUtils.h"
 
-@interface Board()
-#pragma mark Game logic
--(void)updateScores;
--(void)advancePlayer;
-
--(void)scheduleCharge:(Tile*)t owner:(Player)owner;
+@interface Board ()
 @property (readwrite, assign, nonatomic) NSUInteger explosionsQueued;
-@end
-
-@interface ScheduledCharge : NSObject {
-    Tile *tile;
-    Player owner;
-}
-@property (readwrite, assign, nonatomic) Tile *tile;
-@property (readwrite, assign, nonatomic) Player owner;
-@end
-@implementation ScheduledCharge
-@synthesize tile, owner;
 @end
 
 
@@ -103,11 +88,6 @@
 }
 
 #pragma mark Game logic
--(void)updateScores;
-{
-    if(delegate)
-        [delegate board:self changedScores:self.scores];
-}
 -(void)checkWinningCondition;
 {
     if(gameEnded) return;
@@ -117,13 +97,6 @@
 
     gameEnded = YES;
     [delegate board:self endedWithWinner:winner];    
-}
--(void)advancePlayer;
-{
-    if(self.currentPlayer == PlayerP1)
-        self.currentPlayer = PlayerP2;
-    else
-        self.currentPlayer = PlayerP1;
 }
 
 
@@ -348,26 +321,13 @@
 
 
 @synthesize explosionsQueued;
+
 -(void)setExplosionsQueued:(NSUInteger)queueNo;
 {
     explosionsQueued = queueNo;
     
     if(explosionsQueued == 0 && !self.chaosGame)
         [self advancePlayer];
-}
--(void)scheduleCharge:(Tile*)t owner:(Player)owner;
-{
-    ScheduledCharge *charge = [[[ScheduledCharge alloc] init] autorelease];
-    charge.owner = owner;
-    charge.tile = t;
-    [explosionsQueue setObject:charge forKey:[NSNumber numberWithDouble:[NSDate timeIntervalSinceReferenceDate]+ExplosionDelay]];
-    if(charge.tile.value > 0.74)
-        [delegate tileWillSoonExplode:t];
-}
--(void)explosionCharge:(ScheduledCharge*)charge;
-{
-    [charge.tile charge:ExplosionSpreadEnergy forPlayer:charge.owner];
-    self.explosionsQueued -= 1;
 }
 -(void)update;
 {
@@ -409,75 +369,3 @@
 
 
 
-@implementation Tile
--(void)charge:(CGFloat)amount;
-{
-    self.value += amount;
-    if(self.value >= 0.9999)
-        [self explode];
-}
--(void)charge:(CGFloat)amount forPlayer:(Player)newOwner;
-{
-    self.owner = newOwner;
-    [self charge:amount];
-}
-
--(void)explode;
-{
-    self.value = 0.0;
-    
-    for (Tile *sibling in self.surroundingTiles) {
-        board.explosionsQueued += 1;
-        if(board.delegate)
-            [self.board scheduleCharge:sibling owner:self.owner];
-        else {
-            ScheduledCharge *charge = [[[ScheduledCharge alloc] init] autorelease];
-            charge.owner = self.owner;
-            charge.tile = sibling;
-            [self.board explosionCharge:charge];
-        }
-    }
-    
-    [self.board.delegate tileExploded:self];
-}
-
--(NSArray*)surroundingTiles;
-{
-    BoardPoint urdl[4] =   {BoardPointMake(self.boardPosition.x, self.boardPosition.y-1),
-                            BoardPointMake(self.boardPosition.x+1, self.boardPosition.y),
-                            BoardPointMake(self.boardPosition.x, self.boardPosition.y+1),
-                            BoardPointMake(self.boardPosition.x-1, self.boardPosition.y)};
-    NSMutableArray *surroundingTiles = [NSMutableArray array];
-    if(urdl[0].y >= 0)
-        [surroundingTiles addObject:[self.board tile:urdl[0]]];
-    if(urdl[1].x < self.board.sizeInTiles.width)
-        [surroundingTiles addObject:[self.board tile:urdl[1]]];
-    if(urdl[2].y < self.board.sizeInTiles.height)
-        [surroundingTiles addObject:[self.board tile:urdl[2]]];
-    if(urdl[3].x >= 0)
-        [surroundingTiles addObject:[self.board tile:urdl[3]]];
-    
-    return surroundingTiles;
-}
-
-
-
-
-@synthesize board;
-@synthesize owner;
--(void)setOwner:(Player)newOwner;
-{
-    owner = newOwner;
-    [self.board.delegate tile:self changedOwner:owner];
-    [self.board updateScores];
-}
-@synthesize value;
--(void)setValue:(CGFloat)newValue;
-{
-    value = newValue;
-    [self.board.delegate tile:self changedValue:value];
-    [self.board updateScores];
-}
-@synthesize boardPosition;
-
-@end
