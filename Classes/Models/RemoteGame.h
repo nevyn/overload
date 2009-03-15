@@ -12,5 +12,5 @@
 @interface RemoteGame : Game {
 
 }
-
+-(id)init;
 @end
