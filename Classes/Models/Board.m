@@ -32,7 +32,6 @@
         }
     }
     
-    self.currentPlayer = PlayerP1;
     self.chaosGame = NO;
     self.sizeInTiles = BoardSizeMake(WidthInTiles, HeightInTiles);
     
@@ -58,7 +57,6 @@
         }
     }
     
-    self.currentPlayer = other.currentPlayer;
     self.chaosGame = other.chaosGame;
     self.sizeInTiles = other.sizeInTiles;
     
@@ -180,13 +178,9 @@
             Tile *tile = [self tile:BoardPointMake(x, y)];
             tile.owner = PlayerNone;
             tile.value = 0;
-//            [self performSelector:@selector(_zeroTile:) withObject:tile afterDelay:frand(0.5)];
         }
     }
     
-    //id selfProxy = [[CInvocationGrabber invocationGrabber] prepareWithInvocationTarget:self];
-    //[selfProxy setCurrentPlayer:PlayerP1];
-    //[[selfProxy invocation] performSelector:@selector(invoke) withObject:nil afterDelay:0.6];
     [self setCurrentPlayer:PlayerP1];
 }
 -(void)_zeroTile:(Tile*)tile;
@@ -274,6 +268,7 @@
 
 #pragma mark Properties
 @synthesize delegate;
+@synthesize game;
 -(void)setDelegate:(id<BoardDelegate>)delegate_;
 {
     delegate = delegate_;

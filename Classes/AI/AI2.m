@@ -37,7 +37,7 @@
         NSUInteger bestIdx = 0, currentIdx = 0;
         CGFloat bestScore = -99999;
         for (Tile *tryThis in chainReactionStarters) {
-            Board *copy = [[self.board copy] autorelease];
+            Board *copy = [[self.game.board copy] autorelease];
             [copy chargeTileForCurrentPlayer:tryThis.boardPosition];
             
             CGFloat currentScore = copy.scores.scores[self.player];

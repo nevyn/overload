@@ -25,12 +25,14 @@
 -(void)board:(Board*)board changedCurrentPlayer:(Player)currentPlayer;
 -(void)board:(Board*)board changedSize:(BoardSize)newSize;
 @end
-
+@class Game;
 @interface Board : NSObject <NSCopying>{
     Tile *boardTiles[10][12]; // [x][y]
     Player currentPlayer;
     BOOL gameEnded;
     
+	Game *game;
+	
     BOOL chaosGame;
     BoardSize sizeInTiles;
     
@@ -67,7 +69,8 @@
 #pragma mark Properties
 /// Setting the delegate will also trigger all delegate methods to give the delegate a complete view of the board state.
 @property (assign, nonatomic) id<BoardDelegate> delegate;
-@property (nonatomic) Player currentPlayer;
+@property (assign, nonatomic) Player currentPlayer;
+@property (assign, nonatomic) Game *game;
 @property (nonatomic) BOOL chaosGame;
 @property (readwrite, nonatomic) BoardSize sizeInTiles;
 @end

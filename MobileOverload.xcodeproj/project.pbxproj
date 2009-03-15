@@ -42,6 +42,9 @@
 		058BDFB30F3E160E00E4A699 /* Logging.m in Sources */ = {isa = PBXBuildFile; fileRef = 058BDFAD0F3E160E00E4A699 /* Logging.m */; };
 		058BDFB40F3E160E00E4A699 /* ExceptionUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 058BDFB00F3E160E00E4A699 /* ExceptionUtils.m */; };
 		058FEB870EF841DF006FDFDA /* AVAudioPlayerQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 058FEB860EF841DF006FDFDA /* AVAudioPlayerQueue.m */; };
+		0595F22D0F6D2FFB008F9D37 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 0595F22C0F6D2FFB008F9D37 /* Player.m */; };
+		0595F2440F6D335A008F9D37 /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = 0595F2430F6D335A008F9D37 /* Game.m */; };
+		0595F2BC0F6D6240008F9D37 /* RemoteGame.m in Sources */ = {isa = PBXBuildFile; fileRef = 0595F2BB0F6D6240008F9D37 /* RemoteGame.m */; };
 		05A762D90EFCE9EF005D899A /* AI2.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A762D80EFCE9EF005D899A /* AI2.m */; };
 		05A7640D0EFE655C005D899A /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05A7640C0EFE655C005D899A /* MediaPlayer.framework */; };
 		05AD39420F3194A8004F746D /* Texture2D.m in Sources */ = {isa = PBXBuildFile; fileRef = 05AD39410F3194A8004F746D /* Texture2D.m */; };
@@ -54,9 +57,7 @@
 		05D780C70E58FA7400FB00DB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05D780C60E58FA7400FB00DB /* CoreGraphics.framework */; };
 		05D7828D0E59152700FB00DB /* dist.plist in Resources */ = {isa = PBXBuildFile; fileRef = 05D7828C0E59152700FB00DB /* dist.plist */; };
 		05DD21620F28EFC0001A8532 /* Beacon+OptIn.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DD21610F28EFC0001A8532 /* Beacon+OptIn.m */; };
-		05E03B490F2A33C5006E6190 /* BoardViewGL.m in Sources */ = {isa = PBXBuildFile; fileRef = 05E03B470F2A33C5006E6190 /* BoardViewGL.m */; };
 		05E03BB00F2B211B006E6190 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 05E03BAF0F2B211B006E6190 /* libsqlite3.dylib */; };
-		05E03BCB0F2B2690006E6190 /* BoardTileView.m in Sources */ = {isa = PBXBuildFile; fileRef = 05E03BC80F2B2690006E6190 /* BoardTileView.m */; };
 		05E03BCC0F2B2690006E6190 /* BoardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 05E03BCA0F2B2690006E6190 /* BoardView.m */; };
 		05E03D850F2BBF22006E6190 /* ColorConversion.c in Sources */ = {isa = PBXBuildFile; fileRef = 05E03D840F2BBF22006E6190 /* ColorConversion.c */; };
 		05E03E680F2BD8F1006E6190 /* UIImage+GLTexture.m in Sources */ = {isa = PBXBuildFile; fileRef = 05E03E670F2BD8F1006E6190 /* UIImage+GLTexture.m */; };
@@ -122,6 +123,13 @@
 		058BDFB00F3E160E00E4A699 /* ExceptionUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExceptionUtils.m; sourceTree = "<group>"; };
 		058FEB850EF841DF006FDFDA /* AVAudioPlayerQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVAudioPlayerQueue.h; sourceTree = "<group>"; };
 		058FEB860EF841DF006FDFDA /* AVAudioPlayerQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVAudioPlayerQueue.m; sourceTree = "<group>"; };
+		0595F22B0F6D2FFB008F9D37 /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
+		0595F22C0F6D2FFB008F9D37 /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
+		0595F2420F6D335A008F9D37 /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
+		0595F2430F6D335A008F9D37 /* Game.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Game.m; sourceTree = "<group>"; };
+		0595F2570F6D4CF2008F9D37 /* BoardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardView.h; sourceTree = "<group>"; };
+		0595F2BA0F6D6240008F9D37 /* RemoteGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteGame.h; sourceTree = "<group>"; };
+		0595F2BB0F6D6240008F9D37 /* RemoteGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoteGame.m; sourceTree = "<group>"; };
 		05A762D70EFCE9EF005D899A /* AI2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AI2.h; sourceTree = "<group>"; };
 		05A762D80EFCE9EF005D899A /* AI2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AI2.m; sourceTree = "<group>"; };
 		05A7640C0EFE655C005D899A /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
@@ -140,12 +148,8 @@
 		05D7828C0E59152700FB00DB /* dist.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = dist.plist; sourceTree = "<group>"; };
 		05DD21600F28EFC0001A8532 /* Beacon+OptIn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Beacon+OptIn.h"; sourceTree = "<group>"; };
 		05DD21610F28EFC0001A8532 /* Beacon+OptIn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Beacon+OptIn.m"; sourceTree = "<group>"; };
-		05E03B470F2A33C5006E6190 /* BoardViewGL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoardViewGL.m; sourceTree = "<group>"; };
-		05E03B480F2A33C5006E6190 /* BoardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardView.h; sourceTree = "<group>"; };
 		05E03BAD0F2B20F2006E6190 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		05E03BAF0F2B211B006E6190 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
-		05E03BC70F2B2690006E6190 /* BoardTileView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardTileView.h; sourceTree = "<group>"; };
-		05E03BC80F2B2690006E6190 /* BoardTileView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoardTileView.m; sourceTree = "<group>"; };
 		05E03BCA0F2B2690006E6190 /* BoardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoardView.m; sourceTree = "<group>"; };
 		05E03D830F2BBF22006E6190 /* ColorConversion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorConversion.h; sourceTree = "<group>"; };
 		05E03D840F2BBF22006E6190 /* ColorConversion.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ColorConversion.c; sourceTree = "<group>"; };
@@ -205,6 +209,12 @@
 				0551354D0F6D142900A2F171 /* Tile.m */,
 				055135820F6D14EA00A2F171 /* Board+Private.h */,
 				055135830F6D14EA00A2F171 /* Board+Private.m */,
+				0595F22B0F6D2FFB008F9D37 /* Player.h */,
+				0595F22C0F6D2FFB008F9D37 /* Player.m */,
+				0595F2420F6D335A008F9D37 /* Game.h */,
+				0595F2430F6D335A008F9D37 /* Game.m */,
+				0595F2BA0F6D6240008F9D37 /* RemoteGame.h */,
+				0595F2BB0F6D6240008F9D37 /* RemoteGame.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -239,7 +249,6 @@
 			isa = PBXGroup;
 			children = (
 				05E03BC60F2B2690006E6190 /* Board */,
-				05E03B460F2A33B1006E6190 /* BoardGL */,
 				289233A80DB2D0DB0083E9F9 /* BoardViewController.h */,
 				289233A90DB2D0DB0083E9F9 /* BoardViewController.m */,
 				0511F6160E743977003FFA22 /* OLSoundPlayer.h */,
@@ -254,20 +263,10 @@
 			path = "Game Views";
 			sourceTree = "<group>";
 		};
-		05E03B460F2A33B1006E6190 /* BoardGL */ = {
-			isa = PBXGroup;
-			children = (
-				05E03B470F2A33C5006E6190 /* BoardViewGL.m */,
-				05E03B480F2A33C5006E6190 /* BoardView.h */,
-			);
-			path = BoardGL;
-			sourceTree = "<group>";
-		};
 		05E03BC60F2B2690006E6190 /* Board */ = {
 			isa = PBXGroup;
 			children = (
-				05E03BC70F2B2690006E6190 /* BoardTileView.h */,
-				05E03BC80F2B2690006E6190 /* BoardTileView.m */,
+				0595F2570F6D4CF2008F9D37 /* BoardView.h */,
 				05E03BCA0F2B2690006E6190 /* BoardView.m */,
 			);
 			path = Board;
@@ -496,8 +495,6 @@
 				058FEB870EF841DF006FDFDA /* AVAudioPlayerQueue.m in Sources */,
 				05A762D90EFCE9EF005D899A /* AI2.m in Sources */,
 				05DD21620F28EFC0001A8532 /* Beacon+OptIn.m in Sources */,
-				05E03B490F2A33C5006E6190 /* BoardViewGL.m in Sources */,
-				05E03BCB0F2B2690006E6190 /* BoardTileView.m in Sources */,
 				05E03BCC0F2B2690006E6190 /* BoardView.m in Sources */,
 				05E03D850F2BBF22006E6190 /* ColorConversion.c in Sources */,
 				05E03E680F2BD8F1006E6190 /* UIImage+GLTexture.m in Sources */,
@@ -508,6 +505,9 @@
 				058BDFB40F3E160E00E4A699 /* ExceptionUtils.m in Sources */,
 				0551354E0F6D142900A2F171 /* Tile.m in Sources */,
 				055135840F6D14EA00A2F171 /* Board+Private.m in Sources */,
+				0595F22D0F6D2FFB008F9D37 /* Player.m in Sources */,
+				0595F2440F6D335A008F9D37 /* Game.m in Sources */,
+				0595F2BC0F6D6240008F9D37 /* RemoteGame.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

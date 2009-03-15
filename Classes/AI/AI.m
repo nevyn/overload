@@ -11,14 +11,13 @@
 
 @implementation AI
 
--(id)initPlaying:(Player)player_ onBoard:(Board*)board_ delegate:(id<BoardViewDelegate>)delegate_;
+-(id)initPlaying:(Player)player_ onGame:(Game*)game_;
 {
     if(![super init]) return nil;
     
     self.player = player_;
     opponent = (!(player-1))+1;
-    self.board = board_;
-    self.delegate = delegate_;
+	self.game = game_;
     
     srand(time(NULL));
     
@@ -27,18 +26,18 @@
 
 -(void)performMove;
 {
-    if([board hasEnded])
+    if([game hasEnded])
         return;
     
-    if(board.currentPlayer != self.player)
+    if(game.currentPlayer != self.player)
         return;
     
-    if(![board canMakeMoveNow])
+    if(![game canMakeMoveNow])
         [self performSelector:@selector(performMove) withObject:nil afterDelay:ExplosionDelay];
     
     BoardPoint chosenTilePoint = [self chooseTile];
     
-    [delegate boardTileViewWasTouched:chosenTilePoint];
+	[game makeMoveForCurrentPlayer:chosenTilePoint];
 }
 
 -(void)player:(Player)player choseTile:(BoardPoint)boardPoint;
@@ -58,8 +57,7 @@
     return chosenTile.boardPosition;
 }
 
-@synthesize board;
-@synthesize delegate;
+@synthesize game;
 @synthesize player;
 
 
@@ -72,9 +70,9 @@ NSInteger randomSort(id obj1, id obj2, void *ctx) {
 -(NSArray*)randomBoardTiles;
 {
     NSMutableArray *tiles = [NSMutableArray array];
-    for(NSUInteger x = 0; x < board.sizeInTiles.width; x++) {
-        for(NSUInteger y = 0; y < board.sizeInTiles.height; y++) {
-            Tile *tile = [board tile:BoardPointMake(x, y)];
+    for(NSUInteger x = 0; x < game.board.sizeInTiles.width; x++) {
+        for(NSUInteger y = 0; y < game.board.sizeInTiles.height; y++) {
+            Tile *tile = [game.board tile:BoardPointMake(x, y)];
             [tiles addObject:tile];
         }
     }

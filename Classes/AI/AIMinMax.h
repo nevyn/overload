@@ -41,7 +41,7 @@
     AIMMTreeNode *root;
 }
 
--(id)initPlaying:(Player)player_ onBoard:(Board*)board_ delegate:(id<BoardViewDelegate>)delegate_;
+-(id)initPlaying:(Player)player_ onGame:(Game*)game_;
 
 -(void)player:(Player)player choseTile:(BoardPoint)boardPoint;
 -(BoardPoint)chooseTile;

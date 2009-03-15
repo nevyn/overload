@@ -43,11 +43,11 @@
     NSString *version = [[[NSBundle mainBundle]infoDictionary]objectForKey:@"CFBundleVersion"];
     versionLabel.text = [NSString stringWithFormat:@"v%@", version];
     
-    chaosGame.on = mainController.board.chaosGame;
-    boardSize.value = mainController.board.sizeInTiles.width/(float)WidthInTiles;
+    chaosGame.on = mainController.game.board.chaosGame;
+    boardSize.value = mainController.game.board.sizeInTiles.width/(float)WidthInTiles;
     soundSwitch.on = mainController.soundPlayer.sound;
 
-    [self updateSizeLabel:mainController.board.sizeInTiles];
+    [self updateSizeLabel:mainController.game.board.sizeInTiles];
 }
 -(void)startRotatingWheels;
 {
@@ -95,9 +95,9 @@
     if(newBoardSize.width != -1) {
         [[Beacon sharedIfOptedIn] startSubBeaconWithName:[NSString stringWithFormat:@"Board size > %dx%d", newBoardSize.width, newBoardSize.height] timeSession:NO];
         
-        if(mainController.board.hasEnded)
-            schedule(mainController.board, restart);
-        schedule(mainController.board, setSizeInTiles:newBoardSize);
+        if(mainController.game.hasEnded)
+            schedule(mainController.game, restart);
+        schedule(mainController.game.board, setSizeInTiles:newBoardSize);
     }
     
     
@@ -139,11 +139,11 @@
 
     if([actionSheet.title isEqualToString:SHUFFLE_TITLE]) {
         [[Beacon sharedIfOptedIn] startSubBeaconWithName:@"Shuffled Local Game from Options" timeSession:NO];
-        schedule(mainController.board, restart);
-        schedule(mainController.board, shuffle);
+        schedule(mainController.game, restart);
+        schedule(mainController.game, shuffle);
     } else {
         [[Beacon sharedIfOptedIn] startSubBeaconWithName:@"Restarted Local Game from Options" timeSession:NO];
-        schedule(mainController.board, restart);
+        schedule(mainController.game, restart);
     }
     [self toggleView:nil];
 }
@@ -176,7 +176,7 @@
 {
     [[Beacon sharedIfOptedIn] startSubBeaconWithName:[NSString stringWithFormat:@"Chaos game > %@", sender.on?@"on":@"off"] timeSession:NO];
 
-    mainController.board.chaosGame = sender.on;
+    mainController.game.board.chaosGame = sender.on;
 }
 
 - (IBAction)toggleSound:(UISwitch*)sender;

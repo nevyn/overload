@@ -12,12 +12,11 @@
 #import "TypesAndConstants.h"
 
 @interface AI : NSObject {
-    Board *board;
-    id<BoardViewDelegate> delegate;
+	Game *game;
     Player player;
     Player opponent;
 }
--(id)initPlaying:(Player)player_ onBoard:(Board*)board_ delegate:(id<BoardViewDelegate>)delegate_;
+-(id)initPlaying:(Player)player_ onGame:(Game*)game;
 
 -(void)performMove;
 
@@ -25,8 +24,7 @@
 -(void)player:(Player)player choseTile:(BoardPoint)boardPoint;
 -(BoardPoint)chooseTile;
 
-@property (assign, nonatomic) Board *board;
-@property (assign, nonatomic) id<BoardViewDelegate> delegate;
+@property (assign, nonatomic) Game *game;
 @property (assign, nonatomic) Player player;
 
 -(NSArray*)randomBoardTiles;

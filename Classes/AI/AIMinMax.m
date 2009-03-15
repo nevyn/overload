@@ -122,11 +122,11 @@ static NSInteger MinMaxDepth = 2;
 
 @implementation AIMinMax
 
--(id)initPlaying:(Player)player_ onBoard:(Board*)board_ delegate:(id<BoardViewDelegate>)delegate_;
+-(id)initPlaying:(Player)player_ onGame:(Game*)game_;
 {
-    if(![super initPlaying:player_ onBoard:board_ delegate:delegate_]) return nil;
+    if(![super initPlaying:player_ onGame:game_]) return nil;
     
-    self.root = [[[AIMMTreeNode alloc] initWithState:[[board_ copy] autorelease] inAI:self] autorelease];
+    self.root = [[[AIMMTreeNode alloc] initWithState:[[game.board copy] autorelease] inAI:self] autorelease];
     
     
     return self;

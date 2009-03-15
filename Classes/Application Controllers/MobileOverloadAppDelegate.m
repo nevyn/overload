@@ -125,7 +125,7 @@ static UIAlertView *sayPlease;
 #pragma mark Launch/quit/saving settings
 - (void)applicationWillResignActive:(UIApplication *)application;
 {
-    [self.rootViewController.mainViewController.board persist];
+    [self.rootViewController.mainViewController.game persist];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 - (void)applicationDidBecomeActive:(UIApplication *)application;
@@ -134,7 +134,7 @@ static UIAlertView *sayPlease;
 }
 - (void)applicationWillTerminate:(UIApplication *)application;
 {
-    [self.rootViewController.mainViewController.board persist];
+    [self.rootViewController.mainViewController.game persist];
     [[NSUserDefaults standardUserDefaults] synchronize];
     [[Beacon sharedIfOptedIn] endBeacon];
 }
@@ -152,7 +152,7 @@ static UIAlertView *sayPlease;
 
 -(void)paranoid;
 {
-    [self.rootViewController.mainViewController.board persist];
+    [self.rootViewController.mainViewController.game persist];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
