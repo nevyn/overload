@@ -13,6 +13,9 @@
 #import "AI2.h"
 #import "AIMinMax.h"
 #import "Beacon+OptIn.h"
+#import "RemoteGame.h"
+#import "OLClient.h"
+#import "UIColor-Expanded.h"
 
 @interface BoardViewController ()
 @property (retain, nonatomic) NSTimer *heartbeat;
@@ -28,8 +31,12 @@
     
     soundPlayer = [[OLSoundPlayer alloc] init];
     
-	game = [[Game alloc] init];
+	client = [[OLClient alloc] initTo:@"localhost" port:OLDefaultPort];
+	game = [[RemoteGame alloc] init];
+	client.game = (RemoteGame*)game;
+	client.gameController = self;
 	[game load];
+	[client login:@"nevyn" color:[UIColor randomColor]];
 	
     [self boardIsStartingAnew:game.board];
         
@@ -210,6 +217,12 @@
 		status.status = @"iPhone is waiting on you...";
     }
     
+}
+
+#pragma mark Network
+-(void)client:(OLClient*)client receivedMessage:(OLMessage)msg;
+{
+	
 }
           
 

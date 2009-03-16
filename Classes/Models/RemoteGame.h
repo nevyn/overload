@@ -8,9 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import "Game.h"
+#import "OLClient.h"
 
-@interface RemoteGame : Game {
-
+@interface RemoteGame : Game <OLClientClient> {
 }
 -(id)init;
+
 @end

@@ -45,6 +45,10 @@
 		0595F22D0F6D2FFB008F9D37 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 0595F22C0F6D2FFB008F9D37 /* Player.m */; };
 		0595F2440F6D335A008F9D37 /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = 0595F2430F6D335A008F9D37 /* Game.m */; };
 		0595F2BC0F6D6240008F9D37 /* RemoteGame.m in Sources */ = {isa = PBXBuildFile; fileRef = 0595F2BB0F6D6240008F9D37 /* RemoteGame.m */; };
+		0595F2DC0F6D8C3B008F9D37 /* AsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 0595F2DA0F6D8C3B008F9D37 /* AsyncSocket.m */; };
+		0595F2E10F6D8D43008F9D37 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0595F2E00F6D8D43008F9D37 /* CFNetwork.framework */; };
+		0595F3570F6E398F008F9D37 /* OLClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 0595F3560F6E398F008F9D37 /* OLClient.m */; };
+		0595F3B60F6EF16A008F9D37 /* UIColor-Expanded.m in Sources */ = {isa = PBXBuildFile; fileRef = 0595F3B50F6EF16A008F9D37 /* UIColor-Expanded.m */; };
 		05A762D90EFCE9EF005D899A /* AI2.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A762D80EFCE9EF005D899A /* AI2.m */; };
 		05A7640D0EFE655C005D899A /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05A7640C0EFE655C005D899A /* MediaPlayer.framework */; };
 		05AD39420F3194A8004F746D /* Texture2D.m in Sources */ = {isa = PBXBuildFile; fileRef = 05AD39410F3194A8004F746D /* Texture2D.m */; };
@@ -59,7 +63,6 @@
 		05DD21620F28EFC0001A8532 /* Beacon+OptIn.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DD21610F28EFC0001A8532 /* Beacon+OptIn.m */; };
 		05E03BB00F2B211B006E6190 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 05E03BAF0F2B211B006E6190 /* libsqlite3.dylib */; };
 		05E03BCC0F2B2690006E6190 /* BoardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 05E03BCA0F2B2690006E6190 /* BoardView.m */; };
-		05E03D850F2BBF22006E6190 /* ColorConversion.c in Sources */ = {isa = PBXBuildFile; fileRef = 05E03D840F2BBF22006E6190 /* ColorConversion.c */; };
 		05E03E680F2BD8F1006E6190 /* UIImage+GLTexture.m in Sources */ = {isa = PBXBuildFile; fileRef = 05E03E670F2BD8F1006E6190 /* UIImage+GLTexture.m */; };
 		05EE3D5A0F45A03E00E5034D /* 256 in Resources */ = {isa = PBXBuildFile; fileRef = 05EE3D500F45A03E00E5034D /* 256 */; };
 		05EE3D5B0F45A03E00E5034D /* 64 in Resources */ = {isa = PBXBuildFile; fileRef = 05EE3D520F45A03E00E5034D /* 64 */; };
@@ -130,6 +133,13 @@
 		0595F2570F6D4CF2008F9D37 /* BoardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardView.h; sourceTree = "<group>"; };
 		0595F2BA0F6D6240008F9D37 /* RemoteGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteGame.h; sourceTree = "<group>"; };
 		0595F2BB0F6D6240008F9D37 /* RemoteGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoteGame.m; sourceTree = "<group>"; };
+		0595F2DA0F6D8C3B008F9D37 /* AsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AsyncSocket.m; path = Vendor/cocoaasyncsocket/AsyncSocket.m; sourceTree = SOURCE_ROOT; };
+		0595F2DB0F6D8C3B008F9D37 /* AsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AsyncSocket.h; path = Vendor/cocoaasyncsocket/AsyncSocket.h; sourceTree = SOURCE_ROOT; };
+		0595F2E00F6D8D43008F9D37 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		0595F3550F6E398F008F9D37 /* OLClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OLClient.h; sourceTree = "<group>"; };
+		0595F3560F6E398F008F9D37 /* OLClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OLClient.m; sourceTree = "<group>"; };
+		0595F3B40F6EF16A008F9D37 /* UIColor-Expanded.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor-Expanded.h"; path = "Vendor/uicolor-utilities/UIColor-Expanded.h"; sourceTree = SOURCE_ROOT; };
+		0595F3B50F6EF16A008F9D37 /* UIColor-Expanded.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor-Expanded.m"; path = "Vendor/uicolor-utilities/UIColor-Expanded.m"; sourceTree = SOURCE_ROOT; };
 		05A762D70EFCE9EF005D899A /* AI2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AI2.h; sourceTree = "<group>"; };
 		05A762D80EFCE9EF005D899A /* AI2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AI2.m; sourceTree = "<group>"; };
 		05A7640C0EFE655C005D899A /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
@@ -151,8 +161,6 @@
 		05E03BAD0F2B20F2006E6190 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		05E03BAF0F2B211B006E6190 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		05E03BCA0F2B2690006E6190 /* BoardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoardView.m; sourceTree = "<group>"; };
-		05E03D830F2BBF22006E6190 /* ColorConversion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorConversion.h; sourceTree = "<group>"; };
-		05E03D840F2BBF22006E6190 /* ColorConversion.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ColorConversion.c; sourceTree = "<group>"; };
 		05E03E660F2BD8F1006E6190 /* UIImage+GLTexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+GLTexture.h"; sourceTree = "<group>"; };
 		05E03E670F2BD8F1006E6190 /* UIImage+GLTexture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+GLTexture.m"; sourceTree = "<group>"; };
 		05EE3D500F45A03E00E5034D /* 256 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = 256; sourceTree = "<group>"; };
@@ -194,6 +202,7 @@
 				055135A00F6D15FB00A2F171 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				054F78610E97D7B000E17413 /* libPinchAnalytics.a in Frameworks */,
+				0595F2E10F6D8D43008F9D37 /* CFNetwork.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -215,6 +224,8 @@
 				0595F2430F6D335A008F9D37 /* Game.m */,
 				0595F2BA0F6D6240008F9D37 /* RemoteGame.h */,
 				0595F2BB0F6D6240008F9D37 /* RemoteGame.m */,
+				0595F3550F6E398F008F9D37 /* OLClient.h */,
+				0595F3560F6E398F008F9D37 /* OLClient.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -320,6 +331,8 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				0595F2DA0F6D8C3B008F9D37 /* AsyncSocket.m */,
+				0595F2DB0F6D8C3B008F9D37 /* AsyncSocket.h */,
 				058BDFA90F3E160E00E4A699 /* Test.m */,
 				058BDFAA0F3E160E00E4A699 /* Logging.h */,
 				058BDFAB0F3E160E00E4A699 /* CollectionUtils.m */,
@@ -340,8 +353,8 @@
 				058FEB860EF841DF006FDFDA /* AVAudioPlayerQueue.m */,
 				05DD21600F28EFC0001A8532 /* Beacon+OptIn.h */,
 				05DD21610F28EFC0001A8532 /* Beacon+OptIn.m */,
-				05E03D830F2BBF22006E6190 /* ColorConversion.h */,
-				05E03D840F2BBF22006E6190 /* ColorConversion.c */,
+				0595F3B40F6EF16A008F9D37 /* UIColor-Expanded.h */,
+				0595F3B50F6EF16A008F9D37 /* UIColor-Expanded.m */,
 				05E03E660F2BD8F1006E6190 /* UIImage+GLTexture.h */,
 				05E03E670F2BD8F1006E6190 /* UIImage+GLTexture.m */,
 			);
@@ -380,6 +393,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0595F2E00F6D8D43008F9D37 /* CFNetwork.framework */,
 				05E03BAF0F2B211B006E6190 /* libsqlite3.dylib */,
 				05E03BAD0F2B20F2006E6190 /* OpenGLES.framework */,
 				05A7640C0EFE655C005D899A /* MediaPlayer.framework */,
@@ -496,7 +510,6 @@
 				05A762D90EFCE9EF005D899A /* AI2.m in Sources */,
 				05DD21620F28EFC0001A8532 /* Beacon+OptIn.m in Sources */,
 				05E03BCC0F2B2690006E6190 /* BoardView.m in Sources */,
-				05E03D850F2BBF22006E6190 /* ColorConversion.c in Sources */,
 				05E03E680F2BD8F1006E6190 /* UIImage+GLTexture.m in Sources */,
 				05AD39420F3194A8004F746D /* Texture2D.m in Sources */,
 				058BDFB10F3E160E00E4A699 /* Test.m in Sources */,
@@ -508,6 +521,9 @@
 				0595F22D0F6D2FFB008F9D37 /* Player.m in Sources */,
 				0595F2440F6D335A008F9D37 /* Game.m in Sources */,
 				0595F2BC0F6D6240008F9D37 /* RemoteGame.m in Sources */,
+				0595F2DC0F6D8C3B008F9D37 /* AsyncSocket.m in Sources */,
+				0595F3570F6E398F008F9D37 /* OLClient.m in Sources */,
+				0595F3B60F6EF16A008F9D37 /* UIColor-Expanded.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

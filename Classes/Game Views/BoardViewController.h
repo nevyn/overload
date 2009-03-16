@@ -12,8 +12,10 @@
 #import "BoardView.h"
 #import "OLSoundPlayer.h"
 #import "Game.h"
+#import "OLClient.h"
 
-@interface BoardViewController : UIViewController <BoardDelegate, BoardViewDelegate, ScoreBarViewDelegate> {
+@class OLClient;
+@interface BoardViewController : UIViewController <BoardDelegate, BoardViewDelegate, ScoreBarViewDelegate, OLClientClient> {
     StatusBarView *status;
 	ScoreIndicator *score;
     UIImageView *winPlaque, *losePlaque;
@@ -22,6 +24,7 @@
     
     BoardView *boardView;
 	Game *game;
+	OLClient *client;
 
     NSTimer *heartbeat;
 }

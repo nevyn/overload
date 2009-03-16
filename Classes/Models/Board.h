@@ -73,5 +73,6 @@
 @property (assign, nonatomic) Game *game;
 @property (nonatomic) BOOL chaosGame;
 @property (readwrite, nonatomic) BoardSize sizeInTiles;
+@property (readwrite, nonatomic, assign) BoardStruct board;
 @end
 

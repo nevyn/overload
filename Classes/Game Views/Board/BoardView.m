@@ -9,9 +9,9 @@
 
 #import "BoardView.h"
 #import <QuartzCore/QuartzCore.h>
-#import "ColorConversion.h"
 #import "UIImage+GLTexture.h"
 #import "CollectionUtils.h"
+#import "UIColor-Expanded.h"
 
 @interface BoardView ()
 -(BOOL)createFramebuffer;
@@ -183,7 +183,9 @@ void renderColor(Player owner, CGFloat value, CGFloat a)
     CGFloat hue = Hues[owner];
     CGFloat sat = Saturations[owner];
     CGFloat val = 1.0-(value/2.);
-    CGFloat r, g, b; HSVtoRGB(hue*360., sat, val, &r, &g, &b);
+    CGFloat r, g, b;
+	[UIColor hue:hue*360. saturation:sat brightness:val toRed:&r green:&g blue:&b];
+//	HSVtoRGB(hue*360., sat, val, &r, &g, &b);
     cornerColors[0] = cornerColors[4] = cornerColors[ 8] = cornerColors[12] = r*255;
     cornerColors[1] = cornerColors[5] = cornerColors[ 9] = cornerColors[13] = g*255;
     cornerColors[2] = cornerColors[6] = cornerColors[10] = cornerColors[14] = b*255;
