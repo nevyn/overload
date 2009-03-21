@@ -28,7 +28,7 @@
 -(void)restart;
 -(void)shuffle;
 -(BOOL)canMakeMoveNow;
--(void)makeMoveForCurrentPlayer:(BoardPoint)actionPoint;
+-(BOOL)makeMoveForCurrentPlayer:(BoardPoint)actionPoint;
 
 
 #pragma mark AI

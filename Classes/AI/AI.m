@@ -31,13 +31,13 @@
     
     if(game.currentPlayer != self.player)
         return;
-    
-    if(![game canMakeMoveNow])
-        [self performSelector:@selector(performMove) withObject:nil afterDelay:ExplosionDelay];
-    
+        
     BoardPoint chosenTilePoint = [self chooseTile];
     
-	[game makeMoveForCurrentPlayer:chosenTilePoint];
+	if(![game makeMoveForCurrentPlayer:chosenTilePoint])
+		[self performSelector:@selector(performMove) withObject:nil afterDelay:ExplosionDelay];
+
+	
 }
 
 -(void)player:(Player)player choseTile:(BoardPoint)boardPoint;

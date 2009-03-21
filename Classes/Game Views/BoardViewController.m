@@ -34,6 +34,7 @@
 	client = [[OLClient alloc] initTo:@"localhost" port:OLDefaultPort];
 	game = [[RemoteGame alloc] init];
 	client.game = (RemoteGame*)game;
+	((RemoteGame*)game).client = client;
 	client.gameController = self;
 	[game load];
 	[client login:@"nevyn" color:[UIColor randomColor]];

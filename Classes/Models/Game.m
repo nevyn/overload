@@ -64,9 +64,9 @@
 {
 	return [board canMakeMoveNow];
 }
--(void)makeMoveForCurrentPlayer:(BoardPoint)actionPoint;
+-(BOOL)makeMoveForCurrentPlayer:(BoardPoint)actionPoint;
 {
-	[board chargeTileForCurrentPlayer:actionPoint];
+	return [board chargeTileForCurrentPlayer:actionPoint];
 }
 
 #pragma mark AI

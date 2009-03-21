@@ -17,7 +17,31 @@
 }
 -(void)client:(OLClient*)client receivedMessage:(OLMessage)msg;
 {
-//	if(msg.type == 
+	if(msg.type == OLFullBoard) {
+		self.board.board = msg.payload.fullBoard.bs;
+	} else if(msg.type == OLTileUpdated) {
+		Tile *t = [self.board tile:msg.payload.tileUpdated.pos];
+		t.owner = msg.payload.tileUpdated.owner;
+		t.value = msg.payload.tileUpdated.value;
+	} else if (msg.type == OLTileWillExplode) {
+		Tile *t = [self.board tile:msg.payload.tileWillExplode.pos];
+		[board.delegate tileWillSoonExplode:t];
+	}
 }
 
+-(BOOL)canMakeMoveNow;
+{
+	// Todo: Query server?
+	return YES;
+}
+-(BOOL)makeMoveForCurrentPlayer:(BoardPoint)actionPoint;
+{
+	OLMessage msg;
+	msg.type = OLChargeAt;
+	msg.payload.chargeAt.pos = actionPoint;
+	[client send:msg];
+	
+	return YES; // todo: wait for reply?
+}
+@synthesize client;
 @end

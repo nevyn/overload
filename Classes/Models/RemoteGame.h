@@ -11,7 +11,9 @@
 #import "OLClient.h"
 
 @interface RemoteGame : Game <OLClientClient> {
+	OLClient *client;
 }
 -(id)init;
 
+@property (assign) OLClient *client;
 @end

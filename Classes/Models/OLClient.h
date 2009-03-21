@@ -15,16 +15,19 @@ extern UInt16 OLDefaultPort;
 
 typedef struct {
 	enum {
-		OLMessageTypeMessageDomain = 0x1000,
+		OLMessageTypeMessageDomain = 0x01000,
 		
-		OLMessageTypeLobbyDomain = 0x2000,
+		OLMessageTypeLobbyDomain = 0x02000,
 		
-		OLMessageTypeGameDomain  = 0x3000,
-		OLFullBoard				 = 0x3001,
-		OLTileUpdated			 = 0x3002,
+		OLMessageTypeGameDomain  = 0x03000,
+		OLFullBoard				 = 0x03001,
+		OLTileUpdated			 = 0x03002,
+		OLTileWillExplode		 = 0x03003,
 		
 		OLMessageTypeOutgoingDomain = 0x10000,
 		OLLogin = 0x10001,
+		
+		OLChargeAt				 = 0x13001,
 		
 	} type;
 	
@@ -40,9 +43,12 @@ typedef struct {
 		} fullBoard;
 		struct {
 			BoardPoint pos;
-			CGFloat value;
 			Player  owner;
+			CGFloat value;
 		} tileUpdated;
+		struct {
+			BoardPoint pos;
+		} tileWillExplode;
 		
 		// Outgoing domain
 		struct {
@@ -54,6 +60,10 @@ typedef struct {
 				CGFloat value;
 			} color;
 		} login;
+		
+		struct {
+			BoardPoint pos;
+		} chargeAt;
 	} payload;
 } OLMessage;
 
