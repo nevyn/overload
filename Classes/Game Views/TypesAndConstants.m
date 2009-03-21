@@ -7,29 +7,29 @@
  *
  */
 
-const CGFloat ScoreBarHeight = 44-14;
-const CGFloat BoardWidth = 320-14;
-CGFloat BoardHeight()
+const float ScoreBarHeight = 44-14;
+const float BoardWidth = 320-14;
+float BoardHeight()
 {
     CGRect screenFrame = [[UIScreen mainScreen] applicationFrame];
     return screenFrame.size.height - ScoreBarHeight;
 }
-const CGFloat TileWidth = 32;
-const CGFloat TileHeight = 31;
+const float TileWidth = 32;
+const float TileHeight = 31;
 const NSUInteger WidthInTiles = 10; //BoardWidth/TileWidth
 const NSUInteger HeightInTiles = 12; //BoardHeight/TileHeight
 
 const NSTimeInterval ExplosionDelay = 0.30;
-const CGFloat ChargeEnergy = 0.25;
+const float ChargeEnergy = 0.25;
 const NSTimeInterval ExplosionSpreadEnergy = 0.25;
 const NSTimeInterval ExplosionDuration = 0.40;
-const CGFloat SparkleEnergy = 0.75;
-const CGFloat SparkleOpacityLow = 0.7;
+const float SparkleEnergy = 0.75;
+const float SparkleOpacityLow = 0.7;
 
 float frand(float max) {
     return (rand()/((float)INT_MAX))*max;
 }
 
-const CGFloat Hues[3]        = {.6, .0, .35 };
+const float Hues[3]        = {.6, .0, .35 };
 
-const CGFloat Saturations[4] = {0.0, .5 , .8,  1.};
+const float Saturations[4] = {0.0, .5 , .8,  1.};

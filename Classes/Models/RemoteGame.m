@@ -39,7 +39,7 @@
 	OLMessage msg;
 	msg.type = OLChargeAt;
 	msg.payload.chargeAt.pos = actionPoint;
-	[client send:msg];
+	[client send:msg payloadLength:sizeof(msg.payload.chargeAt)];
 	
 	return YES; // todo: wait for reply?
 }

@@ -82,7 +82,7 @@ typedef struct {
 
 -(void)login:(NSString*)name color:(UIColor*)color;
 
--(void)send:(OLMessage)msg;
+-(void)send:(OLMessage)msg payloadLength:(NSUInteger)payloadLength;
 
 @property (assign, nonatomic) RemoteGame *game;
 @property (assign, nonatomic) BoardViewController *gameController;

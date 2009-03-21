@@ -60,7 +60,7 @@ static const int ReadData = 1;
 	brightness:&loginMessage.payload.login.color.value
 		 alpha:NULL];
 	
-	[self send:loginMessage];
+	[self send:loginMessage payloadLength:sizeof(loginMessage.payload.login)];
 		
 }
 
@@ -94,17 +94,11 @@ static const int ReadData = 1;
 }
 
 #pragma mark Outgoing
--(void)send:(OLMessage)msg;
+-(void)send:(OLMessage)msg payloadLength:(NSUInteger)payloadLength;
 {
-	NSUInteger msgLength;
-	switch (msg.type) {
-		case OLLogin:
-			msgLength = sizeof(msg.type) + sizeof(msg.payload.login);
-			break;
-		default:
-			NSLog(@"Can't send message of type %d: Can't determine length", msg.type);
-			return;
-	}
+	NSLog(@"Sending a %d message", msg.type);
+	NSUInteger msgLength = sizeof(msg.type) + payloadLength;
+
 	NSUInteger msgLengthSwapped = CFSwapInt32HostToBig(msgLength);
 	
 	NSMutableData *packet = [NSMutableData dataWithBytes:&msgLengthSwapped length:4];

@@ -7,11 +7,11 @@
  *
  */
 
-extern const CGFloat ScoreBarHeight;
-extern const CGFloat BoardWidth;
-extern CGFloat BoardHeight();
-extern const CGFloat TileWidth;
-extern const CGFloat TileHeight;
+extern const float ScoreBarHeight;
+extern const float BoardWidth;
+extern float BoardHeight();
+extern const float TileWidth;
+extern const float TileHeight;
 extern const NSUInteger WidthInTiles; // = 10
 extern const NSUInteger HeightInTiles; // = 12
 
@@ -22,22 +22,22 @@ typedef enum {
 } Player;
 
 typedef struct {
-    NSInteger x;
-    NSInteger y;
+    int32_t x;
+    int32_t y;
 } BoardPoint;
-CG_INLINE BoardPoint BoardPointMake(NSInteger x, NSInteger y) { BoardPoint p; p.x = x, p.y = y; return p; }
+CG_INLINE BoardPoint BoardPointMake(int32_t x, int32_t y) { BoardPoint p; p.x = x, p.y = y; return p; }
 
 typedef struct {
-    NSInteger width;
-    NSInteger height;
+    int32_t width;
+    int32_t height;
 } BoardSize;
-CG_INLINE BoardSize BoardSizeMake(NSInteger x, NSInteger y) { BoardSize p; p.width = x, p.height = y; return p; }
+CG_INLINE BoardSize BoardSizeMake(int32_t x, int32_t y) { BoardSize p; p.width = x, p.height = y; return p; }
 
 
 
-extern const CGFloat ChargeEnergy;
-extern const CGFloat SparkleEnergy;
-extern const CGFloat SparkleOpacityLow;
+extern const float ChargeEnergy;
+extern const float SparkleEnergy;
+extern const float SparkleOpacityLow;
 extern const NSTimeInterval ExplosionDelay;
 extern const NSTimeInterval ExplosionSpreadEnergy;
 extern const NSTimeInterval ExplosionDuration;
@@ -46,13 +46,13 @@ extern float frand(float max);
 
 
 typedef struct {
-    CGFloat values[10][12]; // [x][y]
+    float values[10][12]; // [x][y]
     Player  owners[10][12]; // [x][y]
 } BoardStruct;
 
-extern const CGFloat Hues[3];
-extern const CGFloat Saturations[4];
+extern const float Hues[3];
+extern const float Saturations[4];
 
 typedef struct {
-    CGFloat scores[3];
+    float scores[3];
 } Scores;
