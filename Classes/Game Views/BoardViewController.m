@@ -31,12 +31,12 @@
     
     soundPlayer = [[OLSoundPlayer alloc] init];
     
-	client = [[OLClient alloc] initTo:@"localhost" port:OLDefaultPort];
+	client = [[OLClient alloc] initTo:@"vermillion.local" port:OLDefaultPort];
 	game = [[RemoteGame alloc] init];
 	client.game = (RemoteGame*)game;
 	((RemoteGame*)game).client = client;
 	client.gameController = self;
-	[game load];
+	//[game load];
 	[client login:@"nevyn" color:[UIColor randomColor]];
 	
     [self boardIsStartingAnew:game.board];

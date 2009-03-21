@@ -328,12 +328,15 @@
 }
 -(void)setBoard:(BoardStruct)bs;
 {
+	NSLog(@"Full board:");
 	for(NSUInteger y = 0; y < HeightInTiles; y++) {
         for (NSUInteger x = 0; x < WidthInTiles; x++) {
 			Tile *tile = [self tile:BoardPointMake(x, y)];
-			tile.value = bs.values[x][y];
-			tile.owner = bs.owners[x][y];
+			printf("%f ", bs.values[y][x]);
+			tile.value = bs.values[y][x];
+			tile.owner = bs.owners[y][x];
 		}
+		printf("\n");
 	}
 }
 

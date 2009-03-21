@@ -268,8 +268,8 @@ void renderWhite()
             glTranslatef(x, y, 0);
             
             // Color
-            Player owner = board.owners[x][y];
-            CGFloat value = board.values[x][y];
+            Player owner = board.owners[y][x];
+            CGFloat value = board.values[y][x];
             CGFloat pulse = 0;
             if(value > 0.74)
                 pulse = sin(5.*[NSDate timeIntervalSinceReferenceDate]+x+y*self.sizeInTiles.width)*0.20+0.20;
@@ -304,7 +304,7 @@ void renderWhite()
             if([aboutToExplode containsObject:[BoardPointWrapper wrap:BoardPointMake(x, y)]])
                 glTranslatef(0.05-frand(0.1), 0.05-frand(0.1), 0);
             
-            CGFloat value = board.values[x][y];
+            CGFloat value = board.values[y][x];
             
             Texture2D *tileImages[] = {t0, t25, t50, t75};
             NSInteger tileImageIdx = MIN(floor(value*4.), 3);
@@ -397,14 +397,14 @@ void renderWhite()
     if(p.x < 0 || p.x >= WidthInTiles || p.y < 0 || p.y >= HeightInTiles) 
         return;
     
-    board.values[p.x][p.y] = v;
+    board.values[p.y][p.x] = v;
 }
 -(void)setOwner:(Player)player atPosition:(BoardPoint)p;
 {
     if(p.x < 0 || p.x >= WidthInTiles || p.y < 0 || p.y >= HeightInTiles) 
         return;
     
-    board.owners[p.x][p.y] = player;
+    board.owners[p.y][p.x] = player;
 }
 -(void)explode:(BoardPoint)p;
 {
@@ -416,7 +416,7 @@ void renderWhite()
     BoardViewExplosion *ex = [[BoardViewExplosion new] autorelease];
     ex.start = [NSDate timeIntervalSinceReferenceDate];
     ex.position = p;
-    ex.owner = board.owners[p.x][p.y];
+    ex.owner = board.owners[p.y][p.x];
     ex.delegate = self;
     /*
     [self setOwner:ex.owner atPosition:BoardPointMake(p.x, p.y-1)];

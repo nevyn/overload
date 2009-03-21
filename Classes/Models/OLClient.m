@@ -77,6 +77,8 @@ static const int ReadData = 1;
 		OLMessage newMessage;
 		[data getBytes:&newMessage length:sizeof(newMessage)];
 		
+		NSLog(@"Received message %d", newMessage.type);
+		
 		[self dispatch:newMessage];
 		
 		[socket readDataToLength:4 withTimeout:-1 tag:ReadLength];

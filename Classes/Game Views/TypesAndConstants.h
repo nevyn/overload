@@ -46,8 +46,8 @@ extern float frand(float max);
 
 
 typedef struct {
-    float values[10][12]; // [x][y]
-    Player  owners[10][12]; // [x][y]
+    float values[12][10]; // [y][x]
+    Player  owners[12][10]; // [y][x]
 } BoardStruct;
 
 extern const float Hues[3];
