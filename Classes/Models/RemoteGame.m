@@ -30,6 +30,14 @@
 	} else if (msg.type == OLTileWillExplode) {
 		Tile *t = [self.board tile:msg.payload.tileWillExplode.pos];
 		[board.delegate tileWillSoonExplode:t];
+		
+	} else if(msg.type == OLPlayerChargedTile) {
+		Tile *t = [self.board tile:msg.payload.playerChargedTile.pos];
+		CGFloat newValue = msg.payload.playerChargedTile.newValue;
+		Player player = msg.payload.playerChargedTile.chargingPlayer;
+		
+		[delegate tile:t wasChargedTo:newValue byPlayer:player];
+
 	}
 }
 

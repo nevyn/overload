@@ -24,6 +24,7 @@ typedef struct {
 		OLTileUpdated			 = 0x03002,
 		OLTileWillExplode		 = 0x03003,
 		OLTileExploded			 = 0x03004,
+		OLPlayerChargedTile		 = 0x03005,
 		
 		OLMessageTypeOutgoingDomain = 0x10000,
 		OLLogin = 0x10001,
@@ -53,6 +54,11 @@ typedef struct {
 		struct {
 			BoardPoint pos;
 		} tileExploded;
+		struct {
+			BoardPoint pos;
+			CGFloat newValue;
+			Player  chargingPlayer;
+		} playerChargedTile;
 		
 		
 		// Outgoing domain
