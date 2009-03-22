@@ -23,6 +23,10 @@
 		Tile *t = [self.board tile:msg.payload.tileUpdated.pos];
 		t.owner = msg.payload.tileUpdated.owner;
 		t.value = msg.payload.tileUpdated.value;
+	} else if (msg.type == OLTileExploded) {
+		Tile *t = [self.board tile:msg.payload.tileExploded.pos];
+		[board.delegate tileExploded:t];
+		
 	} else if (msg.type == OLTileWillExplode) {
 		Tile *t = [self.board tile:msg.payload.tileWillExplode.pos];
 		[board.delegate tileWillSoonExplode:t];

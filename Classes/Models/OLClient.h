@@ -23,6 +23,7 @@ typedef struct {
 		OLFullBoard				 = 0x03001,
 		OLTileUpdated			 = 0x03002,
 		OLTileWillExplode		 = 0x03003,
+		OLTileExploded			 = 0x03004,
 		
 		OLMessageTypeOutgoingDomain = 0x10000,
 		OLLogin = 0x10001,
@@ -49,6 +50,10 @@ typedef struct {
 		struct {
 			BoardPoint pos;
 		} tileWillExplode;
+		struct {
+			BoardPoint pos;
+		} tileExploded;
+		
 		
 		// Outgoing domain
 		struct {
