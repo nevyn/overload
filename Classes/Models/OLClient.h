@@ -45,7 +45,7 @@ typedef struct {
 		} fullBoard;
 		struct {
 			BoardPoint pos;
-			Player  owner;
+			PlayerID  owner;
 			CGFloat value;
 		} tileUpdated;
 		struct {
@@ -57,7 +57,7 @@ typedef struct {
 		struct {
 			BoardPoint pos;
 			CGFloat newValue;
-			Player  chargingPlayer;
+			PlayerID  chargingPlayer;
 		} playerChargedTile;
 		
 		
@@ -83,11 +83,11 @@ typedef struct {
 -(void)client:(OLClient*)client receivedMessage:(OLMessage)msg;
 @end
 
-@class BoardViewController;
+@class GameViewController;
 @interface OLClient : NSObject {
 	AsyncSocket *socket;
 	RemoteGame *game;
-	BoardViewController *gameController;
+	GameViewController *gameController;
 }
 -(id)initTo:(NSString*)host port:(UInt16)port;
 
@@ -96,5 +96,5 @@ typedef struct {
 -(void)send:(OLMessage)msg payloadLength:(NSUInteger)payloadLength;
 
 @property (assign, nonatomic) RemoteGame *game;
-@property (assign, nonatomic) BoardViewController *gameController;
+@property (assign, nonatomic) GameViewController *gameController;
 @end

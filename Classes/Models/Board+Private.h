@@ -18,7 +18,7 @@
 -(void)updateScores;
 -(void)advancePlayer;
 
--(void)scheduleCharge:(Tile*)t owner:(Player)owner;
+-(void)scheduleCharge:(Tile*)t owner:(PlayerID)owner;
 -(void)explosionCharge:(ScheduledCharge*)charge;
 
 @property (readwrite, assign, nonatomic) NSUInteger explosionsQueued;
@@ -26,8 +26,8 @@
 
 @interface ScheduledCharge : NSObject {
     Tile *tile;
-    Player owner;
+    PlayerID owner;
 }
 @property (readwrite, assign, nonatomic) Tile *tile;
-@property (readwrite, assign, nonatomic) Player owner;
+@property (readwrite, assign, nonatomic) PlayerID owner;
 @end

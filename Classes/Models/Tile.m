@@ -17,7 +17,7 @@
     if(self.value >= 0.9999)
         [self explode];
 }
--(void)charge:(CGFloat)amount forPlayer:(Player)newOwner;
+-(void)charge:(CGFloat)amount forPlayer:(PlayerID)newOwner;
 {
     self.owner = newOwner;
     [self charge:amount];
@@ -66,7 +66,7 @@
 
 @synthesize board;
 @synthesize owner;
--(void)setOwner:(Player)newOwner;
+-(void)setOwner:(PlayerID)newOwner;
 {
     owner = newOwner;
     [self.board.delegate tile:self changedOwner:owner];

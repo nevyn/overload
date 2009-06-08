@@ -34,7 +34,7 @@
 	} else if(msg.type == OLPlayerChargedTile) {
 		Tile *t = [self.board tile:msg.payload.playerChargedTile.pos];
 		CGFloat newValue = msg.payload.playerChargedTile.newValue;
-		Player player = msg.payload.playerChargedTile.chargingPlayer;
+		PlayerID player = msg.payload.playerChargedTile.chargingPlayer;
 		
 		[delegate tile:t wasChargedTo:newValue byPlayer:player];
 

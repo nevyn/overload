@@ -94,11 +94,11 @@
 	delegate = delegate_;
 	board.delegate = self;
 }
--(Player)currentPlayer;
+-(PlayerID)currentPlayer;
 {
 	return board.currentPlayer;
 }
--(void)setCurrentPlayer:(Player)newPlayer;
+-(void)setCurrentPlayer:(PlayerID)newPlayer;
 {
 	board.currentPlayer = newPlayer;
 }
@@ -106,7 +106,7 @@
 
 
 #pragma mark Board delegates
--(void)tile:(Tile*)tile changedOwner:(Player)owner;
+-(void)tile:(Tile*)tile changedOwner:(PlayerID)owner;
 {
 	[delegate tile:tile changedOwner:owner];
 }
@@ -114,7 +114,7 @@
 {
 	[delegate tile:tile changedValue:value];
 }
--(void)tile:(Tile*)tile wasChargedTo:(CGFloat)value byPlayer:(Player)player;
+-(void)tile:(Tile*)tile wasChargedTo:(CGFloat)value byPlayer:(PlayerID)player;
 {
     [delegate tile:tile wasChargedTo:value byPlayer:player];
     
@@ -133,7 +133,7 @@
 {
 	[delegate board:board_ changedScores:scores];
 }
--(void)board:(Board*)board_ endedWithWinner:(Player)winner;
+-(void)board:(Board*)board_ endedWithWinner:(PlayerID)winner;
 {
     if(ai)
         [[Beacon sharedIfOptedIn] endSubBeaconWithName:@"Local AI Game"];
@@ -147,7 +147,7 @@
 	[delegate boardIsStartingAnew:board_];
 }
 
--(void)board:(Board*)board_ changedCurrentPlayer:(Player)currentPlayer;
+-(void)board:(Board*)board_ changedCurrentPlayer:(PlayerID)currentPlayer;
 {
     if(board.isBoardEmpty)
         [[Beacon sharedIfOptedIn] startSubBeaconWithName:@"Local 2P Game" timeSession:YES];

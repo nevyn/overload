@@ -65,7 +65,7 @@
 
 @synthesize delegate;
 
--(void)setCurrentPlayer:(Player)currentPlayer;
+-(void)setCurrentPlayer:(PlayerID)currentPlayer;
 {
     [UIView beginAnimations:@"statusBar.changeCurrentPlayer" context:nil];
     self.backgroundColor = [UIColor colorWithHue:Hues[currentPlayer] saturation:0.6 brightness:0.8 alpha:1.0];

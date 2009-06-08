@@ -93,7 +93,7 @@ static NSInteger MinMaxDepth = 2;
 #pragma mark MinMax
 -(CGFloat)minMaxAtDepth:(NSUInteger)depth;
 {
-    Player winner = self.board.winner;
+    PlayerID winner = self.board.winner;
     if(winner)
         return winner==ai.player ? NSIntegerMax : NSIntegerMin;
     if(depth == 0)
@@ -122,7 +122,7 @@ static NSInteger MinMaxDepth = 2;
 
 @implementation AIMinMax
 
--(id)initPlaying:(Player)player_ onGame:(Game*)game_;
+-(id)initPlaying:(PlayerID)player_ onGame:(Game*)game_;
 {
     if(![super initPlaying:player_ onGame:game_]) return nil;
     
@@ -133,7 +133,7 @@ static NSInteger MinMaxDepth = 2;
 }
 
 
--(void)player:(Player)player choseTile:(BoardPoint)boardPoint;
+-(void)player:(PlayerID)player choseTile:(BoardPoint)boardPoint;
 {
     self.root = [root node:boardPoint];
 }

@@ -31,6 +31,6 @@
 @property (assign, nonatomic) id<ScoreBarViewDelegate> delegate;
 
 
--(void)setCurrentPlayer:(Player)currentPlayer_;
+-(void)setCurrentPlayer:(PlayerID)currentPlayer_;
 
 @end

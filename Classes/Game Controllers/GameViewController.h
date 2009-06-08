@@ -15,7 +15,7 @@
 #import "OLClient.h"
 
 @class OLClient;
-@interface BoardViewController : UIViewController <BoardDelegate, BoardViewDelegate, ScoreBarViewDelegate, OLClientClient> {
+@interface GameViewController : UIViewController <BoardDelegate, BoardViewDelegate, ScoreBarViewDelegate, OLClientClient> {
     StatusBarView *status;
 	ScoreIndicator *score;
     UIImageView *winPlaque, *losePlaque;

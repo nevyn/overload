@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "TypesAndConstants.h"
 @class RootViewController;
-@class BoardViewController;
+@class GameViewController;
 
 @interface FlipsideViewController : UIViewController <UIActionSheetDelegate>{
     IBOutlet UIImageView *cogU, *cogM, *cogL;
@@ -17,7 +17,7 @@
     NSTimer *rotationTimer;
     NSTimeInterval first;
     RootViewController *rootController;
-    BoardViewController *mainController;
+    GameViewController *mainController;
     
     IBOutlet UISlider *boardSize;
     IBOutlet UISwitch *chaosGame;
@@ -29,7 +29,7 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil
                bundle:(NSBundle *)nibBundleOrNil
        rootController:(RootViewController*)rootController_
-       mainController:(BoardViewController*)mainController_;
+       mainController:(GameViewController*)mainController_;
 - (IBAction)toggleView:(id)sender;
 - (IBAction)newGame:(id)sender;
 - (IBAction)shuffleGame:(id)sender;

@@ -8,24 +8,24 @@
 
 #import <UIKit/UIKit.h>
 #import "Board.h"
-#import "BoardViewController.h"
+#import "GameViewController.h"
 #import "TypesAndConstants.h"
 
 @interface AI : NSObject {
 	Game *game;
-    Player player;
-    Player opponent;
+    PlayerID player;
+    PlayerID opponent;
 }
--(id)initPlaying:(Player)player_ onGame:(Game*)game;
+-(id)initPlaying:(PlayerID)player_ onGame:(Game*)game;
 
 -(void)performMove;
 
 // Override these:
--(void)player:(Player)player choseTile:(BoardPoint)boardPoint;
+-(void)player:(PlayerID)player choseTile:(BoardPoint)boardPoint;
 -(BoardPoint)chooseTile;
 
 @property (assign, nonatomic) Game *game;
-@property (assign, nonatomic) Player player;
+@property (assign, nonatomic) PlayerID player;
 
 -(NSArray*)randomBoardTiles;
 @end

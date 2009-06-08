@@ -15,11 +15,12 @@ extern const float TileHeight;
 extern const NSUInteger WidthInTiles; // = 10
 extern const NSUInteger HeightInTiles; // = 12
 
-typedef enum {
-    PlayerNone,
-    PlayerP1,
-    PlayerP2
-} Player;
+enum {
+    PlayerNone = 0,
+    PlayerP1 = 1,
+    PlayerP2 = 2
+};
+typedef NSUInteger PlayerID;
 
 typedef struct {
     int32_t x;
@@ -47,7 +48,7 @@ extern float frand(float max);
 
 typedef struct {
     float values[12][10]; // [y][x]
-    Player  owners[12][10]; // [y][x]
+    PlayerID  owners[12][10]; // [y][x]
 } BoardStruct;
 
 extern const float Hues[3];

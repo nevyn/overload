@@ -8,14 +8,14 @@
 
 #import "MobileOverloadAppDelegate.h"
 #import "RootViewController.h"
-#import "BoardViewController.h"
+#import "GameViewController.h"
 #import "Beacon+OptIn.h"
 #import "CollectionUtils.h"
 
-@interface BoardViewController (BoardViewHack)
+@interface GameViewController (BoardViewHack)
 @property (readonly, nonatomic) BoardView *boardView;
 @end
-@implementation BoardViewController (BoardViewHack)
+@implementation GameViewController (BoardViewHack)
 -(BoardView*)boardView; { return boardView; }
 @end
 @interface BoardView (BoardViewPrivate)

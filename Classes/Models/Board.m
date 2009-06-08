@@ -90,7 +90,7 @@
 {
     if(gameEnded) return;
     
-    Player winner = self.winner;
+    PlayerID winner = self.winner;
     if(winner == PlayerNone) return;
 
     gameEnded = YES;
@@ -118,9 +118,9 @@
     return YES;
 }
 
--(Player)winner;
+-(PlayerID)winner;
 {
-    Player winner = [self tile:BoardPointMake(0, 0)].owner;
+    PlayerID winner = [self tile:BoardPointMake(0, 0)].owner;
     if(winner == PlayerNone) return PlayerNone;
     
     for(NSUInteger y = 0; y < self.sizeInTiles.height; y++) {
@@ -158,7 +158,7 @@
     }
     return scores;
 }
--(BOOL)player:(Player)player canChargeTile:(BoardPoint)tilePoint;
+-(BOOL)player:(PlayerID)player canChargeTile:(BoardPoint)tilePoint;
 {    
     Tile *tile = [self tile:tilePoint];
     if( ! (tile.owner == player || tile.owner == PlayerNone) )
@@ -222,8 +222,8 @@
     if( ! (tile.owner == currentPlayer || tile.owner == PlayerNone) )
         return NO; // Invalid move
     
-    [delegate tile:tile wasChargedTo:tile.value+ChargeEnergy byPlayer:self.currentPlayer];
     [tile charge:ChargeEnergy forPlayer:self.currentPlayer];
+    [delegate tile:tile wasChargedTo:tile.value+ChargeEnergy byPlayer:self.currentPlayer];
     
     if(self.explosionsQueued == 0 || self.chaosGame)
         [self advancePlayer];
@@ -294,7 +294,7 @@
 }
 
 @synthesize currentPlayer;
--(void)setCurrentPlayer:(Player)newPlayer;
+-(void)setCurrentPlayer:(PlayerID)newPlayer;
 {
     currentPlayer = newPlayer;
     [delegate board:self changedCurrentPlayer:currentPlayer];

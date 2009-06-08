@@ -41,9 +41,9 @@
     AIMMTreeNode *root;
 }
 
--(id)initPlaying:(Player)player_ onGame:(Game*)game_;
+-(id)initPlaying:(PlayerID)player_ onGame:(Game*)game_;
 
--(void)player:(Player)player choseTile:(BoardPoint)boardPoint;
+-(void)player:(PlayerID)player choseTile:(BoardPoint)boardPoint;
 -(BoardPoint)chooseTile;
 
 @property (retain, nonatomic) AIMMTreeNode *root;

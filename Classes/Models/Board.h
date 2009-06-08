@@ -14,21 +14,21 @@
 @class Tile;
 
 @protocol BoardDelegate
--(void)tile:(Tile*)tile changedOwner:(Player)owner;
+-(void)tile:(Tile*)tile changedOwner:(PlayerID)owner;
 -(void)tile:(Tile*)tile changedValue:(CGFloat)value;
--(void)tile:(Tile*)tile wasChargedTo:(CGFloat)value byPlayer:(Player)player;
+-(void)tile:(Tile*)tile wasChargedTo:(CGFloat)value byPlayer:(PlayerID)player;
 -(void)tileWillSoonExplode:(Tile*)tile;
 -(void)tileExploded:(Tile*)tile;
 -(void)board:(Board*)board changedScores:(Scores)scores;
--(void)board:(Board*)board endedWithWinner:(Player)winner;
+-(void)board:(Board*)board endedWithWinner:(PlayerID)winner;
 -(void)boardIsStartingAnew:(Board*)board;
--(void)board:(Board*)board changedCurrentPlayer:(Player)currentPlayer;
+-(void)board:(Board*)board changedCurrentPlayer:(PlayerID)currentPlayer;
 -(void)board:(Board*)board changedSize:(BoardSize)newSize;
 @end
 @class Game;
 @interface Board : NSObject <NSCopying>{
     Tile *boardTiles[10][12]; // [x][y]
-    Player currentPlayer;
+    PlayerID currentPlayer;
     BOOL gameEnded;
     
 	Game *game;
@@ -51,11 +51,11 @@
 #pragma mark Accessors
 -(Tile*)tile:(BoardPoint)point;
 -(BOOL)isBoardEmpty;
--(Player)winner;
+-(PlayerID)winner;
 -(BOOL)hasEnded;
 -(BOOL)canMakeMoveNow;
 -(Scores)scores;
--(BOOL)player:(Player)player canChargeTile:(BoardPoint)tilePoint;
+-(BOOL)player:(PlayerID)player canChargeTile:(BoardPoint)tilePoint;
 
 #pragma mark Mutators
 -(void)restart;
@@ -69,7 +69,7 @@
 #pragma mark Properties
 /// Setting the delegate will also trigger all delegate methods to give the delegate a complete view of the board state.
 @property (assign, nonatomic) id<BoardDelegate> delegate;
-@property (assign, nonatomic) Player currentPlayer;
+@property (assign, nonatomic) PlayerID currentPlayer;
 @property (assign, nonatomic) Game *game;
 @property (nonatomic) BOOL chaosGame;
 @property (readwrite, nonatomic) BoardSize sizeInTiles;

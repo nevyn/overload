@@ -43,13 +43,13 @@
 {
     NSTimeInterval start;
     BoardPoint position;
-    Player owner;
+    PlayerID owner;
     id delegate;
 }
 -(void)render;
 @property (assign, nonatomic) NSTimeInterval start;
 @property (assign, nonatomic) BoardPoint position;
-@property (assign, nonatomic) Player owner;
+@property (assign, nonatomic) PlayerID owner;
 @property (assign, nonatomic) id delegate;
 @end
 
@@ -57,7 +57,7 @@
 
 typedef struct tile_t {
     CGFloat value;
-    Player player;
+    PlayerID player;
 } tile_t;
 
 @implementation BoardView
@@ -172,7 +172,7 @@ typedef struct tile_t {
 #pragma mark Rendering
 #pragma mark -
 // Very much not thread safe, but neither is OpenGL, so that's okay
-void renderColor(Player owner, CGFloat value, CGFloat a)
+void renderColor(PlayerID owner, CGFloat value, CGFloat a)
 {
     static GLubyte cornerColors[] = {
         255, 255,   0, 255,
@@ -268,7 +268,7 @@ void renderWhite()
             glTranslatef(x, y, 0);
             
             // Color
-            Player owner = board.owners[y][x];
+            PlayerID owner = board.owners[y][x];
             CGFloat value = board.values[y][x];
             CGFloat pulse = 0;
             if(value > 0.74)
@@ -399,7 +399,7 @@ void renderWhite()
     
     board.values[p.y][p.x] = v;
 }
--(void)setOwner:(Player)player atPosition:(BoardPoint)p;
+-(void)setOwner:(PlayerID)player atPosition:(BoardPoint)p;
 {
     if(p.x < 0 || p.x >= WidthInTiles || p.y < 0 || p.y >= HeightInTiles) 
         return;

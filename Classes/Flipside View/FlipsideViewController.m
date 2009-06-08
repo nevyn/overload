@@ -8,7 +8,7 @@
 
 #import "FlipsideViewController.h"
 #import "RootViewController.h"
-#import "BoardViewController.h"
+#import "GameViewController.h"
 #import "CInvocationGrabber.h"
 #import "Beacon+OptIn.h"
 #import <MediaPlayer/MediaPlayer.h>
@@ -25,7 +25,7 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil
                bundle:(NSBundle *)nibBundleOrNil
        rootController:(RootViewController*)rootController_
-       mainController:(BoardViewController*)mainController_;
+       mainController:(GameViewController*)mainController_;
 {
     if(![super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) return nil;
     rootController = rootController_;

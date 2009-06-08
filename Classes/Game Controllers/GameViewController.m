@@ -6,7 +6,7 @@
 //  Copyright Third Cog Software 2008. All rights reserved.
 //
 
-#import "BoardViewController.h"
+#import "GameViewController.h"
 #import "BoardView.h"
 #import <QuartzCore/QuartzCore.h>
 #import "CInvocationGrabber.h"
@@ -17,12 +17,12 @@
 #import "OLClient.h"
 #import "UIColor-Expanded.h"
 
-@interface BoardViewController ()
+@interface GameViewController ()
 @property (retain, nonatomic) NSTimer *heartbeat;
 @end
 
 
-@implementation BoardViewController
+@implementation GameViewController
 
 #pragma mark Initialization and memory management
 
@@ -133,7 +133,7 @@
 
 
 #pragma mark Board delegates
--(void)tile:(Tile*)tile changedOwner:(Player)owner;
+-(void)tile:(Tile*)tile changedOwner:(PlayerID)owner;
 {
     [boardView setOwner:owner atPosition:tile.boardPosition];
 }
@@ -141,7 +141,7 @@
 {
     [boardView setValue:value atPosition:tile.boardPosition];
 }
--(void)tile:(Tile*)tile wasChargedTo:(CGFloat)value byPlayer:(Player)player;
+-(void)tile:(Tile*)tile wasChargedTo:(CGFloat)value byPlayer:(PlayerID)player;
 {
     [soundPlayer playChargeSound:value];
 }
@@ -158,10 +158,10 @@
 {
     [score setScores:scores.scores];
 }
--(void)board:(Board*)board endedWithWinner:(Player)winner;
+-(void)board:(Board*)board endedWithWinner:(PlayerID)winner;
 {    
     [soundPlayer playWinSound];
-    Player loser = (!(winner-1))+1;
+    PlayerID loser = (!(winner-1))+1;
     [UIView beginAnimations:nil context:NULL];
 	[UIView setAnimationDuration:1];
     
@@ -191,7 +191,7 @@
     [UIView commitAnimations];
 }
 
--(void)board:(Board*)board_ changedCurrentPlayer:(Player)currentPlayer;
+-(void)board:(Board*)board_ changedCurrentPlayer:(PlayerID)currentPlayer;
 {
     [status setCurrentPlayer:currentPlayer];
     

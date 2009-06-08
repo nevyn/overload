@@ -21,7 +21,7 @@
     else
         self.currentPlayer = PlayerP1;
 }
--(void)scheduleCharge:(Tile*)t owner:(Player)owner;
+-(void)scheduleCharge:(Tile*)t owner:(PlayerID)owner;
 {
     ScheduledCharge *charge = [[[ScheduledCharge alloc] init] autorelease];
     charge.owner = owner;

@@ -7,7 +7,7 @@
 //
 
 #import "RootViewController.h"
-#import "BoardViewController.h"
+#import "GameViewController.h"
 #import "FlipsideViewController.h"
 
 
@@ -19,7 +19,7 @@
 
 
 - (void)viewDidLoad {
-	BoardViewController *viewController = [[[BoardViewController alloc] initWithNibName:@"MainView" bundle:nil] autorelease];
+	GameViewController *viewController = [[[GameViewController alloc] initWithNibName:@"MainView" bundle:nil] autorelease];
 	self.mainViewController = viewController;
 	
     [mainViewController viewWillAppear:NO];

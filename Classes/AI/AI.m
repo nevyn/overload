@@ -11,7 +11,7 @@
 
 @implementation AI
 
--(id)initPlaying:(Player)player_ onGame:(Game*)game_;
+-(id)initPlaying:(PlayerID)player_ onGame:(Game*)game_;
 {
     if(![super init]) return nil;
     
@@ -40,7 +40,7 @@
 	
 }
 
--(void)player:(Player)player choseTile:(BoardPoint)boardPoint;
+-(void)player:(PlayerID)player choseTile:(BoardPoint)boardPoint;
 {
     // Ignore
 }

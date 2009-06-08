@@ -67,13 +67,13 @@
 		05EE3D5A0F45A03E00E5034D /* 256 in Resources */ = {isa = PBXBuildFile; fileRef = 05EE3D500F45A03E00E5034D /* 256 */; };
 		05EE3D5B0F45A03E00E5034D /* 64 in Resources */ = {isa = PBXBuildFile; fileRef = 05EE3D520F45A03E00E5034D /* 64 */; };
 		05EE3D5C0F45A03E00E5034D /* 128 in Resources */ = {isa = PBXBuildFile; fileRef = 05EE3D580F45A03E00E5034D /* 128 */; };
+		05FFC7DD0F7A0C12001A33E8 /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05FFC7D50F7A0C12001A33E8 /* GameViewController.m */; };
 		1D3623260D0F684500981E51 /* MobileOverloadAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* MobileOverloadAppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		280E754D0DD40C5E005A515E /* FlipsideView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 280E754A0DD40C5E005A515E /* FlipsideView.xib */; };
 		280E754E0DD40C5E005A515E /* MainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 280E754B0DD40C5E005A515E /* MainView.xib */; };
 		280E754F0DD40C5E005A515E /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 280E754C0DD40C5E005A515E /* MainWindow.xib */; };
-		289233AE0DB2D0DB0083E9F9 /* BoardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 289233A90DB2D0DB0083E9F9 /* BoardViewController.m */; };
 		289233AF0DB2D0DB0083E9F9 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 289233AB0DB2D0DB0083E9F9 /* RootViewController.m */; };
 		289233B00DB2D0DB0083E9F9 /* FlipsideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 289233AD0DB2D0DB0083E9F9 /* FlipsideViewController.m */; };
 /* End PBXBuildFile section */
@@ -166,6 +166,8 @@
 		05EE3D500F45A03E00E5034D /* 256 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = 256; sourceTree = "<group>"; };
 		05EE3D520F45A03E00E5034D /* 64 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = 64; sourceTree = "<group>"; };
 		05EE3D580F45A03E00E5034D /* 128 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = 128; sourceTree = "<group>"; };
+		05FFC7D40F7A0C12001A33E8 /* GameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameViewController.h; sourceTree = "<group>"; };
+		05FFC7D50F7A0C12001A33E8 /* GameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameViewController.m; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* MobileOverloadAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobileOverloadAppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* MobileOverloadAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobileOverloadAppDelegate.m; sourceTree = "<group>"; };
@@ -174,8 +176,6 @@
 		280E754A0DD40C5E005A515E /* FlipsideView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FlipsideView.xib; sourceTree = "<group>"; };
 		280E754B0DD40C5E005A515E /* MainView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainView.xib; sourceTree = "<group>"; };
 		280E754C0DD40C5E005A515E /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
-		289233A80DB2D0DB0083E9F9 /* BoardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardViewController.h; sourceTree = "<group>"; };
-		289233A90DB2D0DB0083E9F9 /* BoardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoardViewController.m; sourceTree = "<group>"; };
 		289233AA0DB2D0DB0083E9F9 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		289233AB0DB2D0DB0083E9F9 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		289233AC0DB2D0DB0083E9F9 /* FlipsideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlipsideViewController.h; sourceTree = "<group>"; };
@@ -236,6 +236,8 @@
 				0511F6A40E744754003FFA22 /* AI */,
 				0511F3560E71B640003FFA22 /* Models */,
 				05D77E970E58C7B900FB00DB /* Game Views */,
+				05FFC7DE0F7A0C25001A33E8 /* Menus */,
+				05FFC7D30F7A0C12001A33E8 /* Game Controllers */,
 				281C6CD70DB2D82200F60ACC /* Settings View */,
 				080E96DDFE201D6D7F000001 /* Application Controllers */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
@@ -260,8 +262,6 @@
 			isa = PBXGroup;
 			children = (
 				05E03BC60F2B2690006E6190 /* Board */,
-				289233A80DB2D0DB0083E9F9 /* BoardViewController.h */,
-				289233A90DB2D0DB0083E9F9 /* BoardViewController.m */,
 				0511F6160E743977003FFA22 /* OLSoundPlayer.h */,
 				0511F6170E743977003FFA22 /* OLSoundPlayer.m */,
 				05D77E980E58C7D400FB00DB /* StatusBarView.h */,
@@ -281,6 +281,22 @@
 				05E03BCA0F2B2690006E6190 /* BoardView.m */,
 			);
 			path = Board;
+			sourceTree = "<group>";
+		};
+		05FFC7D30F7A0C12001A33E8 /* Game Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				05FFC7D40F7A0C12001A33E8 /* GameViewController.h */,
+				05FFC7D50F7A0C12001A33E8 /* GameViewController.m */,
+			);
+			path = "Game Controllers";
+			sourceTree = "<group>";
+		};
+		05FFC7DE0F7A0C25001A33E8 /* Menus */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Menus;
 			sourceTree = "<group>";
 		};
 		080E96DDFE201D6D7F000001 /* Application Controllers */ = {
@@ -495,7 +511,6 @@
 			files = (
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* MobileOverloadAppDelegate.m in Sources */,
-				289233AE0DB2D0DB0083E9F9 /* BoardViewController.m in Sources */,
 				289233AF0DB2D0DB0083E9F9 /* RootViewController.m in Sources */,
 				289233B00DB2D0DB0083E9F9 /* FlipsideViewController.m in Sources */,
 				05D77E9A0E58C7D400FB00DB /* StatusBarView.m in Sources */,
@@ -524,6 +539,7 @@
 				0595F2DC0F6D8C3B008F9D37 /* AsyncSocket.m in Sources */,
 				0595F3570F6E398F008F9D37 /* OLClient.m in Sources */,
 				0595F3B60F6EF16A008F9D37 /* UIColor-Expanded.m in Sources */,
+				05FFC7DD0F7A0C12001A33E8 /* GameViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -574,6 +590,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A137647E-8E07-4DD2-85A4-13222E5D94BA";
 				SDKROOT = iphoneos2.2;
 			};
 			name = "Beta Testing";
@@ -583,7 +600,6 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_ENTITLEMENTS = dist.plist;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Joachim Bengtsson";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -596,7 +612,6 @@
 					"\"$(SRCROOT)/Classes/Other Sources\"",
 				);
 				PRODUCT_NAME = MobileOverload;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "D7FCC216-D89B-478F-B5BF-6430AAE239EC";
 				SDKROOT = iphoneos2.2;
 			};
 			name = "Beta Testing";
@@ -605,6 +620,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Joachim Bengtsson (Macdata)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -619,6 +635,7 @@
 					"\"$(SRCROOT)/Classes/Other Sources\"",
 				);
 				PRODUCT_NAME = MobileOverload;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F003BE9B-34B1-4537-8C8B-8A66B20BAB8F";
 				SDKROOT = iphoneos2.2;
 			};
 			name = Debug;

@@ -36,7 +36,7 @@
 -(void)stopAI;
 
 #pragma mark Properties
-@property Player currentPlayer;
+@property PlayerID currentPlayer;
 @property (readonly, nonatomic) Board *board;
 @property (readwrite, assign, nonatomic) id delegate;
 

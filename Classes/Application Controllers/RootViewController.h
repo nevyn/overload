@@ -8,18 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
-@class BoardViewController;
+@class GameViewController;
 @class FlipsideViewController;
 
 @interface RootViewController : UIViewController {
 
 	IBOutlet UIButton *infoButton;
-	BoardViewController *mainViewController;
+	GameViewController *mainViewController;
 	FlipsideViewController *flipsideViewController;
 }
 
 @property (nonatomic, retain) UIButton *infoButton;
-@property (nonatomic, retain) BoardViewController *mainViewController;
+@property (nonatomic, retain) GameViewController *mainViewController;
 @property (nonatomic, retain) FlipsideViewController *flipsideViewController;
 
 - (IBAction)toggleView;
