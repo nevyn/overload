@@ -23,8 +23,9 @@
 
 #pragma mark Initialization and memory management
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-	if( ! [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) return nil;
+-(id)init;
+{
+	if(![super initWithNibName:nil bundle:nil]) return nil;
     
     soundPlayer = [[OLSoundPlayer alloc] init];
     
@@ -39,12 +40,11 @@
         
 	return self;
 }
-
 - (void)viewDidLoad {
-    score1 = [[[ScoreBarView alloc] initWithFrame:CGRectMake(0, BoardHeight()+ScoreBarHeight, BoardWidth, ScoreBarHeight) player:PlayerP1] autorelease];
+    score1 = [[[ScoreBarView alloc] initWithFrame:CGRectMake(0, BoardHeight()+ScoreBarHeight, BoardWidth(), ScoreBarHeight) player:PlayerP1] autorelease];
     score1.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
 
-    score2 = [[[ScoreBarView alloc] initWithFrame:CGRectMake(0, 0, BoardWidth, ScoreBarHeight) player:PlayerP2] autorelease];
+    score2 = [[[ScoreBarView alloc] initWithFrame:CGRectMake(0, 0, BoardWidth(), ScoreBarHeight) player:PlayerP2] autorelease];
     score2.transform = CGAffineTransformMakeRotation(M_PI);
     score2.delegate = self;
         
@@ -63,7 +63,7 @@
     self.heartbeat = [NSTimer scheduledTimerWithTimeInterval:1./60. target:self selector:@selector(update) userInfo:nil repeats:YES];
 
     if(!boardView) {
-        boardView = [[[BoardView alloc] initWithFrame:CGRectMake(0, ScoreBarHeight, BoardWidth, BoardHeight())] autorelease];
+        boardView = [[[BoardView alloc] initWithFrame:CGRectMake(0, ScoreBarHeight, BoardWidth(), BoardHeight())] autorelease];
         [boardView setSizeInTiles:board.sizeInTiles];
         boardView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
         boardView.delegate = self;

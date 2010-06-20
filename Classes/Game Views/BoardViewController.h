@@ -34,6 +34,7 @@
 #endif
 }
 
+-(id)init;
 
 #pragma mark Board delegates
 -(void)tile:(Tile*)tile changedOwner:(Player)owner;

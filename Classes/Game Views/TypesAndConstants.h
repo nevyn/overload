@@ -8,10 +8,8 @@
  */
 
 extern const CGFloat ScoreBarHeight;
-extern const CGFloat BoardWidth;
+extern CGFloat BoardWidth();
 extern CGFloat BoardHeight();
-extern const CGFloat TileWidth;
-extern const CGFloat TileHeight;
 extern const NSUInteger WidthInTiles; // = 10
 extern const NSUInteger HeightInTiles; // = 12
 

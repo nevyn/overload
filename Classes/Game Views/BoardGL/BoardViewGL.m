@@ -445,7 +445,7 @@ void renderWhite()
 -(void)setSizeInTiles:(BoardSize)newSize;
 {
     sizeInTiles = newSize;
-    tileSize = CGSizeMake(BoardWidth/newSize.width, BoardHeight()/newSize.height);
+    tileSize = CGSizeMake(BoardWidth()/newSize.width, BoardHeight()/newSize.height);
     
     NSUInteger resolutions[] = {64, 128, 256};
     NSUInteger resolution = 256;

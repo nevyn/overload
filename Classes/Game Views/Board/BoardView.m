@@ -26,7 +26,7 @@
 
     for(NSUInteger y = 0; y < HeightInTiles; y++) {
         for (NSUInteger x = 0; x < WidthInTiles; x++) {
-            BoardTileView *tile = [[[BoardTileView alloc] initWithFrame:CGRectMake(x*TileWidth, y*TileHeight, TileWidth, TileHeight)] autorelease];
+            BoardTileView *tile = [[[BoardTileView alloc] initWithFrame:CGRectMake(x, y, 1, 1)] autorelease];
             tile.boardPosition = BoardPointMake(x, y);
             tile.board = self;
             boardTiles[x][y] = tile;
@@ -102,7 +102,7 @@
 -(void)setSizeInTiles:(BoardSize)newSize;
 {
     sizeInTiles = newSize;
-    tileSize = CGSizeMake(BoardWidth/newSize.width, BoardHeight()/newSize.height);
+    tileSize = CGSizeMake(BoardWidth()/newSize.width, BoardHeight()/newSize.height);
 
     if(tileSize.width == [self tile:BoardPointMake(0, 0)].frame.size.width)
         return;
@@ -112,7 +112,7 @@
 }
 -(void)relayoutTiles;
 {
-    tileSize = CGSizeMake(BoardWidth/sizeInTiles.width, BoardHeight()/sizeInTiles.height);
+    tileSize = CGSizeMake(BoardWidth()/sizeInTiles.width, BoardHeight()/sizeInTiles.height);
 
 
     if(delegate) {

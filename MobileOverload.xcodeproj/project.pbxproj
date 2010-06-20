@@ -37,6 +37,7 @@
 		058BDFB30F3E160E00E4A699 /* Logging.m in Sources */ = {isa = PBXBuildFile; fileRef = 058BDFAD0F3E160E00E4A699 /* Logging.m */; };
 		058BDFB40F3E160E00E4A699 /* ExceptionUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 058BDFB00F3E160E00E4A699 /* ExceptionUtils.m */; };
 		058FEB870EF841DF006FDFDA /* AVAudioPlayerQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 058FEB860EF841DF006FDFDA /* AVAudioPlayerQueue.m */; };
+		059E5D3511CE98780082C131 /* MainWindow-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 059E5D3411CE98780082C131 /* MainWindow-iPad.xib */; };
 		05A762D90EFCE9EF005D899A /* AI2.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A762D80EFCE9EF005D899A /* AI2.m */; };
 		05A7640D0EFE655C005D899A /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05A7640C0EFE655C005D899A /* MediaPlayer.framework */; };
 		05AD39420F3194A8004F746D /* Texture2D.m in Sources */ = {isa = PBXBuildFile; fileRef = 05AD39410F3194A8004F746D /* Texture2D.m */; };
@@ -116,6 +117,7 @@
 		058BDFB00F3E160E00E4A699 /* ExceptionUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExceptionUtils.m; sourceTree = "<group>"; };
 		058FEB850EF841DF006FDFDA /* AVAudioPlayerQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVAudioPlayerQueue.h; sourceTree = "<group>"; };
 		058FEB860EF841DF006FDFDA /* AVAudioPlayerQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVAudioPlayerQueue.m; sourceTree = "<group>"; };
+		059E5D3411CE98780082C131 /* MainWindow-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "MainWindow-iPad.xib"; path = "Resources-iPad/Resources/MainWindow-iPad.xib"; sourceTree = "<group>"; };
 		05A762D70EFCE9EF005D899A /* AI2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AI2.h; sourceTree = "<group>"; };
 		05A762D80EFCE9EF005D899A /* AI2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AI2.m; sourceTree = "<group>"; };
 		05A7640C0EFE655C005D899A /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
@@ -153,8 +155,8 @@
 		1D3623250D0F684500981E51 /* MobileOverloadAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobileOverloadAppDelegate.m; sourceTree = "<group>"; };
 		1D6058910D05DD3D006BFB54 /* MobileOverload.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobileOverload.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		280E754A0DD40C5E005A515E /* FlipsideView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FlipsideView.xib; sourceTree = "<group>"; };
-		280E754B0DD40C5E005A515E /* MainView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainView.xib; sourceTree = "<group>"; };
+		280E754A0DD40C5E005A515E /* FlipsideView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = FlipsideView.xib; path = ../../Resources/FlipsideView.xib; sourceTree = "<group>"; };
+		280E754B0DD40C5E005A515E /* MainView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MainView.xib; path = ../../Resources/MainView.xib; sourceTree = "<group>"; };
 		280E754C0DD40C5E005A515E /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		289233A80DB2D0DB0083E9F9 /* BoardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardViewController.h; sourceTree = "<group>"; };
 		289233A90DB2D0DB0083E9F9 /* BoardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoardViewController.m; sourceTree = "<group>"; };
@@ -225,6 +227,14 @@
 			path = AI;
 			sourceTree = "<group>";
 		};
+		059E5D3311CE98780082C131 /* Resources-iPad */ = {
+			isa = PBXGroup;
+			children = (
+				059E5D3411CE98780082C131 /* MainWindow-iPad.xib */,
+			);
+			name = "Resources-iPad";
+			sourceTree = "<group>";
+		};
 		05D77E970E58C7B900FB00DB /* Game Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -232,6 +242,7 @@
 				05E03B460F2A33B1006E6190 /* BoardGL */,
 				289233A80DB2D0DB0083E9F9 /* BoardViewController.h */,
 				289233A90DB2D0DB0083E9F9 /* BoardViewController.m */,
+				280E754B0DD40C5E005A515E /* MainView.xib */,
 				0511F6160E743977003FFA22 /* OLSoundPlayer.h */,
 				0511F6170E743977003FFA22 /* OLSoundPlayer.m */,
 				05D77E980E58C7D400FB00DB /* ScoreBarView.h */,
@@ -287,6 +298,7 @@
 			children = (
 				289233AC0DB2D0DB0083E9F9 /* FlipsideViewController.h */,
 				289233AD0DB2D0DB0083E9F9 /* FlipsideViewController.m */,
+				280E754A0DD40C5E005A515E /* FlipsideView.xib */,
 			);
 			name = "Settings View";
 			path = "Flipside View";
@@ -302,6 +314,7 @@
 				0530E0310E5B59E200C73DC6 /* icon.png */,
 				053494460E60BBF1003A834C /* Default.png */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
+				059E5D3311CE98780082C131 /* Resources-iPad */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 			);
@@ -361,8 +374,6 @@
 				0517F3F70E59E6F30075F5A9 /* cog-screw.png */,
 				0517F3F80E59E6F30075F5A9 /* cog 150px 6cog 35deg.png */,
 				0517F3F90E59E6F30075F5A9 /* cog 150px 12cog 35deg.png */,
-				280E754A0DD40C5E005A515E /* FlipsideView.xib */,
-				280E754B0DD40C5E005A515E /* MainView.xib */,
 				280E754C0DD40C5E005A515E /* MainWindow.xib */,
 			);
 			path = Resources;
@@ -460,6 +471,7 @@
 				05EE3D5A0F45A03E00E5034D /* 256 in Resources */,
 				05EE3D5B0F45A03E00E5034D /* 64 in Resources */,
 				05EE3D5C0F45A03E00E5034D /* 128 in Resources */,
+				059E5D3511CE98780082C131 /* MainWindow-iPad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -512,7 +524,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E6E6D5F3-0DCB-4A31-A93F-F3411184ACCA";
-				SDKROOT = iphoneos2.2;
+				SDKROOT = iphoneos3.2;
 			};
 			name = "App Store Distribution";
 		};
@@ -520,6 +532,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Joachim Bengtsson";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = c99;
@@ -528,12 +541,14 @@
 				GCC_PREPROCESSOR_DEFINITIONS = BOARDVIEW_OPENGL;
 				GCC_THUMB_SUPPORT = NO;
 				INFOPLIST_FILE = Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Classes/Other Sources\"",
 				);
 				PRODUCT_NAME = MobileOverload;
-				SDKROOT = iphoneos2.2;
+				SDKROOT = iphoneos3.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = "App Store Distribution";
 		};
@@ -546,7 +561,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
-				SDKROOT = iphoneos2.2;
+				SDKROOT = iphoneos3.2;
 			};
 			name = "Beta Testing";
 		};
@@ -554,6 +569,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
 				CODE_SIGN_ENTITLEMENTS = dist.plist;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Joachim Bengtsson";
 				COPY_PHASE_STRIP = YES;
@@ -563,13 +579,15 @@
 				GCC_PREPROCESSOR_DEFINITIONS = BOARDVIEW_OPENGL;
 				GCC_THUMB_SUPPORT = NO;
 				INFOPLIST_FILE = Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Classes/Other Sources\"",
 				);
 				PRODUCT_NAME = MobileOverload;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "D7FCC216-D89B-478F-B5BF-6430AAE239EC";
-				SDKROOT = iphoneos2.2;
+				SDKROOT = iphoneos3.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = "Beta Testing";
 		};
@@ -577,6 +595,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -586,12 +605,14 @@
 				GCC_PREPROCESSOR_DEFINITIONS = BOARDVIEW_OPENGL;
 				GCC_THUMB_SUPPORT = NO;
 				INFOPLIST_FILE = Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Classes/Other Sources\"",
 				);
 				PRODUCT_NAME = MobileOverload;
-				SDKROOT = iphoneos2.2;
+				SDKROOT = iphoneos3.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -599,6 +620,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -606,12 +628,14 @@
 				GCC_PREPROCESSOR_DEFINITIONS = BOARDVIEW_OPENGL;
 				GCC_THUMB_SUPPORT = NO;
 				INFOPLIST_FILE = Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Classes/Other Sources\"",
 				);
 				PRODUCT_NAME = MobileOverload;
-				SDKROOT = iphoneos2.2;
+				SDKROOT = iphoneos3.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -625,7 +649,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
-				SDKROOT = iphoneos2.2;
+				SDKROOT = iphoneos3.2;
 			};
 			name = Debug;
 		};
@@ -638,7 +662,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
-				SDKROOT = iphoneos2.2;
+				SDKROOT = iphoneos3.2;
 			};
 			name = Release;
 		};

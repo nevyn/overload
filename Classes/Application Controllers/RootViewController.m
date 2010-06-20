@@ -19,21 +19,21 @@
 
 
 - (void)viewDidLoad {
-	BoardViewController *viewController = [[[BoardViewController alloc] initWithNibName:@"MainView" bundle:nil] autorelease];
+	BoardViewController *viewController = [[[BoardViewController alloc] init] autorelease];
 	self.mainViewController = viewController;
 	
-    [mainViewController viewWillAppear:NO];
+  [mainViewController viewWillAppear:NO];
 	[self.view insertSubview:mainViewController.view belowSubview:infoButton];
-    [mainViewController viewDidAppear:NO];
+  [mainViewController viewDidAppear:NO];
 }
 
 
 - (void)loadFlipsideViewController {
 	
 	FlipsideViewController *viewController = [[[FlipsideViewController alloc] initWithNibName:@"FlipsideView"
-                                                                                      bundle:nil
-                                                                              rootController:self
-                                                                               mainController:self.mainViewController] autorelease];
+                                                                                     bundle:nil
+                                                                             rootController:self
+                                                                             mainController:self.mainViewController] autorelease];
 	self.flipsideViewController = viewController;
 	
 }

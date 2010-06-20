@@ -8,14 +8,15 @@
  */
 
 const CGFloat ScoreBarHeight = 44;
-const CGFloat BoardWidth = 320;
+CGFloat BoardWidth()
+{
+	return UIScreen.mainScreen.applicationFrame.size.width;
+};
 CGFloat BoardHeight()
 {
     CGRect screenFrame = [[UIScreen mainScreen] applicationFrame];
     return screenFrame.size.height - ScoreBarHeight*2;
 }
-const CGFloat TileWidth = 32;
-const CGFloat TileHeight = 31;
 const NSUInteger WidthInTiles = 10; //BoardWidth/TileWidth
 const NSUInteger HeightInTiles = 12; //BoardHeight/TileHeight
 
