@@ -12,12 +12,12 @@
 
 @interface MobileOverloadAppDelegate : NSObject <UIApplicationDelegate> {
 	IBOutlet UIWindow *window;
-	IBOutlet RootViewController *rootViewController;
-    NSTimer *paranoidTimer; // continually persists board
+	IBOutlet UINavigationController *nav;
+  NSTimer *paranoidTimer; // continually persists board
 }
++(void)startBeacon;
 
 @property (nonatomic, retain) UIWindow *window;
-@property (nonatomic, retain) RootViewController *rootViewController;
-
 @end
 
+extern NSString *applicationCode;

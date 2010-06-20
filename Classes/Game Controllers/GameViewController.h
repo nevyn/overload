@@ -15,19 +15,24 @@
 #import "OLClient.h"
 
 @class OLClient;
-@interface GameViewController : UIViewController <BoardDelegate, BoardViewDelegate, ScoreBarViewDelegate, OLClientClient> {
-    StatusBarView *status;
+@interface GameViewController : UIViewController
+<BoardDelegate, BoardViewDelegate, ScoreBarViewDelegate>
+{
+  StatusBarView *status;
 	ScoreIndicator *score;
-    UIImageView *winPlaque, *losePlaque;
+  UIImageView *winPlaque, *losePlaque;
     
-    OLSoundPlayer *soundPlayer;
+  OLSoundPlayer *soundPlayer;
     
-    BoardView *boardView;
+  BoardView *boardView;
 	Game *game;
-	OLClient *client;
 
-    NSTimer *heartbeat;
+	NSTimer *heartbeat;
 }
+// This class is abstract; use one of the GGC subclasses
+-(id)init;
+
+-(void)layout; // override this in subclasses
 
 #pragma mark Properties
 @property (readonly, nonatomic) OLSoundPlayer *soundPlayer;

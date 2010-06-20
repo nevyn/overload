@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		05022CD00FE58B0100BBB333 /* OLMainMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 05022CCF0FE58B0100BBB333 /* OLMainMenu.m */; };
+		05022CD20FE58B2E00BBB333 /* OLMainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05022CD10FE58B2E00BBB333 /* OLMainMenu.xib */; };
+		05022D220FE595B800BBB333 /* GameView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05022D210FE595B800BBB333 /* GameView.xib */; };
+		05022D5B0FE598C400BBB333 /* GVCHotseat.m in Sources */ = {isa = PBXBuildFile; fileRef = 05022D5A0FE598C400BBB333 /* GVCHotseat.m */; };
+		05022D5E0FE598F600BBB333 /* GVCOnline.m in Sources */ = {isa = PBXBuildFile; fileRef = 05022D5D0FE598F600BBB333 /* GVCOnline.m */; };
+		05022D610FE5DA4400BBB333 /* GVCAI.m in Sources */ = {isa = PBXBuildFile; fileRef = 05022D600FE5DA4400BBB333 /* GVCAI.m */; };
 		0511F3590E71B64E003FFA22 /* Board.m in Sources */ = {isa = PBXBuildFile; fileRef = 0511F3580E71B64E003FFA22 /* Board.m */; };
 		0511F5760E742C5F003FFA22 /* CInvocationGrabber.m in Sources */ = {isa = PBXBuildFile; fileRef = 0511F5740E742C5F003FFA22 /* CInvocationGrabber.m */; };
 		0511F6180E743977003FFA22 /* OLSoundPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0511F6170E743977003FFA22 /* OLSoundPlayer.m */; };
@@ -17,6 +23,7 @@
 		0517F40A0E59EAF40075F5A9 /* Text vertcal.png in Resources */ = {isa = PBXBuildFile; fileRef = 0517F4090E59EAF40075F5A9 /* Text vertcal.png */; };
 		0517F4650E59EE700075F5A9 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 0517F4640E59EE700075F5A9 /* background.png */; };
 		0530E0320E5B59E200C73DC6 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0530E0310E5B59E200C73DC6 /* icon.png */; };
+		0533E7E40FE5DBF500539AC7 /* MobileOverloadAppDelegate+AskAboutStatistics.m in Sources */ = {isa = PBXBuildFile; fileRef = 0533E7E30FE5DBF500539AC7 /* MobileOverloadAppDelegate+AskAboutStatistics.m */; };
 		053494260E60B1B4003A834C /* win.wav in Resources */ = {isa = PBXBuildFile; fileRef = 053494250E60B1B4003A834C /* win.wav */; };
 		053494470E60BBF1003A834C /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 053494460E60BBF1003A834C /* Default.png */; };
 		054615D00E5E0E9600DAF3BD /* ScoreIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 054615CF0E5E0E9600DAF3BD /* ScoreIndicator.m */; };
@@ -72,13 +79,21 @@
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		280E754D0DD40C5E005A515E /* FlipsideView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 280E754A0DD40C5E005A515E /* FlipsideView.xib */; };
-		280E754E0DD40C5E005A515E /* MainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 280E754B0DD40C5E005A515E /* MainView.xib */; };
 		280E754F0DD40C5E005A515E /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 280E754C0DD40C5E005A515E /* MainWindow.xib */; };
-		289233AF0DB2D0DB0083E9F9 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 289233AB0DB2D0DB0083E9F9 /* RootViewController.m */; };
 		289233B00DB2D0DB0083E9F9 /* FlipsideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 289233AD0DB2D0DB0083E9F9 /* FlipsideViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		05022CCE0FE58B0100BBB333 /* OLMainMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OLMainMenu.h; sourceTree = "<group>"; };
+		05022CCF0FE58B0100BBB333 /* OLMainMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OLMainMenu.m; sourceTree = "<group>"; };
+		05022CD10FE58B2E00BBB333 /* OLMainMenu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OLMainMenu.xib; sourceTree = "<group>"; };
+		05022D210FE595B800BBB333 /* GameView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GameView.xib; sourceTree = "<group>"; };
+		05022D590FE598C400BBB333 /* GVCHotseat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GVCHotseat.h; sourceTree = "<group>"; };
+		05022D5A0FE598C400BBB333 /* GVCHotseat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GVCHotseat.m; sourceTree = "<group>"; };
+		05022D5C0FE598F600BBB333 /* GVCOnline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GVCOnline.h; sourceTree = "<group>"; };
+		05022D5D0FE598F600BBB333 /* GVCOnline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GVCOnline.m; sourceTree = "<group>"; };
+		05022D5F0FE5DA4400BBB333 /* GVCAI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GVCAI.h; sourceTree = "<group>"; };
+		05022D600FE5DA4400BBB333 /* GVCAI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GVCAI.m; sourceTree = "<group>"; };
 		0511F3570E71B64E003FFA22 /* Board.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Board.h; sourceTree = "<group>"; };
 		0511F3580E71B64E003FFA22 /* Board.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Board.m; sourceTree = "<group>"; };
 		0511F5740E742C5F003FFA22 /* CInvocationGrabber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CInvocationGrabber.m; sourceTree = "<group>"; };
@@ -95,6 +110,8 @@
 		0530DFFD0E5B474700C73DC6 /* todo.taskpaper */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = todo.taskpaper; sourceTree = "<group>"; };
 		0530E0310E5B59E200C73DC6 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		053185700EF793EE0054A00D /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		0533E7E20FE5DBF500539AC7 /* MobileOverloadAppDelegate+AskAboutStatistics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MobileOverloadAppDelegate+AskAboutStatistics.h"; sourceTree = "<group>"; };
+		0533E7E30FE5DBF500539AC7 /* MobileOverloadAppDelegate+AskAboutStatistics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MobileOverloadAppDelegate+AskAboutStatistics.m"; sourceTree = "<group>"; };
 		053494250E60B1B4003A834C /* win.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = win.wav; sourceTree = "<group>"; };
 		053494460E60BBF1003A834C /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		0541F5360E5EFFEE000D6368 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = /System/Library/Frameworks/AudioToolbox.framework; sourceTree = "<absolute>"; };
@@ -174,10 +191,7 @@
 		1D6058910D05DD3D006BFB54 /* MobileOverload.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobileOverload.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		280E754A0DD40C5E005A515E /* FlipsideView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FlipsideView.xib; sourceTree = "<group>"; };
-		280E754B0DD40C5E005A515E /* MainView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainView.xib; sourceTree = "<group>"; };
 		280E754C0DD40C5E005A515E /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
-		289233AA0DB2D0DB0083E9F9 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
-		289233AB0DB2D0DB0083E9F9 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		289233AC0DB2D0DB0083E9F9 /* FlipsideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlipsideViewController.h; sourceTree = "<group>"; };
 		289233AD0DB2D0DB0083E9F9 /* FlipsideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlipsideViewController.m; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -288,6 +302,13 @@
 			children = (
 				05FFC7D40F7A0C12001A33E8 /* GameViewController.h */,
 				05FFC7D50F7A0C12001A33E8 /* GameViewController.m */,
+				05022D210FE595B800BBB333 /* GameView.xib */,
+				05022D590FE598C400BBB333 /* GVCHotseat.h */,
+				05022D5A0FE598C400BBB333 /* GVCHotseat.m */,
+				05022D5C0FE598F600BBB333 /* GVCOnline.h */,
+				05022D5D0FE598F600BBB333 /* GVCOnline.m */,
+				05022D5F0FE5DA4400BBB333 /* GVCAI.h */,
+				05022D600FE5DA4400BBB333 /* GVCAI.m */,
 			);
 			path = "Game Controllers";
 			sourceTree = "<group>";
@@ -295,6 +316,9 @@
 		05FFC7DE0F7A0C25001A33E8 /* Menus */ = {
 			isa = PBXGroup;
 			children = (
+				05022CCE0FE58B0100BBB333 /* OLMainMenu.h */,
+				05022CCF0FE58B0100BBB333 /* OLMainMenu.m */,
+				05022CD10FE58B2E00BBB333 /* OLMainMenu.xib */,
 			);
 			path = Menus;
 			sourceTree = "<group>";
@@ -302,10 +326,10 @@
 		080E96DDFE201D6D7F000001 /* Application Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				289233AA0DB2D0DB0083E9F9 /* RootViewController.h */,
-				289233AB0DB2D0DB0083E9F9 /* RootViewController.m */,
 				1D3623240D0F684500981E51 /* MobileOverloadAppDelegate.h */,
 				1D3623250D0F684500981E51 /* MobileOverloadAppDelegate.m */,
+				0533E7E20FE5DBF500539AC7 /* MobileOverloadAppDelegate+AskAboutStatistics.h */,
+				0533E7E30FE5DBF500539AC7 /* MobileOverloadAppDelegate+AskAboutStatistics.m */,
 			);
 			path = "Application Controllers";
 			sourceTree = "<group>";
@@ -400,7 +424,6 @@
 				0517F3F80E59E6F30075F5A9 /* cog 150px 6cog 35deg.png */,
 				0517F3F90E59E6F30075F5A9 /* cog 150px 12cog 35deg.png */,
 				280E754A0DD40C5E005A515E /* FlipsideView.xib */,
-				280E754B0DD40C5E005A515E /* MainView.xib */,
 				280E754C0DD40C5E005A515E /* MainWindow.xib */,
 			);
 			path = Resources;
@@ -475,7 +498,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				280E754D0DD40C5E005A515E /* FlipsideView.xib in Resources */,
-				280E754E0DD40C5E005A515E /* MainView.xib in Resources */,
 				280E754F0DD40C5E005A515E /* MainWindow.xib in Resources */,
 				05D7828D0E59152700FB00DB /* dist.plist in Resources */,
 				0517F3FA0E59E6F30075F5A9 /* cog-screw.png in Resources */,
@@ -499,6 +521,8 @@
 				05EE3D5A0F45A03E00E5034D /* 256 in Resources */,
 				05EE3D5B0F45A03E00E5034D /* 64 in Resources */,
 				05EE3D5C0F45A03E00E5034D /* 128 in Resources */,
+				05022CD20FE58B2E00BBB333 /* OLMainMenu.xib in Resources */,
+				05022D220FE595B800BBB333 /* GameView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -511,7 +535,6 @@
 			files = (
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* MobileOverloadAppDelegate.m in Sources */,
-				289233AF0DB2D0DB0083E9F9 /* RootViewController.m in Sources */,
 				289233B00DB2D0DB0083E9F9 /* FlipsideViewController.m in Sources */,
 				05D77E9A0E58C7D400FB00DB /* StatusBarView.m in Sources */,
 				05D77F8E0E58E63E00FB00DB /* TypesAndConstants.m in Sources */,
@@ -540,6 +563,11 @@
 				0595F3570F6E398F008F9D37 /* OLClient.m in Sources */,
 				0595F3B60F6EF16A008F9D37 /* UIColor-Expanded.m in Sources */,
 				05FFC7DD0F7A0C12001A33E8 /* GameViewController.m in Sources */,
+				05022CD00FE58B0100BBB333 /* OLMainMenu.m in Sources */,
+				05022D5B0FE598C400BBB333 /* GVCHotseat.m in Sources */,
+				05022D5E0FE598F600BBB333 /* GVCOnline.m in Sources */,
+				05022D610FE5DA4400BBB333 /* GVCAI.m in Sources */,
+				0533E7E40FE5DBF500539AC7 /* MobileOverloadAppDelegate+AskAboutStatistics.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

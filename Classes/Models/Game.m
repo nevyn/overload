@@ -149,9 +149,6 @@
 
 -(void)board:(Board*)board_ changedCurrentPlayer:(PlayerID)currentPlayer;
 {
-    if(board.isBoardEmpty)
-        [[Beacon sharedIfOptedIn] startSubBeaconWithName:@"Local 2P Game" timeSession:YES];
-    
     if(currentPlayer == PlayerP2)
         [ai performSelector:@selector(performMove) withObject:nil afterDelay:0.2];
 	[delegate board:board_ changedCurrentPlayer:currentPlayer];

@@ -8,11 +8,20 @@
 
 #import <UIKit/UIKit.h>
 
+typedef enum {
+	ScoreIndicatorHorizontal,
+	ScoreIndicatorVertical
+} ScoreIndicatorOrientation;
 
 @interface ScoreIndicator : UIView {
-    UIView *container;
+  UIView *container;
+	ScoreIndicatorOrientation orientation;
 }
--(id)initWithFrame:(CGRect)frame colors:(NSArray*)colors;
++(float)defaultSize;
+
+-(id)initWithFrame:(CGRect)frame
+						colors:(NSArray*)colors
+			 orientation:(ScoreIndicatorOrientation)orientation_;
 -(void)setScores:(CGFloat[])scores;
 
 @property (readonly, nonatomic) NSUInteger playerCount;

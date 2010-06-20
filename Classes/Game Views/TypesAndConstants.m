@@ -6,13 +6,13 @@
  *  Copyright 2008 Third Cog Software. All rights reserved.
  *
  */
+#import "StatusBarView.h"
 
-const float ScoreBarHeight = 44-14;
-const float BoardWidth = 320-14;
+const float BoardWidth = 320;
 float BoardHeight()
 {
     CGRect screenFrame = [[UIScreen mainScreen] applicationFrame];
-    return screenFrame.size.height - ScoreBarHeight;
+    return screenFrame.size.height - [StatusBarView defaultHeight];
 }
 const float TileWidth = 32;
 const float TileHeight = 31;

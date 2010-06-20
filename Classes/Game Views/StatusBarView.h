@@ -22,6 +22,8 @@
     
     id<ScoreBarViewDelegate> delegate;
 }
++(float)defaultHeight;
+
 - (id)initWithFrame:(CGRect)frame;
 
 -(void)setScores:(CGFloat[])scores;

@@ -7,9 +7,8 @@
  *
  */
 
-extern const float ScoreBarHeight;
-extern const float BoardWidth;
-extern float BoardHeight();
+extern const float BoardWidth __attribute__((__deprecated__));
+extern float BoardHeight() __attribute__((__deprecated__));
 extern const float TileWidth;
 extern const float TileHeight;
 extern const NSUInteger WidthInTiles; // = 10

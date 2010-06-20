@@ -7,7 +7,6 @@
 //
 
 #import "FlipsideViewController.h"
-#import "RootViewController.h"
 #import "GameViewController.h"
 #import "CInvocationGrabber.h"
 #import "Beacon+OptIn.h"
@@ -107,8 +106,8 @@
     [stuffToDoWhenFlipped removeAllObjects];
     
     
-    
-    [rootController toggleView];
+#warning Settings view is now broken
+    //[rootController toggleView];
 }
 - (IBAction)newGame:(id)sender;
 {
