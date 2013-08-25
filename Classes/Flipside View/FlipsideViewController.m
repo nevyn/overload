@@ -35,31 +35,46 @@
     return self;
 }
 
-- (void)viewDidLoad {
-    
-    first = [NSDate timeIntervalSinceReferenceDate];
-    
+- (void)viewDidLoad
+{
     NSString *version = [[[NSBundle mainBundle]infoDictionary]objectForKey:@"CFBundleVersion"];
     versionLabel.text = [NSString stringWithFormat:@"v%@", version];
-    
+}
+
+-(void)startRotatingWheels;
+{
+    first = [NSDate timeIntervalSinceReferenceDate];
+    rotationTimer = [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(rotateWheels:) userInfo:nil repeats:YES];
+}
+
+- (void)stopRotatingWheels;
+{
+	[rotationTimer invalidate];
+	rotationTimer = nil;
+	cogU.transform = cogL.transform = cogM.transform = CGAffineTransformIdentity;
+}
+
+-(void)viewWillAppear:(BOOL)yeah;
+{
+	[super viewWillAppear:yeah];
+    newBoardSize = BoardSizeMake(-1, -1);
+	
     chaosGame.on = mainController.board.chaosGame;
     boardSize.value = mainController.board.sizeInTiles.width/(float)WidthInTiles();
     soundSwitch.on = mainController.soundPlayer.sound;
 
     [self updateSizeLabel:mainController.board.sizeInTiles];
 }
--(void)startRotatingWheels;
+
+- (void)viewDidAppear:(BOOL)animated
 {
-    rotationTimer = [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(rotateWheels:) userInfo:nil repeats:YES];
-}
--(void)viewWillAppear:(BOOL)yeah;
-{
-    newBoardSize = BoardSizeMake(-1, -1);
+	[super viewDidAppear:animated];
     [self startRotatingWheels];
 }
+
 -(void)viewDidDisappear:(BOOL)yeah;
 {
-    [rotationTimer invalidate]; rotationTimer = nil;
+    [self stopRotatingWheels];
 }
 
 -(void)rotateWheels:(NSTimer*)caller;
