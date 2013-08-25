@@ -14,6 +14,7 @@
 @interface FlipsideViewController : UIViewController <UIActionSheetDelegate>{
     IBOutlet UIImageView *cogU, *cogM, *cogL;
     IBOutlet UILabel *versionLabel;
+	IBOutlet UIButton *removeAdsButton;
     NSTimer *rotationTimer;
     NSTimeInterval first;
     RootViewController *rootController;

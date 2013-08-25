@@ -48,6 +48,8 @@
 		05A7640D0EFE655C005D899A /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05A7640C0EFE655C005D899A /* MediaPlayer.framework */; };
 		05AD39420F3194A8004F746D /* Texture2D.m in Sources */ = {isa = PBXBuildFile; fileRef = 05AD39410F3194A8004F746D /* Texture2D.m */; };
 		05CC620817CAA20D00829CF9 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05CC620717CAA20D00829CF9 /* iAd.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		05CC620B17CABAF500829CF9 /* OLPurchasesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05CC620A17CABAF500829CF9 /* OLPurchasesController.m */; };
+		05CC620D17CABB7400829CF9 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05CC620C17CABB7400829CF9 /* StoreKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		05CF88E80E5F78DF00E2D8B4 /* lose-p1.png in Resources */ = {isa = PBXBuildFile; fileRef = 05CF88E40E5F78DF00E2D8B4 /* lose-p1.png */; };
 		05CF88E90E5F78DF00E2D8B4 /* win-p1.png in Resources */ = {isa = PBXBuildFile; fileRef = 05CF88E50E5F78DF00E2D8B4 /* win-p1.png */; };
 		05CF88EA0E5F78DF00E2D8B4 /* lose-p2.png in Resources */ = {isa = PBXBuildFile; fileRef = 05CF88E60E5F78DF00E2D8B4 /* lose-p2.png */; };
@@ -133,6 +135,9 @@
 		05AD39400F3194A8004F746D /* Texture2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Texture2D.h; sourceTree = "<group>"; };
 		05AD39410F3194A8004F746D /* Texture2D.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Texture2D.m; sourceTree = "<group>"; };
 		05CC620717CAA20D00829CF9 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
+		05CC620917CABAF500829CF9 /* OLPurchasesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OLPurchasesController.h; sourceTree = "<group>"; };
+		05CC620A17CABAF500829CF9 /* OLPurchasesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OLPurchasesController.m; sourceTree = "<group>"; };
+		05CC620C17CABB7400829CF9 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		05CF88E40E5F78DF00E2D8B4 /* lose-p1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lose-p1.png"; sourceTree = "<group>"; };
 		05CF88E50E5F78DF00E2D8B4 /* win-p1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "win-p1.png"; sourceTree = "<group>"; };
 		05CF88E60E5F78DF00E2D8B4 /* lose-p2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lose-p2.png"; sourceTree = "<group>"; };
@@ -180,6 +185,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05CC620D17CABB7400829CF9 /* StoreKit.framework in Frameworks */,
 				05CC620817CAA20D00829CF9 /* iAd.framework in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
@@ -356,6 +362,8 @@
 				05E03D840F2BBF22006E6190 /* ColorConversion.c */,
 				05E03E660F2BD8F1006E6190 /* UIImage+GLTexture.h */,
 				05E03E670F2BD8F1006E6190 /* UIImage+GLTexture.m */,
+				05CC620917CABAF500829CF9 /* OLPurchasesController.h */,
+				05CC620A17CABAF500829CF9 /* OLPurchasesController.m */,
 			);
 			path = "Other Sources";
 			sourceTree = "<group>";
@@ -389,6 +397,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				05CC620C17CABB7400829CF9 /* StoreKit.framework */,
 				05CC620717CAA20D00829CF9 /* iAd.framework */,
 				05E03BAD0F2B20F2006E6190 /* OpenGLES.framework */,
 				05A7640C0EFE655C005D899A /* MediaPlayer.framework */,
@@ -521,6 +530,7 @@
 				058BDFB20F3E160E00E4A699 /* CollectionUtils.m in Sources */,
 				058BDFB30F3E160E00E4A699 /* Logging.m in Sources */,
 				058BDFB40F3E160E00E4A699 /* ExceptionUtils.m in Sources */,
+				05CC620B17CABAF500829CF9 /* OLPurchasesController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

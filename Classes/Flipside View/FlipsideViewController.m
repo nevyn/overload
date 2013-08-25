@@ -10,6 +10,7 @@
 #import "RootViewController.h"
 #import "BoardViewController.h"
 #import "CInvocationGrabber.h"
+#import "OLPurchasesController.h"
 #import <MediaPlayer/MediaPlayer.h>
 
 #define schedule(target, stuff) {\
@@ -64,6 +65,9 @@
     chaosGame.on = mainController.board.chaosGame;
     boardSize.value = mainController.board.sizeInTiles.width/(float)WidthInTiles();
     soundSwitch.on = mainController.soundPlayer.sound;
+	
+	removeAdsButton.hidden = ![[OLPurchasesController sharedController] shouldShowAds];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(adsChanged) name:OLPurchasesAdsStatusChangedNotification object:nil];
 
     [self updateSizeLabel:mainController.board.sizeInTiles];
 }
@@ -76,6 +80,8 @@
 
 -(void)viewDidDisappear:(BOOL)yeah;
 {
+	[super viewDidDisappear:yeah];
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
     [self stopRotatingWheels];
 }
 
@@ -99,7 +105,9 @@
 }
 
 
-- (void)dealloc {
+- (void)dealloc
+{
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
     [rotationTimer invalidate]; rotationTimer = nil;
     [stuffToDoWhenFlipped release]; stuffToDoWhenFlipped = nil;
 	[super dealloc];
