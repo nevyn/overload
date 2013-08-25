@@ -47,6 +47,7 @@
 		05A762D90EFCE9EF005D899A /* AI2.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A762D80EFCE9EF005D899A /* AI2.m */; };
 		05A7640D0EFE655C005D899A /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05A7640C0EFE655C005D899A /* MediaPlayer.framework */; };
 		05AD39420F3194A8004F746D /* Texture2D.m in Sources */ = {isa = PBXBuildFile; fileRef = 05AD39410F3194A8004F746D /* Texture2D.m */; };
+		05CC620817CAA20D00829CF9 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05CC620717CAA20D00829CF9 /* iAd.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		05CF88E80E5F78DF00E2D8B4 /* lose-p1.png in Resources */ = {isa = PBXBuildFile; fileRef = 05CF88E40E5F78DF00E2D8B4 /* lose-p1.png */; };
 		05CF88E90E5F78DF00E2D8B4 /* win-p1.png in Resources */ = {isa = PBXBuildFile; fileRef = 05CF88E50E5F78DF00E2D8B4 /* win-p1.png */; };
 		05CF88EA0E5F78DF00E2D8B4 /* lose-p2.png in Resources */ = {isa = PBXBuildFile; fileRef = 05CF88E60E5F78DF00E2D8B4 /* lose-p2.png */; };
@@ -58,7 +59,6 @@
 		05D7828D0E59152700FB00DB /* dist.plist in Resources */ = {isa = PBXBuildFile; fileRef = 05D7828C0E59152700FB00DB /* dist.plist */; };
 		05E03B490F2A33C5006E6190 /* BoardViewGL.m in Sources */ = {isa = PBXBuildFile; fileRef = 05E03B470F2A33C5006E6190 /* BoardViewGL.m */; };
 		05E03BAE0F2B20F2006E6190 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05E03BAD0F2B20F2006E6190 /* OpenGLES.framework */; };
-		05E03BB00F2B211B006E6190 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 05E03BAF0F2B211B006E6190 /* libsqlite3.dylib */; };
 		05E03BCB0F2B2690006E6190 /* BoardTileView.m in Sources */ = {isa = PBXBuildFile; fileRef = 05E03BC80F2B2690006E6190 /* BoardTileView.m */; };
 		05E03BCC0F2B2690006E6190 /* BoardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 05E03BCA0F2B2690006E6190 /* BoardView.m */; };
 		05E03D850F2BBF22006E6190 /* ColorConversion.c in Sources */ = {isa = PBXBuildFile; fileRef = 05E03D840F2BBF22006E6190 /* ColorConversion.c */; };
@@ -126,12 +126,13 @@
 		058BDFB00F3E160E00E4A699 /* ExceptionUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExceptionUtils.m; sourceTree = "<group>"; };
 		058FEB850EF841DF006FDFDA /* AVAudioPlayerQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVAudioPlayerQueue.h; sourceTree = "<group>"; };
 		058FEB860EF841DF006FDFDA /* AVAudioPlayerQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVAudioPlayerQueue.m; sourceTree = "<group>"; };
-		059E5D3411CE98780082C131 /* MainWindow-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "MainWindow-iPad.xib"; path = "Resources-iPad/Resources/MainWindow-iPad.xib"; sourceTree = "<group>"; };
+		059E5D3411CE98780082C131 /* MainWindow-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "MainWindow-iPad.xib"; path = "../../Resources-iPad/Resources/MainWindow-iPad.xib"; sourceTree = "<group>"; };
 		05A762D70EFCE9EF005D899A /* AI2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AI2.h; sourceTree = "<group>"; };
 		05A762D80EFCE9EF005D899A /* AI2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AI2.m; sourceTree = "<group>"; };
 		05A7640C0EFE655C005D899A /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		05AD39400F3194A8004F746D /* Texture2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Texture2D.h; sourceTree = "<group>"; };
 		05AD39410F3194A8004F746D /* Texture2D.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Texture2D.m; sourceTree = "<group>"; };
+		05CC620717CAA20D00829CF9 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		05CF88E40E5F78DF00E2D8B4 /* lose-p1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lose-p1.png"; sourceTree = "<group>"; };
 		05CF88E50E5F78DF00E2D8B4 /* win-p1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "win-p1.png"; sourceTree = "<group>"; };
 		05CF88E60E5F78DF00E2D8B4 /* lose-p2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lose-p2.png"; sourceTree = "<group>"; };
@@ -146,7 +147,6 @@
 		05E03B470F2A33C5006E6190 /* BoardViewGL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoardViewGL.m; sourceTree = "<group>"; };
 		05E03B480F2A33C5006E6190 /* BoardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardView.h; sourceTree = "<group>"; };
 		05E03BAD0F2B20F2006E6190 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
-		05E03BAF0F2B211B006E6190 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		05E03BC70F2B2690006E6190 /* BoardTileView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardTileView.h; sourceTree = "<group>"; };
 		05E03BC80F2B2690006E6190 /* BoardTileView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoardTileView.m; sourceTree = "<group>"; };
 		05E03BCA0F2B2690006E6190 /* BoardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoardView.m; sourceTree = "<group>"; };
@@ -180,6 +180,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05CC620817CAA20D00829CF9 /* iAd.framework in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				05D77FDF0E58E93F00FB00DB /* QuartzCore.framework in Frameworks */,
@@ -190,7 +191,6 @@
 				053185710EF793EE0054A00D /* AVFoundation.framework in Frameworks */,
 				05A7640D0EFE655C005D899A /* MediaPlayer.framework in Frameworks */,
 				05E03BAE0F2B20F2006E6190 /* OpenGLES.framework in Frameworks */,
-				05E03BB00F2B211B006E6190 /* libsqlite3.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -235,7 +235,6 @@
 		059E5D3311CE98780082C131 /* Resources-iPad */ = {
 			isa = PBXGroup;
 			children = (
-				059E5D3411CE98780082C131 /* MainWindow-iPad.xib */,
 			);
 			name = "Resources-iPad";
 			sourceTree = "<group>";
@@ -286,6 +285,7 @@
 				1D3623240D0F684500981E51 /* MobileOverloadAppDelegate.h */,
 				1D3623250D0F684500981E51 /* MobileOverloadAppDelegate.m */,
 				280E754C0DD40C5E005A515E /* MainWindow.xib */,
+				059E5D3411CE98780082C131 /* MainWindow-iPad.xib */,
 			);
 			path = "Application Controllers";
 			sourceTree = "<group>";
@@ -389,7 +389,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				05E03BAF0F2B211B006E6190 /* libsqlite3.dylib */,
+				05CC620717CAA20D00829CF9 /* iAd.framework */,
 				05E03BAD0F2B20F2006E6190 /* OpenGLES.framework */,
 				05A7640C0EFE655C005D899A /* MediaPlayer.framework */,
 				053185700EF793EE0054A00D /* AVFoundation.framework */,

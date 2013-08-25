@@ -10,7 +10,11 @@
 #import "BoardViewController.h"
 #import "FlipsideViewController.h"
 
-@interface RootViewController () <UIPopoverControllerDelegate>
+@interface RootViewController () <UIPopoverControllerDelegate, ADBannerViewDelegate>
+{
+	BOOL _adShown;
+}
+@property(nonatomic) BOOL adShown;
 @end
 
 
@@ -20,6 +24,7 @@
 @synthesize mainViewController;
 @synthesize flipsideViewController;
 @synthesize ipadInfoPopover;
+@synthesize banner;
 
 - (void)viewDidLoad {
 	BoardViewController *viewController = [[[BoardViewController alloc] init] autorelease];
@@ -31,6 +36,15 @@
     
     mainViewController.view.frame = self.view.bounds;
     mainViewController.view.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
+	
+	if([ADBannerView class]) {
+		self.banner = [[ADBannerView alloc] initWithFrame:CGRectZero];
+		self.banner.currentContentSizeIdentifier = ADBannerContentSizeIdentifierPortrait;
+		self.banner.delegate = self;
+		[self.view addSubview:self.banner];
+		_adShown = YES;
+		[self setAdShown:NO animated:NO];
+	}
 }
 
 
@@ -124,5 +138,54 @@
 	[super dealloc];
 }
 
+#pragma mark iAds
 
+- (IBAction)toggleAds:(id)sender
+{
+	[self setAdShown:!_adShown animated:YES];
+}
+
+- (void)setAdShown:(BOOL)adShown animated:(BOOL)animated;
+{
+	if(adShown == _adShown)
+		return;
+	_adShown = adShown;
+	
+	CGRect screen = [[UIScreen mainScreen] applicationFrame];
+	CGRect mainFrame = CGRectMake(0, 0, screen.size.width, screen.size.height - banner.frame.size.height);
+	CGRect bannerFrame = (CGRect){.origin = {0, mainFrame.size.height}, .size = banner.frame.size};
+	
+	if(!adShown) {
+		mainFrame = (CGRect){.size = screen.size};
+		bannerFrame = (CGRect){.origin = {0, mainFrame.size.height}, .size = bannerFrame.size};
+	}
+	
+	CGRect infoFrame = (CGRect){.origin = {
+		screen.size.width - infoButton.frame.size.width - 20,
+		bannerFrame.origin.y - infoButton.frame.size.height - 20
+	}, .size = infoButton.frame.size };
+	
+	if(animated)
+		[UIView beginAnimations:@"animateAdBanner" context:NULL];
+	
+	mainViewController.view.frame = mainFrame;
+	if(UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad) {
+		flipsideViewController.view.frame = mainFrame;
+	}
+	banner.frame = bannerFrame;
+	infoButton.frame = infoFrame;
+	
+	if(animated)
+		[UIView commitAnimations];
+}
+
+- (void)bannerViewDidLoadAd:(ADBannerView *)banner
+{
+	[self setAdShown:YES animated:YES];
+}
+
+- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error;
+{
+	[self setAdShown:NO animated:YES];
+}
 @end

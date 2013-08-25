@@ -7,21 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <iAd/iAd.h>
 
 @class BoardViewController;
 @class FlipsideViewController;
 
-@interface RootViewController : UIViewController {
-
-	IBOutlet UIButton *infoButton;
-	BoardViewController *mainViewController;
-	FlipsideViewController *flipsideViewController;
-}
-
-@property (nonatomic, retain) UIButton *infoButton;
+@interface RootViewController : UIViewController
+@property (nonatomic, retain) IBOutlet UIButton *infoButton;
 @property (nonatomic, retain) BoardViewController *mainViewController;
 @property (nonatomic, retain) FlipsideViewController *flipsideViewController;
 @property (nonatomic, retain) UIPopoverController *ipadInfoPopover;
+@property (nonatomic, retain) ADBannerView *banner;
 
 - (IBAction)toggleView;
 

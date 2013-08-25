@@ -25,8 +25,6 @@
 @implementation MobileOverloadAppDelegate
 @synthesize window;
 @synthesize rootViewController;
-NSString *applicationCode = @"f41f960eeef940e4f2bbc28259d1165c";
-
 
 +(void)initialize;
 {
