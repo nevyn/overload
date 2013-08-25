@@ -69,6 +69,7 @@ static NSString *const OLPurchasesAdsDisabledDefaultsKey = @"OLPurchasesDisabled
 - (void)unlockAdRemoval
 {
 	[[NSUserDefaults standardUserDefaults] setBool:YES forKey:OLPurchasesAdsDisabledDefaultsKey];
+	[[NSUserDefaults standardUserDefaults] synchronize];
 	[[NSNotificationCenter defaultCenter] postNotificationName:OLPurchasesAdsStatusChangedNotification object:nil];
 }
 
@@ -112,13 +113,13 @@ static NSString *const OLPurchasesAdsDisabledDefaultsKey = @"OLPurchasesDisabled
 		
 		switch (transaction.transactionState) {
 			case SKPaymentTransactionStatePurchased:
-				[[SKPaymentQueue defaultQueue] finishTransaction:transaction];
 				[self unlockAdRemoval];
+				[[SKPaymentQueue defaultQueue] finishTransaction:transaction];
 				[[[UIAlertView alloc] initWithTitle:@"Ads removed!" message:@"Thanks for making indie development possible! Your support means a lot to me." delegate:nil cancelButtonTitle:@"Yay!" otherButtonTitles:nil] show];
 				break;
 			case SKPaymentTransactionStateRestored:
-				[[SKPaymentQueue defaultQueue] finishTransaction:transaction];
 				[self unlockAdRemoval];
+				[[SKPaymentQueue defaultQueue] finishTransaction:transaction];
 				[[[UIAlertView alloc] initWithTitle:@"Ads removed!" message:@"Your purchase has been restored, and ads are now gone from your game once again." delegate:nil cancelButtonTitle:@"Yay!" otherButtonTitles:nil] show];
 				break;
 			case SKPaymentTransactionStateFailed:
