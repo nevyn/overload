@@ -76,7 +76,7 @@
                                                                              mainController:self.mainViewController] autorelease];
 	self.flipsideViewController = viewController;
 	
-    viewController.view.frame = self.view.bounds;
+    viewController.view.frame = mainViewController.view.frame;
     viewController.view.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
 }
 
