@@ -45,9 +45,12 @@ NSString *applicationCode = @"f41f960eeef940e4f2bbc28259d1165c";
      ];
 }
 #pragma mark 
-#pragma mark Launch, paranoidTimer, asking about statistics
+#pragma mark Launch, paranoidTimer
 - (void)applicationDidFinishLaunching:(UIApplication *)application {
-    [window addSubview:[rootViewController view]];
+    if([window respondsToSelector:@selector(setRootViewController:)])
+        [window setRootViewController:rootViewController];
+    else
+        [window addSubview:[rootViewController view]];
 	[window makeKeyAndVisible];
     
     paranoidTimer = [[NSTimer scheduledTimerWithTimeInterval:10.0 target:self selector:@selector(paranoid) userInfo:nil repeats:YES] retain];

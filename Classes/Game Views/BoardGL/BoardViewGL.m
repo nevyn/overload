@@ -462,6 +462,7 @@ void renderWhite()
 @synthesize gloss, t0, t25, t50, t75;
 -(BOOL)animated; { return YES; } // nops, not needed in GL version
 -(void)setAnimated:(BOOL)_; {}
+-(void)relayoutTiles; {}
 @end
 
 #pragma mark 
