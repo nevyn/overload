@@ -200,13 +200,18 @@
     [UIView commitAnimations];
 }
 
+NSString *tapForAIString()
+{
+    return [NSString stringWithFormat:@"    Tap me to play against %@", [[UIDevice currentDevice] localizedModel]];
+}
+
 -(void)board:(Board*)board_ changedCurrentPlayer:(Player)currentPlayer;
 {
     [score1 setCurrentPlayer:currentPlayer];
     [score2 setCurrentPlayer:currentPlayer];
     
     if(board.isBoardEmpty) {
-        score2.status = @"    Tap me to play against iPhone";
+        score2.status = tapForAIString();
         [score2 flipStatus];
     }
     
@@ -232,7 +237,7 @@
 #pragma mark Score bar delegates
 -(void)scoreBarTouched:(ScoreBarView*)scoreBarView;
 {
-    if(scoreBarView == score2 && [score2.status isEqual:@"    Tap me to play against iPhone"]) {
+    if(scoreBarView == score2 && [score2.status isEqual:tapForAIString()]) {
         [self startAI];
     }
     
