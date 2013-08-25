@@ -394,21 +394,21 @@ void renderWhite()
 #pragma mark -
 -(void)setValue:(CGFloat)v atPosition:(BoardPoint)p;
 {
-    if(p.x < 0 || p.x >= WidthInTiles || p.y < 0 || p.y >= HeightInTiles) 
+    if(p.x < 0 || p.x >= WidthInTiles() || p.y < 0 || p.y >= HeightInTiles()) 
         return;
     
     board.values[p.x][p.y] = v;
 }
 -(void)setOwner:(Player)player atPosition:(BoardPoint)p;
 {
-    if(p.x < 0 || p.x >= WidthInTiles || p.y < 0 || p.y >= HeightInTiles) 
+    if(p.x < 0 || p.x >= WidthInTiles() || p.y < 0 || p.y >= HeightInTiles()) 
         return;
     
     board.owners[p.x][p.y] = player;
 }
 -(void)explode:(BoardPoint)p;
 {
-    if(p.x < 0 || p.x >= WidthInTiles || p.y < 0 || p.y >= HeightInTiles) 
+    if(p.x < 0 || p.x >= WidthInTiles() || p.y < 0 || p.y >= HeightInTiles()) 
         return;
     
     [aboutToExplode removeObject:[BoardPointWrapper wrap:p]];
@@ -434,7 +434,7 @@ void renderWhite()
 
 -(void)aboutToExplode:(BoardPoint)p;
 {
-    if(p.x < 0 || p.x >= WidthInTiles || p.y < 0 || p.y >= HeightInTiles) 
+    if(p.x < 0 || p.x >= WidthInTiles() || p.y < 0 || p.y >= HeightInTiles()) 
         return;
 
     [aboutToExplode addObject:[BoardPointWrapper wrap:p]];
@@ -447,11 +447,15 @@ void renderWhite()
     sizeInTiles = newSize;
     tileSize = CGSizeMake(BoardWidth()/newSize.width, BoardHeight()/newSize.height);
     
+    float scale = 1;
+    if([UIScreen instancesRespondToSelector:@selector(scale)])
+        scale = [[UIScreen mainScreen] scale];
+    
     NSUInteger resolutions[] = {64, 128, 256};
     NSUInteger resolution = 256;
     for(int i = 0; i < 3; i++) {
         resolution = resolutions[i];
-        if(resolution >= tileSize.width)
+        if(resolution >= (tileSize.width * scale))
             break;
     }
     [self reloadTexturesForResolution:resolution];

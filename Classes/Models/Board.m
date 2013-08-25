@@ -38,8 +38,8 @@
 {
     if(![super init]) return nil;
     
-    for(NSUInteger y = 0; y < HeightInTiles; y++) {
-        for (NSUInteger x = 0; x < WidthInTiles; x++) {
+    for(NSUInteger y = 0; y < HeightInTiles(); y++) {
+        for (NSUInteger x = 0; x < WidthInTiles(); x++) {
             Tile *tile = [[Tile alloc] init];
             tile.boardPosition = BoardPointMake(x, y);
             tile.board = self;
@@ -49,7 +49,7 @@
     
     self.currentPlayer = PlayerP1;
     self.chaosGame = NO;
-    self.sizeInTiles = BoardSizeMake(WidthInTiles, HeightInTiles);
+    self.sizeInTiles = BoardSizeMake(WidthInTiles(), HeightInTiles());
     
     explosionsQueue = [[NSMutableDictionary alloc] init];
     
@@ -59,8 +59,8 @@
 {
     if(![super init]) return nil;
     
-    for(NSUInteger y = 0; y < HeightInTiles; y++) {
-        for (NSUInteger x = 0; x < WidthInTiles; x++) {
+    for(NSUInteger y = 0; y < HeightInTiles(); y++) {
+        for (NSUInteger x = 0; x < WidthInTiles(); x++) {
             Tile *tile = [[Tile alloc] init];
             tile.boardPosition = BoardPointMake(x, y);
             tile.board = self;
@@ -94,8 +94,8 @@
 {
     [explosionsQueue release]; explosionsQueue = nil;
 
-    for(NSUInteger y = 0; y < HeightInTiles; y++) 
-        for (NSUInteger x = 0; x < WidthInTiles; x++) 
+    for(NSUInteger y = 0; y < HeightInTiles(); y++) 
+        for (NSUInteger x = 0; x < WidthInTiles(); x++) 
             [boardTiles[x][y] release];
     
     
@@ -130,7 +130,7 @@
 #pragma mark Accessors
 -(Tile*)tile:(BoardPoint)tilePos;
 {
-    if(tilePos.x > WidthInTiles-1 || tilePos.x < 0 || tilePos.y > HeightInTiles-1 || tilePos.y < 0) 
+    if(tilePos.x > WidthInTiles()-1 || tilePos.x < 0 || tilePos.y > HeightInTiles()-1 || tilePos.y < 0) 
         return nil;
     
     return boardTiles[tilePos.x][tilePos.y];    
@@ -202,8 +202,8 @@
     self.currentPlayer = PlayerP1;
     [delegate boardIsStartingAnew:self];
     
-    for(NSUInteger y = 0; y < HeightInTiles; y++) {
-        for (NSUInteger x = 0; x < WidthInTiles; x++) {
+    for(NSUInteger y = 0; y < HeightInTiles(); y++) {
+        for (NSUInteger x = 0; x < WidthInTiles(); x++) {
             Tile *tile = [self tile:BoardPointMake(x, y)];
             tile.owner = PlayerNone;
             tile.value = 0;
@@ -224,8 +224,8 @@
 -(void)shuffle;
 {
     srand(time(NULL));
-    for(NSUInteger y = 0; y < HeightInTiles; y++) {
-        for (NSUInteger x = 0; x < WidthInTiles; x++) {
+    for(NSUInteger y = 0; y < HeightInTiles(); y++) {
+        for (NSUInteger x = 0; x < WidthInTiles(); x++) {
             Tile *tile = [self tile:BoardPointMake(x, y)];
             tile.owner = rand()%2 + 1;
             tile.value = (rand()%4)*0.25;
@@ -271,8 +271,8 @@
     [udef setBool:self.chaosGame forKey:@"chaosGame"];
     [udef setObject:$array($object(self.sizeInTiles.width), $object(self.sizeInTiles.height)) forKey:@"boardSize"];
     
-    for(NSUInteger y = 0; y < HeightInTiles; y++) {
-        for (NSUInteger x = 0; x < WidthInTiles; x++) {
+    for(NSUInteger y = 0; y < HeightInTiles(); y++) {
+        for (NSUInteger x = 0; x < WidthInTiles(); x++) {
             Tile *tile = [self tile:BoardPointMake(x, y)];
             [udef setFloat:tile.value forKey:[NSString stringWithFormat:@"board.%d.%d.value", x, y]];
             [udef setInteger:tile.owner forKey:[NSString stringWithFormat:@"board.%d.%d.owner", x, y]];
@@ -288,8 +288,8 @@
     NSArray *widthHeight = [udef objectForKey:@"boardSize"];
     self.sizeInTiles = BoardSizeMake([[widthHeight objectAtIndex:0] intValue], [[widthHeight objectAtIndex:1] intValue]);
 
-    for(NSUInteger y = 0; y < HeightInTiles; y++) {
-        for (NSUInteger x = 0; x < WidthInTiles; x++) {
+    for(NSUInteger y = 0; y < HeightInTiles(); y++) {
+        for (NSUInteger x = 0; x < WidthInTiles(); x++) {
             Tile *tile = [self tile:BoardPointMake(x, y)];
             tile.value = [udef floatForKey:[NSString stringWithFormat:@"board.%d.%d.value", x, y]];
             tile.owner = [udef integerForKey:[NSString stringWithFormat:@"board.%d.%d.owner", x, y]];
@@ -307,8 +307,8 @@
     srand(time(NULL));
     
     // Trigger all delegate methods
-    for(NSUInteger y = 0; y < HeightInTiles; y++) {
-        for (NSUInteger x = 0; x < WidthInTiles; x++) {
+    for(NSUInteger y = 0; y < HeightInTiles(); y++) {
+        for (NSUInteger x = 0; x < WidthInTiles(); x++) {
             Tile *tile = [self tile:BoardPointMake(x, y)];
             [self performSelector:@selector(_sendTile:) withObject:tile afterDelay:frand(0.5)];
         }
@@ -338,11 +338,11 @@
 }
 -(void)setSizeInTiles:(BoardSize)newSize;
 {
-    if(newSize.height > 0 && newSize.width > 0 && newSize.height <= HeightInTiles && newSize.width <= WidthInTiles) {
+    if(newSize.height > 0 && newSize.width > 0 && newSize.height <= HeightInTiles() && newSize.width <= WidthInTiles()) {
         sizeInTiles = newSize;
         [delegate board:self changedSize:self.sizeInTiles];
     } else {
-        NSAssert(false, @"newSize must be >= 1 x 1 and <= WidthInTiles x HeightInTiles");
+        NSAssert(false, @"newSize must be >= 1 x 1 and <= WidthInTiles() x HeightInTiles()");
     }
 }
 

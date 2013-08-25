@@ -22,9 +22,12 @@
 	BoardViewController *viewController = [[[BoardViewController alloc] init] autorelease];
 	self.mainViewController = viewController;
 	
-  [mainViewController viewWillAppear:NO];
+    [mainViewController viewWillAppear:NO];
 	[self.view insertSubview:mainViewController.view belowSubview:infoButton];
-  [mainViewController viewDidAppear:NO];
+    [mainViewController viewDidAppear:NO];
+    
+    mainViewController.view.frame = self.view.bounds;
+    mainViewController.view.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
 }
 
 
@@ -36,6 +39,8 @@
                                                                              mainController:self.mainViewController] autorelease];
 	self.flipsideViewController = viewController;
 	
+    viewController.view.frame = self.view.bounds;
+    viewController.view.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
 }
 
 

@@ -26,7 +26,7 @@
 @end
 
 @interface Board : NSObject <NSCopying>{
-    Tile *boardTiles[10][12]; // [x][y]
+    Tile *boardTiles[10][14]; // [x][y]
     Player currentPlayer;
     BOOL gameEnded;
     

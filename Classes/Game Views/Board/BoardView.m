@@ -24,8 +24,8 @@
 {
 	if (![super initWithFrame:frame]) return nil;
 
-    for(NSUInteger y = 0; y < HeightInTiles; y++) {
-        for (NSUInteger x = 0; x < WidthInTiles; x++) {
+    for(NSUInteger y = 0; y < HeightInTiles(); y++) {
+        for (NSUInteger x = 0; x < WidthInTiles(); x++) {
             BoardTileView *tile = [[[BoardTileView alloc] initWithFrame:CGRectMake(x, y, 1, 1)] autorelease];
             tile.boardPosition = BoardPointMake(x, y);
             tile.board = self;
@@ -35,7 +35,7 @@
     }
     
     self.backgroundColor = [UIColor whiteColor];
-    [self setSizeInTiles:BoardSizeMake(WidthInTiles, HeightInTiles)];
+    [self setSizeInTiles:BoardSizeMake(WidthInTiles(), HeightInTiles())];
     
     [self sparkle];
     
@@ -77,7 +77,7 @@
 
 -(BoardTileView*)tile:(BoardPoint)tilePos;
 {
-    if(tilePos.x > WidthInTiles-1 || tilePos.x < 0 || tilePos.y > HeightInTiles-1 || tilePos.y < 0) 
+    if(tilePos.x > WidthInTiles()-1 || tilePos.x < 0 || tilePos.y > HeightInTiles()-1 || tilePos.y < 0) 
         return nil;
     
     return boardTiles[tilePos.x][tilePos.y];
@@ -120,8 +120,8 @@
         [UIView setAnimationDuration:1];
     }
     
-    for(NSUInteger y = 0; y < HeightInTiles; y++) {
-        for (NSUInteger x = 0; x < WidthInTiles; x++) {
+    for(NSUInteger y = 0; y < HeightInTiles(); y++) {
+        for (NSUInteger x = 0; x < WidthInTiles(); x++) {
             [self tile:BoardPointMake(x, y)].frame = 
             CGRectMake(x*tileSize.width, y*tileSize.height, tileSize.width, tileSize.height);
         }

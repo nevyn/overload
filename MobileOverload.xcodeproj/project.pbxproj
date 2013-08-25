@@ -11,6 +11,8 @@
 		0511F5760E742C5F003FFA22 /* CInvocationGrabber.m in Sources */ = {isa = PBXBuildFile; fileRef = 0511F5740E742C5F003FFA22 /* CInvocationGrabber.m */; };
 		0511F6180E743977003FFA22 /* OLSoundPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0511F6170E743977003FFA22 /* OLSoundPlayer.m */; };
 		0511F6AA0E744774003FFA22 /* AI.m in Sources */ = {isa = PBXBuildFile; fileRef = 0511F6A90E744774003FFA22 /* AI.m */; };
+		05129D2B17CA322900CD5FCA /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 05129D2917CA322900CD5FCA /* Default-568h@2x.png */; };
+		05129D2C17CA322900CD5FCA /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 05129D2A17CA322900CD5FCA /* Default@2x.png */; };
 		0517F3FA0E59E6F30075F5A9 /* cog-screw.png in Resources */ = {isa = PBXBuildFile; fileRef = 0517F3F70E59E6F30075F5A9 /* cog-screw.png */; };
 		0517F3FB0E59E6F30075F5A9 /* cog 150px 6cog 35deg.png in Resources */ = {isa = PBXBuildFile; fileRef = 0517F3F80E59E6F30075F5A9 /* cog 150px 6cog 35deg.png */; };
 		0517F3FC0E59E6F30075F5A9 /* cog 150px 12cog 35deg.png in Resources */ = {isa = PBXBuildFile; fileRef = 0517F3F90E59E6F30075F5A9 /* cog 150px 12cog 35deg.png */; };
@@ -79,6 +81,8 @@
 		0511F6170E743977003FFA22 /* OLSoundPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OLSoundPlayer.m; sourceTree = "<group>"; };
 		0511F6A80E744774003FFA22 /* AI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AI.h; sourceTree = "<group>"; };
 		0511F6A90E744774003FFA22 /* AI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AI.m; sourceTree = "<group>"; };
+		05129D2917CA322900CD5FCA /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		05129D2A17CA322900CD5FCA /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		0517F3F70E59E6F30075F5A9 /* cog-screw.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cog-screw.png"; sourceTree = "<group>"; };
 		0517F3F80E59E6F30075F5A9 /* cog 150px 6cog 35deg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cog 150px 6cog 35deg.png"; sourceTree = "<group>"; };
 		0517F3F90E59E6F30075F5A9 /* cog 150px 12cog 35deg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cog 150px 12cog 35deg.png"; sourceTree = "<group>"; };
@@ -149,7 +153,7 @@
 		1D6058910D05DD3D006BFB54 /* MobileOverload.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobileOverload.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		280E754A0DD40C5E005A515E /* FlipsideView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = FlipsideView.xib; path = ../../Resources/FlipsideView.xib; sourceTree = "<group>"; };
-		280E754C0DD40C5E005A515E /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
+		280E754C0DD40C5E005A515E /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MainWindow.xib; path = ../../Resources/MainWindow.xib; sourceTree = "<group>"; };
 		289233A80DB2D0DB0083E9F9 /* BoardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardViewController.h; sourceTree = "<group>"; };
 		289233A90DB2D0DB0083E9F9 /* BoardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoardViewController.m; sourceTree = "<group>"; };
 		289233AA0DB2D0DB0083E9F9 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
@@ -271,6 +275,7 @@
 				289233AB0DB2D0DB0083E9F9 /* RootViewController.m */,
 				1D3623240D0F684500981E51 /* MobileOverloadAppDelegate.h */,
 				1D3623250D0F684500981E51 /* MobileOverloadAppDelegate.m */,
+				280E754C0DD40C5E005A515E /* MainWindow.xib */,
 			);
 			path = "Application Controllers";
 			sourceTree = "<group>";
@@ -303,6 +308,8 @@
 				05D7828C0E59152700FB00DB /* dist.plist */,
 				0530E0310E5B59E200C73DC6 /* icon.png */,
 				053494460E60BBF1003A834C /* Default.png */,
+				05129D2A17CA322900CD5FCA /* Default@2x.png */,
+				05129D2917CA322900CD5FCA /* Default-568h@2x.png */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				059E5D3311CE98780082C131 /* Resources-iPad */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
@@ -360,7 +367,6 @@
 				0517F3F70E59E6F30075F5A9 /* cog-screw.png */,
 				0517F3F80E59E6F30075F5A9 /* cog 150px 6cog 35deg.png */,
 				0517F3F90E59E6F30075F5A9 /* cog 150px 12cog 35deg.png */,
-				280E754C0DD40C5E005A515E /* MainWindow.xib */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -458,6 +464,8 @@
 				05EE3D5B0F45A03E00E5034D /* 64 in Resources */,
 				05EE3D5C0F45A03E00E5034D /* 128 in Resources */,
 				059E5D3511CE98780082C131 /* MainWindow-iPad.xib in Resources */,
+				05129D2B17CA322900CD5FCA /* Default-568h@2x.png in Resources */,
+				05129D2C17CA322900CD5FCA /* Default@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

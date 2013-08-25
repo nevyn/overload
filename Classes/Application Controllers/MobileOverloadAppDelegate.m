@@ -32,7 +32,7 @@ NSString *applicationCode = @"f41f960eeef940e4f2bbc28259d1165c";
 {
     [[NSUserDefaults standardUserDefaults] registerDefaults:
      [NSDictionary dictionaryWithObjectsAndKeys:
-      $array($object(WidthInTiles/2), $object(HeightInTiles/2)), @"boardSize",
+      $array($object(WidthInTiles()/2), $object(HeightInTiles()/2)), @"boardSize",
       [NSNumber numberWithBool:NO], @"chaosGame",
       [NSNumber numberWithBool:YES], @"sound",
       [NSNumber numberWithInt:PlayerP1], @"currentPlayer",
@@ -47,6 +47,8 @@ NSString *applicationCode = @"f41f960eeef940e4f2bbc28259d1165c";
 #pragma mark 
 #pragma mark Launch, paranoidTimer
 - (void)applicationDidFinishLaunching:(UIApplication *)application {
+    window.frame = [[UIScreen mainScreen] bounds];
+
     if([window respondsToSelector:@selector(setRootViewController:)])
         [window setRootViewController:rootViewController];
     else

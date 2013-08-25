@@ -10,8 +10,8 @@
 extern const CGFloat ScoreBarHeight;
 extern CGFloat BoardWidth();
 extern CGFloat BoardHeight();
-extern const NSUInteger WidthInTiles; // = 10
-extern const NSUInteger HeightInTiles; // = 12
+extern NSUInteger WidthInTiles();
+extern NSUInteger HeightInTiles();
 
 typedef enum {
     PlayerNone,

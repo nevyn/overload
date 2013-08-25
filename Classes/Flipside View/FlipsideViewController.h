@@ -23,6 +23,7 @@
     IBOutlet UISwitch *chaosGame;
     IBOutlet UISwitch *soundSwitch;    
     IBOutlet UILabel *sizeLabel;
+    IBOutlet UILabel *estimatedTimeLabel;
     BoardSize newBoardSize;
     NSMutableArray *stuffToDoWhenFlipped;
 }

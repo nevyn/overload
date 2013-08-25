@@ -8,6 +8,7 @@
  */
 
 const CGFloat ScoreBarHeight = 44;
+
 CGFloat BoardWidth()
 {
 	return UIScreen.mainScreen.applicationFrame.size.width;
@@ -17,8 +18,16 @@ CGFloat BoardHeight()
     CGRect screenFrame = [[UIScreen mainScreen] applicationFrame];
     return screenFrame.size.height - ScoreBarHeight*2;
 }
-const NSUInteger WidthInTiles = 10; //BoardWidth/TileWidth
-const NSUInteger HeightInTiles = 12; //BoardHeight/TileHeight
+NSUInteger WidthInTiles()
+{
+    return 10;
+}
+NSUInteger HeightInTiles()
+{
+    if([UIScreen mainScreen].bounds.size.height >= 568)
+        return 14;
+    return 12;
+}
 
 const NSTimeInterval ExplosionDelay = 0.30;
 const CGFloat ChargeEnergy = 0.25;

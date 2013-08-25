@@ -32,7 +32,7 @@
 #ifndef AI_VS_AI
     [board load];
 #else
-    board.sizeInTiles = BoardSizeMake(WidthInTiles/2, HeightInTiles/2);
+    board.sizeInTiles = BoardSizeMake(WidthInTiles()/2, HeightInTiles/2);
     board.chaosGame = YES;
 #endif
     [self boardIsStartingAnew:board];

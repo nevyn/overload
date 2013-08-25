@@ -43,7 +43,7 @@
     versionLabel.text = [NSString stringWithFormat:@"v%@", version];
     
     chaosGame.on = mainController.board.chaosGame;
-    boardSize.value = mainController.board.sizeInTiles.width/(float)WidthInTiles;
+    boardSize.value = mainController.board.sizeInTiles.width/(float)WidthInTiles();
     soundSwitch.on = mainController.soundPlayer.sound;
 
     [self updateSizeLabel:mainController.board.sizeInTiles];
@@ -157,14 +157,15 @@
         default:
         case 10: estimatedTime = @"2h"; break;
     }
-    [sizeLabel setText:[NSString stringWithFormat:@"%dx%d%@\n%@",
-                        size.width, size.height, ((size.width==5&&size.height==6)?@" (default)":@""),
-                        estimatedTime]];
+    BOOL isDefault = size.width == WidthInTiles()/2 && size.height == HeightInTiles()/2;
+    [sizeLabel setText:[NSString stringWithFormat:@"%dx%d%@",
+                        size.width, size.height, (isDefault?@" (default)":@"")]];
+    estimatedTimeLabel.text = estimatedTime;
     
 }
 - (IBAction)setGameBoardSize:(UISlider*)sender;
 {
-    newBoardSize = BoardSizeMake(WidthInTiles*sender.value, HeightInTiles*sender.value);
+    newBoardSize = BoardSizeMake(WidthInTiles()*sender.value, HeightInTiles()*sender.value);
     [self updateSizeLabel:newBoardSize];
 }
 - (IBAction)toggleChaosGame:(UISwitch*)sender;

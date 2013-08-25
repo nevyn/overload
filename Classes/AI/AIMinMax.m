@@ -20,7 +20,7 @@ static NSInteger MinMaxDepth = 2;
 }
 -(AIMMTreeNode*)node:(BoardPoint)tilePos;
 {
-    if(tilePos.x > WidthInTiles-1 || tilePos.x < 0 || tilePos.y > HeightInTiles-1 || tilePos.y < 0) 
+    if(tilePos.x > WidthInTiles()-1 || tilePos.x < 0 || tilePos.y > HeightInTiles()-1 || tilePos.y < 0) 
         return nil;
     
     return children[tilePos.x][tilePos.y];
