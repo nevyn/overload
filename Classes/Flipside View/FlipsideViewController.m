@@ -57,6 +57,11 @@
 	cogU.transform = cogL.transform = cogM.transform = CGAffineTransformIdentity;
 }
 
+- (void)adsChanged
+{
+	removeAdsButton.hidden = ![[OLPurchasesController sharedController] shouldShowAds];
+}
+
 -(void)viewWillAppear:(BOOL)yeah;
 {
 	[super viewWillAppear:yeah];
@@ -66,7 +71,7 @@
     boardSize.value = mainController.board.sizeInTiles.width/(float)WidthInTiles();
     soundSwitch.on = mainController.soundPlayer.sound;
 	
-	removeAdsButton.hidden = ![[OLPurchasesController sharedController] shouldShowAds];
+	[self adsChanged];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(adsChanged) name:OLPurchasesAdsStatusChangedNotification object:nil];
 
     [self updateSizeLabel:mainController.board.sizeInTiles];
@@ -120,7 +125,7 @@
 
 - (IBAction)removeAds:(id)sender
 {
-
+	[[OLPurchasesController sharedController] purchaseAdRemoval];
 }
 
 

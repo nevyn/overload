@@ -9,6 +9,7 @@
 #import "RootViewController.h"
 #import "BoardViewController.h"
 #import "FlipsideViewController.h"
+#import "OLPurchasesController.h"
 
 @interface RootViewController () <UIPopoverControllerDelegate, ADBannerViewDelegate>
 {
@@ -37,14 +38,33 @@
     mainViewController.view.frame = self.view.bounds;
     mainViewController.view.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
 	
-	if([ADBannerView class]) {
-		self.banner = [[ADBannerView alloc] initWithFrame:CGRectZero];
+	if([ADBannerView class] && [[OLPurchasesController sharedController] shouldShowAds]) {
+		self.banner = [[[ADBannerView alloc] initWithFrame:CGRectZero] autorelease];
 		self.banner.currentContentSizeIdentifier = ADBannerContentSizeIdentifierPortrait;
 		self.banner.delegate = self;
 		[self.view addSubview:self.banner];
 		_adShown = YES;
 		[self setAdShown:NO animated:NO];
 	}
+	
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(shouldShowAdsChanged) name:OLPurchasesAdsStatusChangedNotification object:nil];
+}
+
+- (void)shouldShowAdsChanged
+{
+	if([[OLPurchasesController sharedController] shouldShowAds])
+		return;
+	if(!banner)
+		return;
+	
+	banner.delegate = nil;
+	[self setAdShown:NO animated:YES];
+	[self performSelector:@selector(killAds) withObject:nil afterDelay:0.5];
+}
+- (void)killAds
+{
+	[banner removeFromSuperview];
+	self.banner = nil;
 }
 
 
@@ -142,9 +162,11 @@
 
 
 - (void)dealloc {
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
 	[infoButton release];
 	[mainViewController release];
 	[flipsideViewController release];
+	[banner release];
 	[super dealloc];
 }
 
@@ -191,7 +213,8 @@
 
 - (void)bannerViewDidLoadAd:(ADBannerView *)banner
 {
-	[self setAdShown:YES animated:YES];
+	if([[OLPurchasesController sharedController] shouldShowAds])
+		[self setAdShown:YES animated:YES];
 }
 
 - (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error;
