@@ -39,20 +39,34 @@
         
 	return self;
 }
-- (void)viewDidLoad {
+
+- (void)loadView
+{
+    UIView *root = [[UIView alloc] initWithFrame:CGRectMake(0, 0, BoardWidth(), BoardHeight()+ScoreBarHeight*2)];
+    
     score1 = [[[ScoreBarView alloc] initWithFrame:CGRectMake(0, BoardHeight()+ScoreBarHeight, BoardWidth(), ScoreBarHeight) player:PlayerP1] autorelease];
     score1.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
+    [root addSubview:score1];
 
     score2 = [[[ScoreBarView alloc] initWithFrame:CGRectMake(0, 0, BoardWidth(), ScoreBarHeight) player:PlayerP2] autorelease];
     score2.transform = CGAffineTransformMakeRotation(M_PI);
     score2.delegate = self;
         
-    [self.view addSubview:score1];
-    [self.view addSubview:score2];
+    [root addSubview:score2];
     
-    self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
+    root.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
+
+    boardView = [[[BoardView alloc] initWithFrame:CGRectMake(0, ScoreBarHeight, BoardWidth(), BoardHeight())] autorelease];
+    [boardView setSizeInTiles:board.sizeInTiles];
+    boardView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
+    boardView.delegate = self;
+    [root insertSubview:boardView belowSubview:score1];
     
-    
+    [self setView:root];
+}
+
+- (void)viewDidLoad
+{
     if([[NSUserDefaults standardUserDefaults] boolForKey:@"currentGame.hasAI"])
         [self startAI];
 }
@@ -61,13 +75,6 @@
 {
     self.heartbeat = [NSTimer scheduledTimerWithTimeInterval:1./60. target:self selector:@selector(update) userInfo:nil repeats:YES];
 
-    if(!boardView) {
-        boardView = [[[BoardView alloc] initWithFrame:CGRectMake(0, ScoreBarHeight, BoardWidth(), BoardHeight())] autorelease];
-        [boardView setSizeInTiles:board.sizeInTiles];
-        boardView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
-        boardView.delegate = self;
-        [self.view insertSubview:boardView belowSubview:score1];
-    }
     boardView.animated = YES;
     board.delegate = self; // Triggers calling all delegate methods to match board view to model    
 }
