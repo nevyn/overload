@@ -10,6 +10,28 @@
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIconFile</key>
 	<string>icon</string>
+	<key>CFBundleIconFiles</key>
+	<array>
+		<string>icon</string>
+		<string>icon.png</string>
+		<string>icon@2x.png</string>
+		<string>icon~ipad.png</string>
+		<string>icon~ipad@2x.png</string>
+	</array>
+	<key>CFBundleIcons</key>
+	<dict>
+		<key>CFBundlePrimaryIcon</key>
+		<dict>
+			<key>CFBundleIconFiles</key>
+			<array>
+				<string>icon</string>
+				<string>icon.png</string>
+				<string>icon@2x.png</string>
+				<string>icon~ipad.png</string>
+				<string>icon~ipad@2x.png</string>
+			</array>
+		</dict>
+	</dict>
 	<key>CFBundleIdentifier</key>
 	<string>eu.thirdcog.MobileOverload</string>
 	<key>CFBundleInfoDictionaryVersion</key>
