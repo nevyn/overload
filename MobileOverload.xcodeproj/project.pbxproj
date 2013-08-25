@@ -23,7 +23,6 @@
 		0541F5370E5EFFEE000D6368 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0541F5360E5EFFEE000D6368 /* AudioToolbox.framework */; };
 		054615D00E5E0E9600DAF3BD /* ScoreIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 054615CF0E5E0E9600DAF3BD /* ScoreIndicator.m */; };
 		0546168E0E5E220600DAF3BD /* gloss.png in Resources */ = {isa = PBXBuildFile; fileRef = 0546168D0E5E220600DAF3BD /* gloss.png */; };
-		054F78610E97D7B000E17413 /* libPinchAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 054F78600E97D7B000E17413 /* libPinchAnalytics.a */; };
 		054F78660E97D83400E17413 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 054F78650E97D83400E17413 /* SystemConfiguration.framework */; };
 		054F78680E97D83900E17413 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 054F78670E97D83900E17413 /* CoreLocation.framework */; };
 		0589082F0E749ECB0014135B /* AIMinMax.m in Sources */ = {isa = PBXBuildFile; fileRef = 0589082E0E749ECB0014135B /* AIMinMax.m */; };
@@ -50,7 +49,6 @@
 		05D77FDF0E58E93F00FB00DB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05D77FDE0E58E93F00FB00DB /* QuartzCore.framework */; };
 		05D780C70E58FA7400FB00DB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05D780C60E58FA7400FB00DB /* CoreGraphics.framework */; };
 		05D7828D0E59152700FB00DB /* dist.plist in Resources */ = {isa = PBXBuildFile; fileRef = 05D7828C0E59152700FB00DB /* dist.plist */; };
-		05DD21620F28EFC0001A8532 /* Beacon+OptIn.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DD21610F28EFC0001A8532 /* Beacon+OptIn.m */; };
 		05E03B490F2A33C5006E6190 /* BoardViewGL.m in Sources */ = {isa = PBXBuildFile; fileRef = 05E03B470F2A33C5006E6190 /* BoardViewGL.m */; };
 		05E03BAE0F2B20F2006E6190 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05E03BAD0F2B20F2006E6190 /* OpenGLES.framework */; };
 		05E03BB00F2B211B006E6190 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 05E03BAF0F2B211B006E6190 /* libsqlite3.dylib */; };
@@ -66,7 +64,6 @@
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		280E754D0DD40C5E005A515E /* FlipsideView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 280E754A0DD40C5E005A515E /* FlipsideView.xib */; };
-		280E754E0DD40C5E005A515E /* MainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 280E754B0DD40C5E005A515E /* MainView.xib */; };
 		280E754F0DD40C5E005A515E /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 280E754C0DD40C5E005A515E /* MainWindow.xib */; };
 		289233AE0DB2D0DB0083E9F9 /* BoardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 289233A90DB2D0DB0083E9F9 /* BoardViewController.m */; };
 		289233AF0DB2D0DB0083E9F9 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 289233AB0DB2D0DB0083E9F9 /* RootViewController.m */; };
@@ -96,8 +93,6 @@
 		054615CE0E5E0E9600DAF3BD /* ScoreIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreIndicator.h; sourceTree = "<group>"; };
 		054615CF0E5E0E9600DAF3BD /* ScoreIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreIndicator.m; sourceTree = "<group>"; };
 		0546168D0E5E220600DAF3BD /* gloss.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gloss.png; sourceTree = "<group>"; };
-		054F785F0E97D7B000E17413 /* Beacon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Beacon.h; sourceTree = "<group>"; };
-		054F78600E97D7B000E17413 /* libPinchAnalytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libPinchAnalytics.a; sourceTree = "<group>"; };
 		054F78650E97D83400E17413 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		054F78670E97D83900E17413 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		0589082D0E749ECB0014135B /* AIMinMax.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AIMinMax.h; sourceTree = "<group>"; };
@@ -134,8 +129,6 @@
 		05D77FDE0E58E93F00FB00DB /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = /System/Library/Frameworks/QuartzCore.framework; sourceTree = "<absolute>"; };
 		05D780C60E58FA7400FB00DB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		05D7828C0E59152700FB00DB /* dist.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = dist.plist; sourceTree = "<group>"; };
-		05DD21600F28EFC0001A8532 /* Beacon+OptIn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Beacon+OptIn.h"; sourceTree = "<group>"; };
-		05DD21610F28EFC0001A8532 /* Beacon+OptIn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Beacon+OptIn.m"; sourceTree = "<group>"; };
 		05E03B470F2A33C5006E6190 /* BoardViewGL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoardViewGL.m; sourceTree = "<group>"; };
 		05E03B480F2A33C5006E6190 /* BoardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardView.h; sourceTree = "<group>"; };
 		05E03BAD0F2B20F2006E6190 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -156,7 +149,6 @@
 		1D6058910D05DD3D006BFB54 /* MobileOverload.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobileOverload.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		280E754A0DD40C5E005A515E /* FlipsideView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = FlipsideView.xib; path = ../../Resources/FlipsideView.xib; sourceTree = "<group>"; };
-		280E754B0DD40C5E005A515E /* MainView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MainView.xib; path = ../../Resources/MainView.xib; sourceTree = "<group>"; };
 		280E754C0DD40C5E005A515E /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		289233A80DB2D0DB0083E9F9 /* BoardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardViewController.h; sourceTree = "<group>"; };
 		289233A90DB2D0DB0083E9F9 /* BoardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoardViewController.m; sourceTree = "<group>"; };
@@ -179,7 +171,6 @@
 				05D77FDF0E58E93F00FB00DB /* QuartzCore.framework in Frameworks */,
 				05D780C70E58FA7400FB00DB /* CoreGraphics.framework in Frameworks */,
 				0541F5370E5EFFEE000D6368 /* AudioToolbox.framework in Frameworks */,
-				054F78610E97D7B000E17413 /* libPinchAnalytics.a in Frameworks */,
 				054F78660E97D83400E17413 /* SystemConfiguration.framework in Frameworks */,
 				054F78680E97D83900E17413 /* CoreLocation.framework in Frameworks */,
 				053185710EF793EE0054A00D /* AVFoundation.framework in Frameworks */,
@@ -242,7 +233,6 @@
 				05E03B460F2A33B1006E6190 /* BoardGL */,
 				289233A80DB2D0DB0083E9F9 /* BoardViewController.h */,
 				289233A90DB2D0DB0083E9F9 /* BoardViewController.m */,
-				280E754B0DD40C5E005A515E /* MainView.xib */,
 				0511F6160E743977003FFA22 /* OLSoundPlayer.h */,
 				0511F6170E743977003FFA22 /* OLSoundPlayer.m */,
 				05D77E980E58C7D400FB00DB /* ScoreBarView.h */,
@@ -334,16 +324,12 @@
 				058BDFB00F3E160E00E4A699 /* ExceptionUtils.m */,
 				05AD39400F3194A8004F746D /* Texture2D.h */,
 				05AD39410F3194A8004F746D /* Texture2D.m */,
-				054F785F0E97D7B000E17413 /* Beacon.h */,
-				054F78600E97D7B000E17413 /* libPinchAnalytics.a */,
 				0511F5740E742C5F003FFA22 /* CInvocationGrabber.m */,
 				0511F5750E742C5F003FFA22 /* CInvocationGrabber.h */,
 				32CA4F630368D1EE00C91783 /* MobileOverload_Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
 				058FEB850EF841DF006FDFDA /* AVAudioPlayerQueue.h */,
 				058FEB860EF841DF006FDFDA /* AVAudioPlayerQueue.m */,
-				05DD21600F28EFC0001A8532 /* Beacon+OptIn.h */,
-				05DD21610F28EFC0001A8532 /* Beacon+OptIn.m */,
 				05E03D830F2BBF22006E6190 /* ColorConversion.h */,
 				05E03D840F2BBF22006E6190 /* ColorConversion.c */,
 				05E03E660F2BD8F1006E6190 /* UIImage+GLTexture.h */,
@@ -424,6 +410,7 @@
 			isa = PBXProject;
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "MobileOverload" */;
 			compatibilityVersion = "Xcode 3.1";
+			developmentRegion = English;
 			hasScannedForEncodings = 1;
 			knownRegions = (
 				English,
@@ -447,7 +434,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				280E754D0DD40C5E005A515E /* FlipsideView.xib in Resources */,
-				280E754E0DD40C5E005A515E /* MainView.xib in Resources */,
 				280E754F0DD40C5E005A515E /* MainWindow.xib in Resources */,
 				05D7828D0E59152700FB00DB /* dist.plist in Resources */,
 				0517F3FA0E59E6F30075F5A9 /* cog-screw.png in Resources */,
@@ -497,7 +483,6 @@
 				0589082F0E749ECB0014135B /* AIMinMax.m in Sources */,
 				058FEB870EF841DF006FDFDA /* AVAudioPlayerQueue.m in Sources */,
 				05A762D90EFCE9EF005D899A /* AI2.m in Sources */,
-				05DD21620F28EFC0001A8532 /* Beacon+OptIn.m in Sources */,
 				05E03B490F2A33C5006E6190 /* BoardViewGL.m in Sources */,
 				05E03BCB0F2B2690006E6190 /* BoardTileView.m in Sources */,
 				05E03BCC0F2B2690006E6190 /* BoardView.m in Sources */,

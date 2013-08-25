@@ -12,7 +12,6 @@
 #import "CInvocationGrabber.h"
 #import "AI2.h"
 #import "AIMinMax.h"
-#import "Beacon+OptIn.h"
 
 @interface BoardViewController ()
 @property (retain, nonatomic) NSTimer *heartbeat;
@@ -161,11 +160,6 @@
 }
 -(void)board:(Board*)board endedWithWinner:(Player)winner;
 {
-    if(ai)
-        [[Beacon sharedIfOptedIn] endSubBeaconWithName:@"Local AI Game"];
-    else
-        [[Beacon sharedIfOptedIn] endSubBeaconWithName:@"Local 2P Game"];
-    
     [soundPlayer playWinSound];
     Player loser = (!(winner-1))+1;
     [UIView beginAnimations:nil context:NULL];
@@ -206,7 +200,6 @@
     
     if(board.isBoardEmpty) {
         score2.status = @"    Tap me to play against iPhone";
-        [[Beacon sharedIfOptedIn] startSubBeaconWithName:@"Local 2P Game" timeSession:YES];
         [score2 flipStatus];
     }
     
@@ -232,9 +225,8 @@
 #pragma mark Score bar delegates
 -(void)scoreBarTouched:(ScoreBarView*)scoreBarView;
 {
-    if(scoreBarView == score2 && score2.status == @"    Tap me to play against iPhone") {
+    if(scoreBarView == score2 && [score2.status isEqual:@"    Tap me to play against iPhone"]) {
         [self startAI];
-        [[Beacon sharedIfOptedIn] startSubBeaconWithName:@"Local AI Game" timeSession:YES];
     }
     
 }
