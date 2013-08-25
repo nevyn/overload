@@ -62,24 +62,24 @@
 
     
     if(chargeLevel < 0.26)
-        [[avObjects objectForKey:@"charge25"] play];
+        [(AVAudioPlayerQueue*)[avObjects objectForKey:@"charge25"] play];
     else if(chargeLevel < 0.51)
-        [[avObjects objectForKey:@"charge50"] play];
+        [(AVAudioPlayerQueue*)[avObjects objectForKey:@"charge50"] play];
     else if(chargeLevel < 0.76)
-        [[avObjects objectForKey:@"charge75"] play];
+        [(AVAudioPlayerQueue*)[avObjects objectForKey:@"charge75"] play];
     else
-        [[avObjects objectForKey:@"charge100"] play];
+        [(AVAudioPlayerQueue*)[avObjects objectForKey:@"charge100"] play];
 }
 -(void)playExplosionSound;
 {
     if( ! sound) return;
-    [[avObjects objectForKey:@"explosion"] play];
+    [(AVAudioPlayerQueue*)[avObjects objectForKey:@"explosion"] play];
 
 }
 -(void)playWinSound;
 {
     if( ! sound) return;
-    [[avObjects objectForKey:@"win"] play];
+    [(AVAudioPlayerQueue*)[avObjects objectForKey:@"win"] play];
 
 }
 

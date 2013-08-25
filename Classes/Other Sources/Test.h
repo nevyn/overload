@@ -89,6 +89,6 @@ void _RunTestCase( void (*testptr)(), const char *name );
 
 struct TestCaseLink {void (*testptr)(); const char *name; BOOL passed; struct TestCaseLink *next;};
 extern struct TestCaseLink *gAllTestCases;
-#endif DEBUG
+#endif //DEBUG
 void _AssertFailed( id rcvr, const void *selOrFn, const char *sourceFile, int sourceLine,
                    const char *condString, NSString *message, ... ) __attribute__((noreturn));
