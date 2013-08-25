@@ -16,7 +16,6 @@
 -(void)advancePlayer;
 
 -(void)scheduleCharge:(Tile*)t owner:(Player)owner;
-@property (readwrite, assign, nonatomic) NSUInteger explosionsQueued;
 @end
 
 @interface ScheduledCharge : NSObject {
@@ -171,7 +170,7 @@
     if( chaosGame )
         return YES;
     
-    if( self.explosionsQueued == 0)
+    if( explosionsQueue.count == 0)
         return YES;
     
     return NO;
@@ -258,7 +257,7 @@
     [delegate tile:tile wasChargedTo:tile.value+ChargeEnergy byPlayer:self.currentPlayer];
     [tile charge:ChargeEnergy forPlayer:self.currentPlayer];
     
-    if(self.explosionsQueued == 0 || self.chaosGame)
+    if(explosionsQueue.count == 0 || self.chaosGame)
         [self advancePlayer];
     return YES;
 }
@@ -346,15 +345,6 @@
     }
 }
 
-
-@synthesize explosionsQueued;
--(void)setExplosionsQueued:(NSUInteger)queueNo;
-{
-    explosionsQueued = queueNo;
-    
-    if(explosionsQueued == 0 && !self.chaosGame)
-        [self advancePlayer];
-}
 -(void)scheduleCharge:(Tile*)t owner:(Player)owner;
 {
     ScheduledCharge *charge = [[[ScheduledCharge alloc] init] autorelease];
@@ -367,7 +357,9 @@
 -(void)explosionCharge:(ScheduledCharge*)charge;
 {
     [charge.tile charge:ExplosionSpreadEnergy forPlayer:charge.owner];
-    self.explosionsQueued -= 1;
+
+    if(explosionsQueue.count == 0 && !self.chaosGame)
+        [self advancePlayer];
 }
 -(void)update;
 {
@@ -391,8 +383,8 @@
             return;
         
         ScheduledCharge *charge = [explosionsQueue objectForKey:when];
-        [self explosionCharge:charge];
         [explosionsQueue removeObjectForKey:when];
+        [self explosionCharge:charge];
     }
 #else
     NSNumber *when = [[explosionsQueue.allKeys sortedArrayUsingSelector:@selector(compare:)] objectAtIndex:0];
@@ -427,7 +419,6 @@
     self.value = 0.0;
     
     for (Tile *sibling in self.surroundingTiles) {
-        board.explosionsQueued += 1;
         if(board.delegate)
             [self.board scheduleCharge:sibling owner:self.owner];
         else {

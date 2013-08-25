@@ -35,7 +35,6 @@
     
     id<BoardDelegate> delegate;
     
-    NSUInteger explosionsQueued;
     NSMutableDictionary *explosionsQueue;
 }
 -(id)init;
