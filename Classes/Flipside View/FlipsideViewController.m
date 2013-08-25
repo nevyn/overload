@@ -44,7 +44,9 @@
 -(void)startRotatingWheels;
 {
     first = [NSDate timeIntervalSinceReferenceDate];
-    rotationTimer = [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(rotateWheels:) userInfo:nil repeats:YES];
+	if(rotationTimer)
+		[rotationTimer invalidate];
+    rotationTimer = [NSTimer scheduledTimerWithTimeInterval:1/60. target:self selector:@selector(rotateWheels:) userInfo:nil repeats:YES];
 }
 
 - (void)stopRotatingWheels;

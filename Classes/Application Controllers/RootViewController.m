@@ -84,6 +84,8 @@
         return;
     }
 	
+	BOOL appearanceIsAutomatic = [UIViewController instancesRespondToSelector:@selector(automaticallyForwardAppearanceAndRotationMethodsToChildViewControllers)] || [UIViewController instancesRespondToSelector:@selector(shouldAutomaticallyForwardAppearanceMethods)];
+	
 	UIView *mainView = mainViewController.view;
 	UIView *flipsideView = flipsideViewController.view;
 	
@@ -92,22 +94,30 @@
 	[UIView setAnimationTransition:([mainView superview] ? UIViewAnimationTransitionFlipFromRight : UIViewAnimationTransitionFlipFromLeft) forView:self.view cache:YES];
 	
 	if ([mainView superview] != nil) {
-		[flipsideViewController viewWillAppear:YES];
-		[mainViewController viewWillDisappear:YES];
+		if(!appearanceIsAutomatic) {
+			[flipsideViewController viewWillAppear:YES];
+			[mainViewController viewWillDisappear:YES];
+		}
 		[mainView removeFromSuperview];
         [infoButton removeFromSuperview];
 		[self.view addSubview:flipsideView];
-		[mainViewController viewDidDisappear:YES];
-		[flipsideViewController viewDidAppear:YES];
+		if(!appearanceIsAutomatic) {
+			[mainViewController viewDidDisappear:YES];
+			[flipsideViewController viewDidAppear:YES];
+		}
 
 	} else {
-		[mainViewController viewWillAppear:YES];
-		[flipsideViewController viewWillDisappear:YES];
+		if(!appearanceIsAutomatic) {
+			[mainViewController viewWillAppear:YES];
+			[flipsideViewController viewWillDisappear:YES];
+		}
 		[flipsideView removeFromSuperview];
 		[self.view addSubview:mainView];
 		[self.view insertSubview:infoButton aboveSubview:mainViewController.view];
-		[flipsideViewController viewDidDisappear:YES];
-		[mainViewController viewDidAppear:YES];
+		if(!appearanceIsAutomatic) {
+			[flipsideViewController viewDidDisappear:YES];
+			[mainViewController viewDidAppear:YES];
+		}
 	}
 	[UIView commitAnimations];
 }
