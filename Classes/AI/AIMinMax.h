@@ -17,7 +17,7 @@
     BoardPoint representsMoveAt;
     AIMinMax *ai;
     Board *board;
-    AIMMTreeNode *children[10][12];
+    AIMMTreeNode *children[10][14];
     BOOL hasChildren;
     CGFloat mval;
 }

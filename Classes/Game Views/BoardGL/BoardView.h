@@ -30,7 +30,7 @@
     id<BoardViewDelegate> delegate;
     
 #ifndef BOARDVIEW_OPENGL
-    BoardTileView *boardTiles[10][12]; // [x][y]
+    BoardTileView *boardTiles[10][14]; // [x][y]
 #else
     EAGLContext *ctx;
     GLuint fbo, rbo;
