@@ -61,6 +61,9 @@ typedef struct tile_t {
 } tile_t;
 
 @implementation BoardView
+{
+	BOOL _madeFramebuffer;
+}
 + (Class) layerClass
 {
     return [CAEAGLLayer class];
@@ -109,11 +112,19 @@ typedef struct tile_t {
 #pragma mark 
 #pragma mark Context/buffer setup and teardown
 #pragma mark -
-- (void)layoutSubviews {
+- (void)layoutSubviews
+{
+	// frame changed, remake context
+	[self setupContext];
+}
+
+- (void)setupContext
+{
     [EAGLContext setCurrentContext:ctx];
     [self destroyFramebuffer];
-    [self createFramebuffer];
-    [self render];
+    _madeFramebuffer = [self createFramebuffer];
+	if(_madeFramebuffer)
+		[self render];
 }
 
 - (BOOL)createFramebuffer;
@@ -210,7 +221,15 @@ void renderWhite()
 
 -(void)render;
 {
-    if(!fbo) return;
+	if(!self.window)
+		return;
+	
+	if(self.window && !_madeFramebuffer) {
+		[self setupContext];
+	}
+	
+    if(!fbo)
+		return;
     
     const GLfloat squareVertices[] = {
         0.f,   0.f,
