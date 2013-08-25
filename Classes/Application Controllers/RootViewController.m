@@ -10,13 +10,16 @@
 #import "BoardViewController.h"
 #import "FlipsideViewController.h"
 
+@interface RootViewController () <UIPopoverControllerDelegate>
+@end
+
 
 @implementation RootViewController
 
 @synthesize infoButton;
 @synthesize mainViewController;
 @synthesize flipsideViewController;
-
+@synthesize ipadInfoPopover;
 
 - (void)viewDidLoad {
 	BoardViewController *viewController = [[[BoardViewController alloc] init] autorelease];
@@ -52,6 +55,20 @@
 	if (flipsideViewController == nil) {
 		[self loadFlipsideViewController];
 	}
+    
+    if(ipadInfoPopover) {
+        [ipadInfoPopover dismissPopoverAnimated:YES];
+        [self popoverControllerDidDismissPopover:ipadInfoPopover];
+        return;
+    }
+    
+    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        self.ipadInfoPopover = [[UIPopoverController alloc] initWithContentViewController:flipsideViewController];
+        [ipadInfoPopover setPopoverContentSize:CGSizeMake(320, 460) animated:NO];
+        [ipadInfoPopover presentPopoverFromRect:infoButton.frame inView:infoButton.superview permittedArrowDirections:UIPopoverArrowDirectionDown animated:YES];
+        ipadInfoPopover.delegate = self;
+        return;
+    }
 	
 	UIView *mainView = mainViewController.view;
 	UIView *flipsideView = flipsideViewController.view;
@@ -92,6 +109,11 @@
 - (void)didReceiveMemoryWarning {
 	[super didReceiveMemoryWarning]; // Releases the view if it doesn't have a superview
 	// Release anything that's not essential, such as cached data
+}
+
+- (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController;
+{
+    self.ipadInfoPopover = nil;
 }
 
 

@@ -21,6 +21,7 @@
 @property (nonatomic, retain) UIButton *infoButton;
 @property (nonatomic, retain) BoardViewController *mainViewController;
 @property (nonatomic, retain) FlipsideViewController *flipsideViewController;
+@property (nonatomic, retain) UIPopoverController *ipadInfoPopover;
 
 - (IBAction)toggleView;
 
