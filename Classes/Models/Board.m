@@ -383,6 +383,7 @@
             return;
         
         ScheduledCharge *charge = [explosionsQueue objectForKey:when];
+		[[charge retain] autorelease];
         [explosionsQueue removeObjectForKey:when];
         [self explosionCharge:charge];
     }
@@ -392,8 +393,9 @@
     if(when2 > [NSDate timeIntervalSinceReferenceDate])
         return;
     ScheduledCharge *charge = [explosionsQueue objectForKey:when];
-    [self explosionCharge:charge];
+	[[charge retain] autorelease];
     [explosionsQueue removeObjectForKey:when];
+    [self explosionCharge:charge];
 #endif
 }
 @end
