@@ -178,8 +178,8 @@
     UIImageView *p1Plaque = winner==PlayerP1?winPlaque:losePlaque,
     *p2Plaque = winner==PlayerP2?winPlaque:losePlaque;
     
-    p1Plaque.frame = CGRectMake(0, 230, 320, 230);
-    p2Plaque.frame = CGRectMake(0, 0, 320, 230);
+    p1Plaque.frame = CGRectMake(self.view.bounds.size.width/2 - p1Plaque.frame.size.width/2, self.view.bounds.size.height - 230 - 45, 320, 230);
+    p2Plaque.frame = CGRectMake(self.view.bounds.size.width/2 - p2Plaque.frame.size.width/2, 0, 320, 230);
     p2Plaque.transform = CGAffineTransformMakeRotation(M_PI);
     
     [self.view addSubview:p1Plaque];
