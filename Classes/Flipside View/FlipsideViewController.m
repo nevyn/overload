@@ -105,6 +105,16 @@
 	[super dealloc];
 }
 
+- (IBAction)goToSite:(id)sender
+{
+	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://thirdcog.eu"]];
+}
+
+- (IBAction)removeAds:(id)sender
+{
+
+}
+
 
 - (IBAction)toggleView:(id)sender;
 {
