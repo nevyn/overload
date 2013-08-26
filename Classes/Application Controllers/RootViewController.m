@@ -76,8 +76,10 @@
                                                                              mainController:self.mainViewController] autorelease];
 	self.flipsideViewController = viewController;
 	
-    viewController.view.frame = mainViewController.view.frame;
-    viewController.view.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
+    if(UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad) {
+		viewController.view.frame = mainViewController.view.frame;
+		viewController.view.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
+	}
 }
 
 
